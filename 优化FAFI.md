@@ -13,10 +13,18 @@ FAFI 中的对比学习损失函数旨在拉近同语义样本的特征，推开
 客户端在本地维护一个特征表示的队列或内存库，存储来自历史批次或不同客户端的特征，作为负样本源。这样可以打破本地批次的限制，提供更广泛的负样本集，增强对比学习的有效性。  
 Sun, R., Guo, S., Guo, J., Li, W., Zhang, X., Guo, X., & Pan, Z. (2024). GraphMoCo: A graph momentum contrast model for large-scale binary function representation learning. Neurocomputing, 575, 127273. https://doi.org/10.1016/j.neucom.2024.127273  
 ​
-- 跨客户端负样本共享（通过服务器协助）：​​ 服务器在聚合阶段可以利用从客户端上传的特征信息（在满足隐私要求的前提下），构建一个全局的负样本池。客户端在本地训练时可以请求服务器提供一部分全局负样本来辅助本地对比学习，但这需要小心设计以避免隐私泄露和通信开销。  
+- 跨客户端负样本共享（通过服务器协助）：​（已证明有负效果）  
+​​ 服务器在聚合阶段可以利用从客户端上传的特征信息（在满足隐私要求的前提下），构建一个全局的负样本池。客户端在本地训练时可以请求服务器提供一部分全局负样本来辅助本地对比学习，但这需要小心设计以避免隐私泄露和通信开销。  
 Wang, Q., Chen, S., Wu, M., & Li, X. (2025). Digital Twin-Empowered Federated Incremental Learning for Non-IID Privacy Data. IEEE Transactions on Mobile Computing, 24(5), 3860–3877. https://doi.org/10.1109/tmc.2024.3517592  
 问题在于这种机制必须要有客户端和服务端的反复通信，显然违背了 one-shot FL “仅一轮交互”的核心原则。不过，如果服务器可以获取一部分公共数据，或许可以在开始之前依据这些数据构建一个固定的公共负样本池，并一次性下发给客户端，作为本地对比学习的辅助负样本源。然而效果可能会受影响。  
 或者，客户端在本地训练完成后，仅上传其特征表示，服务器在聚合时才利用这些信息构建一个全局的“负样本知识”，用于最终模型的评估或未来迭代的初始化（但不直接影响本次训练）。  
+
+- 解耦特征学习与分类器学习 (Decoupling Representation and Classifier Learning)  
+在传统的监督学习中，一个神经网络同时学习“如何提取特征”（由特征提取器完成）和“如何根据特征分类”（由最后的分类头完成）。然而，在Non-IID的联邦学习中，这两个任务会产生严重冲突：  
+特征提取器应该学习通用的、具有泛化能力的特征；分类器在本地训练时，会不可避免地被高度倾斜的本地数据带偏（Classifier Bias），只擅长区分本地见过的少数几个类别。  
+这个有偏的分类器会反过来给特征提取器错误的梯度信号，强迫它也学习有偏的、缺乏泛化能力的特征，最终导致各个客户端的模型（特征空间）天差地别，无法有效聚合。  
+“固定原型锚点”方案的核心思想，正是为了打破这个恶性循环。 它通过提供一个全局统一、固定不变的分类目标（即我们的“锚点”），强迫所有客户端的特征提取器在训练时都必须面向锚点进行。这样一来，即使它们的本地数据各不相同，它们最终学到的特征表示也会趋向于一致。  
+T. Zhou, J. Zhang and D. H. K. Tsang, "FedFA: Federated Learning With Feature Anchors to Align Features and Classifiers for Heterogeneous Data," in IEEE Transactions on Mobile Computing, vol. 23, no. 6, pp. 6731-6742, June 2024. https://doi.org/10.1109/TMC.2023.3325366.
 
 - 基于硬负样本挖掘（Hard Negative Mining）：​​ 识别那些模型难以区分的负样本，并赋予它们更高的权重，从而迫使模型学习更细粒度的特征表示。这可以与上述队列/内存库结合使用。  
 Dong, H., Long, X., & Li, Y. (2024). Synthetic Hard Negative Samples for Contrastive Learning. Neural Processing Letters, 56(1). https://doi.org/10.1007/s11063-024-11522-2  
