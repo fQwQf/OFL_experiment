@@ -21,7 +21,7 @@ Wang, Q., Chen, S., Wu, M., & Li, X. (2025). Digital Twin-Empowered Federated In
 
 - 解耦特征学习与分类器学习：（取得小幅提升）  
 在传统的监督学习中，一个神经网络同时学习“如何提取特征”（由特征提取器完成）和“如何根据特征分类”（由最后的分类头完成）。然而，在Non-IID的联邦学习中，这两个任务会产生严重冲突：  
-特征提取器应该学习通用的、具有泛化能力的特征；分类器在本地训练时，会不可避免地被高度倾斜的本地数据带偏（Classifier Bias），只擅长区分本地见过的少数几个类别。  
+特征提取器应该学习通用的、具有泛化能力的特征；分类器在本地训练时，会不可避免地被高度倾斜的本地数据带偏，只擅长区分本地见过的少数几个类别。  
 这个有偏的分类器会反过来给特征提取器错误的梯度信号，强迫它也学习有偏的、缺乏泛化能力的特征，最终导致各个客户端的模型（特征空间）天差地别，无法有效聚合。  
 “固定原型锚点”方案的核心思想，正是为了打破这个恶性循环。 它通过提供一个全局统一、固定不变的分类目标（即我们的“锚点”），强迫所有客户端的特征提取器在训练时都必须面向锚点进行。这样一来，即使它们的本地数据各不相同，它们最终学到的特征表示也会趋向于一致。  
 T. Zhou, J. Zhang and D. H. K. Tsang, "FedFA: Federated Learning With Feature Anchors to Align Features and Classifiers for Heterogeneous Data," in IEEE Transactions on Mobile Computing, vol. 23, no. 6, pp. 6731-6742, June 2024. https://doi.org/10.1109/TMC.2023.3325366.
