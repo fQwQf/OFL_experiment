@@ -1,0 +1,1310 @@
+2025-09-24 12:28:16 [INFO]  Load config from ./configs/CIFAR10_alpha0.5.yaml
+2025-09-24 12:28:16 [INFO]  config: {'exp_name': 'CIFAR10_alpha0.5', 'dataset': {'data_name': 'CIFAR10', 'root_path': 'H:/codes/dataset', 'train_batch_size': 512, 'test_batch_size': 256, 'channels': 3, 'num_classes': 10, 'image_size': 32}, 'distribution': {'type': 'dirichlet', 'label_num_per_client': 2, 'alpha': 0.5}, 'client': {'num_clients': 5}, 'server': {'num_rounds': 300, 'frac_clients': 1.0, 'lr': 0.05, 'local_epochs': 1, 'optimizer': 'sgd', 'momentum': 0.9, 'weight_decay': 0.0001, 'loss_name': 'ce', 'model_name': 'resnet18', 'aggregated_by_datasize': True, 'lr_decay_per_round': 0.998}, 'device': 'cuda:0', 'checkpoint': {'save_path': './checkpoints/', 'save_freq': 5, 'result_file': 'CIFAR10_results.yaml'}, 'pretrain': {'lr': 0.01, 'epoch': 70, 'model_path': './pretrain/', 'momentum': 0.9, 'weight_decay': 0.0001, 'model_name': 'resnet18', 'model_file_name': 'resnet18-f37072fd.pth'}, 'DBCD': {'alpha_l_pa': 1, 'alpha_l_pb': 1, 'alpha_l_pc': 0.0, 'Beta_alpha': 0.2, 'unsup_method': 'infonce', 'contrastive_temperature': 0.5, 'encoder_epoch': 40, 'projector_epoch': 10, 'use_pretrain': False, 'aug_batch_size': 512, 'encoder_lr': 0.03, 'cls_optimizer': 'sgd', 'cls_lr': 0.05, 'supcon_temp': 0.07, 'super_gr': 100, 'aux_with_public': True}, 'etf': {'loss_name': 'ce'}, 'visualization': {'interval': 5, 'save_path': 'visualization/resnet18', 'vis_size': 16}, 'resume': True, 'resume_best': False, 'seed': 1, 'ours_v5_params': {'use_public_feature_bank': True, 'public_data_ratio': 0.1, 'feature_bank_size': 4096, 'teacher_pretrain_epochs': 20}}
+2025-09-24 12:28:18 [INFO]  Dataset CIFAR10 loaded
+2025-09-24 12:28:18 [INFO]  Dataset split: 45000 samples for private clients, 5000 for public pool.
+2025-09-24 12:28:18 [INFO]  Dataset index dict loaded from preprocessed_data/CIFAR10_private.pt
+2025-09-24 12:28:18 [INFO]  OneshotOurs
+2025-09-24 12:28:19 [INFO]  Public feature bank strategy is ENABLED.
+2025-09-24 12:28:19 [INFO]  Initializing teacher model for pre-training on public data.
+2025-09-24 12:28:19 [INFO]  Starting teacher model pre-training for 20 epochs...
+2025-09-24 12:28:21 [INFO]  Teacher pre-train epoch 1/20, Loss: 2.1400
+2025-09-24 12:28:23 [INFO]  Teacher pre-train epoch 2/20, Loss: 1.6752
+2025-09-24 12:28:24 [INFO]  Teacher pre-train epoch 3/20, Loss: 1.3908
+2025-09-24 12:28:26 [INFO]  Teacher pre-train epoch 4/20, Loss: 1.1216
+2025-09-24 12:28:27 [INFO]  Teacher pre-train epoch 5/20, Loss: 0.8087
+2025-09-24 12:28:29 [INFO]  Teacher pre-train epoch 6/20, Loss: 0.4810
+2025-09-24 12:28:30 [INFO]  Teacher pre-train epoch 7/20, Loss: 0.2685
+2025-09-24 12:28:32 [INFO]  Teacher pre-train epoch 8/20, Loss: 0.1152
+2025-09-24 12:28:34 [INFO]  Teacher pre-train epoch 9/20, Loss: 0.0431
+2025-09-24 12:28:35 [INFO]  Teacher pre-train epoch 10/20, Loss: 0.0185
+2025-09-24 12:28:37 [INFO]  Teacher pre-train epoch 11/20, Loss: 0.0085
+2025-09-24 12:28:39 [INFO]  Teacher pre-train epoch 12/20, Loss: 0.0050
+2025-09-24 12:28:40 [INFO]  Teacher pre-train epoch 13/20, Loss: 0.0033
+2025-09-24 12:28:42 [INFO]  Teacher pre-train epoch 14/20, Loss: 0.0026
+2025-09-24 12:28:44 [INFO]  Teacher pre-train epoch 15/20, Loss: 0.0022
+2025-09-24 12:28:45 [INFO]  Teacher pre-train epoch 16/20, Loss: 0.0019
+2025-09-24 12:28:47 [INFO]  Teacher pre-train epoch 17/20, Loss: 0.0017
+2025-09-24 12:28:49 [INFO]  Teacher pre-train epoch 18/20, Loss: 0.0016
+2025-09-24 12:28:51 [INFO]  Teacher pre-train epoch 19/20, Loss: 0.0015
+2025-09-24 12:28:52 [INFO]  Teacher pre-train epoch 20/20, Loss: 0.0014
+2025-09-24 12:28:52 [INFO]  Teacher pre-training finished. Generating public feature bank...
+2025-09-24 12:28:54 [INFO]  Public feature bank created with size: torch.Size([4096, 512])
+2025-09-24 12:28:54 [INFO]  Round 0 starts--------|
+2025-09-24 12:28:54 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 12:29:02 [INFO]  generating sample per sample
+2025-09-24 12:30:03 [INFO]  Epoch 0 loss: 577.5410690307617; train accuracy: 0.26212411556603776; test accuracy: 0.1577
+2025-09-24 12:30:03 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_0.pth
+2025-09-24 12:30:03 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 12:30:03 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 12:30:03 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 12:30:10 [INFO]  generating sample per sample
+2025-09-24 12:30:47 [INFO]  Epoch 0 loss: 763.9468250274658; train accuracy: 0.21566462862318841; test accuracy: 0.1788
+2025-09-24 12:30:47 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_0.pth
+2025-09-24 12:30:47 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 12:30:47 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 12:30:47 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 12:30:53 [INFO]  generating sample per sample
+2025-09-24 12:31:20 [INFO]  Epoch 0 loss: 637.4226484298706; train accuracy: 0.16084155701754385; test accuracy: 0.1082
+2025-09-24 12:31:20 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_0.pth
+2025-09-24 12:31:20 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 12:31:20 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 12:31:20 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 12:31:26 [INFO]  generating sample per sample
+2025-09-24 12:31:50 [INFO]  Epoch 0 loss: 547.1180095672607; train accuracy: 0.217421875; test accuracy: 0.1287
+2025-09-24 12:31:50 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_0.pth
+2025-09-24 12:31:50 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 12:31:50 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 12:31:50 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 12:31:56 [INFO]  generating sample per sample
+2025-09-24 12:32:27 [INFO]  Epoch 0 loss: 713.675669670105; train accuracy: 0.1937800480769231; test accuracy: 0.1517
+2025-09-24 12:32:27 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_0.pth
+2025-09-24 12:32:27 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 12:32:27 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 12:32:27 [INFO]  Round 0 Finish--------|
+2025-09-24 12:32:27 [INFO]  Model variance: mean: 0.0006363727152347565, sum: 7110.7978515625
+2025-09-24 12:32:27 [INFO]  g_protos_std: 1.0059372186660767
+2025-09-24 12:32:32 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.3813
+2025-09-24 12:32:32 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 12:32:32 [INFO]  Round 1 starts--------|
+2025-09-24 12:32:32 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 12:32:57 [INFO]  Epoch 1 loss: 529.8384523391724; train accuracy: 0.27056308962264153; test accuracy: 0.1645
+2025-09-24 12:32:57 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 12:32:57 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 12:32:57 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 12:33:30 [INFO]  Epoch 1 loss: 699.9581995010376; train accuracy: 0.3179064764492754; test accuracy: 0.2725
+2025-09-24 12:33:30 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 12:33:30 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 12:33:30 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 12:33:55 [INFO]  Epoch 1 loss: 589.7854623794556; train accuracy: 0.3248012609649123; test accuracy: 0.2227
+2025-09-24 12:33:55 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 12:33:55 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 12:33:55 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 12:34:18 [INFO]  Epoch 1 loss: 501.2265043258667; train accuracy: 0.234140625; test accuracy: 0.1403
+2025-09-24 12:34:18 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 12:34:18 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 12:34:18 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 12:34:47 [INFO]  Epoch 1 loss: 661.8211469650269; train accuracy: 0.29284855769230766; test accuracy: 0.2289
+2025-09-24 12:34:47 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 12:34:47 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 12:34:47 [INFO]  Round 1 Finish--------|
+2025-09-24 12:34:47 [INFO]  Model variance: mean: 0.000888900482095778, sum: 9932.53125
+2025-09-24 12:34:47 [INFO]  g_protos_std: 1.0059071779251099
+2025-09-24 12:34:51 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.4243
+2025-09-24 12:34:51 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 12:34:51 [INFO]  Round 2 starts--------|
+2025-09-24 12:34:51 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 12:35:15 [INFO]  Epoch 2 loss: 510.8017826080322; train accuracy: 0.3145268278301887; test accuracy: 0.1932
+2025-09-24 12:35:15 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 12:35:15 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 12:35:15 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 12:35:46 [INFO]  Epoch 2 loss: 663.457124710083; train accuracy: 0.29780910326086957; test accuracy: 0.2496
+2025-09-24 12:35:46 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 12:35:46 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 12:35:46 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 12:36:13 [INFO]  Epoch 2 loss: 566.9163312911987; train accuracy: 0.3472450657894737; test accuracy: 0.2696
+2025-09-24 12:36:13 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 12:36:13 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 12:36:13 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 12:36:37 [INFO]  Epoch 2 loss: 492.6758728027344; train accuracy: 0.35875; test accuracy: 0.2144
+2025-09-24 12:36:37 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 12:36:37 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 12:36:37 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 12:37:06 [INFO]  Epoch 2 loss: 638.843713760376; train accuracy: 0.29459134615384613; test accuracy: 0.2376
+2025-09-24 12:37:06 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 12:37:06 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 12:37:06 [INFO]  Round 2 Finish--------|
+2025-09-24 12:37:06 [INFO]  Model variance: mean: 0.0010873846476897597, sum: 12150.3837890625
+2025-09-24 12:37:06 [INFO]  g_protos_std: 1.0059155225753784
+2025-09-24 12:37:11 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.4913
+2025-09-24 12:37:11 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 12:37:11 [INFO]  Round 3 starts--------|
+2025-09-24 12:37:11 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 12:37:36 [INFO]  Epoch 3 loss: 502.3301019668579; train accuracy: 0.37905365566037735; test accuracy: 0.2313
+2025-09-24 12:37:36 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 12:37:36 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 12:37:36 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 12:38:07 [INFO]  Epoch 3 loss: 648.9048080444336; train accuracy: 0.41007133152173914; test accuracy: 0.363
+2025-09-24 12:38:07 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 12:38:07 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 12:38:07 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 12:38:34 [INFO]  Epoch 3 loss: 554.7869749069214; train accuracy: 0.3301809210526316; test accuracy: 0.2348
+2025-09-24 12:38:34 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 12:38:34 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 12:38:34 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 12:38:57 [INFO]  Epoch 3 loss: 477.2691888809204; train accuracy: 0.408828125; test accuracy: 0.2831
+2025-09-24 12:38:57 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 12:38:57 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 12:38:57 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 12:39:27 [INFO]  Epoch 3 loss: 624.5991277694702; train accuracy: 0.3447716346153846; test accuracy: 0.2754
+2025-09-24 12:39:27 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 12:39:27 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 12:39:27 [INFO]  Round 3 Finish--------|
+2025-09-24 12:39:27 [INFO]  Model variance: mean: 0.0012441800208762288, sum: 13902.4072265625
+2025-09-24 12:39:27 [INFO]  g_protos_std: 1.0059199333190918
+2025-09-24 12:39:32 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.5334
+2025-09-24 12:39:32 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 12:39:32 [INFO]  Round 4 starts--------|
+2025-09-24 12:39:32 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 12:39:56 [INFO]  Epoch 4 loss: 492.46904373168945; train accuracy: 0.39821639150943394; test accuracy: 0.2473
+2025-09-24 12:39:56 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 12:39:56 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 12:39:56 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 12:40:27 [INFO]  Epoch 4 loss: 621.3511724472046; train accuracy: 0.4498697916666667; test accuracy: 0.3637
+2025-09-24 12:40:27 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 12:40:27 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 12:40:27 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 12:40:53 [INFO]  Epoch 4 loss: 546.1625509262085; train accuracy: 0.33809621710526316; test accuracy: 0.2633
+2025-09-24 12:40:53 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 12:40:53 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 12:40:53 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 12:41:16 [INFO]  Epoch 4 loss: 461.26142597198486; train accuracy: 0.3191796875; test accuracy: 0.1936
+2025-09-24 12:41:16 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 12:41:16 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 12:41:16 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 12:41:46 [INFO]  Epoch 4 loss: 605.4159574508667; train accuracy: 0.3795673076923077; test accuracy: 0.3143
+2025-09-24 12:41:46 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 12:41:46 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 12:41:46 [INFO]  Round 4 Finish--------|
+2025-09-24 12:41:46 [INFO]  Model variance: mean: 0.0013923299266025424, sum: 15557.8271484375
+2025-09-24 12:41:46 [INFO]  g_protos_std: 1.0059361457824707
+2025-09-24 12:41:50 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.5634
+2025-09-24 12:41:50 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 12:41:50 [INFO]  Round 5 starts--------|
+2025-09-24 12:41:50 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 12:42:14 [INFO]  Epoch 5 loss: 482.8411569595337; train accuracy: 0.42404923349056606; test accuracy: 0.2682
+2025-09-24 12:42:15 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_5.pth
+2025-09-24 12:42:15 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 12:42:15 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 12:42:15 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 12:42:45 [INFO]  Epoch 5 loss: 604.9788422584534; train accuracy: 0.44412364130434784; test accuracy: 0.3612
+2025-09-24 12:42:46 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_5.pth
+2025-09-24 12:42:46 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 12:42:46 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 12:42:46 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 12:43:12 [INFO]  Epoch 5 loss: 536.2238607406616; train accuracy: 0.38850054824561403; test accuracy: 0.312
+2025-09-24 12:43:12 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_5.pth
+2025-09-24 12:43:12 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 12:43:12 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 12:43:12 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 12:43:36 [INFO]  Epoch 5 loss: 454.9927158355713; train accuracy: 0.36046875; test accuracy: 0.244
+2025-09-24 12:43:36 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_5.pth
+2025-09-24 12:43:36 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 12:43:36 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 12:43:36 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 12:44:06 [INFO]  Epoch 5 loss: 594.5468711853027; train accuracy: 0.38488581730769234; test accuracy: 0.3245
+2025-09-24 12:44:07 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_5.pth
+2025-09-24 12:44:07 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 12:44:07 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 12:44:07 [INFO]  Round 5 Finish--------|
+2025-09-24 12:44:07 [INFO]  Model variance: mean: 0.001526830019429326, sum: 17060.724609375
+2025-09-24 12:44:07 [INFO]  g_protos_std: 1.005947232246399
+2025-09-24 12:44:11 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.5977
+2025-09-24 12:44:11 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 12:44:11 [INFO]  Round 6 starts--------|
+2025-09-24 12:44:11 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 12:44:37 [INFO]  Epoch 6 loss: 471.1618022918701; train accuracy: 0.36832989386792453; test accuracy: 0.234
+2025-09-24 12:44:37 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 12:44:37 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 12:44:37 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 12:45:09 [INFO]  Epoch 6 loss: 587.711000919342; train accuracy: 0.5285326086956522; test accuracy: 0.4446
+2025-09-24 12:45:09 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 12:45:09 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 12:45:09 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 12:45:36 [INFO]  Epoch 6 loss: 525.7849769592285; train accuracy: 0.41382264254385964; test accuracy: 0.343
+2025-09-24 12:45:36 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 12:45:36 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 12:45:36 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 12:46:00 [INFO]  Epoch 6 loss: 445.4004783630371; train accuracy: 0.4001953125; test accuracy: 0.253
+2025-09-24 12:46:00 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 12:46:00 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 12:46:00 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 12:46:31 [INFO]  Epoch 6 loss: 576.7966861724854; train accuracy: 0.36727764423076925; test accuracy: 0.3137
+2025-09-24 12:46:31 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 12:46:31 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 12:46:31 [INFO]  Round 6 Finish--------|
+2025-09-24 12:46:31 [INFO]  Model variance: mean: 0.0016583745600655675, sum: 18530.59765625
+2025-09-24 12:46:31 [INFO]  g_protos_std: 1.0059618949890137
+2025-09-24 12:46:35 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.6464
+2025-09-24 12:46:35 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 12:46:35 [INFO]  Round 7 starts--------|
+2025-09-24 12:46:35 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 12:47:00 [INFO]  Epoch 7 loss: 460.26884269714355; train accuracy: 0.48256928066037735; test accuracy: 0.3098
+2025-09-24 12:47:00 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 12:47:00 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 12:47:00 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 12:47:33 [INFO]  Epoch 7 loss: 581.1491193771362; train accuracy: 0.5758605072463768; test accuracy: 0.4832
+2025-09-24 12:47:33 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 12:47:33 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 12:47:33 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 12:48:00 [INFO]  Epoch 7 loss: 521.4142322540283; train accuracy: 0.4250959429824561; test accuracy: 0.3691
+2025-09-24 12:48:00 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 12:48:00 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 12:48:00 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 12:48:24 [INFO]  Epoch 7 loss: 437.45104122161865; train accuracy: 0.50015625; test accuracy: 0.3069
+2025-09-24 12:48:24 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 12:48:24 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 12:48:24 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 12:48:56 [INFO]  Epoch 7 loss: 579.4794216156006; train accuracy: 0.38677884615384617; test accuracy: 0.327
+2025-09-24 12:48:56 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 12:48:56 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 12:48:56 [INFO]  Round 7 Finish--------|
+2025-09-24 12:48:56 [INFO]  Model variance: mean: 0.0017775725573301315, sum: 19862.509765625
+2025-09-24 12:48:56 [INFO]  g_protos_std: 1.005974531173706
+2025-09-24 12:49:01 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.6592
+2025-09-24 12:49:01 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 12:49:01 [INFO]  Round 8 starts--------|
+2025-09-24 12:49:01 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 12:49:27 [INFO]  Epoch 8 loss: 454.38609504699707; train accuracy: 0.4920032429245283; test accuracy: 0.3429
+2025-09-24 12:49:27 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 12:49:27 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 12:49:27 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 12:49:59 [INFO]  Epoch 8 loss: 557.2267599105835; train accuracy: 0.5834182518115942; test accuracy: 0.4953
+2025-09-24 12:49:59 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 12:49:59 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 12:49:59 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 12:50:25 [INFO]  Epoch 8 loss: 509.1468849182129; train accuracy: 0.48344983552631576; test accuracy: 0.3757
+2025-09-24 12:50:25 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 12:50:25 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 12:50:25 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 12:50:49 [INFO]  Epoch 8 loss: 430.89300632476807; train accuracy: 0.5665625; test accuracy: 0.4308
+2025-09-24 12:50:49 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 12:50:49 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 12:50:49 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 12:51:19 [INFO]  Epoch 8 loss: 558.7735643386841; train accuracy: 0.5142427884615385; test accuracy: 0.4282
+2025-09-24 12:51:19 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 12:51:19 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 12:51:19 [INFO]  Round 8 Finish--------|
+2025-09-24 12:51:19 [INFO]  Model variance: mean: 0.0018933896208181977, sum: 21156.64453125
+2025-09-24 12:51:19 [INFO]  g_protos_std: 1.0059984922409058
+2025-09-24 12:51:23 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.6824
+2025-09-24 12:51:23 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 12:51:23 [INFO]  Round 9 starts--------|
+2025-09-24 12:51:23 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 12:51:49 [INFO]  Epoch 9 loss: 452.0494050979614; train accuracy: 0.532982016509434; test accuracy: 0.4019
+2025-09-24 12:51:49 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 12:51:49 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 12:51:49 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 12:52:21 [INFO]  Epoch 9 loss: 548.2684841156006; train accuracy: 0.6663836050724637; test accuracy: 0.5729
+2025-09-24 12:52:21 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 12:52:21 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 12:52:21 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 12:52:48 [INFO]  Epoch 9 loss: 498.9988775253296; train accuracy: 0.5139802631578947; test accuracy: 0.4176
+2025-09-24 12:52:48 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 12:52:48 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 12:52:48 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 12:53:12 [INFO]  Epoch 9 loss: 426.7013969421387; train accuracy: 0.44640625; test accuracy: 0.3559
+2025-09-24 12:53:12 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 12:53:12 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 12:53:12 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 12:53:42 [INFO]  Epoch 9 loss: 546.7210812568665; train accuracy: 0.5483473557692308; test accuracy: 0.4592
+2025-09-24 12:53:42 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 12:53:42 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 12:53:42 [INFO]  Round 9 Finish--------|
+2025-09-24 12:53:42 [INFO]  Model variance: mean: 0.0020026452839374542, sum: 22377.4609375
+2025-09-24 12:53:42 [INFO]  g_protos_std: 1.0060224533081055
+2025-09-24 12:53:47 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.7051
+2025-09-24 12:53:47 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 12:53:47 [INFO]  Round 10 starts--------|
+2025-09-24 12:53:47 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 12:54:12 [INFO]  Epoch 10 loss: 446.2600288391113; train accuracy: 0.5831736438679245; test accuracy: 0.4129
+2025-09-24 12:54:12 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_10.pth
+2025-09-24 12:54:12 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 12:54:12 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 12:54:12 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 12:54:44 [INFO]  Epoch 10 loss: 542.4068336486816; train accuracy: 0.6494565217391305; test accuracy: 0.5589
+2025-09-24 12:54:45 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_10.pth
+2025-09-24 12:54:45 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 12:54:45 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 12:54:45 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 12:55:11 [INFO]  Epoch 10 loss: 494.42654180526733; train accuracy: 0.5241228070175439; test accuracy: 0.4377
+2025-09-24 12:55:11 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_10.pth
+2025-09-24 12:55:11 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 12:55:11 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 12:55:11 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 12:55:35 [INFO]  Epoch 10 loss: 413.8441300392151; train accuracy: 0.514609375; test accuracy: 0.4021
+2025-09-24 12:55:35 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_10.pth
+2025-09-24 12:55:35 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 12:55:35 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 12:55:35 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 12:56:05 [INFO]  Epoch 10 loss: 544.9831509590149; train accuracy: 0.5970252403846154; test accuracy: 0.5024
+2025-09-24 12:56:05 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_10.pth
+2025-09-24 12:56:05 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 12:56:05 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 12:56:05 [INFO]  Round 10 Finish--------|
+2025-09-24 12:56:05 [INFO]  Model variance: mean: 0.0021069792564958334, sum: 23543.28515625
+2025-09-24 12:56:05 [INFO]  g_protos_std: 1.0060360431671143
+2025-09-24 12:56:10 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.7243
+2025-09-24 12:56:10 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 12:56:10 [INFO]  Round 11 starts--------|
+2025-09-24 12:56:10 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 12:56:34 [INFO]  Epoch 11 loss: 437.9751763343811; train accuracy: 0.6506854363207547; test accuracy: 0.4581
+2025-09-24 12:56:34 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 12:56:34 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 12:56:34 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 12:57:06 [INFO]  Epoch 11 loss: 537.9957904815674; train accuracy: 0.6762907608695652; test accuracy: 0.5744
+2025-09-24 12:57:06 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 12:57:06 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 12:57:06 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 12:57:32 [INFO]  Epoch 11 loss: 488.60528469085693; train accuracy: 0.5489309210526315; test accuracy: 0.4453
+2025-09-24 12:57:32 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 12:57:32 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 12:57:32 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 12:57:55 [INFO]  Epoch 11 loss: 419.42092752456665; train accuracy: 0.535390625; test accuracy: 0.4428
+2025-09-24 12:57:55 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 12:57:55 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 12:57:55 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 12:58:25 [INFO]  Epoch 11 loss: 524.6568145751953; train accuracy: 0.5610576923076923; test accuracy: 0.4838
+2025-09-24 12:58:25 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 12:58:25 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 12:58:25 [INFO]  Round 11 Finish--------|
+2025-09-24 12:58:25 [INFO]  Model variance: mean: 0.0022062293719500303, sum: 24652.30078125
+2025-09-24 12:58:25 [INFO]  g_protos_std: 1.0060527324676514
+2025-09-24 12:58:29 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.7201
+2025-09-24 12:58:29 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 12:58:29 [INFO]  Round 12 starts--------|
+2025-09-24 12:58:29 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 12:58:54 [INFO]  Epoch 12 loss: 429.68610429763794; train accuracy: 0.5927918632075472; test accuracy: 0.4257
+2025-09-24 12:58:54 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 12:58:54 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 12:58:54 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 12:59:25 [INFO]  Epoch 12 loss: 526.7593121528625; train accuracy: 0.713088768115942; test accuracy: 0.6102
+2025-09-24 12:59:25 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 12:59:25 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 12:59:25 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 12:59:52 [INFO]  Epoch 12 loss: 475.52791357040405; train accuracy: 0.6117050438596491; test accuracy: 0.5118
+2025-09-24 12:59:52 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 12:59:52 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 12:59:52 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:00:15 [INFO]  Epoch 12 loss: 410.9149956703186; train accuracy: 0.6587109375; test accuracy: 0.5406
+2025-09-24 13:00:15 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:00:15 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:00:15 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:00:45 [INFO]  Epoch 12 loss: 520.6639776229858; train accuracy: 0.515625; test accuracy: 0.4379
+2025-09-24 13:00:45 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:00:45 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:00:45 [INFO]  Round 12 Finish--------|
+2025-09-24 13:00:45 [INFO]  Model variance: mean: 0.002301944186910987, sum: 25721.814453125
+2025-09-24 13:00:45 [INFO]  g_protos_std: 1.0060791969299316
+2025-09-24 13:00:50 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.7351
+2025-09-24 13:00:50 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:00:50 [INFO]  Round 13 starts--------|
+2025-09-24 13:00:50 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:01:14 [INFO]  Epoch 13 loss: 429.82412576675415; train accuracy: 0.5849056603773585; test accuracy: 0.4144
+2025-09-24 13:01:14 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:01:14 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:01:14 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:01:46 [INFO]  Epoch 13 loss: 521.939594745636; train accuracy: 0.6359827898550725; test accuracy: 0.5351
+2025-09-24 13:01:46 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:01:46 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:01:46 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:02:12 [INFO]  Epoch 13 loss: 476.29493045806885; train accuracy: 0.5875479714912281; test accuracy: 0.4987
+2025-09-24 13:02:12 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:02:12 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:02:12 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:02:35 [INFO]  Epoch 13 loss: 402.1419515609741; train accuracy: 0.65984375; test accuracy: 0.498
+2025-09-24 13:02:35 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:02:35 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:02:35 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:03:04 [INFO]  Epoch 13 loss: 514.6321187019348; train accuracy: 0.555078125; test accuracy: 0.4969
+2025-09-24 13:03:04 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:03:04 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:03:04 [INFO]  Round 13 Finish--------|
+2025-09-24 13:03:04 [INFO]  Model variance: mean: 0.002393509494140744, sum: 26744.958984375
+2025-09-24 13:03:04 [INFO]  g_protos_std: 1.0061019659042358
+2025-09-24 13:03:09 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.7493
+2025-09-24 13:03:09 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:03:09 [INFO]  Round 14 starts--------|
+2025-09-24 13:03:09 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:03:33 [INFO]  Epoch 14 loss: 417.58268451690674; train accuracy: 0.5644899764150944; test accuracy: 0.3913
+2025-09-24 13:03:33 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:03:33 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:03:33 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:04:05 [INFO]  Epoch 14 loss: 515.4425940513611; train accuracy: 0.5857959692028986; test accuracy: 0.491
+2025-09-24 13:04:05 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:04:05 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:04:05 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:04:32 [INFO]  Epoch 14 loss: 472.6954665184021; train accuracy: 0.559655975877193; test accuracy: 0.4739
+2025-09-24 13:04:32 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:04:32 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:04:32 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:04:55 [INFO]  Epoch 14 loss: 400.877628326416; train accuracy: 0.6362109375; test accuracy: 0.4922
+2025-09-24 13:04:55 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:04:55 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:04:55 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:05:26 [INFO]  Epoch 14 loss: 513.62096118927; train accuracy: 0.6421574519230769; test accuracy: 0.5412
+2025-09-24 13:05:26 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:05:26 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:05:26 [INFO]  Round 14 Finish--------|
+2025-09-24 13:05:26 [INFO]  Model variance: mean: 0.0024836277589201927, sum: 27751.9375
+2025-09-24 13:05:26 [INFO]  g_protos_std: 1.0061213970184326
+2025-09-24 13:05:31 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.7637
+2025-09-24 13:05:31 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:05:31 [INFO]  Round 15 starts--------|
+2025-09-24 13:05:31 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:05:56 [INFO]  Epoch 15 loss: 423.77800607681274; train accuracy: 0.6243735259433962; test accuracy: 0.4732
+2025-09-24 13:05:56 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_15.pth
+2025-09-24 13:05:56 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:05:56 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:05:56 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:06:28 [INFO]  Epoch 15 loss: 519.6700959205627; train accuracy: 0.6988790760869565; test accuracy: 0.589
+2025-09-24 13:06:28 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_15.pth
+2025-09-24 13:06:28 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:06:28 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:06:28 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:06:55 [INFO]  Epoch 15 loss: 469.7547354698181; train accuracy: 0.5722998903508771; test accuracy: 0.4771
+2025-09-24 13:06:55 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_15.pth
+2025-09-24 13:06:55 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:06:55 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:06:55 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:07:19 [INFO]  Epoch 15 loss: 403.2984404563904; train accuracy: 0.63078125; test accuracy: 0.4751
+2025-09-24 13:07:20 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_15.pth
+2025-09-24 13:07:20 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:07:20 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:07:20 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:07:49 [INFO]  Epoch 15 loss: 508.3895263671875; train accuracy: 0.6212139423076923; test accuracy: 0.5254
+2025-09-24 13:07:49 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_15.pth
+2025-09-24 13:07:49 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:07:49 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:07:49 [INFO]  Round 15 Finish--------|
+2025-09-24 13:07:49 [INFO]  Model variance: mean: 0.0025675040669739246, sum: 28689.166015625
+2025-09-24 13:07:49 [INFO]  g_protos_std: 1.0061365365982056
+2025-09-24 13:07:54 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.7589
+2025-09-24 13:07:54 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:07:54 [INFO]  Round 16 starts--------|
+2025-09-24 13:07:54 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:08:19 [INFO]  Epoch 16 loss: 418.9773325920105; train accuracy: 0.6840728183962265; test accuracy: 0.4887
+2025-09-24 13:08:19 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:08:19 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:08:19 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:08:51 [INFO]  Epoch 16 loss: 503.82439851760864; train accuracy: 0.7198256340579711; test accuracy: 0.6195
+2025-09-24 13:08:51 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:08:51 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:08:51 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:09:18 [INFO]  Epoch 16 loss: 460.6778812408447; train accuracy: 0.6231496710526315; test accuracy: 0.5246
+2025-09-24 13:09:18 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:09:18 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:09:18 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:09:42 [INFO]  Epoch 16 loss: 399.63216638565063; train accuracy: 0.5996875; test accuracy: 0.5062
+2025-09-24 13:09:42 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:09:42 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:09:42 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:10:12 [INFO]  Epoch 16 loss: 509.1106333732605; train accuracy: 0.6814002403846153; test accuracy: 0.5701
+2025-09-24 13:10:12 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:10:12 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:10:12 [INFO]  Round 16 Finish--------|
+2025-09-24 13:10:12 [INFO]  Model variance: mean: 0.0026507412549108267, sum: 29619.255859375
+2025-09-24 13:10:12 [INFO]  g_protos_std: 1.0061626434326172
+2025-09-24 13:10:16 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.7692
+2025-09-24 13:10:16 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:10:16 [INFO]  Round 17 starts--------|
+2025-09-24 13:10:16 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:10:41 [INFO]  Epoch 17 loss: 415.54995489120483; train accuracy: 0.6890477594339622; test accuracy: 0.493
+2025-09-24 13:10:41 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:10:41 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:10:41 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:11:13 [INFO]  Epoch 17 loss: 501.98299503326416; train accuracy: 0.7731261322463768; test accuracy: 0.6607
+2025-09-24 13:11:13 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:11:13 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:11:13 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:11:40 [INFO]  Epoch 17 loss: 459.6132102012634; train accuracy: 0.5464295504385965; test accuracy: 0.4474
+2025-09-24 13:11:40 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:11:40 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:11:40 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:12:03 [INFO]  Epoch 17 loss: 394.81231212615967; train accuracy: 0.52125; test accuracy: 0.4846
+2025-09-24 13:12:03 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:12:03 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:12:03 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:12:33 [INFO]  Epoch 17 loss: 500.4660310745239; train accuracy: 0.6797175480769231; test accuracy: 0.5685
+2025-09-24 13:12:33 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:12:33 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:12:33 [INFO]  Round 17 Finish--------|
+2025-09-24 13:12:33 [INFO]  Model variance: mean: 0.002732244087383151, sum: 30529.96484375
+2025-09-24 13:12:33 [INFO]  g_protos_std: 1.006183385848999
+2025-09-24 13:12:38 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.7775
+2025-09-24 13:12:38 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:12:38 [INFO]  Round 18 starts--------|
+2025-09-24 13:12:38 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:13:03 [INFO]  Epoch 18 loss: 416.39606523513794; train accuracy: 0.6726857311320755; test accuracy: 0.475
+2025-09-24 13:13:03 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:13:03 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:13:03 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:13:36 [INFO]  Epoch 18 loss: 491.24454975128174; train accuracy: 0.7098901721014492; test accuracy: 0.5921
+2025-09-24 13:13:36 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:13:36 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:13:36 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:14:03 [INFO]  Epoch 18 loss: 451.5711622238159; train accuracy: 0.6952439692982456; test accuracy: 0.5934
+2025-09-24 13:14:03 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:14:03 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:14:03 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:14:28 [INFO]  Epoch 18 loss: 392.79700326919556; train accuracy: 0.66890625; test accuracy: 0.5547
+2025-09-24 13:14:28 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:14:28 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:14:28 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:14:59 [INFO]  Epoch 18 loss: 494.1312041282654; train accuracy: 0.6325721153846153; test accuracy: 0.5188
+2025-09-24 13:14:59 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:14:59 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:14:59 [INFO]  Round 18 Finish--------|
+2025-09-24 13:14:59 [INFO]  Model variance: mean: 0.002813003957271576, sum: 31432.37109375
+2025-09-24 13:14:59 [INFO]  g_protos_std: 1.006211280822754
+2025-09-24 13:15:03 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.7843
+2025-09-24 13:15:03 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:15:03 [INFO]  Round 19 starts--------|
+2025-09-24 13:15:03 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:15:29 [INFO]  Epoch 19 loss: 406.5359869003296; train accuracy: 0.7538325471698113; test accuracy: 0.569
+2025-09-24 13:15:29 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:15:29 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:15:29 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:16:01 [INFO]  Epoch 19 loss: 498.8292999267578; train accuracy: 0.7664741847826086; test accuracy: 0.6476
+2025-09-24 13:16:01 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:16:01 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:16:01 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:16:28 [INFO]  Epoch 19 loss: 457.9527578353882; train accuracy: 0.6558045504385965; test accuracy: 0.5558
+2025-09-24 13:16:28 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:16:28 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:16:28 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:16:52 [INFO]  Epoch 19 loss: 382.19956731796265; train accuracy: 0.72703125; test accuracy: 0.5926
+2025-09-24 13:16:52 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:16:52 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:16:52 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:17:23 [INFO]  Epoch 19 loss: 487.21452951431274; train accuracy: 0.6878004807692307; test accuracy: 0.5981
+2025-09-24 13:17:23 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:17:23 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:17:23 [INFO]  Round 19 Finish--------|
+2025-09-24 13:17:23 [INFO]  Model variance: mean: 0.00288971746340394, sum: 32289.564453125
+2025-09-24 13:17:23 [INFO]  g_protos_std: 1.006234049797058
+2025-09-24 13:17:28 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.7919
+2025-09-24 13:17:28 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:17:28 [INFO]  Round 20 starts--------|
+2025-09-24 13:17:28 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:17:53 [INFO]  Epoch 20 loss: 404.98681640625; train accuracy: 0.7014298349056604; test accuracy: 0.5066
+2025-09-24 13:17:54 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_20.pth
+2025-09-24 13:17:54 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:17:54 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:17:54 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:18:27 [INFO]  Epoch 20 loss: 489.05982303619385; train accuracy: 0.8102355072463768; test accuracy: 0.6988
+2025-09-24 13:18:27 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_20.pth
+2025-09-24 13:18:27 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:18:27 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:18:27 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:18:54 [INFO]  Epoch 20 loss: 447.2441997528076; train accuracy: 0.6929139254385965; test accuracy: 0.6081
+2025-09-24 13:18:55 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_20.pth
+2025-09-24 13:18:55 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:18:55 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:18:55 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:19:20 [INFO]  Epoch 20 loss: 385.0527539253235; train accuracy: 0.688984375; test accuracy: 0.5662
+2025-09-24 13:19:21 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_20.pth
+2025-09-24 13:19:21 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:19:21 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:19:21 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:19:52 [INFO]  Epoch 20 loss: 484.5382604598999; train accuracy: 0.7326923076923076; test accuracy: 0.6385
+2025-09-24 13:19:52 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_20.pth
+2025-09-24 13:19:52 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:19:52 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:19:52 [INFO]  Round 20 Finish--------|
+2025-09-24 13:19:52 [INFO]  Model variance: mean: 0.0029656989499926567, sum: 33138.578125
+2025-09-24 13:19:52 [INFO]  g_protos_std: 1.0062651634216309
+2025-09-24 13:19:57 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8014
+2025-09-24 13:19:57 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:19:57 [INFO]  Round 21 starts--------|
+2025-09-24 13:19:57 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:20:23 [INFO]  Epoch 21 loss: 406.4917588233948; train accuracy: 0.7320902122641509; test accuracy: 0.5285
+2025-09-24 13:20:23 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:20:23 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:20:23 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:20:56 [INFO]  Epoch 21 loss: 489.088773727417; train accuracy: 0.7206748188405797; test accuracy: 0.6203
+2025-09-24 13:20:56 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:20:56 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:20:56 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:21:23 [INFO]  Epoch 21 loss: 443.5390763282776; train accuracy: 0.6646450109649122; test accuracy: 0.5655
+2025-09-24 13:21:23 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:21:23 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:21:23 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:21:47 [INFO]  Epoch 21 loss: 375.743923664093; train accuracy: 0.7469921875; test accuracy: 0.6043
+2025-09-24 13:21:47 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:21:47 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:21:47 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:22:18 [INFO]  Epoch 21 loss: 483.34064960479736; train accuracy: 0.7268028846153847; test accuracy: 0.6248
+2025-09-24 13:22:18 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:22:18 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:22:18 [INFO]  Round 21 Finish--------|
+2025-09-24 13:22:18 [INFO]  Model variance: mean: 0.00304030510596931, sum: 33972.22265625
+2025-09-24 13:22:18 [INFO]  g_protos_std: 1.0062896013259888
+2025-09-24 13:22:23 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.7976
+2025-09-24 13:22:23 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:22:23 [INFO]  Round 22 starts--------|
+2025-09-24 13:22:23 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:22:48 [INFO]  Epoch 22 loss: 401.63958740234375; train accuracy: 0.6664209905660378; test accuracy: 0.4926
+2025-09-24 13:22:48 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:22:48 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:22:48 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:23:20 [INFO]  Epoch 22 loss: 479.1600513458252; train accuracy: 0.7974128170289855; test accuracy: 0.6834
+2025-09-24 13:23:20 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:23:20 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:23:20 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:23:49 [INFO]  Epoch 22 loss: 445.7803416252136; train accuracy: 0.6549821820175439; test accuracy: 0.5576
+2025-09-24 13:23:49 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:23:49 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:23:49 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:24:14 [INFO]  Epoch 22 loss: 379.6068139076233; train accuracy: 0.658046875; test accuracy: 0.5668
+2025-09-24 13:24:14 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:24:14 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:24:14 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:24:46 [INFO]  Epoch 22 loss: 484.0096559524536; train accuracy: 0.6914362980769231; test accuracy: 0.6008
+2025-09-24 13:24:46 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:24:46 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:24:46 [INFO]  Round 22 Finish--------|
+2025-09-24 13:24:46 [INFO]  Model variance: mean: 0.003113251645117998, sum: 34787.32421875
+2025-09-24 13:24:46 [INFO]  g_protos_std: 1.0063142776489258
+2025-09-24 13:24:51 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8052
+2025-09-24 13:24:51 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:24:51 [INFO]  Round 23 starts--------|
+2025-09-24 13:24:51 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:25:16 [INFO]  Epoch 23 loss: 396.4135055541992; train accuracy: 0.6889740566037735; test accuracy: 0.5072
+2025-09-24 13:25:16 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:25:16 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:25:16 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:25:49 [INFO]  Epoch 23 loss: 478.8518919944763; train accuracy: 0.766219429347826; test accuracy: 0.6424
+2025-09-24 13:25:49 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:25:49 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:25:49 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:26:16 [INFO]  Epoch 23 loss: 439.19980669021606; train accuracy: 0.6910635964912281; test accuracy: 0.5792
+2025-09-24 13:26:16 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:26:16 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:26:16 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:26:41 [INFO]  Epoch 23 loss: 372.94866704940796; train accuracy: 0.70140625; test accuracy: 0.5723
+2025-09-24 13:26:41 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:26:41 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:26:41 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:27:11 [INFO]  Epoch 23 loss: 479.81389141082764; train accuracy: 0.7189603365384616; test accuracy: 0.6283
+2025-09-24 13:27:11 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:27:11 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:27:11 [INFO]  Round 23 Finish--------|
+2025-09-24 13:27:11 [INFO]  Model variance: mean: 0.003184101078659296, sum: 35578.9921875
+2025-09-24 13:27:11 [INFO]  g_protos_std: 1.0063445568084717
+2025-09-24 13:27:16 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8149
+2025-09-24 13:27:16 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:27:16 [INFO]  Round 24 starts--------|
+2025-09-24 13:27:16 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:27:41 [INFO]  Epoch 24 loss: 394.76494312286377; train accuracy: 0.6247051886792453; test accuracy: 0.5002
+2025-09-24 13:27:41 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:27:41 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:27:41 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:28:14 [INFO]  Epoch 24 loss: 484.79099798202515; train accuracy: 0.8082257699275363; test accuracy: 0.6962
+2025-09-24 13:28:14 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:28:14 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:28:14 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:28:42 [INFO]  Epoch 24 loss: 433.02930212020874; train accuracy: 0.7041529605263158; test accuracy: 0.586
+2025-09-24 13:28:42 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:28:42 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:28:42 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:29:06 [INFO]  Epoch 24 loss: 382.4399080276489; train accuracy: 0.69625; test accuracy: 0.627
+2025-09-24 13:29:06 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:29:06 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:29:06 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:29:38 [INFO]  Epoch 24 loss: 476.23706674575806; train accuracy: 0.7628004807692308; test accuracy: 0.6436
+2025-09-24 13:29:38 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:29:38 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:29:38 [INFO]  Round 24 Finish--------|
+2025-09-24 13:29:38 [INFO]  Model variance: mean: 0.003252228954806924, sum: 36340.25
+2025-09-24 13:29:38 [INFO]  g_protos_std: 1.006368637084961
+2025-09-24 13:29:43 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8206
+2025-09-24 13:29:43 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:29:43 [INFO]  Round 25 starts--------|
+2025-09-24 13:29:43 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:30:08 [INFO]  Epoch 25 loss: 398.9993724822998; train accuracy: 0.7566332547169812; test accuracy: 0.6077
+2025-09-24 13:30:09 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_25.pth
+2025-09-24 13:30:09 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:30:09 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:30:09 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:30:42 [INFO]  Epoch 25 loss: 476.4073557853699; train accuracy: 0.8301064311594203; test accuracy: 0.7112
+2025-09-24 13:30:42 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_25.pth
+2025-09-24 13:30:42 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:30:42 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:30:42 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:31:10 [INFO]  Epoch 25 loss: 430.7691493034363; train accuracy: 0.6746162280701754; test accuracy: 0.5591
+2025-09-24 13:31:10 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_25.pth
+2025-09-24 13:31:10 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:31:10 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:31:10 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:31:35 [INFO]  Epoch 25 loss: 372.35478591918945; train accuracy: 0.69; test accuracy: 0.5596
+2025-09-24 13:31:35 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_25.pth
+2025-09-24 13:31:35 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:31:35 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:31:35 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:32:06 [INFO]  Epoch 25 loss: 474.559193611145; train accuracy: 0.6838641826923076; test accuracy: 0.5883
+2025-09-24 13:32:06 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_25.pth
+2025-09-24 13:32:06 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:32:06 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:32:06 [INFO]  Round 25 Finish--------|
+2025-09-24 13:32:06 [INFO]  Model variance: mean: 0.0033195570576936007, sum: 37092.5703125
+2025-09-24 13:32:06 [INFO]  g_protos_std: 1.0063971281051636
+2025-09-24 13:32:11 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8217
+2025-09-24 13:32:11 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:32:11 [INFO]  Round 26 starts--------|
+2025-09-24 13:32:11 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:32:36 [INFO]  Epoch 26 loss: 380.70315074920654; train accuracy: 0.7229879127358491; test accuracy: 0.5982
+2025-09-24 13:32:36 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:32:36 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:32:36 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:33:09 [INFO]  Epoch 26 loss: 466.24133920669556; train accuracy: 0.8272475090579711; test accuracy: 0.7092
+2025-09-24 13:33:09 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:33:09 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:33:09 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:33:38 [INFO]  Epoch 26 loss: 430.90585947036743; train accuracy: 0.6857182017543859; test accuracy: 0.5591
+2025-09-24 13:33:38 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:33:38 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:33:38 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:34:02 [INFO]  Epoch 26 loss: 365.5709352493286; train accuracy: 0.66296875; test accuracy: 0.5127
+2025-09-24 13:34:02 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:34:02 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:34:02 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:34:32 [INFO]  Epoch 26 loss: 466.0506548881531; train accuracy: 0.7624399038461539; test accuracy: 0.6792
+2025-09-24 13:34:32 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:34:32 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:34:32 [INFO]  Round 26 Finish--------|
+2025-09-24 13:34:32 [INFO]  Model variance: mean: 0.0033877911046147346, sum: 37855.015625
+2025-09-24 13:34:32 [INFO]  g_protos_std: 1.0064290761947632
+2025-09-24 13:34:36 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8221
+2025-09-24 13:34:36 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:34:36 [INFO]  Round 27 starts--------|
+2025-09-24 13:34:36 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:35:01 [INFO]  Epoch 27 loss: 393.97641706466675; train accuracy: 0.7318691037735849; test accuracy: 0.6031
+2025-09-24 13:35:01 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:35:01 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:35:01 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:35:34 [INFO]  Epoch 27 loss: 479.3850693702698; train accuracy: 0.815047554347826; test accuracy: 0.7057
+2025-09-24 13:35:34 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:35:34 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:35:34 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:36:03 [INFO]  Epoch 27 loss: 430.4490132331848; train accuracy: 0.7036732456140351; test accuracy: 0.6046
+2025-09-24 13:36:03 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:36:03 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:36:03 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:36:27 [INFO]  Epoch 27 loss: 367.1412630081177; train accuracy: 0.718046875; test accuracy: 0.5758
+2025-09-24 13:36:27 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:36:27 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:36:27 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:36:58 [INFO]  Epoch 27 loss: 469.4380769729614; train accuracy: 0.7698016826923076; test accuracy: 0.6639
+2025-09-24 13:36:58 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:36:58 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:36:58 [INFO]  Round 27 Finish--------|
+2025-09-24 13:36:58 [INFO]  Model variance: mean: 0.0034531259443610907, sum: 38585.0625
+2025-09-24 13:36:58 [INFO]  g_protos_std: 1.006450891494751
+2025-09-24 13:37:02 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8254
+2025-09-24 13:37:02 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:37:02 [INFO]  Round 28 starts--------|
+2025-09-24 13:37:02 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:37:28 [INFO]  Epoch 28 loss: 389.8298840522766; train accuracy: 0.6991081957547169; test accuracy: 0.5355
+2025-09-24 13:37:28 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:37:28 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:37:28 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:38:01 [INFO]  Epoch 28 loss: 473.6006474494934; train accuracy: 0.7721354166666666; test accuracy: 0.6507
+2025-09-24 13:38:01 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:38:01 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:38:01 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:38:29 [INFO]  Epoch 28 loss: 424.91185569763184; train accuracy: 0.6652617872807017; test accuracy: 0.5575
+2025-09-24 13:38:29 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:38:29 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:38:29 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:38:52 [INFO]  Epoch 28 loss: 369.6298861503601; train accuracy: 0.6994921875; test accuracy: 0.5916
+2025-09-24 13:38:52 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:38:52 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:38:52 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:39:23 [INFO]  Epoch 28 loss: 459.7448625564575; train accuracy: 0.7580829326923076; test accuracy: 0.6393
+2025-09-24 13:39:23 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:39:23 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:39:23 [INFO]  Round 28 Finish--------|
+2025-09-24 13:39:23 [INFO]  Model variance: mean: 0.0035183564759790897, sum: 39313.9453125
+2025-09-24 13:39:23 [INFO]  g_protos_std: 1.0064809322357178
+2025-09-24 13:39:27 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8313
+2025-09-24 13:39:27 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:39:27 [INFO]  Round 29 starts--------|
+2025-09-24 13:39:27 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:39:53 [INFO]  Epoch 29 loss: 388.7591953277588; train accuracy: 0.7022037146226415; test accuracy: 0.5322
+2025-09-24 13:39:53 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:39:53 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:39:53 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:40:25 [INFO]  Epoch 29 loss: 465.3550863265991; train accuracy: 0.8136605525362319; test accuracy: 0.6922
+2025-09-24 13:40:25 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:40:25 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:40:25 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:40:53 [INFO]  Epoch 29 loss: 429.65922117233276; train accuracy: 0.6566269188596491; test accuracy: 0.5503
+2025-09-24 13:40:53 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:40:53 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:40:53 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:41:17 [INFO]  Epoch 29 loss: 360.46039390563965; train accuracy: 0.754375; test accuracy: 0.6257
+2025-09-24 13:41:17 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:41:17 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:41:17 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:41:48 [INFO]  Epoch 29 loss: 449.8092541694641; train accuracy: 0.7952524038461538; test accuracy: 0.6891
+2025-09-24 13:41:48 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:41:48 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:41:48 [INFO]  Round 29 Finish--------|
+2025-09-24 13:41:48 [INFO]  Model variance: mean: 0.003582378849387169, sum: 40029.328125
+2025-09-24 13:41:48 [INFO]  g_protos_std: 1.0065168142318726
+2025-09-24 13:41:53 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8357
+2025-09-24 13:41:53 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:41:53 [INFO]  Round 30 starts--------|
+2025-09-24 13:41:53 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:42:19 [INFO]  Epoch 30 loss: 383.22139263153076; train accuracy: 0.7332326061320755; test accuracy: 0.5711
+2025-09-24 13:42:19 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_30.pth
+2025-09-24 13:42:19 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:42:19 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:42:19 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:42:52 [INFO]  Epoch 30 loss: 460.7708468437195; train accuracy: 0.824020606884058; test accuracy: 0.7065
+2025-09-24 13:42:52 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_30.pth
+2025-09-24 13:42:52 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:42:52 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:42:52 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:43:20 [INFO]  Epoch 30 loss: 428.3537220954895; train accuracy: 0.6764665570175439; test accuracy: 0.5751
+2025-09-24 13:43:20 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_30.pth
+2025-09-24 13:43:20 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:43:20 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:43:20 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:43:45 [INFO]  Epoch 30 loss: 363.50647735595703; train accuracy: 0.7819140625; test accuracy: 0.6276
+2025-09-24 13:43:45 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_30.pth
+2025-09-24 13:43:45 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:43:45 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:43:45 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:44:17 [INFO]  Epoch 30 loss: 467.8166379928589; train accuracy: 0.7867788461538462; test accuracy: 0.6768
+2025-09-24 13:44:17 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_30.pth
+2025-09-24 13:44:17 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:44:17 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:44:17 [INFO]  Round 30 Finish--------|
+2025-09-24 13:44:18 [INFO]  Model variance: mean: 0.0036438351962715387, sum: 40716.0390625
+2025-09-24 13:44:18 [INFO]  g_protos_std: 1.0065425634384155
+2025-09-24 13:44:22 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8365
+2025-09-24 13:44:22 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:44:22 [INFO]  Round 31 starts--------|
+2025-09-24 13:44:22 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:44:49 [INFO]  Epoch 31 loss: 381.17014169692993; train accuracy: 0.7975014740566038; test accuracy: 0.6287
+2025-09-24 13:44:49 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:44:49 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:44:49 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:45:23 [INFO]  Epoch 31 loss: 459.6174473762512; train accuracy: 0.8026777626811594; test accuracy: 0.689
+2025-09-24 13:45:23 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:45:23 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:45:23 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:45:50 [INFO]  Epoch 31 loss: 422.42256116867065; train accuracy: 0.743078399122807; test accuracy: 0.6579
+2025-09-24 13:45:50 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:45:50 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:45:50 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:46:15 [INFO]  Epoch 31 loss: 357.6390609741211; train accuracy: 0.721484375; test accuracy: 0.5773
+2025-09-24 13:46:15 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:46:15 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:46:15 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:46:46 [INFO]  Epoch 31 loss: 460.50602769851685; train accuracy: 0.7448317307692308; test accuracy: 0.6429
+2025-09-24 13:46:46 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:46:46 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:46:46 [INFO]  Round 31 Finish--------|
+2025-09-24 13:46:46 [INFO]  Model variance: mean: 0.003706300398334861, sum: 41414.0234375
+2025-09-24 13:46:46 [INFO]  g_protos_std: 1.0065714120864868
+2025-09-24 13:46:51 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8403
+2025-09-24 13:46:51 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:46:51 [INFO]  Round 32 starts--------|
+2025-09-24 13:46:51 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:47:17 [INFO]  Epoch 32 loss: 380.6595940589905; train accuracy: 0.7289578419811321; test accuracy: 0.5987
+2025-09-24 13:47:17 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:47:17 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:47:17 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:47:50 [INFO]  Epoch 32 loss: 460.8331980705261; train accuracy: 0.8204823369565217; test accuracy: 0.707
+2025-09-24 13:47:50 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:47:50 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:47:50 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:48:17 [INFO]  Epoch 32 loss: 420.4477882385254; train accuracy: 0.7506167763157895; test accuracy: 0.6347
+2025-09-24 13:48:17 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:48:17 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:48:17 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:48:42 [INFO]  Epoch 32 loss: 354.16565465927124; train accuracy: 0.676171875; test accuracy: 0.5706
+2025-09-24 13:48:42 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:48:42 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:48:42 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:49:14 [INFO]  Epoch 32 loss: 455.6194553375244; train accuracy: 0.7401442307692307; test accuracy: 0.6274
+2025-09-24 13:49:14 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:49:14 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:49:14 [INFO]  Round 32 Finish--------|
+2025-09-24 13:49:14 [INFO]  Model variance: mean: 0.003767287125810981, sum: 42095.484375
+2025-09-24 13:49:14 [INFO]  g_protos_std: 1.0066028833389282
+2025-09-24 13:49:18 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8443
+2025-09-24 13:49:18 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:49:18 [INFO]  Round 33 starts--------|
+2025-09-24 13:49:18 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:49:44 [INFO]  Epoch 33 loss: 378.75431299209595; train accuracy: 0.7422243514150944; test accuracy: 0.6219
+2025-09-24 13:49:44 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:49:44 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:49:44 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:50:18 [INFO]  Epoch 33 loss: 461.97141551971436; train accuracy: 0.7266474184782609; test accuracy: 0.6062
+2025-09-24 13:50:18 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:50:18 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:50:18 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:50:46 [INFO]  Epoch 33 loss: 411.86946392059326; train accuracy: 0.7102521929824561; test accuracy: 0.6067
+2025-09-24 13:50:46 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:50:46 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:50:46 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:51:12 [INFO]  Epoch 33 loss: 354.5425114631653; train accuracy: 0.771015625; test accuracy: 0.6222
+2025-09-24 13:51:12 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:51:12 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:51:12 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:51:43 [INFO]  Epoch 33 loss: 462.0155234336853; train accuracy: 0.7493389423076923; test accuracy: 0.643
+2025-09-24 13:51:43 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:51:43 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:51:43 [INFO]  Round 33 Finish--------|
+2025-09-24 13:51:43 [INFO]  Model variance: mean: 0.003826376749202609, sum: 42755.75
+2025-09-24 13:51:43 [INFO]  g_protos_std: 1.0066331624984741
+2025-09-24 13:51:47 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8434
+2025-09-24 13:51:47 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:51:47 [INFO]  Round 34 starts--------|
+2025-09-24 13:51:47 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:52:14 [INFO]  Epoch 34 loss: 382.15582942962646; train accuracy: 0.7476415094339622; test accuracy: 0.5873
+2025-09-24 13:52:14 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:52:14 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:52:14 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:52:46 [INFO]  Epoch 34 loss: 469.2124915122986; train accuracy: 0.7957427536231884; test accuracy: 0.6769
+2025-09-24 13:52:46 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:52:46 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:52:46 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:53:14 [INFO]  Epoch 34 loss: 415.7462568283081; train accuracy: 0.7448944627192983; test accuracy: 0.6218
+2025-09-24 13:53:14 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:53:14 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:53:14 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:53:38 [INFO]  Epoch 34 loss: 355.8412160873413; train accuracy: 0.7726953125; test accuracy: 0.6226
+2025-09-24 13:53:38 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:53:38 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:53:38 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:54:10 [INFO]  Epoch 34 loss: 455.71625232696533; train accuracy: 0.8173677884615385; test accuracy: 0.6914
+2025-09-24 13:54:10 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:54:10 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:54:10 [INFO]  Round 34 Finish--------|
+2025-09-24 13:54:10 [INFO]  Model variance: mean: 0.0038849161937832832, sum: 43409.8671875
+2025-09-24 13:54:10 [INFO]  g_protos_std: 1.0066587924957275
+2025-09-24 13:54:14 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.845
+2025-09-24 13:54:14 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:54:14 [INFO]  Round 35 starts--------|
+2025-09-24 13:54:14 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:54:41 [INFO]  Epoch 35 loss: 376.7644696235657; train accuracy: 0.7457252358490566; test accuracy: 0.6052
+2025-09-24 13:54:42 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_35.pth
+2025-09-24 13:54:42 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:54:42 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:54:42 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:55:14 [INFO]  Epoch 35 loss: 455.89234495162964; train accuracy: 0.8400985054347826; test accuracy: 0.7286
+2025-09-24 13:55:15 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_35.pth
+2025-09-24 13:55:15 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:55:15 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:55:15 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:55:43 [INFO]  Epoch 35 loss: 410.74789571762085; train accuracy: 0.7369791666666666; test accuracy: 0.6308
+2025-09-24 13:55:43 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_35.pth
+2025-09-24 13:55:43 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:55:43 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:55:43 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:56:07 [INFO]  Epoch 35 loss: 361.17719888687134; train accuracy: 0.710859375; test accuracy: 0.6162
+2025-09-24 13:56:08 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_35.pth
+2025-09-24 13:56:08 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:56:08 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:56:08 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:56:40 [INFO]  Epoch 35 loss: 452.9621353149414; train accuracy: 0.7765925480769231; test accuracy: 0.6691
+2025-09-24 13:56:40 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_35.pth
+2025-09-24 13:56:40 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:56:40 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:56:40 [INFO]  Round 35 Finish--------|
+2025-09-24 13:56:40 [INFO]  Model variance: mean: 0.0039437985979020596, sum: 44067.81640625
+2025-09-24 13:56:40 [INFO]  g_protos_std: 1.006691575050354
+2025-09-24 13:56:45 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.847
+2025-09-24 13:56:45 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:56:45 [INFO]  Round 36 starts--------|
+2025-09-24 13:56:45 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:57:12 [INFO]  Epoch 36 loss: 370.5287289619446; train accuracy: 0.7726636202830188; test accuracy: 0.6579
+2025-09-24 13:57:12 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:57:12 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:57:12 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 13:57:44 [INFO]  Epoch 36 loss: 454.96072816848755; train accuracy: 0.8036967844202898; test accuracy: 0.6998
+2025-09-24 13:57:44 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 13:57:44 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 13:57:44 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 13:58:12 [INFO]  Epoch 36 loss: 406.8604898452759; train accuracy: 0.7703193530701754; test accuracy: 0.6538
+2025-09-24 13:58:12 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 13:58:12 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 13:58:12 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 13:58:37 [INFO]  Epoch 36 loss: 355.7566361427307; train accuracy: 0.755625; test accuracy: 0.6281
+2025-09-24 13:58:37 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 13:58:37 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 13:58:37 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 13:59:08 [INFO]  Epoch 36 loss: 443.8556504249573; train accuracy: 0.8196514423076923; test accuracy: 0.6976
+2025-09-24 13:59:08 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 13:59:08 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 13:59:08 [INFO]  Round 36 Finish--------|
+2025-09-24 13:59:08 [INFO]  Model variance: mean: 0.00400096969678998, sum: 44706.640625
+2025-09-24 13:59:08 [INFO]  g_protos_std: 1.0067241191864014
+2025-09-24 13:59:12 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8489
+2025-09-24 13:59:12 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 13:59:12 [INFO]  Round 37 starts--------|
+2025-09-24 13:59:12 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 13:59:38 [INFO]  Epoch 37 loss: 378.5759081840515; train accuracy: 0.7895784198113207; test accuracy: 0.5937
+2025-09-24 13:59:38 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 13:59:38 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 13:59:38 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 14:00:10 [INFO]  Epoch 37 loss: 448.3049097061157; train accuracy: 0.808197463768116; test accuracy: 0.6932
+2025-09-24 14:00:10 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 14:00:10 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 14:00:10 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 14:00:37 [INFO]  Epoch 37 loss: 409.16079902648926; train accuracy: 0.7282415021929824; test accuracy: 0.6032
+2025-09-24 14:00:37 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 14:00:37 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 14:00:37 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 14:01:01 [INFO]  Epoch 37 loss: 352.163378238678; train accuracy: 0.6959375; test accuracy: 0.5941
+2025-09-24 14:01:01 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 14:01:01 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 14:01:01 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 14:01:33 [INFO]  Epoch 37 loss: 445.39185523986816; train accuracy: 0.8057692307692308; test accuracy: 0.7009
+2025-09-24 14:01:33 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 14:01:33 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 14:01:33 [INFO]  Round 37 Finish--------|
+2025-09-24 14:01:33 [INFO]  Model variance: mean: 0.004057261161506176, sum: 45335.640625
+2025-09-24 14:01:33 [INFO]  g_protos_std: 1.0067561864852905
+2025-09-24 14:01:37 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8526
+2025-09-24 14:01:37 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 14:01:37 [INFO]  Round 38 starts--------|
+2025-09-24 14:01:37 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 14:02:03 [INFO]  Epoch 38 loss: 373.0203161239624; train accuracy: 0.7398658608490566; test accuracy: 0.5877
+2025-09-24 14:02:03 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 14:02:03 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 14:02:03 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 14:02:38 [INFO]  Epoch 38 loss: 462.9491982460022; train accuracy: 0.8822463768115942; test accuracy: 0.757
+2025-09-24 14:02:38 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 14:02:38 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 14:02:38 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 14:03:06 [INFO]  Epoch 38 loss: 414.75091457366943; train accuracy: 0.7322848135964912; test accuracy: 0.6083
+2025-09-24 14:03:06 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 14:03:06 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 14:03:06 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 14:03:30 [INFO]  Epoch 38 loss: 356.93732261657715; train accuracy: 0.78109375; test accuracy: 0.589
+2025-09-24 14:03:30 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 14:03:30 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 14:03:30 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 14:04:01 [INFO]  Epoch 38 loss: 452.3648729324341; train accuracy: 0.7772536057692307; test accuracy: 0.6598
+2025-09-24 14:04:01 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 14:04:01 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 14:04:01 [INFO]  Round 38 Finish--------|
+2025-09-24 14:04:01 [INFO]  Model variance: mean: 0.004111635498702526, sum: 45943.21875
+2025-09-24 14:04:01 [INFO]  g_protos_std: 1.0067776441574097
+2025-09-24 14:04:06 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8519
+2025-09-24 14:04:06 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 14:04:06 [INFO]  Round 39 starts--------|
+2025-09-24 14:04:06 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 14:04:31 [INFO]  Epoch 39 loss: 369.3228144645691; train accuracy: 0.773216391509434; test accuracy: 0.5906
+2025-09-24 14:04:31 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 14:04:31 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 14:04:31 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 14:05:05 [INFO]  Epoch 39 loss: 435.63838052749634; train accuracy: 0.8582427536231884; test accuracy: 0.74
+2025-09-24 14:05:05 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 14:05:05 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 14:05:05 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 14:05:33 [INFO]  Epoch 39 loss: 410.882022857666; train accuracy: 0.7730263157894737; test accuracy: 0.662
+2025-09-24 14:05:33 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 14:05:33 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 14:05:33 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 14:05:57 [INFO]  Epoch 39 loss: 354.17924785614014; train accuracy: 0.765078125; test accuracy: 0.6156
+2025-09-24 14:05:57 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 14:05:57 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 14:05:57 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 14:06:27 [INFO]  Epoch 39 loss: 441.09906101226807; train accuracy: 0.7896334134615385; test accuracy: 0.68
+2025-09-24 14:06:27 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 14:06:27 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 14:06:27 [INFO]  Round 39 Finish--------|
+2025-09-24 14:06:27 [INFO]  Model variance: mean: 0.004166505765169859, sum: 46556.3359375
+2025-09-24 14:06:27 [INFO]  g_protos_std: 1.0068151950836182
+2025-09-24 14:06:31 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8541
+2025-09-24 14:06:31 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 14:06:31 [INFO]  Round 40 starts--------|
+2025-09-24 14:06:31 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 14:06:57 [INFO]  Epoch 40 loss: 374.97232818603516; train accuracy: 0.7825766509433962; test accuracy: 0.6503
+2025-09-24 14:06:57 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_40.pth
+2025-09-24 14:06:57 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 14:06:57 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 14:06:57 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 14:07:31 [INFO]  Epoch 40 loss: 443.1624345779419; train accuracy: 0.8115658967391305; test accuracy: 0.7047
+2025-09-24 14:07:31 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_40.pth
+2025-09-24 14:07:31 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 14:07:31 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 14:07:31 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 14:07:58 [INFO]  Epoch 40 loss: 399.42486810684204; train accuracy: 0.7239925986842105; test accuracy: 0.6164
+2025-09-24 14:07:59 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_40.pth
+2025-09-24 14:07:59 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 14:07:59 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 14:07:59 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 14:08:23 [INFO]  Epoch 40 loss: 349.5218434333801; train accuracy: 0.7055859375; test accuracy: 0.6002
+2025-09-24 14:08:23 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_40.pth
+2025-09-24 14:08:23 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 14:08:23 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 14:08:23 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 14:08:54 [INFO]  Epoch 40 loss: 442.46992588043213; train accuracy: 0.784375; test accuracy: 0.6472
+2025-09-24 14:08:54 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_40.pth
+2025-09-24 14:08:54 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 14:08:54 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 14:08:54 [INFO]  Round 40 Finish--------|
+2025-09-24 14:08:54 [INFO]  Model variance: mean: 0.0042209867388010025, sum: 47165.1015625
+2025-09-24 14:08:54 [INFO]  g_protos_std: 1.0068482160568237
+2025-09-24 14:08:59 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.857
+2025-09-24 14:08:59 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 14:08:59 [INFO]  Round 41 starts--------|
+2025-09-24 14:08:59 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 14:09:24 [INFO]  Epoch 41 loss: 363.1446990966797; train accuracy: 0.7205188679245284; test accuracy: 0.5811
+2025-09-24 14:09:24 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 14:09:24 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 14:09:24 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 14:09:56 [INFO]  Epoch 41 loss: 439.41591596603394; train accuracy: 0.8323709239130435; test accuracy: 0.7175
+2025-09-24 14:09:56 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 14:09:56 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 14:09:56 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 14:10:24 [INFO]  Epoch 41 loss: 400.79484510421753; train accuracy: 0.8162349232456141; test accuracy: 0.682
+2025-09-24 14:10:24 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 14:10:24 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 14:10:24 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 14:10:48 [INFO]  Epoch 41 loss: 347.8623785972595; train accuracy: 0.8163671875; test accuracy: 0.6414
+2025-09-24 14:10:48 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 14:10:48 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 14:10:48 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 14:11:18 [INFO]  Epoch 41 loss: 439.34817838668823; train accuracy: 0.7833533653846154; test accuracy: 0.6513
+2025-09-24 14:11:18 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 14:11:18 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 14:11:18 [INFO]  Round 41 Finish--------|
+2025-09-24 14:11:18 [INFO]  Model variance: mean: 0.0042749932035803795, sum: 47768.5703125
+2025-09-24 14:11:18 [INFO]  g_protos_std: 1.0068821907043457
+2025-09-24 14:11:23 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8583
+2025-09-24 14:11:23 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 14:11:23 [INFO]  Round 42 starts--------|
+2025-09-24 14:11:23 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 14:11:49 [INFO]  Epoch 42 loss: 358.6110758781433; train accuracy: 0.7613502358490566; test accuracy: 0.615
+2025-09-24 14:11:49 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 14:11:49 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 14:11:49 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 14:12:22 [INFO]  Epoch 42 loss: 436.68793869018555; train accuracy: 0.8122452445652174; test accuracy: 0.7003
+2025-09-24 14:12:22 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 14:12:22 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 14:12:22 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 14:12:50 [INFO]  Epoch 42 loss: 402.0166964530945; train accuracy: 0.7202919407894737; test accuracy: 0.6253
+2025-09-24 14:12:50 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 14:12:50 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 14:12:50 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 14:13:14 [INFO]  Epoch 42 loss: 345.6049346923828; train accuracy: 0.773984375; test accuracy: 0.6251
+2025-09-24 14:13:14 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 14:13:14 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 14:13:14 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 14:13:44 [INFO]  Epoch 42 loss: 443.91062593460083; train accuracy: 0.720703125; test accuracy: 0.6
+2025-09-24 14:13:44 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 14:13:44 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 14:13:44 [INFO]  Round 42 Finish--------|
+2025-09-24 14:13:44 [INFO]  Model variance: mean: 0.004328509327024221, sum: 48366.5546875
+2025-09-24 14:13:44 [INFO]  g_protos_std: 1.0069133043289185
+2025-09-24 14:13:49 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8635
+2025-09-24 14:13:49 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 14:13:49 [INFO]  Round 43 starts--------|
+2025-09-24 14:13:49 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 14:14:15 [INFO]  Epoch 43 loss: 365.5139842033386; train accuracy: 0.8052034198113207; test accuracy: 0.5991
+2025-09-24 14:14:15 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 14:14:15 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 14:14:15 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 14:14:48 [INFO]  Epoch 43 loss: 446.4730143547058; train accuracy: 0.8294553894927537; test accuracy: 0.7177
+2025-09-24 14:14:48 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 14:14:48 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 14:14:48 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 14:15:14 [INFO]  Epoch 43 loss: 390.8692636489868; train accuracy: 0.8250068530701754; test accuracy: 0.6905
+2025-09-24 14:15:14 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 14:15:14 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 14:15:14 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 14:15:38 [INFO]  Epoch 43 loss: 348.4545741081238; train accuracy: 0.724765625; test accuracy: 0.5879
+2025-09-24 14:15:38 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 14:15:38 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 14:15:38 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 14:16:10 [INFO]  Epoch 43 loss: 438.90870332717896; train accuracy: 0.7246995192307693; test accuracy: 0.6148
+2025-09-24 14:16:10 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 14:16:10 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 14:16:10 [INFO]  Round 43 Finish--------|
+2025-09-24 14:16:10 [INFO]  Model variance: mean: 0.004381275735795498, sum: 48956.1640625
+2025-09-24 14:16:10 [INFO]  g_protos_std: 1.0069447755813599
+2025-09-24 14:16:14 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8661
+2025-09-24 14:16:14 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 14:16:14 [INFO]  Round 44 starts--------|
+2025-09-24 14:16:14 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 14:16:40 [INFO]  Epoch 44 loss: 364.4420986175537; train accuracy: 0.7192290683962265; test accuracy: 0.5681
+2025-09-24 14:16:40 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 14:16:40 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 14:16:40 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 14:17:14 [INFO]  Epoch 44 loss: 433.69731998443604; train accuracy: 0.7964504076086957; test accuracy: 0.6788
+2025-09-24 14:17:14 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 14:17:14 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 14:17:14 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 14:17:41 [INFO]  Epoch 44 loss: 390.67762899398804; train accuracy: 0.805749725877193; test accuracy: 0.6649
+2025-09-24 14:17:41 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 14:17:41 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 14:17:41 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 14:18:04 [INFO]  Epoch 44 loss: 345.9154109954834; train accuracy: 0.7580859375; test accuracy: 0.5835
+2025-09-24 14:18:04 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 14:18:04 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 14:18:04 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 14:18:35 [INFO]  Epoch 44 loss: 436.92352390289307; train accuracy: 0.8037860576923077; test accuracy: 0.6867
+2025-09-24 14:18:35 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 14:18:35 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 14:18:35 [INFO]  Round 44 Finish--------|
+2025-09-24 14:18:35 [INFO]  Model variance: mean: 0.004434200003743172, sum: 49547.5390625
+2025-09-24 14:18:35 [INFO]  g_protos_std: 1.0069808959960938
+2025-09-24 14:18:40 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.864
+2025-09-24 14:18:40 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 14:18:40 [INFO]  Round 45 starts--------|
+2025-09-24 14:18:40 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 14:19:05 [INFO]  Epoch 45 loss: 366.1411633491516; train accuracy: 0.7930793042452831; test accuracy: 0.6283
+2025-09-24 14:19:05 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_45.pth
+2025-09-24 14:19:05 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 14:19:05 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 14:19:05 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 14:19:38 [INFO]  Epoch 45 loss: 434.5901355743408; train accuracy: 0.8507416213768116; test accuracy: 0.7169
+2025-09-24 14:19:38 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_45.pth
+2025-09-24 14:19:38 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 14:19:38 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 14:19:38 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 14:20:06 [INFO]  Epoch 45 loss: 399.59509658813477; train accuracy: 0.758532072368421; test accuracy: 0.6293
+2025-09-24 14:20:06 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_45.pth
+2025-09-24 14:20:06 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 14:20:06 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 14:20:06 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 14:20:31 [INFO]  Epoch 45 loss: 336.7336096763611; train accuracy: 0.7835546875; test accuracy: 0.6395
+2025-09-24 14:20:32 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_45.pth
+2025-09-24 14:20:32 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 14:20:32 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 14:20:32 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 14:21:04 [INFO]  Epoch 45 loss: 436.85298204421997; train accuracy: 0.7625; test accuracy: 0.6163
+2025-09-24 14:21:04 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_45.pth
+2025-09-24 14:21:04 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 14:21:04 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 14:21:04 [INFO]  Round 45 Finish--------|
+2025-09-24 14:21:04 [INFO]  Model variance: mean: 0.004486070014536381, sum: 50127.1328125
+2025-09-24 14:21:04 [INFO]  g_protos_std: 1.0070149898529053
+2025-09-24 14:21:09 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8654
+2025-09-24 14:21:09 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 14:21:09 [INFO]  Round 46 starts--------|
+2025-09-24 14:21:09 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 14:21:35 [INFO]  Epoch 46 loss: 368.85694646835327; train accuracy: 0.8020710495283019; test accuracy: 0.5929
+2025-09-24 14:21:35 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 14:21:35 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 14:21:35 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 14:22:09 [INFO]  Epoch 46 loss: 433.70428800582886; train accuracy: 0.8466089221014492; test accuracy: 0.7293
+2025-09-24 14:22:09 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 14:22:09 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 14:22:09 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 14:22:37 [INFO]  Epoch 46 loss: 386.66994047164917; train accuracy: 0.7867667214912281; test accuracy: 0.6795
+2025-09-24 14:22:37 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 14:22:37 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 14:22:37 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 14:23:01 [INFO]  Epoch 46 loss: 341.75382566452026; train accuracy: 0.8350390625; test accuracy: 0.6773
+2025-09-24 14:23:01 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 14:23:01 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 14:23:01 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 14:23:32 [INFO]  Epoch 46 loss: 425.1198263168335; train accuracy: 0.8010216346153847; test accuracy: 0.6796
+2025-09-24 14:23:32 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 14:23:32 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 14:23:32 [INFO]  Round 46 Finish--------|
+2025-09-24 14:23:32 [INFO]  Model variance: mean: 0.004538039211183786, sum: 50707.83203125
+2025-09-24 14:23:32 [INFO]  g_protos_std: 1.0070507526397705
+2025-09-24 14:23:37 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8694
+2025-09-24 14:23:37 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 14:23:37 [INFO]  Round 47 starts--------|
+2025-09-24 14:23:37 [INFO]  Client 0 Starts Local Trainning--------|

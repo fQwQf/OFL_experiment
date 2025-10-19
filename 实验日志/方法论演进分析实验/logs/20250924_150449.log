@@ -1,0 +1,1768 @@
+2025-09-24 15:04:51 [INFO]  Load config from ./configs/CIFAR10_alpha0.5.yaml
+2025-09-24 15:04:51 [INFO]  config: {'exp_name': 'CIFAR10_alpha0.5', 'dataset': {'data_name': 'CIFAR10', 'root_path': 'H:/codes/dataset', 'train_batch_size': 512, 'test_batch_size': 256, 'channels': 3, 'num_classes': 10, 'image_size': 32}, 'distribution': {'type': 'dirichlet', 'label_num_per_client': 2, 'alpha': 0.5}, 'client': {'num_clients': 5}, 'server': {'num_rounds': 300, 'frac_clients': 1.0, 'lr': 0.05, 'local_epochs': 5, 'optimizer': 'sgd', 'momentum': 0.9, 'weight_decay': 0.0001, 'loss_name': 'ce', 'model_name': 'resnet18', 'aggregated_by_datasize': True, 'lr_decay_per_round': 0.998}, 'device': 'cuda:0', 'checkpoint': {'save_path': './checkpoints/', 'save_freq': 5, 'result_file': 'CIFAR10_results.yaml'}, 'pretrain': {'lr': 0.01, 'epoch': 70, 'model_path': './pretrain/', 'momentum': 0.9, 'weight_decay': 0.0001, 'model_name': 'resnet18', 'model_file_name': 'resnet18-f37072fd.pth'}, 'DBCD': {'alpha_l_pa': 1, 'alpha_l_pb': 1, 'alpha_l_pc': 0.0, 'Beta_alpha': 0.2, 'unsup_method': 'infonce', 'contrastive_temperature': 0.5, 'encoder_epoch': 40, 'projector_epoch': 10, 'use_pretrain': False, 'aug_batch_size': 512, 'encoder_lr': 0.03, 'cls_optimizer': 'sgd', 'cls_lr': 0.05, 'supcon_temp': 0.07, 'super_gr': 100, 'aux_with_public': True}, 'etf': {'loss_name': 'ce'}, 'visualization': {'interval': 5, 'save_path': 'visualization/resnet18', 'vis_size': 16}, 'resume': True, 'resume_best': False, 'seed': 1, 'ours_v5_params': {'use_public_feature_bank': True, 'public_data_ratio': 0.1, 'feature_bank_size': 4096, 'teacher_pretrain_epochs': 20}, 'ours_v6_params': {'use_public_feature_bank': True, 'public_data_ratio': 0.1, 'feature_bank_size': 4096, 'teacher_pretrain_epochs': 20, 'alignment_epochs': 1}}
+2025-09-24 15:04:53 [INFO]  Dataset CIFAR10 loaded
+2025-09-24 15:04:53 [INFO]  Dataset split: 45000 samples for private clients, 5000 for public pool.
+2025-09-24 15:04:53 [INFO]  Dataset index dict loaded from preprocessed_data/CIFAR10_private.pt
+2025-09-24 15:04:53 [INFO]  OneshotOurs
+2025-09-24 15:04:54 [INFO]  Public feature bank strategy is ENABLED.
+2025-09-24 15:04:54 [INFO]  Initializing teacher model for pre-training on public data.
+2025-09-24 15:04:54 [INFO]  Starting teacher model pre-training for 20 epochs...
+2025-09-24 15:04:57 [INFO]  Teacher pre-train epoch 1/20, Loss: 2.1400
+2025-09-24 15:04:59 [INFO]  Teacher pre-train epoch 2/20, Loss: 1.6752
+2025-09-24 15:05:01 [INFO]  Teacher pre-train epoch 3/20, Loss: 1.3908
+2025-09-24 15:05:03 [INFO]  Teacher pre-train epoch 4/20, Loss: 1.1216
+2025-09-24 15:05:05 [INFO]  Teacher pre-train epoch 5/20, Loss: 0.8087
+2025-09-24 15:05:07 [INFO]  Teacher pre-train epoch 6/20, Loss: 0.4810
+2025-09-24 15:05:09 [INFO]  Teacher pre-train epoch 7/20, Loss: 0.2685
+2025-09-24 15:05:12 [INFO]  Teacher pre-train epoch 8/20, Loss: 0.1152
+2025-09-24 15:05:14 [INFO]  Teacher pre-train epoch 9/20, Loss: 0.0431
+2025-09-24 15:05:16 [INFO]  Teacher pre-train epoch 10/20, Loss: 0.0185
+2025-09-24 15:05:18 [INFO]  Teacher pre-train epoch 11/20, Loss: 0.0085
+2025-09-24 15:05:20 [INFO]  Teacher pre-train epoch 12/20, Loss: 0.0050
+2025-09-24 15:05:22 [INFO]  Teacher pre-train epoch 13/20, Loss: 0.0033
+2025-09-24 15:05:24 [INFO]  Teacher pre-train epoch 14/20, Loss: 0.0026
+2025-09-24 15:05:26 [INFO]  Teacher pre-train epoch 15/20, Loss: 0.0022
+2025-09-24 15:05:28 [INFO]  Teacher pre-train epoch 16/20, Loss: 0.0019
+2025-09-24 15:05:30 [INFO]  Teacher pre-train epoch 17/20, Loss: 0.0017
+2025-09-24 15:05:32 [INFO]  Teacher pre-train epoch 18/20, Loss: 0.0016
+2025-09-24 15:05:34 [INFO]  Teacher pre-train epoch 19/20, Loss: 0.0015
+2025-09-24 15:05:36 [INFO]  Teacher pre-train epoch 20/20, Loss: 0.0014
+2025-09-24 15:05:36 [INFO]  Teacher pre-training finished. Generating public feature bank...
+2025-09-24 15:05:37 [INFO]  Public feature bank created with size: torch.Size([4096, 512])
+2025-09-24 15:05:37 [INFO]  Two-stage training enabled: Alignment epochs set to 1.
+2025-09-24 15:05:37 [INFO]  Round 0 starts--------|
+2025-09-24 15:05:37 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 15:05:45 [INFO]  generating sample per sample
+2025-09-24 15:05:45 [INFO]  Epoch 0: Running in Stage 1 - Global Alignment Only.
+2025-09-24 15:06:39 [INFO]  Epoch 0 loss: 382.3751902580261; train accuracy: 0.09990418632075472; test accuracy: 0.0624
+2025-09-24 15:06:39 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_0.pth
+2025-09-24 15:06:39 [INFO]  Epoch 1: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:07:31 [INFO]  Epoch 1 loss: 544.3655452728271; train accuracy: 0.29779628537735847; test accuracy: 0.1807
+2025-09-24 15:07:31 [INFO]  Epoch 2: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:08:20 [INFO]  Epoch 2 loss: 517.8761739730835; train accuracy: 0.34780365566037735; test accuracy: 0.2127
+2025-09-24 15:08:20 [INFO]  Epoch 3: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:09:11 [INFO]  Epoch 3 loss: 505.46800327301025; train accuracy: 0.27281102594339623; test accuracy: 0.1706
+2025-09-24 15:09:11 [INFO]  Epoch 4: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:10:00 [INFO]  Epoch 4 loss: 495.0724468231201; train accuracy: 0.4562573702830189; test accuracy: 0.2886
+2025-09-24 15:10:00 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 15:10:00 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 15:10:00 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 15:10:10 [INFO]  generating sample per sample
+2025-09-24 15:10:10 [INFO]  Epoch 0: Running in Stage 1 - Global Alignment Only.
+2025-09-24 15:11:09 [INFO]  Epoch 0 loss: 493.42391538619995; train accuracy: 0.1252264492753623; test accuracy: 0.099
+2025-09-24 15:11:09 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_0.pth
+2025-09-24 15:11:09 [INFO]  Epoch 1: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:12:09 [INFO]  Epoch 1 loss: 728.7595272064209; train accuracy: 0.26208673007246375; test accuracy: 0.2283
+2025-09-24 15:12:09 [INFO]  Epoch 2: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:13:09 [INFO]  Epoch 2 loss: 683.4323968887329; train accuracy: 0.3132925724637681; test accuracy: 0.2659
+2025-09-24 15:13:09 [INFO]  Epoch 3: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:14:12 [INFO]  Epoch 3 loss: 652.214958190918; train accuracy: 0.38380321557971014; test accuracy: 0.3139
+2025-09-24 15:14:12 [INFO]  Epoch 4: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:15:13 [INFO]  Epoch 4 loss: 628.9707298278809; train accuracy: 0.5233242753623188; test accuracy: 0.4386
+2025-09-24 15:15:13 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 15:15:13 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 15:15:13 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 15:15:21 [INFO]  generating sample per sample
+2025-09-24 15:15:21 [INFO]  Epoch 0: Running in Stage 1 - Global Alignment Only.
+2025-09-24 15:16:15 [INFO]  Epoch 0 loss: 411.39349842071533; train accuracy: 0.022101151315789474; test accuracy: 0.035
+2025-09-24 15:16:15 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_0.pth
+2025-09-24 15:16:15 [INFO]  Epoch 1: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:17:06 [INFO]  Epoch 1 loss: 609.1181030273438; train accuracy: 0.17955043859649122; test accuracy: 0.1176
+2025-09-24 15:17:06 [INFO]  Epoch 2: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:17:58 [INFO]  Epoch 2 loss: 584.9707670211792; train accuracy: 0.29529879385964913; test accuracy: 0.2089
+2025-09-24 15:17:58 [INFO]  Epoch 3: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:18:51 [INFO]  Epoch 3 loss: 566.7152233123779; train accuracy: 0.2890282346491228; test accuracy: 0.2077
+2025-09-24 15:18:51 [INFO]  Epoch 4: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:19:44 [INFO]  Epoch 4 loss: 543.7969045639038; train accuracy: 0.36612527412280704; test accuracy: 0.2689
+2025-09-24 15:19:44 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 15:19:44 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 15:19:44 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 15:19:52 [INFO]  generating sample per sample
+2025-09-24 15:19:52 [INFO]  Epoch 0: Running in Stage 1 - Global Alignment Only.
+2025-09-24 15:20:37 [INFO]  Epoch 0 loss: 362.76112699508667; train accuracy: 0.1227734375; test accuracy: 0.07
+2025-09-24 15:20:38 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_0.pth
+2025-09-24 15:20:38 [INFO]  Epoch 1: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:21:21 [INFO]  Epoch 1 loss: 517.6371173858643; train accuracy: 0.280234375; test accuracy: 0.164
+2025-09-24 15:21:21 [INFO]  Epoch 2: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:22:05 [INFO]  Epoch 2 loss: 492.5362033843994; train accuracy: 0.2041796875; test accuracy: 0.1181
+2025-09-24 15:22:05 [INFO]  Epoch 3: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:22:49 [INFO]  Epoch 3 loss: 482.8084421157837; train accuracy: 0.3826171875; test accuracy: 0.2308
+2025-09-24 15:22:49 [INFO]  Epoch 4: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:23:34 [INFO]  Epoch 4 loss: 466.8565101623535; train accuracy: 0.3057421875; test accuracy: 0.1821
+2025-09-24 15:23:34 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 15:23:34 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 15:23:34 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 15:23:43 [INFO]  generating sample per sample
+2025-09-24 15:23:43 [INFO]  Epoch 0: Running in Stage 1 - Global Alignment Only.
+2025-09-24 15:24:41 [INFO]  Epoch 0 loss: 468.15608739852905; train accuracy: 0.1664362980769231; test accuracy: 0.1367
+2025-09-24 15:24:42 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_0.pth
+2025-09-24 15:24:42 [INFO]  Epoch 1: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:25:40 [INFO]  Epoch 1 loss: 677.7066659927368; train accuracy: 0.2184795673076923; test accuracy: 0.1633
+2025-09-24 15:25:40 [INFO]  Epoch 2: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:26:38 [INFO]  Epoch 2 loss: 645.9439487457275; train accuracy: 0.30315504807692306; test accuracy: 0.2388
+2025-09-24 15:26:38 [INFO]  Epoch 3: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:27:37 [INFO]  Epoch 3 loss: 629.1352710723877; train accuracy: 0.22025240384615385; test accuracy: 0.1622
+2025-09-24 15:27:37 [INFO]  Epoch 4: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:28:34 [INFO]  Epoch 4 loss: 609.253529548645; train accuracy: 0.40078125; test accuracy: 0.3195
+2025-09-24 15:28:34 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 15:28:34 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 15:28:34 [INFO]  Round 0 Finish--------|
+2025-09-24 15:28:34 [INFO]  Model variance: mean: 0.0013650937471538782, sum: 15253.4921875
+2025-09-24 15:28:34 [INFO]  g_protos_std: 1.006279706954956
+2025-09-24 15:28:40 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.5768
+2025-09-24 15:28:40 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 15:28:40 [INFO]  Round 1 starts--------|
+2025-09-24 15:28:40 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 15:28:40 [INFO]  Epoch 5: Running in Stage 1 - Global Alignment Only.
+2025-09-24 15:29:18 [INFO]  Epoch 5 loss: 353.5718011856079; train accuracy: 0.41067216981132076; test accuracy: 0.257
+2025-09-24 15:29:19 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_5.pth
+2025-09-24 15:29:19 [INFO]  Epoch 6: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:30:04 [INFO]  Epoch 6 loss: 478.3972997665405; train accuracy: 0.445201945754717; test accuracy: 0.28
+2025-09-24 15:30:04 [INFO]  Epoch 7: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:30:47 [INFO]  Epoch 7 loss: 466.6140594482422; train accuracy: 0.5532502948113207; test accuracy: 0.3815
+2025-09-24 15:30:47 [INFO]  Epoch 8: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:31:33 [INFO]  Epoch 8 loss: 459.4415512084961; train accuracy: 0.5256854363207547; test accuracy: 0.3508
+2025-09-24 15:31:33 [INFO]  Epoch 9: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:32:20 [INFO]  Epoch 9 loss: 448.07990312576294; train accuracy: 0.6131706957547169; test accuracy: 0.4336
+2025-09-24 15:32:20 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 15:32:20 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 15:32:20 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 15:32:20 [INFO]  Epoch 5: Running in Stage 1 - Global Alignment Only.
+2025-09-24 15:33:20 [INFO]  Epoch 5 loss: 449.6738176345825; train accuracy: 0.3938802083333333; test accuracy: 0.3296
+2025-09-24 15:33:20 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_5.pth
+2025-09-24 15:33:20 [INFO]  Epoch 6: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:34:23 [INFO]  Epoch 6 loss: 595.0291686058044; train accuracy: 0.5381567028985508; test accuracy: 0.4725
+2025-09-24 15:34:23 [INFO]  Epoch 7: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:35:26 [INFO]  Epoch 7 loss: 580.5691614151001; train accuracy: 0.5733412590579711; test accuracy: 0.4943
+2025-09-24 15:35:26 [INFO]  Epoch 8: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:36:29 [INFO]  Epoch 8 loss: 564.1725497245789; train accuracy: 0.6610903532608695; test accuracy: 0.5668
+2025-09-24 15:36:29 [INFO]  Epoch 9: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:37:32 [INFO]  Epoch 9 loss: 555.8070631027222; train accuracy: 0.6653079710144928; test accuracy: 0.5583
+2025-09-24 15:37:32 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 15:37:32 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 15:37:32 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 15:37:32 [INFO]  Epoch 5: Running in Stage 1 - Global Alignment Only.
+2025-09-24 15:38:26 [INFO]  Epoch 5 loss: 382.6247510910034; train accuracy: 0.3559141995614035; test accuracy: 0.2804
+2025-09-24 15:38:26 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_5.pth
+2025-09-24 15:38:26 [INFO]  Epoch 6: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:39:20 [INFO]  Epoch 6 loss: 527.0074243545532; train accuracy: 0.4797491776315789; test accuracy: 0.3993
+2025-09-24 15:39:20 [INFO]  Epoch 7: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:40:13 [INFO]  Epoch 7 loss: 517.7590074539185; train accuracy: 0.4596011513157895; test accuracy: 0.3852
+2025-09-24 15:40:13 [INFO]  Epoch 8: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:41:07 [INFO]  Epoch 8 loss: 502.4496088027954; train accuracy: 0.4296875; test accuracy: 0.3514
+2025-09-24 15:41:07 [INFO]  Epoch 9: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:41:58 [INFO]  Epoch 9 loss: 499.2231616973877; train accuracy: 0.5669887609649122; test accuracy: 0.4658
+2025-09-24 15:41:58 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 15:41:58 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 15:41:58 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 15:41:58 [INFO]  Epoch 5: Running in Stage 1 - Global Alignment Only.
+2025-09-24 15:42:45 [INFO]  Epoch 5 loss: 334.82421875; train accuracy: 0.3428515625; test accuracy: 0.1967
+2025-09-24 15:42:46 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_5.pth
+2025-09-24 15:42:46 [INFO]  Epoch 6: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:43:34 [INFO]  Epoch 6 loss: 444.898886680603; train accuracy: 0.4019921875; test accuracy: 0.2561
+2025-09-24 15:43:34 [INFO]  Epoch 7: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:44:19 [INFO]  Epoch 7 loss: 442.8262996673584; train accuracy: 0.4238671875; test accuracy: 0.3346
+2025-09-24 15:44:19 [INFO]  Epoch 8: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:45:03 [INFO]  Epoch 8 loss: 433.63697242736816; train accuracy: 0.484140625; test accuracy: 0.3426
+2025-09-24 15:45:03 [INFO]  Epoch 9: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:45:49 [INFO]  Epoch 9 loss: 422.4771695137024; train accuracy: 0.4919140625; test accuracy: 0.3358
+2025-09-24 15:45:49 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 15:45:49 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 15:45:49 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 15:45:49 [INFO]  Epoch 5: Running in Stage 1 - Global Alignment Only.
+2025-09-24 15:46:46 [INFO]  Epoch 5 loss: 430.1521258354187; train accuracy: 0.41256009615384615; test accuracy: 0.3274
+2025-09-24 15:46:46 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_5.pth
+2025-09-24 15:46:46 [INFO]  Epoch 6: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:47:43 [INFO]  Epoch 6 loss: 587.2039604187012; train accuracy: 0.4458233173076923; test accuracy: 0.4058
+2025-09-24 15:47:43 [INFO]  Epoch 7: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:48:40 [INFO]  Epoch 7 loss: 581.0905303955078; train accuracy: 0.6139122596153846; test accuracy: 0.5108
+2025-09-24 15:48:41 [INFO]  Epoch 8: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:49:41 [INFO]  Epoch 8 loss: 558.1316738128662; train accuracy: 0.5811298076923077; test accuracy: 0.5195
+2025-09-24 15:49:41 [INFO]  Epoch 9: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:50:40 [INFO]  Epoch 9 loss: 549.0337524414062; train accuracy: 0.5869290865384615; test accuracy: 0.4971
+2025-09-24 15:50:40 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 15:50:40 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 15:50:40 [INFO]  Round 1 Finish--------|
+2025-09-24 15:50:40 [INFO]  Model variance: mean: 0.002006611553952098, sum: 22421.78125
+2025-09-24 15:50:40 [INFO]  g_protos_std: 1.0064582824707031
+2025-09-24 15:50:46 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.7127
+2025-09-24 15:50:46 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 15:50:46 [INFO]  Round 2 starts--------|
+2025-09-24 15:50:46 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 15:50:46 [INFO]  Epoch 10: Running in Stage 1 - Global Alignment Only.
+2025-09-24 15:51:33 [INFO]  Epoch 10 loss: 343.57053327560425; train accuracy: 0.5816995872641509; test accuracy: 0.3983
+2025-09-24 15:51:33 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_10.pth
+2025-09-24 15:51:33 [INFO]  Epoch 11: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:52:21 [INFO]  Epoch 11 loss: 439.8205289840698; train accuracy: 0.6458579009433962; test accuracy: 0.4792
+2025-09-24 15:52:21 [INFO]  Epoch 12: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:53:10 [INFO]  Epoch 12 loss: 424.41126823425293; train accuracy: 0.5166199882075472; test accuracy: 0.3542
+2025-09-24 15:53:10 [INFO]  Epoch 13: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:53:56 [INFO]  Epoch 13 loss: 436.34655809402466; train accuracy: 0.5745872641509434; test accuracy: 0.418
+2025-09-24 15:53:56 [INFO]  Epoch 14: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:54:44 [INFO]  Epoch 14 loss: 424.12734746932983; train accuracy: 0.6448997641509434; test accuracy: 0.5036
+2025-09-24 15:54:44 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 15:54:44 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 15:54:44 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 15:54:44 [INFO]  Epoch 10: Running in Stage 1 - Global Alignment Only.
+2025-09-24 15:55:47 [INFO]  Epoch 10 loss: 424.45731925964355; train accuracy: 0.6745923913043478; test accuracy: 0.5535
+2025-09-24 15:55:48 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_10.pth
+2025-09-24 15:55:48 [INFO]  Epoch 11: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:56:50 [INFO]  Epoch 11 loss: 534.8223028182983; train accuracy: 0.681442481884058; test accuracy: 0.5979
+2025-09-24 15:56:50 [INFO]  Epoch 12: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:57:53 [INFO]  Epoch 12 loss: 541.4522671699524; train accuracy: 0.6010246829710145; test accuracy: 0.5043
+2025-09-24 15:57:53 [INFO]  Epoch 13: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 15:58:57 [INFO]  Epoch 13 loss: 518.217845916748; train accuracy: 0.711333786231884; test accuracy: 0.6056
+2025-09-24 15:58:57 [INFO]  Epoch 14: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:00:00 [INFO]  Epoch 14 loss: 515.4136424064636; train accuracy: 0.7706918025362319; test accuracy: 0.6545
+2025-09-24 16:00:00 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 16:00:00 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 16:00:00 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 16:00:00 [INFO]  Epoch 10: Running in Stage 1 - Global Alignment Only.
+2025-09-24 16:00:50 [INFO]  Epoch 10 loss: 368.81134700775146; train accuracy: 0.5459155701754386; test accuracy: 0.4566
+2025-09-24 16:00:50 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_10.pth
+2025-09-24 16:00:50 [INFO]  Epoch 11: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:01:44 [INFO]  Epoch 11 loss: 489.49514150619507; train accuracy: 0.47241639254385964; test accuracy: 0.3994
+2025-09-24 16:01:44 [INFO]  Epoch 12: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:02:37 [INFO]  Epoch 12 loss: 478.9163284301758; train accuracy: 0.6151315789473685; test accuracy: 0.5254
+2025-09-24 16:02:37 [INFO]  Epoch 13: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:03:27 [INFO]  Epoch 13 loss: 469.18121433258057; train accuracy: 0.5251507675438597; test accuracy: 0.448
+2025-09-24 16:03:27 [INFO]  Epoch 14: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:04:17 [INFO]  Epoch 14 loss: 467.18184185028076; train accuracy: 0.6309964364035088; test accuracy: 0.5452
+2025-09-24 16:04:17 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 16:04:17 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 16:04:17 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 16:04:17 [INFO]  Epoch 10: Running in Stage 1 - Global Alignment Only.
+2025-09-24 16:05:03 [INFO]  Epoch 10 loss: 321.52232551574707; train accuracy: 0.6017578125; test accuracy: 0.4455
+2025-09-24 16:05:04 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_10.pth
+2025-09-24 16:05:04 [INFO]  Epoch 11: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:05:51 [INFO]  Epoch 11 loss: 412.4546113014221; train accuracy: 0.6501953125; test accuracy: 0.5062
+2025-09-24 16:05:51 [INFO]  Epoch 12: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:06:37 [INFO]  Epoch 12 loss: 403.7067332267761; train accuracy: 0.5855078125; test accuracy: 0.4745
+2025-09-24 16:06:37 [INFO]  Epoch 13: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:07:20 [INFO]  Epoch 13 loss: 402.4100799560547; train accuracy: 0.6562890625; test accuracy: 0.5153
+2025-09-24 16:07:20 [INFO]  Epoch 14: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:08:05 [INFO]  Epoch 14 loss: 392.5408444404602; train accuracy: 0.44109375; test accuracy: 0.366
+2025-09-24 16:08:05 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 16:08:05 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 16:08:05 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 16:08:05 [INFO]  Epoch 10: Running in Stage 1 - Global Alignment Only.
+2025-09-24 16:09:04 [INFO]  Epoch 10 loss: 415.2323136329651; train accuracy: 0.6393930288461539; test accuracy: 0.5633
+2025-09-24 16:09:05 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_10.pth
+2025-09-24 16:09:05 [INFO]  Epoch 11: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:10:02 [INFO]  Epoch 11 loss: 533.104986667633; train accuracy: 0.6114182692307693; test accuracy: 0.5209
+2025-09-24 16:10:02 [INFO]  Epoch 12: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:10:59 [INFO]  Epoch 12 loss: 526.248987197876; train accuracy: 0.6108173076923077; test accuracy: 0.5052
+2025-09-24 16:10:59 [INFO]  Epoch 13: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:11:58 [INFO]  Epoch 13 loss: 512.0985422134399; train accuracy: 0.6605769230769231; test accuracy: 0.5783
+2025-09-24 16:11:58 [INFO]  Epoch 14: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:12:55 [INFO]  Epoch 14 loss: 511.0135807991028; train accuracy: 0.594140625; test accuracy: 0.5086
+2025-09-24 16:12:55 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 16:12:55 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 16:12:55 [INFO]  Round 2 Finish--------|
+2025-09-24 16:12:55 [INFO]  Model variance: mean: 0.0025342346634715796, sum: 28317.416015625
+2025-09-24 16:12:55 [INFO]  g_protos_std: 1.006580114364624
+2025-09-24 16:13:00 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.7692
+2025-09-24 16:13:00 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 16:13:00 [INFO]  Round 3 starts--------|
+2025-09-24 16:13:00 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 16:13:00 [INFO]  Epoch 15: Running in Stage 1 - Global Alignment Only.
+2025-09-24 16:13:47 [INFO]  Epoch 15 loss: 331.45893001556396; train accuracy: 0.5753611438679245; test accuracy: 0.3804
+2025-09-24 16:13:48 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_15.pth
+2025-09-24 16:13:48 [INFO]  Epoch 16: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:14:34 [INFO]  Epoch 16 loss: 417.89861822128296; train accuracy: 0.6526017099056604; test accuracy: 0.5207
+2025-09-24 16:14:34 [INFO]  Epoch 17: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:15:22 [INFO]  Epoch 17 loss: 411.64707469940186; train accuracy: 0.685546875; test accuracy: 0.5082
+2025-09-24 16:15:22 [INFO]  Epoch 18: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:16:12 [INFO]  Epoch 18 loss: 407.90060091018677; train accuracy: 0.7278522995283019; test accuracy: 0.586
+2025-09-24 16:16:12 [INFO]  Epoch 19: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:17:03 [INFO]  Epoch 19 loss: 399.71577739715576; train accuracy: 0.6913325471698113; test accuracy: 0.4985
+2025-09-24 16:17:03 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 16:17:03 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 16:17:03 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 16:17:03 [INFO]  Epoch 15: Running in Stage 1 - Global Alignment Only.
+2025-09-24 16:18:07 [INFO]  Epoch 15 loss: 411.4442400932312; train accuracy: 0.7302139945652174; test accuracy: 0.6281
+2025-09-24 16:18:07 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_15.pth
+2025-09-24 16:18:07 [INFO]  Epoch 16: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:19:12 [INFO]  Epoch 16 loss: 496.9958086013794; train accuracy: 0.7282042572463768; test accuracy: 0.6278
+2025-09-24 16:19:12 [INFO]  Epoch 17: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:20:16 [INFO]  Epoch 17 loss: 504.97383642196655; train accuracy: 0.6645437047101449; test accuracy: 0.5707
+2025-09-24 16:20:16 [INFO]  Epoch 18: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:21:19 [INFO]  Epoch 18 loss: 502.55713987350464; train accuracy: 0.7281476449275363; test accuracy: 0.6162
+2025-09-24 16:21:19 [INFO]  Epoch 19: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:22:23 [INFO]  Epoch 19 loss: 492.2788505554199; train accuracy: 0.7976958786231884; test accuracy: 0.678
+2025-09-24 16:22:23 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 16:22:23 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 16:22:23 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 16:22:24 [INFO]  Epoch 15: Running in Stage 1 - Global Alignment Only.
+2025-09-24 16:23:19 [INFO]  Epoch 15 loss: 356.2070093154907; train accuracy: 0.6632401315789473; test accuracy: 0.5548
+2025-09-24 16:23:20 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_15.pth
+2025-09-24 16:23:20 [INFO]  Epoch 16: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:24:18 [INFO]  Epoch 16 loss: 460.71463775634766; train accuracy: 0.5323807565789473; test accuracy: 0.4564
+2025-09-24 16:24:18 [INFO]  Epoch 17: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:25:19 [INFO]  Epoch 17 loss: 454.8828339576721; train accuracy: 0.6540227521929824; test accuracy: 0.5389
+2025-09-24 16:25:19 [INFO]  Epoch 18: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:26:17 [INFO]  Epoch 18 loss: 455.3298683166504; train accuracy: 0.6450452302631579; test accuracy: 0.5411
+2025-09-24 16:26:17 [INFO]  Epoch 19: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:27:14 [INFO]  Epoch 19 loss: 447.15446043014526; train accuracy: 0.6624177631578947; test accuracy: 0.5489
+2025-09-24 16:27:14 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 16:27:14 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 16:27:14 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 16:27:14 [INFO]  Epoch 15: Running in Stage 1 - Global Alignment Only.
+2025-09-24 16:31:11 [INFO]  Epoch 15 loss: 310.71641540527344; train accuracy: 0.6935546875; test accuracy: 0.5168
+2025-09-24 16:31:11 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_15.pth
+2025-09-24 16:31:11 [INFO]  Epoch 16: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:52:32 [INFO]  Epoch 16 loss: 387.50118827819824; train accuracy: 0.69921875; test accuracy: 0.5125
+2025-09-24 16:52:32 [INFO]  Epoch 17: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:53:24 [INFO]  Epoch 17 loss: 394.0287775993347; train accuracy: 0.665234375; test accuracy: 0.5576
+2025-09-24 16:53:24 [INFO]  Epoch 18: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:54:15 [INFO]  Epoch 18 loss: 381.28501653671265; train accuracy: 0.6555078125; test accuracy: 0.5103
+2025-09-24 16:54:15 [INFO]  Epoch 19: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:55:03 [INFO]  Epoch 19 loss: 385.32698011398315; train accuracy: 0.6809765625; test accuracy: 0.5469
+2025-09-24 16:55:03 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 16:55:03 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 16:55:03 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 16:55:03 [INFO]  Epoch 15: Running in Stage 1 - Global Alignment Only.
+2025-09-24 16:56:03 [INFO]  Epoch 15 loss: 401.1816945075989; train accuracy: 0.5661358173076924; test accuracy: 0.4717
+2025-09-24 16:56:04 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_15.pth
+2025-09-24 16:56:04 [INFO]  Epoch 16: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:57:08 [INFO]  Epoch 16 loss: 507.56543731689453; train accuracy: 0.7451021634615385; test accuracy: 0.6467
+2025-09-24 16:57:08 [INFO]  Epoch 17: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:58:09 [INFO]  Epoch 17 loss: 499.98183488845825; train accuracy: 0.7407151442307692; test accuracy: 0.6377
+2025-09-24 16:58:09 [INFO]  Epoch 18: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 16:59:10 [INFO]  Epoch 18 loss: 494.63477420806885; train accuracy: 0.6225661057692308; test accuracy: 0.5278
+2025-09-24 16:59:10 [INFO]  Epoch 19: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:00:12 [INFO]  Epoch 19 loss: 484.2541103363037; train accuracy: 0.7208533653846154; test accuracy: 0.6139
+2025-09-24 17:00:12 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 17:00:12 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 17:00:12 [INFO]  Round 3 Finish--------|
+2025-09-24 17:00:12 [INFO]  Model variance: mean: 0.0029696342535316944, sum: 33182.55078125
+2025-09-24 17:00:12 [INFO]  g_protos_std: 1.0066832304000854
+2025-09-24 17:00:18 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8052
+2025-09-24 17:00:18 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 17:00:18 [INFO]  Round 4 starts--------|
+2025-09-24 17:00:18 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 17:00:18 [INFO]  Epoch 20: Running in Stage 1 - Global Alignment Only.
+2025-09-24 17:01:09 [INFO]  Epoch 20 loss: 325.21291875839233; train accuracy: 0.7002137382075472; test accuracy: 0.5652
+2025-09-24 17:01:10 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_20.pth
+2025-09-24 17:01:10 [INFO]  Epoch 21: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:02:01 [INFO]  Epoch 21 loss: 394.4409165382385; train accuracy: 0.7080630896226415; test accuracy: 0.5525
+2025-09-24 17:02:01 [INFO]  Epoch 22: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:02:49 [INFO]  Epoch 22 loss: 399.0643672943115; train accuracy: 0.6719487028301887; test accuracy: 0.5466
+2025-09-24 17:02:49 [INFO]  Epoch 23: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:03:38 [INFO]  Epoch 23 loss: 402.75539350509644; train accuracy: 0.6751179245283019; test accuracy: 0.5353
+2025-09-24 17:03:38 [INFO]  Epoch 24: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:04:26 [INFO]  Epoch 24 loss: 395.0978617668152; train accuracy: 0.72265625; test accuracy: 0.5416
+2025-09-24 17:04:26 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 17:04:26 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 17:04:26 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 17:04:26 [INFO]  Epoch 20: Running in Stage 1 - Global Alignment Only.
+2025-09-24 17:05:26 [INFO]  Epoch 20 loss: 403.1625156402588; train accuracy: 0.6658457880434783; test accuracy: 0.5671
+2025-09-24 17:05:26 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_20.pth
+2025-09-24 17:05:26 [INFO]  Epoch 21: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:06:28 [INFO]  Epoch 21 loss: 488.78499603271484; train accuracy: 0.7329030797101449; test accuracy: 0.6341
+2025-09-24 17:06:28 [INFO]  Epoch 22: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:07:27 [INFO]  Epoch 22 loss: 478.3903589248657; train accuracy: 0.7762681159420289; test accuracy: 0.6591
+2025-09-24 17:07:27 [INFO]  Epoch 23: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:08:29 [INFO]  Epoch 23 loss: 477.18198585510254; train accuracy: 0.738875679347826; test accuracy: 0.6439
+2025-09-24 17:08:29 [INFO]  Epoch 24: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:09:29 [INFO]  Epoch 24 loss: 475.2155041694641; train accuracy: 0.7259114583333334; test accuracy: 0.6288
+2025-09-24 17:09:29 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 17:09:29 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 17:09:29 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 17:09:29 [INFO]  Epoch 20: Running in Stage 1 - Global Alignment Only.
+2025-09-24 17:10:20 [INFO]  Epoch 20 loss: 350.3594765663147; train accuracy: 0.6858552631578947; test accuracy: 0.5875
+2025-09-24 17:10:21 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_20.pth
+2025-09-24 17:10:21 [INFO]  Epoch 21: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:11:11 [INFO]  Epoch 21 loss: 440.61990690231323; train accuracy: 0.6846902412280702; test accuracy: 0.5827
+2025-09-24 17:11:11 [INFO]  Epoch 22: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:12:00 [INFO]  Epoch 22 loss: 439.41752910614014; train accuracy: 0.6367872807017544; test accuracy: 0.5382
+2025-09-24 17:12:00 [INFO]  Epoch 23: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:12:49 [INFO]  Epoch 23 loss: 441.6003670692444; train accuracy: 0.657312225877193; test accuracy: 0.5784
+2025-09-24 17:12:49 [INFO]  Epoch 24: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:13:40 [INFO]  Epoch 24 loss: 429.05761098861694; train accuracy: 0.7380071271929824; test accuracy: 0.6329
+2025-09-24 17:13:40 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 17:13:40 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 17:13:40 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 17:13:40 [INFO]  Epoch 20: Running in Stage 1 - Global Alignment Only.
+2025-09-24 17:14:25 [INFO]  Epoch 20 loss: 306.5886015892029; train accuracy: 0.63125; test accuracy: 0.5366
+2025-09-24 17:14:26 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_20.pth
+2025-09-24 17:14:26 [INFO]  Epoch 21: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:15:09 [INFO]  Epoch 21 loss: 376.9443292617798; train accuracy: 0.6855859375; test accuracy: 0.5512
+2025-09-24 17:15:09 [INFO]  Epoch 22: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:15:52 [INFO]  Epoch 22 loss: 381.33190298080444; train accuracy: 0.74828125; test accuracy: 0.6079
+2025-09-24 17:15:52 [INFO]  Epoch 23: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:16:37 [INFO]  Epoch 23 loss: 369.26887369155884; train accuracy: 0.6895703125; test accuracy: 0.567
+2025-09-24 17:16:37 [INFO]  Epoch 24: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:17:22 [INFO]  Epoch 24 loss: 369.87842178344727; train accuracy: 0.7771484375; test accuracy: 0.6338
+2025-09-24 17:17:22 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 17:17:22 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 17:17:22 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 17:17:22 [INFO]  Epoch 20: Running in Stage 1 - Global Alignment Only.
+2025-09-24 17:18:19 [INFO]  Epoch 20 loss: 388.9350337982178; train accuracy: 0.6460336538461539; test accuracy: 0.5555
+2025-09-24 17:18:20 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_20.pth
+2025-09-24 17:18:20 [INFO]  Epoch 21: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:19:18 [INFO]  Epoch 21 loss: 493.9763517379761; train accuracy: 0.7015024038461538; test accuracy: 0.5873
+2025-09-24 17:19:18 [INFO]  Epoch 22: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:20:15 [INFO]  Epoch 22 loss: 482.0384798049927; train accuracy: 0.6969651442307693; test accuracy: 0.6107
+2025-09-24 17:20:15 [INFO]  Epoch 23: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:21:07 [INFO]  Epoch 23 loss: 472.5535979270935; train accuracy: 0.7288762019230769; test accuracy: 0.6081
+2025-09-24 17:21:07 [INFO]  Epoch 24: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:21:58 [INFO]  Epoch 24 loss: 471.412633895874; train accuracy: 0.7526442307692308; test accuracy: 0.6484
+2025-09-24 17:21:58 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 17:21:58 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 17:21:58 [INFO]  Round 4 Finish--------|
+2025-09-24 17:21:58 [INFO]  Model variance: mean: 0.0033509437926113605, sum: 37443.28515625
+2025-09-24 17:21:58 [INFO]  g_protos_std: 1.0067903995513916
+2025-09-24 17:22:03 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8289
+2025-09-24 17:22:03 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 17:22:03 [INFO]  Round 5 starts--------|
+2025-09-24 17:22:03 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 17:22:03 [INFO]  Epoch 25: Running in Stage 1 - Global Alignment Only.
+2025-09-24 17:22:45 [INFO]  Epoch 25 loss: 320.6444401741028; train accuracy: 0.7512160966981132; test accuracy: 0.5921
+2025-09-24 17:22:46 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_25.pth
+2025-09-24 17:22:46 [INFO]  Epoch 26: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:23:28 [INFO]  Epoch 26 loss: 390.99954891204834; train accuracy: 0.7580704599056604; test accuracy: 0.5547
+2025-09-24 17:23:28 [INFO]  Epoch 27: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:24:11 [INFO]  Epoch 27 loss: 382.7081251144409; train accuracy: 0.6845518867924528; test accuracy: 0.5487
+2025-09-24 17:24:11 [INFO]  Epoch 28: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:24:55 [INFO]  Epoch 28 loss: 383.55490589141846; train accuracy: 0.6876842570754716; test accuracy: 0.5467
+2025-09-24 17:24:55 [INFO]  Epoch 29: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:25:41 [INFO]  Epoch 29 loss: 380.615270614624; train accuracy: 0.7206294221698113; test accuracy: 0.5281
+2025-09-24 17:25:41 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 17:25:41 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 17:25:41 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 17:25:41 [INFO]  Epoch 25: Running in Stage 1 - Global Alignment Only.
+2025-09-24 17:26:42 [INFO]  Epoch 25 loss: 397.8260726928711; train accuracy: 0.8421082427536232; test accuracy: 0.7231
+2025-09-24 17:26:42 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_25.pth
+2025-09-24 17:26:42 [INFO]  Epoch 26: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:27:42 [INFO]  Epoch 26 loss: 487.5944080352783; train accuracy: 0.7538213315217391; test accuracy: 0.6614
+2025-09-24 17:27:42 [INFO]  Epoch 27: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:28:42 [INFO]  Epoch 27 loss: 477.6987051963806; train accuracy: 0.8338711503623188; test accuracy: 0.7041
+2025-09-24 17:28:42 [INFO]  Epoch 28: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:29:42 [INFO]  Epoch 28 loss: 466.8560471534729; train accuracy: 0.7942142210144928; test accuracy: 0.6705
+2025-09-24 17:29:42 [INFO]  Epoch 29: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:30:40 [INFO]  Epoch 29 loss: 462.800989151001; train accuracy: 0.8198879076086957; test accuracy: 0.6986
+2025-09-24 17:30:40 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 17:30:40 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 17:30:40 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 17:30:40 [INFO]  Epoch 25: Running in Stage 1 - Global Alignment Only.
+2025-09-24 17:31:29 [INFO]  Epoch 25 loss: 342.2199559211731; train accuracy: 0.7534608004385965; test accuracy: 0.6344
+2025-09-24 17:31:30 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_25.pth
+2025-09-24 17:31:30 [INFO]  Epoch 26: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:32:19 [INFO]  Epoch 26 loss: 426.331582069397; train accuracy: 0.6452165570175439; test accuracy: 0.548
+2025-09-24 17:32:19 [INFO]  Epoch 27: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:33:10 [INFO]  Epoch 27 loss: 420.1720495223999; train accuracy: 0.6443599232456141; test accuracy: 0.5635
+2025-09-24 17:33:10 [INFO]  Epoch 28: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:33:58 [INFO]  Epoch 28 loss: 416.77856159210205; train accuracy: 0.737561677631579; test accuracy: 0.6264
+2025-09-24 17:33:58 [INFO]  Epoch 29: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:34:48 [INFO]  Epoch 29 loss: 426.27570962905884; train accuracy: 0.7250548245614035; test accuracy: 0.5959
+2025-09-24 17:34:48 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 17:34:48 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 17:34:48 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 17:34:48 [INFO]  Epoch 25: Running in Stage 1 - Global Alignment Only.
+2025-09-24 17:35:31 [INFO]  Epoch 25 loss: 303.5075578689575; train accuracy: 0.6974609375; test accuracy: 0.5764
+2025-09-24 17:35:31 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_25.pth
+2025-09-24 17:35:31 [INFO]  Epoch 26: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:36:14 [INFO]  Epoch 26 loss: 372.74495363235474; train accuracy: 0.6556640625; test accuracy: 0.5784
+2025-09-24 17:36:14 [INFO]  Epoch 27: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:36:58 [INFO]  Epoch 27 loss: 365.06597900390625; train accuracy: 0.760234375; test accuracy: 0.6076
+2025-09-24 17:36:58 [INFO]  Epoch 28: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:37:39 [INFO]  Epoch 28 loss: 357.50473260879517; train accuracy: 0.721640625; test accuracy: 0.6019
+2025-09-24 17:37:39 [INFO]  Epoch 29: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:38:21 [INFO]  Epoch 29 loss: 362.11781072616577; train accuracy: 0.7260546875; test accuracy: 0.5922
+2025-09-24 17:38:21 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 17:38:21 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 17:38:21 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 17:38:21 [INFO]  Epoch 25: Running in Stage 1 - Global Alignment Only.
+2025-09-24 17:39:12 [INFO]  Epoch 25 loss: 383.39156770706177; train accuracy: 0.7924278846153846; test accuracy: 0.6738
+2025-09-24 17:39:12 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_25.pth
+2025-09-24 17:39:12 [INFO]  Epoch 26: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:40:07 [INFO]  Epoch 26 loss: 471.43045568466187; train accuracy: 0.7343149038461538; test accuracy: 0.6585
+2025-09-24 17:40:07 [INFO]  Epoch 27: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:40:58 [INFO]  Epoch 27 loss: 466.7961206436157; train accuracy: 0.7771935096153846; test accuracy: 0.6732
+2025-09-24 17:40:58 [INFO]  Epoch 28: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:41:52 [INFO]  Epoch 28 loss: 461.9306888580322; train accuracy: 0.7766826923076923; test accuracy: 0.6586
+2025-09-24 17:41:52 [INFO]  Epoch 29: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:42:45 [INFO]  Epoch 29 loss: 445.960889339447; train accuracy: 0.7658954326923076; test accuracy: 0.672
+2025-09-24 17:42:45 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 17:42:45 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 17:42:45 [INFO]  Round 5 Finish--------|
+2025-09-24 17:42:45 [INFO]  Model variance: mean: 0.003697308013215661, sum: 41313.54296875
+2025-09-24 17:42:45 [INFO]  g_protos_std: 1.0069055557250977
+2025-09-24 17:42:50 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8445
+2025-09-24 17:42:50 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 17:42:50 [INFO]  Round 6 starts--------|
+2025-09-24 17:42:50 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 17:42:50 [INFO]  Epoch 30: Running in Stage 1 - Global Alignment Only.
+2025-09-24 17:43:36 [INFO]  Epoch 30 loss: 315.3156261444092; train accuracy: 0.7875147405660378; test accuracy: 0.6049
+2025-09-24 17:43:36 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_30.pth
+2025-09-24 17:43:36 [INFO]  Epoch 31: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:44:22 [INFO]  Epoch 31 loss: 377.37823581695557; train accuracy: 0.7579967570754716; test accuracy: 0.6127
+2025-09-24 17:44:22 [INFO]  Epoch 32: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:45:05 [INFO]  Epoch 32 loss: 382.2896294593811; train accuracy: 0.7878095518867925; test accuracy: 0.6476
+2025-09-24 17:45:05 [INFO]  Epoch 33: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:45:49 [INFO]  Epoch 33 loss: 367.7191228866577; train accuracy: 0.7747641509433962; test accuracy: 0.5807
+2025-09-24 17:45:49 [INFO]  Epoch 34: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:46:32 [INFO]  Epoch 34 loss: 373.9010820388794; train accuracy: 0.7886939858490566; test accuracy: 0.5918
+2025-09-24 17:46:32 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 17:46:32 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 17:46:32 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 17:46:32 [INFO]  Epoch 30: Running in Stage 1 - Global Alignment Only.
+2025-09-24 17:47:28 [INFO]  Epoch 30 loss: 388.16531467437744; train accuracy: 0.8225769927536232; test accuracy: 0.6931
+2025-09-24 17:47:29 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_30.pth
+2025-09-24 17:47:29 [INFO]  Epoch 31: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:48:24 [INFO]  Epoch 31 loss: 457.1409525871277; train accuracy: 0.841995018115942; test accuracy: 0.7135
+2025-09-24 17:48:24 [INFO]  Epoch 32: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:49:22 [INFO]  Epoch 32 loss: 456.42962980270386; train accuracy: 0.794525588768116; test accuracy: 0.6714
+2025-09-24 17:49:22 [INFO]  Epoch 33: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:50:17 [INFO]  Epoch 33 loss: 449.9518461227417; train accuracy: 0.8386265851449275; test accuracy: 0.7158
+2025-09-24 17:50:17 [INFO]  Epoch 34: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:51:12 [INFO]  Epoch 34 loss: 453.9723563194275; train accuracy: 0.8699331974637681; test accuracy: 0.752
+2025-09-24 17:51:12 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 17:51:12 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 17:51:12 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 17:51:12 [INFO]  Epoch 30: Running in Stage 1 - Global Alignment Only.
+2025-09-24 17:51:58 [INFO]  Epoch 30 loss: 340.8718342781067; train accuracy: 0.7041186951754386; test accuracy: 0.5949
+2025-09-24 17:51:58 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_30.pth
+2025-09-24 17:51:58 [INFO]  Epoch 31: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:52:46 [INFO]  Epoch 31 loss: 420.74318408966064; train accuracy: 0.6857182017543859; test accuracy: 0.6009
+2025-09-24 17:52:46 [INFO]  Epoch 32: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:53:35 [INFO]  Epoch 32 loss: 419.84011220932007; train accuracy: 0.7296463815789473; test accuracy: 0.6057
+2025-09-24 17:53:35 [INFO]  Epoch 33: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:54:22 [INFO]  Epoch 33 loss: 419.1030902862549; train accuracy: 0.6676260964912281; test accuracy: 0.5605
+2025-09-24 17:54:22 [INFO]  Epoch 34: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:55:10 [INFO]  Epoch 34 loss: 418.32776975631714; train accuracy: 0.7293379934210527; test accuracy: 0.6266
+2025-09-24 17:55:10 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 17:55:10 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 17:55:10 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 17:55:10 [INFO]  Epoch 30: Running in Stage 1 - Global Alignment Only.
+2025-09-24 17:55:51 [INFO]  Epoch 30 loss: 299.0947995185852; train accuracy: 0.7164453125; test accuracy: 0.622
+2025-09-24 17:55:51 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_30.pth
+2025-09-24 17:55:51 [INFO]  Epoch 31: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:56:35 [INFO]  Epoch 31 loss: 360.5702528953552; train accuracy: 0.762578125; test accuracy: 0.5937
+2025-09-24 17:56:35 [INFO]  Epoch 32: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:57:17 [INFO]  Epoch 32 loss: 359.81932973861694; train accuracy: 0.74734375; test accuracy: 0.5821
+2025-09-24 17:57:17 [INFO]  Epoch 33: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:57:59 [INFO]  Epoch 33 loss: 350.7485022544861; train accuracy: 0.7149609375; test accuracy: 0.6131
+2025-09-24 17:57:59 [INFO]  Epoch 34: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 17:58:42 [INFO]  Epoch 34 loss: 356.74858236312866; train accuracy: 0.7934765625; test accuracy: 0.6644
+2025-09-24 17:58:42 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 17:58:42 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 17:58:42 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 17:58:42 [INFO]  Epoch 30: Running in Stage 1 - Global Alignment Only.
+2025-09-24 17:59:37 [INFO]  Epoch 30 loss: 377.5636534690857; train accuracy: 0.7852463942307693; test accuracy: 0.6588
+2025-09-24 17:59:37 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_30.pth
+2025-09-24 17:59:37 [INFO]  Epoch 31: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:00:32 [INFO]  Epoch 31 loss: 444.71155977249146; train accuracy: 0.7917067307692308; test accuracy: 0.676
+2025-09-24 18:00:32 [INFO]  Epoch 32: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:01:27 [INFO]  Epoch 32 loss: 452.5485329627991; train accuracy: 0.764453125; test accuracy: 0.6483
+2025-09-24 18:01:27 [INFO]  Epoch 33: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:02:22 [INFO]  Epoch 33 loss: 445.4128484725952; train accuracy: 0.8131911057692308; test accuracy: 0.6995
+2025-09-24 18:02:22 [INFO]  Epoch 34: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:03:17 [INFO]  Epoch 34 loss: 452.8199887275696; train accuracy: 0.835546875; test accuracy: 0.7254
+2025-09-24 18:03:17 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 18:03:17 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 18:03:17 [INFO]  Round 6 Finish--------|
+2025-09-24 18:03:17 [INFO]  Model variance: mean: 0.004013911820948124, sum: 44851.2578125
+2025-09-24 18:03:17 [INFO]  g_protos_std: 1.0070136785507202
+2025-09-24 18:03:22 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8566
+2025-09-24 18:03:22 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 18:03:22 [INFO]  Round 7 starts--------|
+2025-09-24 18:03:22 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 18:03:22 [INFO]  Epoch 35: Running in Stage 1 - Global Alignment Only.
+2025-09-24 18:04:12 [INFO]  Epoch 35 loss: 312.99628925323486; train accuracy: 0.7649985259433962; test accuracy: 0.5983
+2025-09-24 18:04:12 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_35.pth
+2025-09-24 18:04:12 [INFO]  Epoch 36: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:05:01 [INFO]  Epoch 36 loss: 368.2446517944336; train accuracy: 0.7914209905660378; test accuracy: 0.6605
+2025-09-24 18:05:01 [INFO]  Epoch 37: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:05:49 [INFO]  Epoch 37 loss: 374.0741286277771; train accuracy: 0.7529481132075472; test accuracy: 0.5886
+2025-09-24 18:05:49 [INFO]  Epoch 38: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:06:37 [INFO]  Epoch 38 loss: 374.20483779907227; train accuracy: 0.7528007075471698; test accuracy: 0.5826
+2025-09-24 18:06:37 [INFO]  Epoch 39: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:07:24 [INFO]  Epoch 39 loss: 366.82145500183105; train accuracy: 0.7801076061320755; test accuracy: 0.6137
+2025-09-24 18:07:24 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 18:07:24 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 18:07:24 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 18:07:24 [INFO]  Epoch 35: Running in Stage 1 - Global Alignment Only.
+2025-09-24 18:08:27 [INFO]  Epoch 35 loss: 386.15125608444214; train accuracy: 0.8019418025362319; test accuracy: 0.6889
+2025-09-24 18:08:27 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_35.pth
+2025-09-24 18:08:27 [INFO]  Epoch 36: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:09:32 [INFO]  Epoch 36 loss: 448.759738445282; train accuracy: 0.798233695652174; test accuracy: 0.6829
+2025-09-24 18:09:32 [INFO]  Epoch 37: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:10:33 [INFO]  Epoch 37 loss: 446.43414211273193; train accuracy: 0.8059895833333334; test accuracy: 0.6851
+2025-09-24 18:10:33 [INFO]  Epoch 38: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:11:36 [INFO]  Epoch 38 loss: 441.5494170188904; train accuracy: 0.8611582880434783; test accuracy: 0.7391
+2025-09-24 18:11:36 [INFO]  Epoch 39: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:12:39 [INFO]  Epoch 39 loss: 447.61995363235474; train accuracy: 0.8605355525362319; test accuracy: 0.7499
+2025-09-24 18:12:39 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 18:12:39 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 18:12:39 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 18:12:39 [INFO]  Epoch 35: Running in Stage 1 - Global Alignment Only.
+2025-09-24 18:13:30 [INFO]  Epoch 35 loss: 333.8675971031189; train accuracy: 0.8094161184210527; test accuracy: 0.6883
+2025-09-24 18:13:30 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_35.pth
+2025-09-24 18:13:30 [INFO]  Epoch 36: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:14:21 [INFO]  Epoch 36 loss: 407.7394232749939; train accuracy: 0.7758703399122807; test accuracy: 0.6589
+2025-09-24 18:14:21 [INFO]  Epoch 37: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:15:13 [INFO]  Epoch 37 loss: 402.22306060791016; train accuracy: 0.7524328399122807; test accuracy: 0.6403
+2025-09-24 18:15:13 [INFO]  Epoch 38: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:16:06 [INFO]  Epoch 38 loss: 404.5457606315613; train accuracy: 0.7467447916666666; test accuracy: 0.6441
+2025-09-24 18:16:06 [INFO]  Epoch 39: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:16:57 [INFO]  Epoch 39 loss: 399.4402618408203; train accuracy: 0.7601768092105263; test accuracy: 0.6556
+2025-09-24 18:16:57 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 18:16:57 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 18:16:57 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 18:16:57 [INFO]  Epoch 35: Running in Stage 1 - Global Alignment Only.
+2025-09-24 18:17:42 [INFO]  Epoch 35 loss: 297.5466809272766; train accuracy: 0.8205859375; test accuracy: 0.66
+2025-09-24 18:17:43 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_35.pth
+2025-09-24 18:17:43 [INFO]  Epoch 36: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:18:26 [INFO]  Epoch 36 loss: 349.5590453147888; train accuracy: 0.73046875; test accuracy: 0.6231
+2025-09-24 18:18:26 [INFO]  Epoch 37: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:19:09 [INFO]  Epoch 37 loss: 350.4015212059021; train accuracy: 0.830859375; test accuracy: 0.6839
+2025-09-24 18:19:09 [INFO]  Epoch 38: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:19:55 [INFO]  Epoch 38 loss: 353.0125823020935; train accuracy: 0.7898828125; test accuracy: 0.64
+2025-09-24 18:19:55 [INFO]  Epoch 39: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:20:39 [INFO]  Epoch 39 loss: 340.1047592163086; train accuracy: 0.81984375; test accuracy: 0.6675
+2025-09-24 18:20:39 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 18:20:39 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 18:20:39 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 18:20:39 [INFO]  Epoch 35: Running in Stage 1 - Global Alignment Only.
+2025-09-24 18:21:33 [INFO]  Epoch 35 loss: 372.704909324646; train accuracy: 0.7931189903846154; test accuracy: 0.697
+2025-09-24 18:21:33 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_35.pth
+2025-09-24 18:21:33 [INFO]  Epoch 36: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:22:31 [INFO]  Epoch 36 loss: 457.7160406112671; train accuracy: 0.7927584134615384; test accuracy: 0.6654
+2025-09-24 18:22:31 [INFO]  Epoch 37: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:23:31 [INFO]  Epoch 37 loss: 439.49049520492554; train accuracy: 0.8489483173076923; test accuracy: 0.7335
+2025-09-24 18:23:31 [INFO]  Epoch 38: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:24:31 [INFO]  Epoch 38 loss: 445.18278455734253; train accuracy: 0.8093449519230769; test accuracy: 0.6785
+2025-09-24 18:24:31 [INFO]  Epoch 39: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:25:28 [INFO]  Epoch 39 loss: 442.2141742706299; train accuracy: 0.7836538461538461; test accuracy: 0.661
+2025-09-24 18:25:28 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 18:25:28 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 18:25:28 [INFO]  Round 7 Finish--------|
+2025-09-24 18:25:28 [INFO]  Model variance: mean: 0.004310739226639271, sum: 48167.9921875
+2025-09-24 18:25:28 [INFO]  g_protos_std: 1.007141351699829
+2025-09-24 18:25:33 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8652
+2025-09-24 18:25:33 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 18:25:33 [INFO]  Round 8 starts--------|
+2025-09-24 18:25:33 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 18:25:33 [INFO]  Epoch 40: Running in Stage 1 - Global Alignment Only.
+2025-09-24 18:26:21 [INFO]  Epoch 40 loss: 311.41458082199097; train accuracy: 0.7937794811320755; test accuracy: 0.6153
+2025-09-24 18:26:21 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_40.pth
+2025-09-24 18:26:21 [INFO]  Epoch 41: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:27:12 [INFO]  Epoch 41 loss: 358.1923189163208; train accuracy: 0.8050191627358491; test accuracy: 0.6686
+2025-09-24 18:27:12 [INFO]  Epoch 42: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:28:01 [INFO]  Epoch 42 loss: 370.53085231781006; train accuracy: 0.7959168632075472; test accuracy: 0.6212
+2025-09-24 18:28:01 [INFO]  Epoch 43: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:28:49 [INFO]  Epoch 43 loss: 365.8717041015625; train accuracy: 0.8413178066037735; test accuracy: 0.6726
+2025-09-24 18:28:49 [INFO]  Epoch 44: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:29:37 [INFO]  Epoch 44 loss: 361.65233087539673; train accuracy: 0.8019973466981132; test accuracy: 0.6011
+2025-09-24 18:29:37 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 18:29:37 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 18:29:37 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 18:29:37 [INFO]  Epoch 40: Running in Stage 1 - Global Alignment Only.
+2025-09-24 18:30:38 [INFO]  Epoch 40 loss: 378.6190781593323; train accuracy: 0.8135473278985508; test accuracy: 0.6986
+2025-09-24 18:30:38 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_40.pth
+2025-09-24 18:30:38 [INFO]  Epoch 41: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:31:42 [INFO]  Epoch 41 loss: 442.93517303466797; train accuracy: 0.828521286231884; test accuracy: 0.6939
+2025-09-24 18:31:42 [INFO]  Epoch 42: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:32:49 [INFO]  Epoch 42 loss: 439.79943323135376; train accuracy: 0.8458446557971014; test accuracy: 0.7309
+2025-09-24 18:32:49 [INFO]  Epoch 43: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:33:53 [INFO]  Epoch 43 loss: 445.44122838974; train accuracy: 0.8587522644927537; test accuracy: 0.7557
+2025-09-24 18:33:53 [INFO]  Epoch 44: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:52:06 [INFO]  Epoch 44 loss: 445.51127576828003; train accuracy: 0.798431838768116; test accuracy: 0.6806
+2025-09-24 18:52:06 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 18:52:06 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 18:52:06 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 18:52:06 [INFO]  Epoch 40: Running in Stage 1 - Global Alignment Only.
+2025-09-24 18:53:02 [INFO]  Epoch 40 loss: 332.48924922943115; train accuracy: 0.7662417763157895; test accuracy: 0.6417
+2025-09-24 18:53:03 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_40.pth
+2025-09-24 18:53:03 [INFO]  Epoch 41: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:54:01 [INFO]  Epoch 41 loss: 389.6087555885315; train accuracy: 0.7721696820175439; test accuracy: 0.6524
+2025-09-24 18:54:01 [INFO]  Epoch 42: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:55:01 [INFO]  Epoch 42 loss: 387.09580516815186; train accuracy: 0.7837513706140351; test accuracy: 0.6522
+2025-09-24 18:55:01 [INFO]  Epoch 43: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:55:55 [INFO]  Epoch 43 loss: 391.82909774780273; train accuracy: 0.8072916666666666; test accuracy: 0.6972
+2025-09-24 18:55:55 [INFO]  Epoch 44: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:56:48 [INFO]  Epoch 44 loss: 396.7271394729614; train accuracy: 0.7992735745614035; test accuracy: 0.677
+2025-09-24 18:56:48 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 18:56:48 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 18:56:48 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 18:56:48 [INFO]  Epoch 40: Running in Stage 1 - Global Alignment Only.
+2025-09-24 18:57:35 [INFO]  Epoch 40 loss: 294.2055072784424; train accuracy: 0.6930078125; test accuracy: 0.608
+2025-09-24 18:57:35 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_40.pth
+2025-09-24 18:57:35 [INFO]  Epoch 41: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:58:23 [INFO]  Epoch 41 loss: 338.1964888572693; train accuracy: 0.763359375; test accuracy: 0.6506
+2025-09-24 18:58:23 [INFO]  Epoch 42: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:59:12 [INFO]  Epoch 42 loss: 340.1892685890198; train accuracy: 0.7492578125; test accuracy: 0.6227
+2025-09-24 18:59:12 [INFO]  Epoch 43: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 18:59:57 [INFO]  Epoch 43 loss: 342.4428291320801; train accuracy: 0.8420703125; test accuracy: 0.6856
+2025-09-24 18:59:57 [INFO]  Epoch 44: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:00:45 [INFO]  Epoch 44 loss: 343.3434934616089; train accuracy: 0.831015625; test accuracy: 0.6599
+2025-09-24 19:00:45 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 19:00:45 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 19:00:45 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 19:00:45 [INFO]  Epoch 40: Running in Stage 1 - Global Alignment Only.
+2025-09-24 19:01:45 [INFO]  Epoch 40 loss: 370.0728049278259; train accuracy: 0.8071213942307692; test accuracy: 0.6925
+2025-09-24 19:01:45 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_40.pth
+2025-09-24 19:01:45 [INFO]  Epoch 41: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:02:47 [INFO]  Epoch 41 loss: 442.26410388946533; train accuracy: 0.8073617788461539; test accuracy: 0.6905
+2025-09-24 19:02:47 [INFO]  Epoch 42: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:03:49 [INFO]  Epoch 42 loss: 443.6390161514282; train accuracy: 0.7680288461538461; test accuracy: 0.6787
+2025-09-24 19:03:49 [INFO]  Epoch 43: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:04:52 [INFO]  Epoch 43 loss: 440.89842796325684; train accuracy: 0.778485576923077; test accuracy: 0.6681
+2025-09-24 19:04:52 [INFO]  Epoch 44: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:05:49 [INFO]  Epoch 44 loss: 430.9115891456604; train accuracy: 0.7545673076923077; test accuracy: 0.6215
+2025-09-24 19:05:49 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 19:05:49 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 19:05:49 [INFO]  Round 8 Finish--------|
+2025-09-24 19:05:49 [INFO]  Model variance: mean: 0.004588896408677101, sum: 51276.109375
+2025-09-24 19:05:49 [INFO]  g_protos_std: 1.0072587728500366
+2025-09-24 19:05:55 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8762
+2025-09-24 19:05:55 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 19:05:55 [INFO]  Round 9 starts--------|
+2025-09-24 19:05:55 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 19:05:55 [INFO]  Epoch 45: Running in Stage 1 - Global Alignment Only.
+2025-09-24 19:06:46 [INFO]  Epoch 45 loss: 310.5704388618469; train accuracy: 0.8190227004716981; test accuracy: 0.6264
+2025-09-24 19:06:46 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_45.pth
+2025-09-24 19:06:46 [INFO]  Epoch 46: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:07:36 [INFO]  Epoch 46 loss: 356.7863211631775; train accuracy: 0.8001179245283019; test accuracy: 0.6158
+2025-09-24 19:07:36 [INFO]  Epoch 47: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:08:25 [INFO]  Epoch 47 loss: 356.1805634498596; train accuracy: 0.8459979363207547; test accuracy: 0.6697
+2025-09-24 19:08:25 [INFO]  Epoch 48: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:09:15 [INFO]  Epoch 48 loss: 354.7272448539734; train accuracy: 0.8133844339622641; test accuracy: 0.6492
+2025-09-24 19:09:15 [INFO]  Epoch 49: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:10:05 [INFO]  Epoch 49 loss: 357.9804048538208; train accuracy: 0.802513266509434; test accuracy: 0.6369
+2025-09-24 19:10:05 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 19:10:05 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 19:10:05 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 19:10:05 [INFO]  Epoch 45: Running in Stage 1 - Global Alignment Only.
+2025-09-24 19:11:12 [INFO]  Epoch 45 loss: 374.5927996635437; train accuracy: 0.8223222373188406; test accuracy: 0.7056
+2025-09-24 19:11:13 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_45.pth
+2025-09-24 19:11:13 [INFO]  Epoch 46: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:12:16 [INFO]  Epoch 46 loss: 432.05493688583374; train accuracy: 0.8358808876811594; test accuracy: 0.7159
+2025-09-24 19:12:16 [INFO]  Epoch 47: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:13:21 [INFO]  Epoch 47 loss: 425.2545413970947; train accuracy: 0.8433254076086957; test accuracy: 0.7396
+2025-09-24 19:13:21 [INFO]  Epoch 48: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:14:24 [INFO]  Epoch 48 loss: 433.3351950645447; train accuracy: 0.8588088768115942; test accuracy: 0.7319
+2025-09-24 19:14:24 [INFO]  Epoch 49: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:15:26 [INFO]  Epoch 49 loss: 424.42937898635864; train accuracy: 0.8539402173913043; test accuracy: 0.7468
+2025-09-24 19:15:26 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 19:15:26 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 19:15:26 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 19:15:26 [INFO]  Epoch 45: Running in Stage 1 - Global Alignment Only.
+2025-09-24 19:16:17 [INFO]  Epoch 45 loss: 325.5456690788269; train accuracy: 0.7830660635964912; test accuracy: 0.6791
+2025-09-24 19:16:18 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_45.pth
+2025-09-24 19:16:18 [INFO]  Epoch 46: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:17:11 [INFO]  Epoch 46 loss: 386.66603899002075; train accuracy: 0.7856016995614035; test accuracy: 0.6528
+2025-09-24 19:17:11 [INFO]  Epoch 47: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:18:05 [INFO]  Epoch 47 loss: 389.68012380599976; train accuracy: 0.8072916666666666; test accuracy: 0.6944
+2025-09-24 19:18:05 [INFO]  Epoch 48: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:18:58 [INFO]  Epoch 48 loss: 381.05561780929565; train accuracy: 0.8346011513157895; test accuracy: 0.7118
+2025-09-24 19:18:58 [INFO]  Epoch 49: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:19:49 [INFO]  Epoch 49 loss: 374.915753364563; train accuracy: 0.7893708881578947; test accuracy: 0.6503
+2025-09-24 19:19:49 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 19:19:49 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 19:19:49 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 19:19:49 [INFO]  Epoch 45: Running in Stage 1 - Global Alignment Only.
+2025-09-24 19:20:36 [INFO]  Epoch 45 loss: 292.6136112213135; train accuracy: 0.7634765625; test accuracy: 0.6485
+2025-09-24 19:20:37 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_45.pth
+2025-09-24 19:20:37 [INFO]  Epoch 46: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:21:23 [INFO]  Epoch 46 loss: 345.0752429962158; train accuracy: 0.819921875; test accuracy: 0.656
+2025-09-24 19:21:23 [INFO]  Epoch 47: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:22:10 [INFO]  Epoch 47 loss: 330.4682550430298; train accuracy: 0.8269140625; test accuracy: 0.6825
+2025-09-24 19:22:10 [INFO]  Epoch 48: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:22:55 [INFO]  Epoch 48 loss: 335.79525566101074; train accuracy: 0.8148828125; test accuracy: 0.6585
+2025-09-24 19:22:55 [INFO]  Epoch 49: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:23:38 [INFO]  Epoch 49 loss: 343.3715190887451; train accuracy: 0.860703125; test accuracy: 0.6919
+2025-09-24 19:23:38 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 19:23:38 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 19:23:38 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 19:23:38 [INFO]  Epoch 45: Running in Stage 1 - Global Alignment Only.
+2025-09-24 19:24:39 [INFO]  Epoch 45 loss: 364.8243923187256; train accuracy: 0.7549879807692308; test accuracy: 0.65
+2025-09-24 19:24:39 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_45.pth
+2025-09-24 19:24:39 [INFO]  Epoch 46: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:25:37 [INFO]  Epoch 46 loss: 419.3753614425659; train accuracy: 0.8374098557692308; test accuracy: 0.7167
+2025-09-24 19:25:37 [INFO]  Epoch 47: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:26:35 [INFO]  Epoch 47 loss: 429.4648871421814; train accuracy: 0.8557992788461538; test accuracy: 0.726
+2025-09-24 19:26:35 [INFO]  Epoch 48: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:27:33 [INFO]  Epoch 48 loss: 422.77061796188354; train accuracy: 0.8198617788461539; test accuracy: 0.7139
+2025-09-24 19:27:33 [INFO]  Epoch 49: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:28:31 [INFO]  Epoch 49 loss: 423.54600620269775; train accuracy: 0.8671875; test accuracy: 0.7197
+2025-09-24 19:28:31 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 19:28:31 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 19:28:31 [INFO]  Round 9 Finish--------|
+2025-09-24 19:28:31 [INFO]  Model variance: mean: 0.004852399230003357, sum: 54220.4765625
+2025-09-24 19:28:31 [INFO]  g_protos_std: 1.007391095161438
+2025-09-24 19:28:36 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8815
+2025-09-24 19:28:36 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 19:28:36 [INFO]  Round 10 starts--------|
+2025-09-24 19:28:36 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 19:28:36 [INFO]  Epoch 50: Running in Stage 1 - Global Alignment Only.
+2025-09-24 19:29:24 [INFO]  Epoch 50 loss: 305.2711281776428; train accuracy: 0.8208652712264151; test accuracy: 0.6566
+2025-09-24 19:29:25 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_50.pth
+2025-09-24 19:29:25 [INFO]  Epoch 51: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:30:14 [INFO]  Epoch 51 loss: 354.1419606208801; train accuracy: 0.7955483490566038; test accuracy: 0.644
+2025-09-24 19:30:14 [INFO]  Epoch 52: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:31:02 [INFO]  Epoch 52 loss: 352.3467936515808; train accuracy: 0.8018867924528302; test accuracy: 0.619
+2025-09-24 19:31:02 [INFO]  Epoch 53: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:31:47 [INFO]  Epoch 53 loss: 351.82441329956055; train accuracy: 0.8296359080188679; test accuracy: 0.6714
+2025-09-24 19:31:47 [INFO]  Epoch 54: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:32:32 [INFO]  Epoch 54 loss: 353.10841131210327; train accuracy: 0.8227446933962265; test accuracy: 0.6713
+2025-09-24 19:32:32 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 19:32:32 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 19:32:32 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 19:32:32 [INFO]  Epoch 50: Running in Stage 1 - Global Alignment Only.
+2025-09-24 19:33:32 [INFO]  Epoch 50 loss: 378.1438593864441; train accuracy: 0.8230865036231884; test accuracy: 0.7118
+2025-09-24 19:33:32 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_50.pth
+2025-09-24 19:33:32 [INFO]  Epoch 51: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:34:30 [INFO]  Epoch 51 loss: 434.7055459022522; train accuracy: 0.8824728260869565; test accuracy: 0.7732
+2025-09-24 19:34:30 [INFO]  Epoch 52: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:35:26 [INFO]  Epoch 52 loss: 423.6734871864319; train accuracy: 0.8935405344202898; test accuracy: 0.7697
+2025-09-24 19:35:26 [INFO]  Epoch 53: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:36:25 [INFO]  Epoch 53 loss: 427.0867233276367; train accuracy: 0.7919780344202898; test accuracy: 0.6831
+2025-09-24 19:36:25 [INFO]  Epoch 54: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:37:31 [INFO]  Epoch 54 loss: 414.2365550994873; train accuracy: 0.8694519927536232; test accuracy: 0.7529
+2025-09-24 19:37:31 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 19:37:31 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 19:37:31 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 19:37:31 [INFO]  Epoch 50: Running in Stage 1 - Global Alignment Only.
+2025-09-24 19:38:23 [INFO]  Epoch 50 loss: 327.18679571151733; train accuracy: 0.8126713267543859; test accuracy: 0.6896
+2025-09-24 19:38:23 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_50.pth
+2025-09-24 19:38:23 [INFO]  Epoch 51: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:39:12 [INFO]  Epoch 51 loss: 382.4899191856384; train accuracy: 0.8345326206140351; test accuracy: 0.7039
+2025-09-24 19:39:12 [INFO]  Epoch 52: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:40:03 [INFO]  Epoch 52 loss: 379.2973356246948; train accuracy: 0.7740885416666666; test accuracy: 0.637
+2025-09-24 19:40:03 [INFO]  Epoch 53: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:40:52 [INFO]  Epoch 53 loss: 376.7775068283081; train accuracy: 0.7566817434210527; test accuracy: 0.6349
+2025-09-24 19:40:52 [INFO]  Epoch 54: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:41:41 [INFO]  Epoch 54 loss: 383.516948223114; train accuracy: 0.8105126096491229; test accuracy: 0.6711
+2025-09-24 19:41:41 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 19:41:41 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 19:41:41 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 19:41:41 [INFO]  Epoch 50: Running in Stage 1 - Global Alignment Only.
+2025-09-24 19:42:23 [INFO]  Epoch 50 loss: 288.3577742576599; train accuracy: 0.8125; test accuracy: 0.6668
+2025-09-24 19:42:24 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_50.pth
+2025-09-24 19:42:24 [INFO]  Epoch 51: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:43:09 [INFO]  Epoch 51 loss: 338.34996271133423; train accuracy: 0.8433203125; test accuracy: 0.681
+2025-09-24 19:43:09 [INFO]  Epoch 52: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:43:51 [INFO]  Epoch 52 loss: 331.46918058395386; train accuracy: 0.81984375; test accuracy: 0.6684
+2025-09-24 19:43:51 [INFO]  Epoch 53: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:44:33 [INFO]  Epoch 53 loss: 331.2970471382141; train accuracy: 0.81609375; test accuracy: 0.6795
+2025-09-24 19:44:33 [INFO]  Epoch 54: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:45:16 [INFO]  Epoch 54 loss: 335.43953037261963; train accuracy: 0.848359375; test accuracy: 0.6772
+2025-09-24 19:45:16 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 19:45:16 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 19:45:16 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 19:45:16 [INFO]  Epoch 50: Running in Stage 1 - Global Alignment Only.
+2025-09-24 19:46:11 [INFO]  Epoch 50 loss: 365.34042835235596; train accuracy: 0.8518629807692307; test accuracy: 0.7197
+2025-09-24 19:46:11 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_50.pth
+2025-09-24 19:46:11 [INFO]  Epoch 51: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:47:06 [INFO]  Epoch 51 loss: 421.95868825912476; train accuracy: 0.8498497596153847; test accuracy: 0.7187
+2025-09-24 19:47:06 [INFO]  Epoch 52: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:48:02 [INFO]  Epoch 52 loss: 418.6369309425354; train accuracy: 0.8672475961538462; test accuracy: 0.735
+2025-09-24 19:48:02 [INFO]  Epoch 53: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:48:59 [INFO]  Epoch 53 loss: 434.31860065460205; train accuracy: 0.8056189903846154; test accuracy: 0.6953
+2025-09-24 19:48:59 [INFO]  Epoch 54: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:49:56 [INFO]  Epoch 54 loss: 430.24133491516113; train accuracy: 0.8166766826923076; test accuracy: 0.6914
+2025-09-24 19:49:56 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 19:49:56 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 19:49:56 [INFO]  Round 10 Finish--------|
+2025-09-24 19:49:57 [INFO]  Model variance: mean: 0.005103690549731255, sum: 57028.390625
+2025-09-24 19:49:57 [INFO]  g_protos_std: 1.0075178146362305
+2025-09-24 19:50:02 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8882
+2025-09-24 19:50:02 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 19:50:02 [INFO]  Round 11 starts--------|
+2025-09-24 19:50:02 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 19:50:02 [INFO]  Epoch 55: Running in Stage 1 - Global Alignment Only.
+2025-09-24 19:50:51 [INFO]  Epoch 55 loss: 303.7123351097107; train accuracy: 0.7976488797169812; test accuracy: 0.5982
+2025-09-24 19:50:51 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_55.pth
+2025-09-24 19:50:51 [INFO]  Epoch 56: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:51:40 [INFO]  Epoch 56 loss: 348.3973698616028; train accuracy: 0.8262455778301887; test accuracy: 0.6577
+2025-09-24 19:51:40 [INFO]  Epoch 57: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:52:30 [INFO]  Epoch 57 loss: 342.65467596054077; train accuracy: 0.777564858490566; test accuracy: 0.5697
+2025-09-24 19:52:30 [INFO]  Epoch 58: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:53:19 [INFO]  Epoch 58 loss: 346.34313774108887; train accuracy: 0.8275722287735849; test accuracy: 0.6556
+2025-09-24 19:53:19 [INFO]  Epoch 59: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:54:06 [INFO]  Epoch 59 loss: 344.08106899261475; train accuracy: 0.8409492924528302; test accuracy: 0.6348
+2025-09-24 19:54:06 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 19:54:06 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 19:54:06 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 19:54:06 [INFO]  Epoch 55: Running in Stage 1 - Global Alignment Only.
+2025-09-24 19:55:08 [INFO]  Epoch 55 loss: 374.9807925224304; train accuracy: 0.8885586503623188; test accuracy: 0.759
+2025-09-24 19:55:08 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_55.pth
+2025-09-24 19:55:08 [INFO]  Epoch 56: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:56:08 [INFO]  Epoch 56 loss: 418.51332807540894; train accuracy: 0.8939651268115942; test accuracy: 0.7774
+2025-09-24 19:56:08 [INFO]  Epoch 57: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:57:12 [INFO]  Epoch 57 loss: 422.47940397262573; train accuracy: 0.9003340126811594; test accuracy: 0.7684
+2025-09-24 19:57:12 [INFO]  Epoch 58: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:58:15 [INFO]  Epoch 58 loss: 422.10325145721436; train accuracy: 0.8868885869565217; test accuracy: 0.7626
+2025-09-24 19:58:15 [INFO]  Epoch 59: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 19:59:17 [INFO]  Epoch 59 loss: 419.41424465179443; train accuracy: 0.9063632246376812; test accuracy: 0.7883
+2025-09-24 19:59:17 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 19:59:17 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 19:59:17 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 19:59:17 [INFO]  Epoch 55: Running in Stage 1 - Global Alignment Only.
+2025-09-24 20:00:09 [INFO]  Epoch 55 loss: 318.0919027328491; train accuracy: 0.77734375; test accuracy: 0.6468
+2025-09-24 20:00:09 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_55.pth
+2025-09-24 20:00:09 [INFO]  Epoch 56: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:01:01 [INFO]  Epoch 56 loss: 372.787672996521; train accuracy: 0.8522135416666666; test accuracy: 0.7181
+2025-09-24 20:01:01 [INFO]  Epoch 57: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:01:54 [INFO]  Epoch 57 loss: 380.41253995895386; train accuracy: 0.8726014254385965; test accuracy: 0.7331
+2025-09-24 20:01:54 [INFO]  Epoch 58: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:02:44 [INFO]  Epoch 58 loss: 366.37180757522583; train accuracy: 0.8455317982456141; test accuracy: 0.711
+2025-09-24 20:02:44 [INFO]  Epoch 59: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:03:37 [INFO]  Epoch 59 loss: 372.9927201271057; train accuracy: 0.8121573464912281; test accuracy: 0.6862
+2025-09-24 20:03:37 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 20:03:37 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 20:03:37 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 20:03:37 [INFO]  Epoch 55: Running in Stage 1 - Global Alignment Only.
+2025-09-24 20:04:24 [INFO]  Epoch 55 loss: 286.38587951660156; train accuracy: 0.8370703125; test accuracy: 0.6712
+2025-09-24 20:04:24 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_55.pth
+2025-09-24 20:04:24 [INFO]  Epoch 56: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:05:11 [INFO]  Epoch 56 loss: 325.5688042640686; train accuracy: 0.8573828125; test accuracy: 0.6702
+2025-09-24 20:05:11 [INFO]  Epoch 57: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:05:58 [INFO]  Epoch 57 loss: 330.1639132499695; train accuracy: 0.8233203125; test accuracy: 0.6651
+2025-09-24 20:05:58 [INFO]  Epoch 58: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:06:43 [INFO]  Epoch 58 loss: 321.01782035827637; train accuracy: 0.8480859375; test accuracy: 0.6623
+2025-09-24 20:06:43 [INFO]  Epoch 59: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:07:29 [INFO]  Epoch 59 loss: 331.18562412261963; train accuracy: 0.85015625; test accuracy: 0.6629
+2025-09-24 20:07:29 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 20:07:29 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 20:07:29 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 20:07:29 [INFO]  Epoch 55: Running in Stage 1 - Global Alignment Only.
+2025-09-24 20:08:29 [INFO]  Epoch 55 loss: 362.7121706008911; train accuracy: 0.8458834134615385; test accuracy: 0.7143
+2025-09-24 20:08:29 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_55.pth
+2025-09-24 20:08:29 [INFO]  Epoch 56: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:09:31 [INFO]  Epoch 56 loss: 422.3830313682556; train accuracy: 0.8540264423076923; test accuracy: 0.7018
+2025-09-24 20:09:31 [INFO]  Epoch 57: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:10:30 [INFO]  Epoch 57 loss: 424.0341486930847; train accuracy: 0.8844350961538462; test accuracy: 0.7301
+2025-09-24 20:10:30 [INFO]  Epoch 58: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:11:29 [INFO]  Epoch 58 loss: 416.86669158935547; train accuracy: 0.858203125; test accuracy: 0.7208
+2025-09-24 20:11:29 [INFO]  Epoch 59: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:12:30 [INFO]  Epoch 59 loss: 420.83300399780273; train accuracy: 0.8440504807692307; test accuracy: 0.7168
+2025-09-24 20:12:30 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 20:12:30 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 20:12:30 [INFO]  Round 11 Finish--------|
+2025-09-24 20:12:30 [INFO]  Model variance: mean: 0.005344931036233902, sum: 59724.00390625
+2025-09-24 20:12:30 [INFO]  g_protos_std: 1.0076465606689453
+2025-09-24 20:12:36 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8972
+2025-09-24 20:12:36 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 20:12:36 [INFO]  Round 12 starts--------|
+2025-09-24 20:12:36 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 20:12:36 [INFO]  Epoch 60: Running in Stage 1 - Global Alignment Only.
+2025-09-24 20:13:26 [INFO]  Epoch 60 loss: 301.9936227798462; train accuracy: 0.8663767688679245; test accuracy: 0.7084
+2025-09-24 20:13:27 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_60.pth
+2025-09-24 20:13:27 [INFO]  Epoch 61: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:14:18 [INFO]  Epoch 61 loss: 345.20278787612915; train accuracy: 0.8719413325471698; test accuracy: 0.683
+2025-09-24 20:14:18 [INFO]  Epoch 62: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:15:06 [INFO]  Epoch 62 loss: 345.8854994773865; train accuracy: 0.8397331957547169; test accuracy: 0.6572
+2025-09-24 20:15:06 [INFO]  Epoch 63: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:15:57 [INFO]  Epoch 63 loss: 346.94203519821167; train accuracy: 0.7862986438679245; test accuracy: 0.6395
+2025-09-24 20:15:57 [INFO]  Epoch 64: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:16:45 [INFO]  Epoch 64 loss: 342.16721773147583; train accuracy: 0.8565374410377359; test accuracy: 0.6398
+2025-09-24 20:16:45 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 20:16:45 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 20:16:45 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 20:16:45 [INFO]  Epoch 60: Running in Stage 1 - Global Alignment Only.
+2025-09-24 20:17:52 [INFO]  Epoch 60 loss: 373.53206300735474; train accuracy: 0.8822463768115942; test accuracy: 0.7558
+2025-09-24 20:17:53 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_60.pth
+2025-09-24 20:17:53 [INFO]  Epoch 61: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:18:58 [INFO]  Epoch 61 loss: 428.71056747436523; train accuracy: 0.9025985054347826; test accuracy: 0.7758
+2025-09-24 20:18:58 [INFO]  Epoch 62: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:20:09 [INFO]  Epoch 62 loss: 418.4472918510437; train accuracy: 0.8502321105072463; test accuracy: 0.7316
+2025-09-24 20:20:09 [INFO]  Epoch 63: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:21:14 [INFO]  Epoch 63 loss: 413.431001663208; train accuracy: 0.886322463768116; test accuracy: 0.7533
+2025-09-24 20:21:14 [INFO]  Epoch 64: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:22:20 [INFO]  Epoch 64 loss: 416.29588985443115; train accuracy: 0.9103260869565217; test accuracy: 0.7861
+2025-09-24 20:22:20 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 20:22:20 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 20:22:20 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 20:22:20 [INFO]  Epoch 60: Running in Stage 1 - Global Alignment Only.
+2025-09-24 20:23:16 [INFO]  Epoch 60 loss: 320.70649909973145; train accuracy: 0.8569078947368421; test accuracy: 0.718
+2025-09-24 20:23:17 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_60.pth
+2025-09-24 20:23:17 [INFO]  Epoch 61: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:24:11 [INFO]  Epoch 61 loss: 367.13673162460327; train accuracy: 0.8407689144736842; test accuracy: 0.6998
+2025-09-24 20:24:11 [INFO]  Epoch 62: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:25:04 [INFO]  Epoch 62 loss: 373.9901638031006; train accuracy: 0.8432702850877193; test accuracy: 0.7251
+2025-09-24 20:25:04 [INFO]  Epoch 63: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:25:56 [INFO]  Epoch 63 loss: 368.02529525756836; train accuracy: 0.8872669956140351; test accuracy: 0.7311
+2025-09-24 20:25:56 [INFO]  Epoch 64: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:26:49 [INFO]  Epoch 64 loss: 362.88544750213623; train accuracy: 0.8282277960526315; test accuracy: 0.6852
+2025-09-24 20:26:49 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 20:26:49 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 20:26:49 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 20:26:49 [INFO]  Epoch 60: Running in Stage 1 - Global Alignment Only.
+2025-09-24 20:27:38 [INFO]  Epoch 60 loss: 289.00299549102783; train accuracy: 0.8392578125; test accuracy: 0.673
+2025-09-24 20:27:38 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_60.pth
+2025-09-24 20:27:38 [INFO]  Epoch 61: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:28:25 [INFO]  Epoch 61 loss: 324.7481122016907; train accuracy: 0.8237890625; test accuracy: 0.6685
+2025-09-24 20:28:25 [INFO]  Epoch 62: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:29:10 [INFO]  Epoch 62 loss: 320.4221911430359; train accuracy: 0.824765625; test accuracy: 0.6566
+2025-09-24 20:29:10 [INFO]  Epoch 63: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:29:56 [INFO]  Epoch 63 loss: 327.08193588256836; train accuracy: 0.8645703125; test accuracy: 0.7017
+2025-09-24 20:29:56 [INFO]  Epoch 64: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:30:40 [INFO]  Epoch 64 loss: 327.0111255645752; train accuracy: 0.870625; test accuracy: 0.6965
+2025-09-24 20:30:40 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 20:30:40 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 20:30:40 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 20:30:40 [INFO]  Epoch 60: Running in Stage 1 - Global Alignment Only.
+2025-09-24 20:31:39 [INFO]  Epoch 60 loss: 359.69896268844604; train accuracy: 0.860516826923077; test accuracy: 0.7212
+2025-09-24 20:31:39 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_60.pth
+2025-09-24 20:31:39 [INFO]  Epoch 61: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:32:41 [INFO]  Epoch 61 loss: 407.844331741333; train accuracy: 0.8682692307692308; test accuracy: 0.7255
+2025-09-24 20:32:41 [INFO]  Epoch 62: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:33:41 [INFO]  Epoch 62 loss: 417.4072880744934; train accuracy: 0.8607872596153846; test accuracy: 0.7063
+2025-09-24 20:33:41 [INFO]  Epoch 63: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:34:42 [INFO]  Epoch 63 loss: 416.802442073822; train accuracy: 0.8560997596153846; test accuracy: 0.6992
+2025-09-24 20:34:42 [INFO]  Epoch 64: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:35:44 [INFO]  Epoch 64 loss: 418.93220567703247; train accuracy: 0.8671574519230769; test accuracy: 0.7216
+2025-09-24 20:35:44 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 20:35:44 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 20:35:44 [INFO]  Round 12 Finish--------|
+2025-09-24 20:35:44 [INFO]  Model variance: mean: 0.0055754538625478745, sum: 62299.8515625
+2025-09-24 20:35:44 [INFO]  g_protos_std: 1.0077779293060303
+2025-09-24 20:35:50 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8959
+2025-09-24 20:35:50 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 20:35:50 [INFO]  Round 13 starts--------|
+2025-09-24 20:35:50 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 20:35:50 [INFO]  Epoch 65: Running in Stage 1 - Global Alignment Only.
+2025-09-24 20:36:38 [INFO]  Epoch 65 loss: 294.2704744338989; train accuracy: 0.829857016509434; test accuracy: 0.6516
+2025-09-24 20:36:38 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_65.pth
+2025-09-24 20:36:38 [INFO]  Epoch 66: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:37:26 [INFO]  Epoch 66 loss: 342.80759286880493; train accuracy: 0.8630969929245284; test accuracy: 0.6806
+2025-09-24 20:37:26 [INFO]  Epoch 67: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:38:14 [INFO]  Epoch 67 loss: 331.8287305831909; train accuracy: 0.8907724056603774; test accuracy: 0.7244
+2025-09-24 20:38:14 [INFO]  Epoch 68: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:39:04 [INFO]  Epoch 68 loss: 338.1998362541199; train accuracy: 0.8851341391509434; test accuracy: 0.7016
+2025-09-24 20:39:04 [INFO]  Epoch 69: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:39:56 [INFO]  Epoch 69 loss: 337.68014335632324; train accuracy: 0.8709831957547169; test accuracy: 0.6865
+2025-09-24 20:39:56 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 20:39:56 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 20:39:56 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 20:39:56 [INFO]  Epoch 65: Running in Stage 1 - Global Alignment Only.
+2025-09-24 20:41:02 [INFO]  Epoch 65 loss: 364.2739224433899; train accuracy: 0.8898324275362319; test accuracy: 0.7594
+2025-09-24 20:41:03 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_65.pth
+2025-09-24 20:41:03 [INFO]  Epoch 66: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:42:08 [INFO]  Epoch 66 loss: 407.2388687133789; train accuracy: 0.9041836503623188; test accuracy: 0.7919
+2025-09-24 20:42:08 [INFO]  Epoch 67: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:43:14 [INFO]  Epoch 67 loss: 411.2522883415222; train accuracy: 0.9152513586956522; test accuracy: 0.7985
+2025-09-24 20:43:14 [INFO]  Epoch 68: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:44:19 [INFO]  Epoch 68 loss: 412.7252016067505; train accuracy: 0.8961730072463768; test accuracy: 0.7742
+2025-09-24 20:44:19 [INFO]  Epoch 69: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:45:24 [INFO]  Epoch 69 loss: 415.0968060493469; train accuracy: 0.8602241847826086; test accuracy: 0.7475
+2025-09-24 20:45:24 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 20:45:24 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 20:45:24 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 20:45:24 [INFO]  Epoch 65: Running in Stage 1 - Global Alignment Only.
+2025-09-24 20:46:18 [INFO]  Epoch 65 loss: 320.4775848388672; train accuracy: 0.8777412280701754; test accuracy: 0.7345
+2025-09-24 20:46:18 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_65.pth
+2025-09-24 20:46:18 [INFO]  Epoch 66: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:47:12 [INFO]  Epoch 66 loss: 363.08942794799805; train accuracy: 0.8678728070175439; test accuracy: 0.7327
+2025-09-24 20:47:12 [INFO]  Epoch 67: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:48:06 [INFO]  Epoch 67 loss: 370.42495679855347; train accuracy: 0.8773985745614035; test accuracy: 0.7326
+2025-09-24 20:48:06 [INFO]  Epoch 68: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:48:59 [INFO]  Epoch 68 loss: 366.8908734321594; train accuracy: 0.8619106359649122; test accuracy: 0.7137
+2025-09-24 20:48:59 [INFO]  Epoch 69: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:49:53 [INFO]  Epoch 69 loss: 359.4864282608032; train accuracy: 0.8257606907894737; test accuracy: 0.6832
+2025-09-24 20:49:53 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 20:49:53 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 20:49:53 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 20:49:53 [INFO]  Epoch 65: Running in Stage 1 - Global Alignment Only.
+2025-09-24 20:50:40 [INFO]  Epoch 65 loss: 285.64192247390747; train accuracy: 0.7816796875; test accuracy: 0.6538
+2025-09-24 20:50:41 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_65.pth
+2025-09-24 20:50:41 [INFO]  Epoch 66: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:51:28 [INFO]  Epoch 66 loss: 318.52364206314087; train accuracy: 0.8098828125; test accuracy: 0.6723
+2025-09-24 20:51:28 [INFO]  Epoch 67: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:52:14 [INFO]  Epoch 67 loss: 323.9784336090088; train accuracy: 0.8379296875; test accuracy: 0.6619
+2025-09-24 20:52:14 [INFO]  Epoch 68: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:53:02 [INFO]  Epoch 68 loss: 319.03313875198364; train accuracy: 0.8217578125; test accuracy: 0.6584
+2025-09-24 20:53:02 [INFO]  Epoch 69: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:53:50 [INFO]  Epoch 69 loss: 319.3341426849365; train accuracy: 0.8675390625; test accuracy: 0.7013
+2025-09-24 20:53:50 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 20:53:50 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 20:53:50 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 20:53:50 [INFO]  Epoch 65: Running in Stage 1 - Global Alignment Only.
+2025-09-24 20:54:51 [INFO]  Epoch 65 loss: 357.57931089401245; train accuracy: 0.8062800480769231; test accuracy: 0.6962
+2025-09-24 20:54:52 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_65.pth
+2025-09-24 20:54:52 [INFO]  Epoch 66: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:55:54 [INFO]  Epoch 66 loss: 402.7554883956909; train accuracy: 0.8537560096153847; test accuracy: 0.723
+2025-09-24 20:55:54 [INFO]  Epoch 67: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:56:54 [INFO]  Epoch 67 loss: 404.28353691101074; train accuracy: 0.8723858173076923; test accuracy: 0.7238
+2025-09-24 20:56:54 [INFO]  Epoch 68: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:57:57 [INFO]  Epoch 68 loss: 405.94610500335693; train accuracy: 0.8536358173076923; test accuracy: 0.7171
+2025-09-24 20:57:57 [INFO]  Epoch 69: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 20:58:59 [INFO]  Epoch 69 loss: 415.46180391311646; train accuracy: 0.9036658653846154; test accuracy: 0.7509
+2025-09-24 20:58:59 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 20:58:59 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 20:58:59 [INFO]  Round 13 Finish--------|
+2025-09-24 20:58:59 [INFO]  Model variance: mean: 0.005796139128506184, sum: 64765.78125
+2025-09-24 20:58:59 [INFO]  g_protos_std: 1.0079081058502197
+2025-09-24 20:59:04 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.8984
+2025-09-24 20:59:04 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 20:59:04 [INFO]  Round 14 starts--------|
+2025-09-24 20:59:04 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 20:59:04 [INFO]  Epoch 70: Running in Stage 1 - Global Alignment Only.
+2025-09-24 20:59:54 [INFO]  Epoch 70 loss: 294.8201570510864; train accuracy: 0.8382591391509434; test accuracy: 0.637
+2025-09-24 20:59:54 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_70.pth
+2025-09-24 20:59:54 [INFO]  Epoch 71: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:00:43 [INFO]  Epoch 71 loss: 340.4021534919739; train accuracy: 0.8693248820754716; test accuracy: 0.6886
+2025-09-24 21:00:43 [INFO]  Epoch 72: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:01:33 [INFO]  Epoch 72 loss: 335.82035398483276; train accuracy: 0.8895563089622641; test accuracy: 0.7192
+2025-09-24 21:01:33 [INFO]  Epoch 73: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:02:23 [INFO]  Epoch 73 loss: 336.9575762748718; train accuracy: 0.8754053655660378; test accuracy: 0.6765
+2025-09-24 21:02:23 [INFO]  Epoch 74: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:03:13 [INFO]  Epoch 74 loss: 327.1578631401062; train accuracy: 0.8728626179245284; test accuracy: 0.6818
+2025-09-24 21:03:13 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 21:03:13 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 21:03:13 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 21:03:13 [INFO]  Epoch 70: Running in Stage 1 - Global Alignment Only.
+2025-09-24 21:04:19 [INFO]  Epoch 70 loss: 367.9020552635193; train accuracy: 0.8759907155797102; test accuracy: 0.7695
+2025-09-24 21:04:20 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_70.pth
+2025-09-24 21:04:20 [INFO]  Epoch 71: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:05:24 [INFO]  Epoch 71 loss: 398.4022994041443; train accuracy: 0.8915024909420289; test accuracy: 0.762
+2025-09-24 21:05:24 [INFO]  Epoch 72: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:06:29 [INFO]  Epoch 72 loss: 400.10494804382324; train accuracy: 0.9259510869565217; test accuracy: 0.8062
+2025-09-24 21:06:29 [INFO]  Epoch 73: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:07:31 [INFO]  Epoch 73 loss: 413.28703689575195; train accuracy: 0.8965692934782609; test accuracy: 0.7646
+2025-09-24 21:07:31 [INFO]  Epoch 74: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:08:34 [INFO]  Epoch 74 loss: 391.2749938964844; train accuracy: 0.9081748188405797; test accuracy: 0.788
+2025-09-24 21:08:34 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 21:08:34 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 21:08:34 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 21:08:34 [INFO]  Epoch 70: Running in Stage 1 - Global Alignment Only.
+2025-09-24 21:09:26 [INFO]  Epoch 70 loss: 317.85387420654297; train accuracy: 0.8481016995614035; test accuracy: 0.6979
+2025-09-24 21:09:26 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_70.pth
+2025-09-24 21:09:26 [INFO]  Epoch 71: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:10:20 [INFO]  Epoch 71 loss: 360.1851010322571; train accuracy: 0.864000822368421; test accuracy: 0.7091
+2025-09-24 21:10:20 [INFO]  Epoch 72: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:11:14 [INFO]  Epoch 72 loss: 363.070191860199; train accuracy: 0.8456345942982456; test accuracy: 0.6899
+2025-09-24 21:11:14 [INFO]  Epoch 73: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:12:07 [INFO]  Epoch 73 loss: 361.58572340011597; train accuracy: 0.8391584429824561; test accuracy: 0.6852
+2025-09-24 21:12:07 [INFO]  Epoch 74: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:13:00 [INFO]  Epoch 74 loss: 354.7553291320801; train accuracy: 0.8903508771929824; test accuracy: 0.7213
+2025-09-24 21:13:00 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 21:13:00 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 21:13:00 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 21:13:00 [INFO]  Epoch 70: Running in Stage 1 - Global Alignment Only.
+2025-09-24 21:13:46 [INFO]  Epoch 70 loss: 279.65480279922485; train accuracy: 0.807890625; test accuracy: 0.6775
+2025-09-24 21:13:46 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_70.pth
+2025-09-24 21:13:46 [INFO]  Epoch 71: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:14:34 [INFO]  Epoch 71 loss: 314.922242641449; train accuracy: 0.8139453125; test accuracy: 0.6585
+2025-09-24 21:14:34 [INFO]  Epoch 72: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:15:22 [INFO]  Epoch 72 loss: 316.3811950683594; train accuracy: 0.8830078125; test accuracy: 0.6889
+2025-09-24 21:15:22 [INFO]  Epoch 73: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:16:10 [INFO]  Epoch 73 loss: 318.7995853424072; train accuracy: 0.8501953125; test accuracy: 0.6824
+2025-09-24 21:16:10 [INFO]  Epoch 74: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:16:57 [INFO]  Epoch 74 loss: 306.7926983833313; train accuracy: 0.8899609375; test accuracy: 0.7138
+2025-09-24 21:16:57 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 21:16:57 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 21:16:57 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 21:16:57 [INFO]  Epoch 70: Running in Stage 1 - Global Alignment Only.
+2025-09-24 21:17:58 [INFO]  Epoch 70 loss: 355.84704637527466; train accuracy: 0.8541766826923077; test accuracy: 0.7174
+2025-09-24 21:17:59 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_70.pth
+2025-09-24 21:17:59 [INFO]  Epoch 71: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:19:01 [INFO]  Epoch 71 loss: 401.49013805389404; train accuracy: 0.8630709134615384; test accuracy: 0.7064
+2025-09-24 21:19:01 [INFO]  Epoch 72: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:20:00 [INFO]  Epoch 72 loss: 404.4007773399353; train accuracy: 0.9055889423076923; test accuracy: 0.752
+2025-09-24 21:20:00 [INFO]  Epoch 73: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:21:04 [INFO]  Epoch 73 loss: 409.5980463027954; train accuracy: 0.8634615384615385; test accuracy: 0.7197
+2025-09-24 21:21:04 [INFO]  Epoch 74: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:22:04 [INFO]  Epoch 74 loss: 394.65507888793945; train accuracy: 0.78515625; test accuracy: 0.6664
+2025-09-24 21:22:04 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 21:22:04 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 21:22:04 [INFO]  Round 14 Finish--------|
+2025-09-24 21:22:04 [INFO]  Model variance: mean: 0.006010903511196375, sum: 67165.546875
+2025-09-24 21:22:04 [INFO]  g_protos_std: 1.0080623626708984
+2025-09-24 21:22:10 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.9024
+2025-09-24 21:22:10 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 21:22:10 [INFO]  Round 15 starts--------|
+2025-09-24 21:22:10 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 21:22:10 [INFO]  Epoch 75: Running in Stage 1 - Global Alignment Only.
+2025-09-24 21:23:03 [INFO]  Epoch 75 loss: 296.1484761238098; train accuracy: 0.8812278891509434; test accuracy: 0.6968
+2025-09-24 21:23:03 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_75.pth
+2025-09-24 21:23:03 [INFO]  Epoch 76: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:23:54 [INFO]  Epoch 76 loss: 336.44032764434814; train accuracy: 0.8359743514150944; test accuracy: 0.6261
+2025-09-24 21:23:54 [INFO]  Epoch 77: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:24:45 [INFO]  Epoch 77 loss: 333.66474294662476; train accuracy: 0.7934109669811321; test accuracy: 0.591
+2025-09-24 21:24:45 [INFO]  Epoch 78: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:25:34 [INFO]  Epoch 78 loss: 328.5716714859009; train accuracy: 0.8464401533018868; test accuracy: 0.6752
+2025-09-24 21:25:34 [INFO]  Epoch 79: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:26:23 [INFO]  Epoch 79 loss: 333.2619938850403; train accuracy: 0.8363797169811321; test accuracy: 0.6425
+2025-09-24 21:26:23 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 21:26:23 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 21:26:23 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 21:26:23 [INFO]  Epoch 75: Running in Stage 1 - Global Alignment Only.
+2025-09-24 21:27:28 [INFO]  Epoch 75 loss: 363.7593569755554; train accuracy: 0.8744338768115942; test accuracy: 0.766
+2025-09-24 21:27:29 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_75.pth
+2025-09-24 21:27:29 [INFO]  Epoch 76: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:28:30 [INFO]  Epoch 76 loss: 414.89005994796753; train accuracy: 0.8545346467391305; test accuracy: 0.7444
+2025-09-24 21:28:30 [INFO]  Epoch 77: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:29:33 [INFO]  Epoch 77 loss: 411.49434661865234; train accuracy: 0.8749433876811594; test accuracy: 0.7442
+2025-09-24 21:29:33 [INFO]  Epoch 78: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:30:35 [INFO]  Epoch 78 loss: 400.67110443115234; train accuracy: 0.8950124547101449; test accuracy: 0.7673
+2025-09-24 21:30:35 [INFO]  Epoch 79: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:31:40 [INFO]  Epoch 79 loss: 408.89365816116333; train accuracy: 0.8956351902173914; test accuracy: 0.7864
+2025-09-24 21:31:40 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 21:31:40 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 21:31:40 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 21:31:40 [INFO]  Epoch 75: Running in Stage 1 - Global Alignment Only.
+2025-09-24 21:32:33 [INFO]  Epoch 75 loss: 316.05124521255493; train accuracy: 0.8363144188596491; test accuracy: 0.6819
+2025-09-24 21:32:34 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_75.pth
+2025-09-24 21:32:34 [INFO]  Epoch 76: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:33:27 [INFO]  Epoch 76 loss: 355.6113209724426; train accuracy: 0.8721217105263158; test accuracy: 0.7297
+2025-09-24 21:33:27 [INFO]  Epoch 77: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:34:21 [INFO]  Epoch 77 loss: 357.16872358322144; train accuracy: 0.8396381578947368; test accuracy: 0.6995
+2025-09-24 21:34:21 [INFO]  Epoch 78: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:35:15 [INFO]  Epoch 78 loss: 361.5243167877197; train accuracy: 0.8663993969298246; test accuracy: 0.7224
+2025-09-24 21:35:15 [INFO]  Epoch 79: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:36:07 [INFO]  Epoch 79 loss: 359.11171102523804; train accuracy: 0.8555372807017544; test accuracy: 0.7068
+2025-09-24 21:36:07 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 21:36:07 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 21:36:07 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 21:36:07 [INFO]  Epoch 75: Running in Stage 1 - Global Alignment Only.
+2025-09-24 21:36:55 [INFO]  Epoch 75 loss: 281.06821727752686; train accuracy: 0.8646484375; test accuracy: 0.6934
+2025-09-24 21:36:56 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_75.pth
+2025-09-24 21:36:56 [INFO]  Epoch 76: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:37:43 [INFO]  Epoch 76 loss: 311.7643961906433; train accuracy: 0.826875; test accuracy: 0.6537
+2025-09-24 21:37:43 [INFO]  Epoch 77: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:38:29 [INFO]  Epoch 77 loss: 314.0173907279968; train accuracy: 0.871171875; test accuracy: 0.6878
+2025-09-24 21:38:29 [INFO]  Epoch 78: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:39:16 [INFO]  Epoch 78 loss: 311.2819495201111; train accuracy: 0.8440625; test accuracy: 0.6849
+2025-09-24 21:39:16 [INFO]  Epoch 79: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:40:04 [INFO]  Epoch 79 loss: 310.1715579032898; train accuracy: 0.84640625; test accuracy: 0.693
+2025-09-24 21:40:04 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 21:40:04 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 21:40:04 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 21:40:04 [INFO]  Epoch 75: Running in Stage 1 - Global Alignment Only.
+2025-09-24 21:41:01 [INFO]  Epoch 75 loss: 354.36950492858887; train accuracy: 0.85; test accuracy: 0.7226
+2025-09-24 21:41:01 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_75.pth
+2025-09-24 21:41:01 [INFO]  Epoch 76: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:42:04 [INFO]  Epoch 76 loss: 389.57052993774414; train accuracy: 0.80078125; test accuracy: 0.6613
+2025-09-24 21:42:04 [INFO]  Epoch 77: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:43:03 [INFO]  Epoch 77 loss: 397.60400676727295; train accuracy: 0.9049879807692308; test accuracy: 0.7633
+2025-09-24 21:43:03 [INFO]  Epoch 78: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:44:00 [INFO]  Epoch 78 loss: 401.23044204711914; train accuracy: 0.8835036057692308; test accuracy: 0.7368
+2025-09-24 21:44:00 [INFO]  Epoch 79: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:45:02 [INFO]  Epoch 79 loss: 406.32588386535645; train accuracy: 0.9055288461538461; test accuracy: 0.7512
+2025-09-24 21:45:02 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 21:45:02 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 21:45:02 [INFO]  Round 15 Finish--------|
+2025-09-24 21:45:02 [INFO]  Model variance: mean: 0.0062178694643080235, sum: 69478.171875
+2025-09-24 21:45:02 [INFO]  g_protos_std: 1.0081900358200073
+2025-09-24 21:45:07 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.907
+2025-09-24 21:45:07 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 21:45:07 [INFO]  Round 16 starts--------|
+2025-09-24 21:45:07 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 21:45:07 [INFO]  Epoch 80: Running in Stage 1 - Global Alignment Only.
+2025-09-24 21:45:57 [INFO]  Epoch 80 loss: 292.89399337768555; train accuracy: 0.8807119693396226; test accuracy: 0.6581
+2025-09-24 21:45:57 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_80.pth
+2025-09-24 21:45:57 [INFO]  Epoch 81: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:46:49 [INFO]  Epoch 81 loss: 328.58615159988403; train accuracy: 0.8666347287735849; test accuracy: 0.6709
+2025-09-24 21:46:49 [INFO]  Epoch 82: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:47:38 [INFO]  Epoch 82 loss: 334.6650462150574; train accuracy: 0.8806014150943396; test accuracy: 0.6915
+2025-09-24 21:47:38 [INFO]  Epoch 83: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:48:26 [INFO]  Epoch 83 loss: 333.9483985900879; train accuracy: 0.8602594339622641; test accuracy: 0.6903
+2025-09-24 21:48:26 [INFO]  Epoch 84: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:49:15 [INFO]  Epoch 84 loss: 331.47163343429565; train accuracy: 0.853736733490566; test accuracy: 0.6753
+2025-09-24 21:49:15 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 21:49:15 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 21:49:15 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 21:49:15 [INFO]  Epoch 80: Running in Stage 1 - Global Alignment Only.
+2025-09-24 21:50:21 [INFO]  Epoch 80 loss: 363.7660183906555; train accuracy: 0.903702445652174; test accuracy: 0.7788
+2025-09-24 21:50:22 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_80.pth
+2025-09-24 21:50:22 [INFO]  Epoch 81: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:51:23 [INFO]  Epoch 81 loss: 400.54303455352783; train accuracy: 0.9039572010869565; test accuracy: 0.7901
+2025-09-24 21:51:23 [INFO]  Epoch 82: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:52:29 [INFO]  Epoch 82 loss: 408.6307487487793; train accuracy: 0.8804913949275363; test accuracy: 0.7477
+2025-09-24 21:52:29 [INFO]  Epoch 83: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:53:35 [INFO]  Epoch 83 loss: 412.0600085258484; train accuracy: 0.916411911231884; test accuracy: 0.8021
+2025-09-24 21:53:35 [INFO]  Epoch 84: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:54:40 [INFO]  Epoch 84 loss: 395.36451482772827; train accuracy: 0.8857846467391305; test accuracy: 0.7652
+2025-09-24 21:54:40 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 21:54:40 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 21:54:40 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 21:54:40 [INFO]  Epoch 80: Running in Stage 1 - Global Alignment Only.
+2025-09-24 21:55:33 [INFO]  Epoch 80 loss: 314.9156684875488; train accuracy: 0.8741433662280702; test accuracy: 0.7283
+2025-09-24 21:55:33 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_80.pth
+2025-09-24 21:55:33 [INFO]  Epoch 81: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:56:26 [INFO]  Epoch 81 loss: 356.2901191711426; train accuracy: 0.864172149122807; test accuracy: 0.7064
+2025-09-24 21:56:26 [INFO]  Epoch 82: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:57:20 [INFO]  Epoch 82 loss: 356.111421585083; train accuracy: 0.8815104166666666; test accuracy: 0.7337
+2025-09-24 21:57:20 [INFO]  Epoch 83: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:58:14 [INFO]  Epoch 83 loss: 360.850688457489; train accuracy: 0.9008703399122807; test accuracy: 0.7365
+2025-09-24 21:58:14 [INFO]  Epoch 84: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 21:59:08 [INFO]  Epoch 84 loss: 351.0009322166443; train accuracy: 0.9033717105263158; test accuracy: 0.7292
+2025-09-24 21:59:08 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 21:59:08 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 21:59:08 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 21:59:08 [INFO]  Epoch 80: Running in Stage 1 - Global Alignment Only.
+2025-09-24 21:59:53 [INFO]  Epoch 80 loss: 277.4626660346985; train accuracy: 0.72890625; test accuracy: 0.5737
+2025-09-24 21:59:54 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_80.pth
+2025-09-24 21:59:54 [INFO]  Epoch 81: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:00:42 [INFO]  Epoch 81 loss: 313.1158742904663; train accuracy: 0.860234375; test accuracy: 0.6847
+2025-09-24 22:00:42 [INFO]  Epoch 82: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:01:30 [INFO]  Epoch 82 loss: 313.9083752632141; train accuracy: 0.80875; test accuracy: 0.6495
+2025-09-24 22:01:30 [INFO]  Epoch 83: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:02:18 [INFO]  Epoch 83 loss: 320.80732822418213; train accuracy: 0.8307421875; test accuracy: 0.6474
+2025-09-24 22:02:18 [INFO]  Epoch 84: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:03:06 [INFO]  Epoch 84 loss: 307.6372275352478; train accuracy: 0.908515625; test accuracy: 0.6987
+2025-09-24 22:03:06 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 22:03:06 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 22:03:06 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 22:03:06 [INFO]  Epoch 80: Running in Stage 1 - Global Alignment Only.
+2025-09-24 22:04:09 [INFO]  Epoch 80 loss: 358.54912090301514; train accuracy: 0.8752403846153847; test accuracy: 0.724
+2025-09-24 22:04:10 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_80.pth
+2025-09-24 22:04:10 [INFO]  Epoch 81: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:05:11 [INFO]  Epoch 81 loss: 389.91159772872925; train accuracy: 0.8739783653846154; test accuracy: 0.7287
+2025-09-24 22:05:11 [INFO]  Epoch 82: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:06:10 [INFO]  Epoch 82 loss: 389.59897470474243; train accuracy: 0.8666165865384615; test accuracy: 0.7221
+2025-09-24 22:06:10 [INFO]  Epoch 83: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:07:12 [INFO]  Epoch 83 loss: 389.2154378890991; train accuracy: 0.8061598557692308; test accuracy: 0.6615
+2025-09-24 22:07:12 [INFO]  Epoch 84: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:08:11 [INFO]  Epoch 84 loss: 396.2341537475586; train accuracy: 0.889453125; test accuracy: 0.7679
+2025-09-24 22:08:11 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 22:08:11 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 22:08:11 [INFO]  Round 16 Finish--------|
+2025-09-24 22:08:11 [INFO]  Model variance: mean: 0.006419160403311253, sum: 71727.390625
+2025-09-24 22:08:11 [INFO]  g_protos_std: 1.0083304643630981
+2025-09-24 22:08:16 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.9048
+2025-09-24 22:08:16 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 22:08:16 [INFO]  Round 17 starts--------|
+2025-09-24 22:08:16 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 22:08:16 [INFO]  Epoch 85: Running in Stage 1 - Global Alignment Only.
+2025-09-24 22:09:06 [INFO]  Epoch 85 loss: 293.90748167037964; train accuracy: 0.9135834316037735; test accuracy: 0.7362
+2025-09-24 22:09:07 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_85.pth
+2025-09-24 22:09:07 [INFO]  Epoch 86: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:09:55 [INFO]  Epoch 86 loss: 324.0145182609558; train accuracy: 0.8590433372641509; test accuracy: 0.6802
+2025-09-24 22:09:55 [INFO]  Epoch 87: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:10:46 [INFO]  Epoch 87 loss: 328.17201232910156; train accuracy: 0.8973688089622641; test accuracy: 0.6804
+2025-09-24 22:10:46 [INFO]  Epoch 88: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:11:35 [INFO]  Epoch 88 loss: 324.66064071655273; train accuracy: 0.8784271816037735; test accuracy: 0.685
+2025-09-24 22:11:35 [INFO]  Epoch 89: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:12:26 [INFO]  Epoch 89 loss: 323.44155502319336; train accuracy: 0.8729363207547169; test accuracy: 0.6973
+2025-09-24 22:12:26 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 22:12:26 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 22:12:26 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 22:12:26 [INFO]  Epoch 85: Running in Stage 1 - Global Alignment Only.
+2025-09-24 22:13:31 [INFO]  Epoch 85 loss: 363.35714530944824; train accuracy: 0.9310745018115942; test accuracy: 0.7974
+2025-09-24 22:13:32 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_85.pth
+2025-09-24 22:13:32 [INFO]  Epoch 86: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:14:34 [INFO]  Epoch 86 loss: 402.4743881225586; train accuracy: 0.9154778079710145; test accuracy: 0.7932
+2025-09-24 22:14:34 [INFO]  Epoch 87: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:15:41 [INFO]  Epoch 87 loss: 409.5533308982849; train accuracy: 0.924224411231884; test accuracy: 0.8026
+2025-09-24 22:15:41 [INFO]  Epoch 88: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:16:48 [INFO]  Epoch 88 loss: 404.4615354537964; train accuracy: 0.898239356884058; test accuracy: 0.775
+2025-09-24 22:16:48 [INFO]  Epoch 89: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:17:52 [INFO]  Epoch 89 loss: 396.87085485458374; train accuracy: 0.9223562047101449; test accuracy: 0.8059
+2025-09-24 22:17:52 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 22:17:52 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 22:17:52 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 22:17:52 [INFO]  Epoch 85: Running in Stage 1 - Global Alignment Only.
+2025-09-24 22:18:44 [INFO]  Epoch 85 loss: 311.74903202056885; train accuracy: 0.853515625; test accuracy: 0.7143
+2025-09-24 22:18:44 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_85.pth
+2025-09-24 22:18:44 [INFO]  Epoch 86: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:19:36 [INFO]  Epoch 86 loss: 349.88418340682983; train accuracy: 0.8676329495614035; test accuracy: 0.7059
+2025-09-24 22:19:36 [INFO]  Epoch 87: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:20:30 [INFO]  Epoch 87 loss: 357.9105463027954; train accuracy: 0.8543722587719298; test accuracy: 0.7021
+2025-09-24 22:20:30 [INFO]  Epoch 88: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:21:23 [INFO]  Epoch 88 loss: 345.2500252723694; train accuracy: 0.8438527960526315; test accuracy: 0.6938
+2025-09-24 22:21:23 [INFO]  Epoch 89: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:22:17 [INFO]  Epoch 89 loss: 355.81827306747437; train accuracy: 0.9109786184210527; test accuracy: 0.7539
+2025-09-24 22:22:17 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 22:22:18 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 22:22:18 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 22:22:18 [INFO]  Epoch 85: Running in Stage 1 - Global Alignment Only.
+2025-09-24 22:23:03 [INFO]  Epoch 85 loss: 279.6412868499756; train accuracy: 0.8903125; test accuracy: 0.7089
+2025-09-24 22:23:03 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_85.pth
+2025-09-24 22:23:03 [INFO]  Epoch 86: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:23:50 [INFO]  Epoch 86 loss: 319.7873272895813; train accuracy: 0.8874609375; test accuracy: 0.7229
+2025-09-24 22:23:50 [INFO]  Epoch 87: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:24:39 [INFO]  Epoch 87 loss: 308.76695346832275; train accuracy: 0.879609375; test accuracy: 0.698
+2025-09-24 22:24:39 [INFO]  Epoch 88: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:25:27 [INFO]  Epoch 88 loss: 308.27472162246704; train accuracy: 0.8968359375; test accuracy: 0.7163
+2025-09-24 22:25:27 [INFO]  Epoch 89: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:26:15 [INFO]  Epoch 89 loss: 302.3077983856201; train accuracy: 0.8969921875; test accuracy: 0.7237
+2025-09-24 22:26:15 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 22:26:15 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 22:26:15 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 22:26:15 [INFO]  Epoch 85: Running in Stage 1 - Global Alignment Only.
+2025-09-24 22:27:15 [INFO]  Epoch 85 loss: 348.92257833480835; train accuracy: 0.8610276442307693; test accuracy: 0.7148
+2025-09-24 22:27:15 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_85.pth
+2025-09-24 22:27:15 [INFO]  Epoch 86: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:28:15 [INFO]  Epoch 86 loss: 385.2214722633362; train accuracy: 0.9048076923076923; test accuracy: 0.7595
+2025-09-24 22:28:15 [INFO]  Epoch 87: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:29:12 [INFO]  Epoch 87 loss: 389.1889419555664; train accuracy: 0.8870492788461538; test accuracy: 0.7405
+2025-09-24 22:29:12 [INFO]  Epoch 88: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:30:12 [INFO]  Epoch 88 loss: 393.9858717918396; train accuracy: 0.8864182692307693; test accuracy: 0.7433
+2025-09-24 22:30:12 [INFO]  Epoch 89: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:31:10 [INFO]  Epoch 89 loss: 381.7167682647705; train accuracy: 0.9149939903846154; test accuracy: 0.7721
+2025-09-24 22:31:10 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 22:31:10 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 22:31:10 [INFO]  Round 17 Finish--------|
+2025-09-24 22:31:11 [INFO]  Model variance: mean: 0.006613525561988354, sum: 73899.21875
+2025-09-24 22:31:11 [INFO]  g_protos_std: 1.0084797143936157
+2025-09-24 22:31:16 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.9101
+2025-09-24 22:31:16 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 22:31:16 [INFO]  Round 18 starts--------|
+2025-09-24 22:31:16 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 22:31:16 [INFO]  Epoch 90: Running in Stage 1 - Global Alignment Only.
+2025-09-24 22:32:05 [INFO]  Epoch 90 loss: 288.3488202095032; train accuracy: 0.9092718160377359; test accuracy: 0.6959
+2025-09-24 22:32:06 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_90.pth
+2025-09-24 22:32:06 [INFO]  Epoch 91: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:32:53 [INFO]  Epoch 91 loss: 321.91118478775024; train accuracy: 0.8991376768867925; test accuracy: 0.7082
+2025-09-24 22:32:53 [INFO]  Epoch 92: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:33:39 [INFO]  Epoch 92 loss: 329.0262107849121; train accuracy: 0.9167158018867925; test accuracy: 0.7417
+2025-09-24 22:33:39 [INFO]  Epoch 93: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:34:25 [INFO]  Epoch 93 loss: 318.49853897094727; train accuracy: 0.8937942216981132; test accuracy: 0.7126
+2025-09-24 22:34:25 [INFO]  Epoch 94: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:35:13 [INFO]  Epoch 94 loss: 322.3088278770447; train accuracy: 0.8379643278301887; test accuracy: 0.6638
+2025-09-24 22:35:13 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 22:35:13 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 22:35:13 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 22:35:13 [INFO]  Epoch 90: Running in Stage 1 - Global Alignment Only.
+2025-09-24 22:36:13 [INFO]  Epoch 90 loss: 363.9301519393921; train accuracy: 0.908401268115942; test accuracy: 0.7665
+2025-09-24 22:36:13 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_90.pth
+2025-09-24 22:36:13 [INFO]  Epoch 91: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:37:14 [INFO]  Epoch 91 loss: 390.50505542755127; train accuracy: 0.897078804347826; test accuracy: 0.7811
+2025-09-24 22:37:14 [INFO]  Epoch 92: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:38:18 [INFO]  Epoch 92 loss: 395.726167678833; train accuracy: 0.899796195652174; test accuracy: 0.7695
+2025-09-24 22:38:18 [INFO]  Epoch 93: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:39:21 [INFO]  Epoch 93 loss: 396.62113666534424; train accuracy: 0.8428158967391305; test accuracy: 0.7231
+2025-09-24 22:39:21 [INFO]  Epoch 94: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:40:26 [INFO]  Epoch 94 loss: 390.1688542366028; train accuracy: 0.9108355978260869; test accuracy: 0.7836
+2025-09-24 22:40:26 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 22:40:26 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 22:40:26 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 22:40:26 [INFO]  Epoch 90: Running in Stage 1 - Global Alignment Only.
+2025-09-24 22:41:18 [INFO]  Epoch 90 loss: 304.92812395095825; train accuracy: 0.8680441337719298; test accuracy: 0.7186
+2025-09-24 22:41:19 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_90.pth
+2025-09-24 22:41:19 [INFO]  Epoch 91: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:42:11 [INFO]  Epoch 91 loss: 350.43004846572876; train accuracy: 0.9083744517543859; test accuracy: 0.7472
+2025-09-24 22:42:11 [INFO]  Epoch 92: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:43:06 [INFO]  Epoch 92 loss: 343.2714958190918; train accuracy: 0.8798314144736842; test accuracy: 0.7168
+2025-09-24 22:43:06 [INFO]  Epoch 93: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:43:57 [INFO]  Epoch 93 loss: 349.36220932006836; train accuracy: 0.8784950657894737; test accuracy: 0.7263
+2025-09-24 22:43:57 [INFO]  Epoch 94: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:44:50 [INFO]  Epoch 94 loss: 353.5012888908386; train accuracy: 0.8940858004385965; test accuracy: 0.7212
+2025-09-24 22:44:50 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 22:44:50 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 22:44:50 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 22:44:50 [INFO]  Epoch 90: Running in Stage 1 - Global Alignment Only.
+2025-09-24 22:45:34 [INFO]  Epoch 90 loss: 275.2561230659485; train accuracy: 0.885; test accuracy: 0.6986
+2025-09-24 22:45:35 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_90.pth
+2025-09-24 22:45:35 [INFO]  Epoch 91: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:46:20 [INFO]  Epoch 91 loss: 310.41229820251465; train accuracy: 0.890078125; test accuracy: 0.7175
+2025-09-24 22:46:20 [INFO]  Epoch 92: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:47:05 [INFO]  Epoch 92 loss: 300.0720748901367; train accuracy: 0.8683203125; test accuracy: 0.6971
+2025-09-24 22:47:05 [INFO]  Epoch 93: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:47:50 [INFO]  Epoch 93 loss: 310.320912361145; train accuracy: 0.8825; test accuracy: 0.7094
+2025-09-24 22:47:50 [INFO]  Epoch 94: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:48:39 [INFO]  Epoch 94 loss: 308.3422122001648; train accuracy: 0.8915625; test accuracy: 0.7093
+2025-09-24 22:48:39 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 22:48:39 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 22:48:39 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 22:48:39 [INFO]  Epoch 90: Running in Stage 1 - Global Alignment Only.
+2025-09-24 22:49:41 [INFO]  Epoch 90 loss: 350.6974401473999; train accuracy: 0.8867788461538462; test accuracy: 0.7257
+2025-09-24 22:49:41 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_90.pth
+2025-09-24 22:49:41 [INFO]  Epoch 91: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:50:39 [INFO]  Epoch 91 loss: 391.24583673477173; train accuracy: 0.9021935096153846; test accuracy: 0.7428
+2025-09-24 22:50:39 [INFO]  Epoch 92: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:51:38 [INFO]  Epoch 92 loss: 393.0350546836853; train accuracy: 0.9089242788461539; test accuracy: 0.7506
+2025-09-24 22:51:38 [INFO]  Epoch 93: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:52:38 [INFO]  Epoch 93 loss: 387.32564973831177; train accuracy: 0.9158353365384615; test accuracy: 0.7665
+2025-09-24 22:52:38 [INFO]  Epoch 94: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:53:39 [INFO]  Epoch 94 loss: 384.14760398864746; train accuracy: 0.8925180288461538; test accuracy: 0.7425
+2025-09-24 22:53:39 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 22:53:39 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 22:53:39 [INFO]  Round 18 Finish--------|
+2025-09-24 22:53:39 [INFO]  Model variance: mean: 0.006802988238632679, sum: 76016.265625
+2025-09-24 22:53:39 [INFO]  g_protos_std: 1.008624792098999
+2025-09-24 22:53:44 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.9135
+2025-09-24 22:53:44 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 22:53:44 [INFO]  Round 19 starts--------|
+2025-09-24 22:53:44 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 22:53:44 [INFO]  Epoch 95: Running in Stage 1 - Global Alignment Only.
+2025-09-24 22:54:35 [INFO]  Epoch 95 loss: 290.4181170463562; train accuracy: 0.8829967570754716; test accuracy: 0.7044
+2025-09-24 22:54:35 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_95.pth
+2025-09-24 22:54:35 [INFO]  Epoch 96: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:55:23 [INFO]  Epoch 96 loss: 317.217652797699; train accuracy: 0.8952682783018868; test accuracy: 0.7176
+2025-09-24 22:55:23 [INFO]  Epoch 97: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:56:13 [INFO]  Epoch 97 loss: 328.68824195861816; train accuracy: 0.8880085495283019; test accuracy: 0.6797
+2025-09-24 22:56:13 [INFO]  Epoch 98: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:57:04 [INFO]  Epoch 98 loss: 325.0466365814209; train accuracy: 0.8587853773584906; test accuracy: 0.6876
+2025-09-24 22:57:04 [INFO]  Epoch 99: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 22:57:55 [INFO]  Epoch 99 loss: 326.34723711013794; train accuracy: 0.9201061320754716; test accuracy: 0.677
+2025-09-24 22:57:55 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 22:57:55 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 22:57:55 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 22:57:55 [INFO]  Epoch 95: Running in Stage 1 - Global Alignment Only.
+2025-09-24 22:58:59 [INFO]  Epoch 95 loss: 361.30473279953003; train accuracy: 0.8799818840579711; test accuracy: 0.7488
+2025-09-24 22:59:00 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_95.pth
+2025-09-24 22:59:00 [INFO]  Epoch 96: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:00:02 [INFO]  Epoch 96 loss: 402.5211925506592; train accuracy: 0.905655570652174; test accuracy: 0.7903
+2025-09-24 23:00:02 [INFO]  Epoch 97: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:01:05 [INFO]  Epoch 97 loss: 388.5717258453369; train accuracy: 0.898635643115942; test accuracy: 0.7717
+2025-09-24 23:01:05 [INFO]  Epoch 98: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:02:08 [INFO]  Epoch 98 loss: 398.30398321151733; train accuracy: 0.9322916666666666; test accuracy: 0.806
+2025-09-24 23:02:08 [INFO]  Epoch 99: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:03:10 [INFO]  Epoch 99 loss: 388.2704472541809; train accuracy: 0.9004472373188406; test accuracy: 0.7681
+2025-09-24 23:03:10 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 23:03:10 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 23:03:10 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 23:03:10 [INFO]  Epoch 95: Running in Stage 1 - Global Alignment Only.
+2025-09-24 23:04:04 [INFO]  Epoch 95 loss: 310.6309494972229; train accuracy: 0.9081003289473685; test accuracy: 0.7375
+2025-09-24 23:04:04 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_95.pth
+2025-09-24 23:04:04 [INFO]  Epoch 96: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:04:59 [INFO]  Epoch 96 loss: 338.52818393707275; train accuracy: 0.8721217105263158; test accuracy: 0.7297
+2025-09-24 23:04:59 [INFO]  Epoch 97: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:05:52 [INFO]  Epoch 97 loss: 353.8163251876831; train accuracy: 0.8641378837719298; test accuracy: 0.726
+2025-09-24 23:05:52 [INFO]  Epoch 98: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:06:44 [INFO]  Epoch 98 loss: 352.0015277862549; train accuracy: 0.8462856359649122; test accuracy: 0.702
+2025-09-24 23:06:44 [INFO]  Epoch 99: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:07:38 [INFO]  Epoch 99 loss: 341.4469118118286; train accuracy: 0.8740063048245614; test accuracy: 0.7158
+2025-09-24 23:07:38 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 23:07:38 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 23:07:38 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 23:07:38 [INFO]  Epoch 95: Running in Stage 1 - Global Alignment Only.
+2025-09-24 23:08:23 [INFO]  Epoch 95 loss: 276.3618440628052; train accuracy: 0.889375; test accuracy: 0.7212
+2025-09-24 23:08:23 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_95.pth
+2025-09-24 23:08:23 [INFO]  Epoch 96: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:09:10 [INFO]  Epoch 96 loss: 308.4981532096863; train accuracy: 0.871015625; test accuracy: 0.7058
+2025-09-24 23:09:10 [INFO]  Epoch 97: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:09:57 [INFO]  Epoch 97 loss: 304.03409481048584; train accuracy: 0.880390625; test accuracy: 0.6964
+2025-09-24 23:09:57 [INFO]  Epoch 98: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:10:41 [INFO]  Epoch 98 loss: 301.3175926208496; train accuracy: 0.8969140625; test accuracy: 0.7064
+2025-09-24 23:10:41 [INFO]  Epoch 99: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:11:31 [INFO]  Epoch 99 loss: 305.74449825286865; train accuracy: 0.8807421875; test accuracy: 0.7057
+2025-09-24 23:11:31 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 23:11:31 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 23:11:31 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 23:11:31 [INFO]  Epoch 95: Running in Stage 1 - Global Alignment Only.
+2025-09-24 23:12:29 [INFO]  Epoch 95 loss: 347.07578468322754; train accuracy: 0.9289963942307692; test accuracy: 0.7743
+2025-09-24 23:12:30 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_95.pth
+2025-09-24 23:12:30 [INFO]  Epoch 96: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:13:28 [INFO]  Epoch 96 loss: 396.4315643310547; train accuracy: 0.8691706730769231; test accuracy: 0.7356
+2025-09-24 23:13:28 [INFO]  Epoch 97: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:14:24 [INFO]  Epoch 97 loss: 387.8004412651062; train accuracy: 0.8895432692307692; test accuracy: 0.7476
+2025-09-24 23:14:24 [INFO]  Epoch 98: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:15:19 [INFO]  Epoch 98 loss: 383.77649784088135; train accuracy: 0.869921875; test accuracy: 0.7217
+2025-09-24 23:15:19 [INFO]  Epoch 99: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:16:20 [INFO]  Epoch 99 loss: 386.5556764602661; train accuracy: 0.8922175480769231; test accuracy: 0.7503
+2025-09-24 23:16:20 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 23:16:20 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 23:16:20 [INFO]  Round 19 Finish--------|
+2025-09-24 23:16:20 [INFO]  Model variance: mean: 0.006988191045820713, sum: 78085.7109375
+2025-09-24 23:16:20 [INFO]  g_protos_std: 1.0087682008743286
+2025-09-24 23:16:25 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.9096
+2025-09-24 23:16:25 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 23:16:25 [INFO]  Round 20 starts--------|
+2025-09-24 23:16:25 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 23:16:25 [INFO]  Epoch 100: Running in Stage 1 - Global Alignment Only.
+2025-09-24 23:17:15 [INFO]  Epoch 100 loss: 288.59304094314575; train accuracy: 0.9296506485849056; test accuracy: 0.7008
+2025-09-24 23:17:15 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_100.pth
+2025-09-24 23:17:15 [INFO]  Epoch 101: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:18:05 [INFO]  Epoch 101 loss: 320.72255849838257; train accuracy: 0.8930940448113207; test accuracy: 0.695
+2025-09-24 23:18:05 [INFO]  Epoch 102: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:18:54 [INFO]  Epoch 102 loss: 321.8050446510315; train accuracy: 0.9031176297169812; test accuracy: 0.7111
+2025-09-24 23:18:54 [INFO]  Epoch 103: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:19:44 [INFO]  Epoch 103 loss: 313.6402397155762; train accuracy: 0.9004274764150944; test accuracy: 0.7214
+2025-09-24 23:19:44 [INFO]  Epoch 104: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:20:35 [INFO]  Epoch 104 loss: 313.61478328704834; train accuracy: 0.8828125; test accuracy: 0.6962
+2025-09-24 23:20:35 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 23:20:35 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 23:20:35 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 23:20:35 [INFO]  Epoch 100: Running in Stage 1 - Global Alignment Only.
+2025-09-24 23:21:38 [INFO]  Epoch 100 loss: 354.15778636932373; train accuracy: 0.9259510869565217; test accuracy: 0.7861
+2025-09-24 23:21:39 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_100.pth
+2025-09-24 23:21:39 [INFO]  Epoch 101: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:22:44 [INFO]  Epoch 101 loss: 401.7848334312439; train accuracy: 0.8982676630434783; test accuracy: 0.7815
+2025-09-24 23:22:44 [INFO]  Epoch 102: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:23:50 [INFO]  Epoch 102 loss: 388.80796909332275; train accuracy: 0.9276777626811594; test accuracy: 0.8011
+2025-09-24 23:23:50 [INFO]  Epoch 103: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:24:55 [INFO]  Epoch 103 loss: 386.6194496154785; train accuracy: 0.8756510416666666; test accuracy: 0.7448
+2025-09-24 23:24:55 [INFO]  Epoch 104: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:26:01 [INFO]  Epoch 104 loss: 392.52172231674194; train accuracy: 0.9201766304347826; test accuracy: 0.8084
+2025-09-24 23:26:01 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 23:26:01 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 23:26:01 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 23:26:01 [INFO]  Epoch 100: Running in Stage 1 - Global Alignment Only.
+2025-09-24 23:26:56 [INFO]  Epoch 100 loss: 307.03125286102295; train accuracy: 0.8708881578947368; test accuracy: 0.6952
+2025-09-24 23:26:56 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_100.pth
+2025-09-24 23:26:56 [INFO]  Epoch 101: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:27:51 [INFO]  Epoch 101 loss: 350.89522218704224; train accuracy: 0.8645833333333334; test accuracy: 0.7064
+2025-09-24 23:27:51 [INFO]  Epoch 102: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:28:46 [INFO]  Epoch 102 loss: 339.5263133049011; train accuracy: 0.8139734100877193; test accuracy: 0.6702
+2025-09-24 23:28:46 [INFO]  Epoch 103: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:29:38 [INFO]  Epoch 103 loss: 335.8780174255371; train accuracy: 0.8853824013157895; test accuracy: 0.7254
+2025-09-24 23:29:38 [INFO]  Epoch 104: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:30:30 [INFO]  Epoch 104 loss: 341.7153663635254; train accuracy: 0.9019668311403509; test accuracy: 0.7413
+2025-09-24 23:30:30 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 23:30:30 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 23:30:30 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 23:30:30 [INFO]  Epoch 100: Running in Stage 1 - Global Alignment Only.
+2025-09-24 23:31:16 [INFO]  Epoch 100 loss: 276.3444905281067; train accuracy: 0.865; test accuracy: 0.687
+2025-09-24 23:31:16 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_100.pth
+2025-09-24 23:31:16 [INFO]  Epoch 101: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:32:03 [INFO]  Epoch 101 loss: 303.6215715408325; train accuracy: 0.913515625; test accuracy: 0.7213
+2025-09-24 23:32:03 [INFO]  Epoch 102: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:32:50 [INFO]  Epoch 102 loss: 301.6303553581238; train accuracy: 0.8933203125; test accuracy: 0.6942
+2025-09-24 23:32:50 [INFO]  Epoch 103: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:33:39 [INFO]  Epoch 103 loss: 301.1957564353943; train accuracy: 0.8853515625; test accuracy: 0.6969
+2025-09-24 23:33:39 [INFO]  Epoch 104: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:34:24 [INFO]  Epoch 104 loss: 302.94953060150146; train accuracy: 0.8303125; test accuracy: 0.6901
+2025-09-24 23:34:24 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 23:34:24 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 23:34:24 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 23:34:24 [INFO]  Epoch 100: Running in Stage 1 - Global Alignment Only.
+2025-09-24 23:35:24 [INFO]  Epoch 100 loss: 347.8037848472595; train accuracy: 0.8942307692307693; test accuracy: 0.7368
+2025-09-24 23:35:24 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_100.pth
+2025-09-24 23:35:24 [INFO]  Epoch 101: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:36:22 [INFO]  Epoch 101 loss: 382.49120235443115; train accuracy: 0.8918870192307692; test accuracy: 0.733
+2025-09-24 23:36:22 [INFO]  Epoch 102: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:37:19 [INFO]  Epoch 102 loss: 390.532949924469; train accuracy: 0.8874098557692308; test accuracy: 0.7493
+2025-09-24 23:37:19 [INFO]  Epoch 103: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:38:13 [INFO]  Epoch 103 loss: 386.56048250198364; train accuracy: 0.8973858173076923; test accuracy: 0.7516
+2025-09-24 23:38:13 [INFO]  Epoch 104: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:39:08 [INFO]  Epoch 104 loss: 377.832989692688; train accuracy: 0.9043569711538462; test accuracy: 0.7477
+2025-09-24 23:39:08 [INFO]  Client 4 Finish Local Training--------|
+2025-09-24 23:39:08 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-24 23:39:08 [INFO]  Round 20 Finish--------|
+2025-09-24 23:39:08 [INFO]  Model variance: mean: 0.007168822456151247, sum: 80104.078125
+2025-09-24 23:39:08 [INFO]  g_protos_std: 1.0089163780212402
+2025-09-24 23:39:13 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.9108
+2025-09-24 23:39:13 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-24 23:39:13 [INFO]  Round 21 starts--------|
+2025-09-24 23:39:13 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-24 23:39:13 [INFO]  Epoch 105: Running in Stage 1 - Global Alignment Only.
+2025-09-24 23:40:00 [INFO]  Epoch 105 loss: 287.10417079925537; train accuracy: 0.8773216391509434; test accuracy: 0.6974
+2025-09-24 23:40:00 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_105.pth
+2025-09-24 23:40:00 [INFO]  Epoch 106: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:40:44 [INFO]  Epoch 106 loss: 314.60195112228394; train accuracy: 0.8976267688679245; test accuracy: 0.6569
+2025-09-24 23:40:44 [INFO]  Epoch 107: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:41:33 [INFO]  Epoch 107 loss: 314.1388359069824; train accuracy: 0.8541420990566038; test accuracy: 0.6386
+2025-09-24 23:41:33 [INFO]  Epoch 108: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:42:24 [INFO]  Epoch 108 loss: 316.7406430244446; train accuracy: 0.9167158018867925; test accuracy: 0.7256
+2025-09-24 23:42:24 [INFO]  Epoch 109: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:43:14 [INFO]  Epoch 109 loss: 307.4498243331909; train accuracy: 0.8800854952830188; test accuracy: 0.6885
+2025-09-24 23:43:14 [INFO]  Client 0 Finish Local Training--------|
+2025-09-24 23:43:14 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-24 23:43:14 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-24 23:43:14 [INFO]  Epoch 105: Running in Stage 1 - Global Alignment Only.
+2025-09-24 23:44:20 [INFO]  Epoch 105 loss: 360.21733808517456; train accuracy: 0.9471807065217391; test accuracy: 0.8151
+2025-09-24 23:44:20 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_105.pth
+2025-09-24 23:44:20 [INFO]  Epoch 106: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:45:25 [INFO]  Epoch 106 loss: 398.1498975753784; train accuracy: 0.9406136775362319; test accuracy: 0.8117
+2025-09-24 23:45:25 [INFO]  Epoch 107: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:46:27 [INFO]  Epoch 107 loss: 381.3433322906494; train accuracy: 0.9411231884057971; test accuracy: 0.8119
+2025-09-24 23:46:27 [INFO]  Epoch 108: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:47:33 [INFO]  Epoch 108 loss: 396.87968492507935; train accuracy: 0.9329144021739131; test accuracy: 0.8186
+2025-09-24 23:47:33 [INFO]  Epoch 109: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:48:37 [INFO]  Epoch 109 loss: 381.6666898727417; train accuracy: 0.9135812952898551; test accuracy: 0.7807
+2025-09-24 23:48:37 [INFO]  Client 1 Finish Local Training--------|
+2025-09-24 23:48:37 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-24 23:48:37 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-24 23:48:37 [INFO]  Epoch 105: Running in Stage 1 - Global Alignment Only.
+2025-09-24 23:49:31 [INFO]  Epoch 105 loss: 307.3844132423401; train accuracy: 0.8471422697368421; test accuracy: 0.6964
+2025-09-24 23:49:31 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_105.pth
+2025-09-24 23:49:31 [INFO]  Epoch 106: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:50:25 [INFO]  Epoch 106 loss: 346.14138078689575; train accuracy: 0.885999177631579; test accuracy: 0.7372
+2025-09-24 23:50:25 [INFO]  Epoch 107: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:51:19 [INFO]  Epoch 107 loss: 342.5477795600891; train accuracy: 0.868421052631579; test accuracy: 0.7261
+2025-09-24 23:51:19 [INFO]  Epoch 108: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:52:11 [INFO]  Epoch 108 loss: 343.88600158691406; train accuracy: 0.8771587171052632; test accuracy: 0.7276
+2025-09-24 23:52:11 [INFO]  Epoch 109: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:53:07 [INFO]  Epoch 109 loss: 327.89417695999146; train accuracy: 0.9168379934210527; test accuracy: 0.7408
+2025-09-24 23:53:07 [INFO]  Client 2 Finish Local Training--------|
+2025-09-24 23:53:07 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-24 23:53:07 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-24 23:53:07 [INFO]  Epoch 105: Running in Stage 1 - Global Alignment Only.
+2025-09-24 23:53:55 [INFO]  Epoch 105 loss: 273.7170548439026; train accuracy: 0.896640625; test accuracy: 0.7282
+2025-09-24 23:53:55 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_105.pth
+2025-09-24 23:53:55 [INFO]  Epoch 106: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:54:43 [INFO]  Epoch 106 loss: 302.17154598236084; train accuracy: 0.9187109375; test accuracy: 0.7285
+2025-09-24 23:54:43 [INFO]  Epoch 107: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:55:30 [INFO]  Epoch 107 loss: 300.0483317375183; train accuracy: 0.9065234375; test accuracy: 0.7026
+2025-09-24 23:55:30 [INFO]  Epoch 108: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:56:15 [INFO]  Epoch 108 loss: 300.67146348953247; train accuracy: 0.893984375; test accuracy: 0.6954
+2025-09-24 23:56:15 [INFO]  Epoch 109: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:57:01 [INFO]  Epoch 109 loss: 293.5068483352661; train accuracy: 0.8896875; test accuracy: 0.7141
+2025-09-24 23:57:01 [INFO]  Client 3 Finish Local Training--------|
+2025-09-24 23:57:01 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-24 23:57:01 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-24 23:57:01 [INFO]  Epoch 105: Running in Stage 1 - Global Alignment Only.
+2025-09-24 23:57:57 [INFO]  Epoch 105 loss: 346.6891059875488; train accuracy: 0.9227764423076923; test accuracy: 0.7669
+2025-09-24 23:57:57 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_4/epoch_105.pth
+2025-09-24 23:57:57 [INFO]  Epoch 106: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:58:52 [INFO]  Epoch 106 loss: 376.3524360656738; train accuracy: 0.9173076923076923; test accuracy: 0.7676
+2025-09-24 23:58:52 [INFO]  Epoch 107: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-24 23:59:47 [INFO]  Epoch 107 loss: 391.0540060997009; train accuracy: 0.9040264423076924; test accuracy: 0.7537
+2025-09-24 23:59:47 [INFO]  Epoch 108: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-25 00:00:45 [INFO]  Epoch 108 loss: 382.9390630722046; train accuracy: 0.9256610576923077; test accuracy: 0.783
+2025-09-25 00:00:45 [INFO]  Epoch 109: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-25 00:01:43 [INFO]  Epoch 109 loss: 380.69701290130615; train accuracy: 0.8709134615384615; test accuracy: 0.7449
+2025-09-25 00:01:43 [INFO]  Client 4 Finish Local Training--------|
+2025-09-25 00:01:43 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-09-25 00:01:43 [INFO]  Round 21 Finish--------|
+2025-09-25 00:01:43 [INFO]  Model variance: mean: 0.007345128338783979, sum: 82074.109375
+2025-09-25 00:01:43 [INFO]  g_protos_std: 1.009068250656128
+2025-09-25 00:01:49 [INFO]  The test accuracy (with prototype) of OneShotOurs+Ensemble: 0.9134
+2025-09-25 00:01:49 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.5/baselines_OneShotOurs+Ensemble_CIFAR10_results.yaml
+2025-09-25 00:01:49 [INFO]  Round 22 starts--------|
+2025-09-25 00:01:49 [INFO]  Client 0 Starts Local Trainning--------|
+2025-09-25 00:01:49 [INFO]  Epoch 110: Running in Stage 1 - Global Alignment Only.
+2025-09-25 00:02:37 [INFO]  Epoch 110 loss: 289.48630714416504; train accuracy: 0.8989165683962265; test accuracy: 0.6926
+2025-09-25 00:02:37 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_0/epoch_110.pth
+2025-09-25 00:02:37 [INFO]  Epoch 111: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-25 00:03:24 [INFO]  Epoch 111 loss: 312.68186235427856; train accuracy: 0.896484375; test accuracy: 0.7213
+2025-09-25 00:03:24 [INFO]  Epoch 112: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-25 00:04:13 [INFO]  Epoch 112 loss: 310.6388039588928; train accuracy: 0.8909198113207547; test accuracy: 0.6804
+2025-09-25 00:04:13 [INFO]  Epoch 113: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-25 00:04:59 [INFO]  Epoch 113 loss: 314.8349471092224; train accuracy: 0.9266656839622641; test accuracy: 0.7579
+2025-09-25 00:04:59 [INFO]  Epoch 114: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-25 00:05:46 [INFO]  Epoch 114 loss: 319.115421295166; train accuracy: 0.8768057193396226; test accuracy: 0.6752
+2025-09-25 00:05:46 [INFO]  Client 0 Finish Local Training--------|
+2025-09-25 00:05:46 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-09-25 00:05:46 [INFO]  Client 1 Starts Local Trainning--------|
+2025-09-25 00:05:46 [INFO]  Epoch 110: Running in Stage 1 - Global Alignment Only.
+2025-09-25 00:06:49 [INFO]  Epoch 110 loss: 353.7276430130005; train accuracy: 0.9496433423913043; test accuracy: 0.8065
+2025-09-25 00:06:50 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_1/epoch_110.pth
+2025-09-25 00:06:50 [INFO]  Epoch 111: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-25 00:07:54 [INFO]  Epoch 111 loss: 383.85551261901855; train accuracy: 0.8983242753623188; test accuracy: 0.7618
+2025-09-25 00:07:54 [INFO]  Epoch 112: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-25 00:08:56 [INFO]  Epoch 112 loss: 382.0862731933594; train accuracy: 0.9247056159420289; test accuracy: 0.8104
+2025-09-25 00:08:56 [INFO]  Epoch 113: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-25 00:09:59 [INFO]  Epoch 113 loss: 380.76837253570557; train accuracy: 0.951766304347826; test accuracy: 0.8152
+2025-09-25 00:09:59 [INFO]  Epoch 114: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-25 00:11:01 [INFO]  Epoch 114 loss: 389.54810762405396; train accuracy: 0.9414345561594203; test accuracy: 0.7973
+2025-09-25 00:11:01 [INFO]  Client 1 Finish Local Training--------|
+2025-09-25 00:11:01 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-09-25 00:11:01 [INFO]  Client 2 Starts Local Trainning--------|
+2025-09-25 00:11:01 [INFO]  Epoch 110: Running in Stage 1 - Global Alignment Only.
+2025-09-25 00:11:53 [INFO]  Epoch 110 loss: 308.61450242996216; train accuracy: 0.9076891447368421; test accuracy: 0.745
+2025-09-25 00:11:54 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_2/epoch_110.pth
+2025-09-25 00:11:54 [INFO]  Epoch 111: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-25 00:12:46 [INFO]  Epoch 111 loss: 347.56207942962646; train accuracy: 0.8910019188596491; test accuracy: 0.741
+2025-09-25 00:12:46 [INFO]  Epoch 112: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-25 00:13:37 [INFO]  Epoch 112 loss: 340.66959857940674; train accuracy: 0.8970668859649122; test accuracy: 0.7376
+2025-09-25 00:13:37 [INFO]  Epoch 113: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-25 00:14:31 [INFO]  Epoch 113 loss: 341.0735068321228; train accuracy: 0.8940515350877193; test accuracy: 0.7403
+2025-09-25 00:14:31 [INFO]  Epoch 114: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-25 00:15:26 [INFO]  Epoch 114 loss: 344.0256824493408; train accuracy: 0.899157072368421; test accuracy: 0.7559
+2025-09-25 00:15:26 [INFO]  Client 2 Finish Local Training--------|
+2025-09-25 00:15:26 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-09-25 00:15:26 [INFO]  Client 3 Starts Local Trainning--------|
+2025-09-25 00:15:26 [INFO]  Epoch 110: Running in Stage 1 - Global Alignment Only.
+2025-09-25 00:16:12 [INFO]  Epoch 110 loss: 273.12256383895874; train accuracy: 0.887109375; test accuracy: 0.6969
+2025-09-25 00:16:13 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.5/local_models/client_3/epoch_110.pth
+2025-09-25 00:16:13 [INFO]  Epoch 111: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-25 00:17:00 [INFO]  Epoch 111 loss: 307.538857460022; train accuracy: 0.9012109375; test accuracy: 0.7122
+2025-09-25 00:17:00 [INFO]  Epoch 112: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-25 00:17:47 [INFO]  Epoch 112 loss: 304.4473190307617; train accuracy: 0.9063671875; test accuracy: 0.697
+2025-09-25 00:17:47 [INFO]  Epoch 113: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-25 00:18:33 [INFO]  Epoch 113 loss: 301.807186126709; train accuracy: 0.85375; test accuracy: 0.663
+2025-09-25 00:18:33 [INFO]  Epoch 114: Running in Stage 2 - Local Task Fine-tuning.
+2025-09-25 00:19:20 [INFO]  Epoch 114 loss: 300.2221779823303; train accuracy: 0.9194140625; test accuracy: 0.6937
+2025-09-25 00:19:20 [INFO]  Client 3 Finish Local Training--------|
+2025-09-25 00:19:20 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-09-25 00:19:20 [INFO]  Client 4 Starts Local Trainning--------|
+2025-09-25 00:19:20 [INFO]  Epoch 110: Running in Stage 1 - Global Alignment Only.
