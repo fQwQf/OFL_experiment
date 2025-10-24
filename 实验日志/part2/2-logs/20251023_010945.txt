@@ -1,0 +1,1910 @@
+2025-10-23 01:09:46 [INFO]  Load config from ./configs/CIFAR10_alpha0.05.yaml
+2025-10-23 01:09:46 [INFO]  config: {'exp_name': 'CIFAR10_alpha0.05', 'dataset': {'data_name': 'CIFAR10', 'root_path': 'H:/codes/dataset', 'train_batch_size': 512, 'test_batch_size': 256, 'channels': 3, 'num_classes': 10, 'image_size': 32}, 'distribution': {'type': 'dirichlet', 'label_num_per_client': 2, 'alpha': 0.05}, 'client': {'num_clients': 5}, 'server': {'num_rounds': 50, 'frac_clients': 1.0, 'lr': 0.05, 'local_epochs': 1, 'optimizer': 'sgd', 'momentum': 0.9, 'weight_decay': 0.0001, 'loss_name': 'ce', 'model_name': 'resnet18', 'aggregated_by_datasize': True, 'lr_decay_per_round': 0.998}, 'device': 'cuda:0', 'checkpoint': {'save_path': './checkpoints/', 'save_freq': 5, 'result_file': 'CIFAR10_results.yaml'}, 'pretrain': {'lr': 0.01, 'epoch': 70, 'model_path': './pretrain/', 'momentum': 0.9, 'weight_decay': 0.0001, 'model_name': 'resnet18', 'model_file_name': 'resnet18-f37072fd.pth'}, 'DBCD': {'alpha_l_pa': 1, 'alpha_l_pb': 1, 'alpha_l_pc': 0.0, 'Beta_alpha': 0.2, 'unsup_method': 'infonce', 'contrastive_temperature': 0.5, 'encoder_epoch': 40, 'projector_epoch': 10, 'use_pretrain': False, 'aug_batch_size': 512, 'encoder_lr': 0.03, 'cls_optimizer': 'sgd', 'cls_lr': 0.05, 'supcon_temp': 0.07, 'super_gr': 100, 'aux_with_public': True}, 'etf': {'loss_name': 'ce'}, 'visualization': {'interval': 5, 'save_path': 'visualization/resnet18', 'vis_size': 16}, 'resume': True, 'resume_best': False, 'seed': 1, 'lambda_align_initial': 5.0, 'v9_config': {'use_adaptive_lambda': True, 'lambda_min': 0.1, 'lambda_max': 10.0, 'use_server_optimization': True, 'server_lr': 0.001, 'server_epochs': 20, 'gamma_etf_reg': 0.1}}
+2025-10-23 01:09:48 [INFO]  Dataset CIFAR10 loaded
+2025-10-23 01:09:48 [INFO]  Dataset index dict loaded from preprocessed_data/CIFAR10.pt
+2025-10-23 01:09:48 [INFO]  Data distribution generated correctly using the corrected dirichlet function.
+2025-10-23 01:09:48 [INFO]  Total assigned samples: 50000
+2025-10-23 01:09:48 [INFO]  OneshotOursV9 with a lot of things combined
+2025-10-23 01:09:48 [INFO]  V9 Config: Adaptive Lambda (Plan A): True, Server Optimization (Plan B): True
+2025-10-23 01:09:49 [INFO]  Initialized ETF fixed anchors with shape: torch.Size([10, 512])
+2025-10-23 01:09:49 [INFO]  {'use_adaptive_lambda': True, 'lambda_min': 0.1, 'lambda_max': 10.0, 'use_server_optimization': True, 'server_lr': 0.001, 'server_epochs': 20, 'gamma_etf_reg': 0.1}
+2025-10-23 01:09:49 [INFO]  Round 0 starts--------|
+2025-10-23 01:09:49 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:09:54 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:10:17 [INFO]  Epoch 0 loss: 475.72435092926025; train accuracy: 0.3185151237396884; test accuracy: 0.1003
+2025-10-23 01:10:17 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_0/epoch_0.pth
+2025-10-23 01:10:17 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:10:17 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:10:17 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:10:21 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:10:39 [INFO]  Epoch 0 loss: 403.37463760375977; train accuracy: 0.40596588774513487; test accuracy: 0.1134
+2025-10-23 01:10:39 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_1/epoch_0.pth
+2025-10-23 01:10:39 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:10:39 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:10:39 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:10:41 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:10:48 [INFO]  Epoch 0 loss: 142.03523540496826; train accuracy: 0.876295199830831; test accuracy: 0.1
+2025-10-23 01:10:49 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_2/epoch_0.pth
+2025-10-23 01:10:49 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:10:49 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:10:49 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:10:51 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:11:05 [INFO]  Epoch 0 loss: 250.6661024093628; train accuracy: 0.6926473608543848; test accuracy: 0.143
+2025-10-23 01:11:05 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_3/epoch_0.pth
+2025-10-23 01:11:05 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:11:05 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:11:05 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:11:07 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:11:18 [INFO]  Epoch 0 loss: 223.48077201843262; train accuracy: 0.5100719424460431; test accuracy: 0.1571
+2025-10-23 01:11:18 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_4/epoch_0.pth
+2025-10-23 01:11:18 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:11:18 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:11:18 [INFO]  Round 0 Finish--------|
+2025-10-23 01:11:18 [INFO]  Model variance: mean: 0.0004047196125611663, sum: 4522.3173828125
+2025-10-23 01:11:18 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:11:18 [INFO]  Server Epoch 10/20, Avg Loss: 0.0037
+2025-10-23 01:11:18 [INFO]  Server Epoch 20/20, Avg Loss: 0.0024
+2025-10-23 01:11:18 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:11:18 [INFO]  g_protos_std (global internal): 1.004381
+2025-10-23 01:11:18 [INFO]  inter_client_proto_std (cross-client): 0.005439
+2025-10-23 01:11:18 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:11:23 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.2517
+2025-10-23 01:11:23 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:11:23 [INFO]  Round 1 starts--------|
+2025-10-23 01:11:23 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:11:25 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:11:46 [INFO]  Epoch 1 loss: 430.7337827682495; train accuracy: 0.4692287547466283; test accuracy: 0.1666
+2025-10-23 01:11:46 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:11:46 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:11:46 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:11:48 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:12:06 [INFO]  Epoch 1 loss: 359.99892807006836; train accuracy: 0.3743331580133744; test accuracy: 0.1
+2025-10-23 01:12:06 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:12:06 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:12:06 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:12:06 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:12:14 [INFO]  Epoch 1 loss: 100.94548320770264; train accuracy: 0.8720659758934236; test accuracy: 0.1144
+2025-10-23 01:12:14 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:12:14 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:12:14 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:12:15 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:12:30 [INFO]  Epoch 1 loss: 220.11137199401855; train accuracy: 0.7669952762374204; test accuracy: 0.1567
+2025-10-23 01:12:30 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:12:30 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:12:30 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:12:31 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:12:41 [INFO]  Epoch 1 loss: 196.92727756500244; train accuracy: 0.4549640287769784; test accuracy: 0.1044
+2025-10-23 01:12:41 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:12:41 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:12:41 [INFO]  Round 1 Finish--------|
+2025-10-23 01:12:41 [INFO]  Model variance: mean: 0.0004980652593076229, sum: 5565.357421875
+2025-10-23 01:12:41 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:12:42 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:12:42 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:12:42 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:12:42 [INFO]  g_protos_std (global internal): 1.001870
+2025-10-23 01:12:42 [INFO]  inter_client_proto_std (cross-client): 0.006992
+2025-10-23 01:12:42 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:12:46 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.2974
+2025-10-23 01:12:46 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:12:46 [INFO]  Round 2 starts--------|
+2025-10-23 01:12:46 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:12:48 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:13:09 [INFO]  Epoch 2 loss: 417.7583055496216; train accuracy: 0.5039282440748986; test accuracy: 0.1754
+2025-10-23 01:13:09 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:13:09 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:13:09 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:13:10 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:13:28 [INFO]  Epoch 2 loss: 347.7078437805176; train accuracy: 0.6244646479825682; test accuracy: 0.1766
+2025-10-23 01:13:28 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:13:28 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:13:28 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:13:29 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:13:37 [INFO]  Epoch 2 loss: 94.6421890258789; train accuracy: 0.5428208923662508; test accuracy: 0.1409
+2025-10-23 01:13:37 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:13:37 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:13:37 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:13:38 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:13:51 [INFO]  Epoch 2 loss: 212.3903455734253; train accuracy: 0.6528034504004929; test accuracy: 0.1306
+2025-10-23 01:13:51 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:13:51 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:13:51 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:13:53 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:14:03 [INFO]  Epoch 2 loss: 189.8932933807373; train accuracy: 0.3768345323741007; test accuracy: 0.1289
+2025-10-23 01:14:03 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:14:03 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:14:03 [INFO]  Round 2 Finish--------|
+2025-10-23 01:14:03 [INFO]  Model variance: mean: 0.0005670946557074785, sum: 6336.6884765625
+2025-10-23 01:14:03 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:14:03 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:14:03 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:14:03 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:14:03 [INFO]  g_protos_std (global internal): 0.999221
+2025-10-23 01:14:03 [INFO]  inter_client_proto_std (cross-client): 0.008434
+2025-10-23 01:14:03 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:14:07 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.3009
+2025-10-23 01:14:07 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:14:07 [INFO]  Round 3 starts--------|
+2025-10-23 01:14:07 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:14:09 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:14:31 [INFO]  Epoch 3 loss: 406.74787044525146; train accuracy: 0.49986905853083674; test accuracy: 0.1713
+2025-10-23 01:14:31 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:14:31 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:14:31 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:14:33 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:14:52 [INFO]  Epoch 3 loss: 339.9889030456543; train accuracy: 0.39890299797129763; test accuracy: 0.1065
+2025-10-23 01:14:52 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:14:52 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:14:52 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:14:53 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:15:00 [INFO]  Epoch 3 loss: 93.24037027359009; train accuracy: 0.7686614506238105; test accuracy: 0.1382
+2025-10-23 01:15:00 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:15:00 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:15:00 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:15:01 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:15:16 [INFO]  Epoch 3 loss: 208.40805387496948; train accuracy: 0.8712261244608749; test accuracy: 0.1779
+2025-10-23 01:15:16 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:15:16 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:15:16 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:15:17 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:15:27 [INFO]  Epoch 3 loss: 189.1025514602661; train accuracy: 0.5117985611510791; test accuracy: 0.124
+2025-10-23 01:15:27 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:15:27 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:15:27 [INFO]  Round 3 Finish--------|
+2025-10-23 01:15:27 [INFO]  Model variance: mean: 0.0006291834870353341, sum: 7030.4658203125
+2025-10-23 01:15:27 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:15:27 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:15:27 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:15:27 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:15:27 [INFO]  g_protos_std (global internal): 0.996334
+2025-10-23 01:15:27 [INFO]  inter_client_proto_std (cross-client): 0.009990
+2025-10-23 01:15:27 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:15:31 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.3195
+2025-10-23 01:15:31 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:15:31 [INFO]  Round 4 starts--------|
+2025-10-23 01:15:31 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:15:33 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:15:56 [INFO]  Epoch 4 loss: 399.1548767089844; train accuracy: 0.45613460783029985; test accuracy: 0.1679
+2025-10-23 01:15:56 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:15:56 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:15:56 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:15:58 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:16:16 [INFO]  Epoch 4 loss: 335.1648254394531; train accuracy: 0.37696295739725; test accuracy: 0.1012
+2025-10-23 01:16:16 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:16:16 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:16:16 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:16:17 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:16:25 [INFO]  Epoch 4 loss: 93.21112632751465; train accuracy: 0.8843307253119053; test accuracy: 0.116
+2025-10-23 01:16:25 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:16:25 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:16:25 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:16:26 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:16:41 [INFO]  Epoch 4 loss: 206.06819820404053; train accuracy: 0.7812692544670363; test accuracy: 0.1596
+2025-10-23 01:16:41 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:16:41 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:16:41 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:16:41 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:16:52 [INFO]  Epoch 4 loss: 184.86408519744873; train accuracy: 0.5789928057553957; test accuracy: 0.1628
+2025-10-23 01:16:52 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:16:52 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:16:52 [INFO]  Round 4 Finish--------|
+2025-10-23 01:16:52 [INFO]  Model variance: mean: 0.0006801848066970706, sum: 7600.35205078125
+2025-10-23 01:16:52 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:16:52 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:16:53 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:16:53 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:16:53 [INFO]  g_protos_std (global internal): 0.993650
+2025-10-23 01:16:53 [INFO]  inter_client_proto_std (cross-client): 0.011407
+2025-10-23 01:16:53 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:16:57 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.3248
+2025-10-23 01:16:57 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:16:57 [INFO]  Round 5 starts--------|
+2025-10-23 01:16:57 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:16:59 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:17:22 [INFO]  Epoch 5 loss: 393.63726139068604; train accuracy: 0.5430797433547204; test accuracy: 0.1917
+2025-10-23 01:17:22 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_0/epoch_5.pth
+2025-10-23 01:17:22 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:17:22 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:17:22 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:17:24 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:17:43 [INFO]  Epoch 5 loss: 329.0833978652954; train accuracy: 0.6285220527462619; test accuracy: 0.1751
+2025-10-23 01:17:44 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_1/epoch_5.pth
+2025-10-23 01:17:44 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:17:44 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:17:44 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:17:44 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:17:52 [INFO]  Epoch 5 loss: 92.92535591125488; train accuracy: 0.5901882004652146; test accuracy: 0.128
+2025-10-23 01:17:52 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_2/epoch_5.pth
+2025-10-23 01:17:52 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:17:52 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:17:52 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:17:54 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:18:08 [INFO]  Epoch 5 loss: 204.78281784057617; train accuracy: 0.8697884575888273; test accuracy: 0.1794
+2025-10-23 01:18:08 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_3/epoch_5.pth
+2025-10-23 01:18:08 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:18:08 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:18:08 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:18:09 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:18:20 [INFO]  Epoch 5 loss: 182.45356464385986; train accuracy: 0.5876258992805755; test accuracy: 0.1905
+2025-10-23 01:18:20 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_4/epoch_5.pth
+2025-10-23 01:18:20 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:18:20 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:18:20 [INFO]  Round 5 Finish--------|
+2025-10-23 01:18:20 [INFO]  Model variance: mean: 0.0007318308926187456, sum: 8177.44287109375
+2025-10-23 01:18:20 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:18:20 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:18:20 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:18:20 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:18:20 [INFO]  g_protos_std (global internal): 0.990880
+2025-10-23 01:18:20 [INFO]  inter_client_proto_std (cross-client): 0.012844
+2025-10-23 01:18:20 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:18:25 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.3342
+2025-10-23 01:18:25 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:18:25 [INFO]  Round 6 starts--------|
+2025-10-23 01:18:25 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:18:27 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:18:49 [INFO]  Epoch 6 loss: 381.7724494934082; train accuracy: 0.6010868141940553; test accuracy: 0.2199
+2025-10-23 01:18:49 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:18:49 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:18:49 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:18:51 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:19:10 [INFO]  Epoch 6 loss: 324.504846572876; train accuracy: 0.42099331279585245; test accuracy: 0.1153
+2025-10-23 01:19:10 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:19:10 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:19:10 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:19:11 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:19:18 [INFO]  Epoch 6 loss: 91.1947193145752; train accuracy: 0.8817931909494607; test accuracy: 0.1056
+2025-10-23 01:19:18 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:19:18 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:19:18 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:19:20 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:19:34 [INFO]  Epoch 6 loss: 204.77209663391113; train accuracy: 0.6775518586978846; test accuracy: 0.1405
+2025-10-23 01:19:34 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:19:34 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:19:34 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:19:35 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:19:45 [INFO]  Epoch 6 loss: 178.93940925598145; train accuracy: 0.3683453237410072; test accuracy: 0.1398
+2025-10-23 01:19:45 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:19:45 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:19:45 [INFO]  Round 6 Finish--------|
+2025-10-23 01:19:45 [INFO]  Model variance: mean: 0.0007804780034348369, sum: 8721.0234375
+2025-10-23 01:19:45 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:19:45 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:19:45 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:19:45 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:19:45 [INFO]  g_protos_std (global internal): 0.987962
+2025-10-23 01:19:45 [INFO]  inter_client_proto_std (cross-client): 0.014276
+2025-10-23 01:19:45 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:19:50 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.3639
+2025-10-23 01:19:50 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:19:50 [INFO]  Round 7 starts--------|
+2025-10-23 01:19:50 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:19:51 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:20:12 [INFO]  Epoch 7 loss: 371.68347930908203; train accuracy: 0.562000785648815; test accuracy: 0.2093
+2025-10-23 01:20:12 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:20:12 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:20:12 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:20:14 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:20:32 [INFO]  Epoch 7 loss: 316.84027004241943; train accuracy: 0.42760537981816815; test accuracy: 0.1359
+2025-10-23 01:20:32 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:20:32 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:20:32 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:20:33 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:20:40 [INFO]  Epoch 7 loss: 91.15920639038086; train accuracy: 0.876295199830831; test accuracy: 0.1
+2025-10-23 01:20:40 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:20:40 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:20:40 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:20:41 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:20:55 [INFO]  Epoch 7 loss: 200.05853271484375; train accuracy: 0.8556171698500719; test accuracy: 0.1749
+2025-10-23 01:20:55 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:20:55 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:20:55 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:20:56 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:21:06 [INFO]  Epoch 7 loss: 177.9401397705078; train accuracy: 0.5884892086330935; test accuracy: 0.1634
+2025-10-23 01:21:06 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:21:06 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:21:06 [INFO]  Round 7 Finish--------|
+2025-10-23 01:21:06 [INFO]  Model variance: mean: 0.0008292580605484545, sum: 9266.08984375
+2025-10-23 01:21:06 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:21:06 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:21:06 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:21:06 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:21:06 [INFO]  g_protos_std (global internal): 0.984985
+2025-10-23 01:21:06 [INFO]  inter_client_proto_std (cross-client): 0.015915
+2025-10-23 01:21:06 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:21:11 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.3653
+2025-10-23 01:21:11 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:21:11 [INFO]  Round 8 starts--------|
+2025-10-23 01:21:11 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:21:13 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:21:35 [INFO]  Epoch 8 loss: 366.78003787994385; train accuracy: 0.5903496137226659; test accuracy: 0.2273
+2025-10-23 01:21:35 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:21:35 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:21:35 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:21:37 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:21:56 [INFO]  Epoch 8 loss: 310.6834468841553; train accuracy: 0.6903599068299647; test accuracy: 0.2117
+2025-10-23 01:21:56 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:21:56 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:21:56 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:21:56 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:22:04 [INFO]  Epoch 8 loss: 90.07462978363037; train accuracy: 0.6978219496722351; test accuracy: 0.1394
+2025-10-23 01:22:04 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:22:04 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:22:04 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:22:05 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:22:19 [INFO]  Epoch 8 loss: 196.10198068618774; train accuracy: 0.8782090778393921; test accuracy: 0.1811
+2025-10-23 01:22:19 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:22:19 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:22:19 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:22:20 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:22:30 [INFO]  Epoch 8 loss: 173.9420347213745; train accuracy: 0.6086330935251798; test accuracy: 0.1768
+2025-10-23 01:22:30 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:22:30 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:22:30 [INFO]  Round 8 Finish--------|
+2025-10-23 01:22:30 [INFO]  Model variance: mean: 0.0008729638648219407, sum: 9754.4560546875
+2025-10-23 01:22:30 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:22:30 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:22:30 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:22:30 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:22:30 [INFO]  g_protos_std (global internal): 0.982109
+2025-10-23 01:22:30 [INFO]  inter_client_proto_std (cross-client): 0.017378
+2025-10-23 01:22:30 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:22:35 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.3783
+2025-10-23 01:22:35 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:22:35 [INFO]  Round 9 starts--------|
+2025-10-23 01:22:35 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:22:37 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:22:59 [INFO]  Epoch 9 loss: 357.8002290725708; train accuracy: 0.5790886473746235; test accuracy: 0.2081
+2025-10-23 01:22:59 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:22:59 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:22:59 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:23:01 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:23:20 [INFO]  Epoch 9 loss: 305.1239013671875; train accuracy: 0.5381320910661959; test accuracy: 0.1704
+2025-10-23 01:23:20 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:23:20 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:23:20 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:23:21 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:23:29 [INFO]  Epoch 9 loss: 90.12512636184692; train accuracy: 0.8955381687460351; test accuracy: 0.1177
+2025-10-23 01:23:29 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:23:29 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:23:29 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:23:30 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:23:45 [INFO]  Epoch 9 loss: 195.75000190734863; train accuracy: 0.8939207229410556; test accuracy: 0.183
+2025-10-23 01:23:45 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:23:45 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:23:45 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:23:45 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:23:56 [INFO]  Epoch 9 loss: 174.85070991516113; train accuracy: 0.40906474820143884; test accuracy: 0.1419
+2025-10-23 01:23:56 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:23:56 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:23:56 [INFO]  Round 9 Finish--------|
+2025-10-23 01:23:56 [INFO]  Model variance: mean: 0.0009147627279162407, sum: 10221.5146484375
+2025-10-23 01:23:56 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:23:56 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:23:56 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:23:56 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:23:56 [INFO]  g_protos_std (global internal): 0.979391
+2025-10-23 01:23:56 [INFO]  inter_client_proto_std (cross-client): 0.018812
+2025-10-23 01:23:56 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:24:01 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4146
+2025-10-23 01:24:01 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:24:01 [INFO]  Round 10 starts--------|
+2025-10-23 01:24:01 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:24:03 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:24:24 [INFO]  Epoch 10 loss: 354.84936332702637; train accuracy: 0.6034437606389944; test accuracy: 0.2297
+2025-10-23 01:24:24 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_0/epoch_10.pth
+2025-10-23 01:24:24 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:24:24 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:24:24 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:24:26 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:24:46 [INFO]  Epoch 10 loss: 302.6629390716553; train accuracy: 0.6781876925388834; test accuracy: 0.2022
+2025-10-23 01:24:46 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_1/epoch_10.pth
+2025-10-23 01:24:46 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:24:46 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:24:46 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:24:47 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:24:54 [INFO]  Epoch 10 loss: 89.3368616104126; train accuracy: 0.8786212729964051; test accuracy: 0.1028
+2025-10-23 01:24:55 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_2/epoch_10.pth
+2025-10-23 01:24:55 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:24:55 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:24:55 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:24:56 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:25:10 [INFO]  Epoch 10 loss: 193.06792736053467; train accuracy: 0.7830149928116656; test accuracy: 0.1621
+2025-10-23 01:25:10 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_3/epoch_10.pth
+2025-10-23 01:25:10 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:25:10 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:25:10 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:25:11 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:25:22 [INFO]  Epoch 10 loss: 172.9263458251953; train accuracy: 0.6064748201438849; test accuracy: 0.1853
+2025-10-23 01:25:22 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_4/epoch_10.pth
+2025-10-23 01:25:22 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:25:22 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:25:22 [INFO]  Round 10 Finish--------|
+2025-10-23 01:25:22 [INFO]  Model variance: mean: 0.0009539687889628112, sum: 10659.6015625
+2025-10-23 01:25:22 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:25:22 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:25:22 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:25:22 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:25:22 [INFO]  g_protos_std (global internal): 0.976718
+2025-10-23 01:25:22 [INFO]  inter_client_proto_std (cross-client): 0.020167
+2025-10-23 01:25:22 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:25:27 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.397
+2025-10-23 01:25:27 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:25:27 [INFO]  Round 11 starts--------|
+2025-10-23 01:25:27 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:25:29 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:25:49 [INFO]  Epoch 11 loss: 350.63561248779297; train accuracy: 0.6126751342150059; test accuracy: 0.2354
+2025-10-23 01:25:49 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:25:49 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:25:49 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:25:51 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:26:10 [INFO]  Epoch 11 loss: 296.56463146209717; train accuracy: 0.6064317379217071; test accuracy: 0.1954
+2025-10-23 01:26:10 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:26:10 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:26:10 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:26:10 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:26:19 [INFO]  Epoch 11 loss: 88.73597288131714; train accuracy: 0.8832734193275534; test accuracy: 0.1076
+2025-10-23 01:26:19 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:26:19 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:26:19 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:26:20 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:26:34 [INFO]  Epoch 11 loss: 188.25651931762695; train accuracy: 0.864859314027521; test accuracy: 0.1785
+2025-10-23 01:26:34 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:26:34 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:26:34 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:26:35 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:26:45 [INFO]  Epoch 11 loss: 170.66577911376953; train accuracy: 0.5962589928057555; test accuracy: 0.1865
+2025-10-23 01:26:45 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:26:45 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:26:45 [INFO]  Round 11 Finish--------|
+2025-10-23 01:26:45 [INFO]  Model variance: mean: 0.0009932961547747254, sum: 11099.0439453125
+2025-10-23 01:26:45 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:26:45 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:26:45 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:26:45 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:26:45 [INFO]  g_protos_std (global internal): 0.974053
+2025-10-23 01:26:45 [INFO]  inter_client_proto_std (cross-client): 0.021440
+2025-10-23 01:26:45 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:26:50 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4242
+2025-10-23 01:26:50 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:26:50 [INFO]  Round 12 starts--------|
+2025-10-23 01:26:50 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:26:52 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:27:12 [INFO]  Epoch 12 loss: 342.66748428344727; train accuracy: 0.5499541704857929; test accuracy: 0.2286
+2025-10-23 01:27:12 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:27:12 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:27:12 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:27:14 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:27:32 [INFO]  Epoch 12 loss: 289.9318552017212; train accuracy: 0.5463971748440904; test accuracy: 0.1589
+2025-10-23 01:27:32 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:27:32 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:27:32 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:27:33 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:27:40 [INFO]  Epoch 12 loss: 87.74536800384521; train accuracy: 0.8767181222245718; test accuracy: 0.1003
+2025-10-23 01:27:40 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:27:40 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:27:40 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:27:42 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:27:56 [INFO]  Epoch 12 loss: 187.0521697998047; train accuracy: 0.7457383446292873; test accuracy: 0.1513
+2025-10-23 01:27:56 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:27:56 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:27:56 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:27:57 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:28:08 [INFO]  Epoch 12 loss: 165.19076251983643; train accuracy: 0.522589928057554; test accuracy: 0.1734
+2025-10-23 01:28:08 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:28:08 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:28:08 [INFO]  Round 12 Finish--------|
+2025-10-23 01:28:08 [INFO]  Model variance: mean: 0.0010337538551539183, sum: 11551.115234375
+2025-10-23 01:28:08 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:28:08 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:28:08 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:28:08 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:28:08 [INFO]  g_protos_std (global internal): 0.971198
+2025-10-23 01:28:08 [INFO]  inter_client_proto_std (cross-client): 0.022841
+2025-10-23 01:28:08 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:28:13 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4302
+2025-10-23 01:28:13 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:28:13 [INFO]  Round 13 starts--------|
+2025-10-23 01:28:13 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:28:14 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:28:36 [INFO]  Epoch 13 loss: 338.8184471130371; train accuracy: 0.5536860023569464; test accuracy: 0.2209
+2025-10-23 01:28:36 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:28:36 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:28:36 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:28:38 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:28:58 [INFO]  Epoch 13 loss: 285.9714002609253; train accuracy: 0.733864302351792; test accuracy: 0.26
+2025-10-23 01:28:58 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:28:58 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:28:58 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:28:59 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:29:06 [INFO]  Epoch 13 loss: 87.74473428726196; train accuracy: 0.8902516388242757; test accuracy: 0.1422
+2025-10-23 01:29:06 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:29:06 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:29:06 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:29:08 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:29:23 [INFO]  Epoch 13 loss: 187.7663025856018; train accuracy: 0.831587594988704; test accuracy: 0.1706
+2025-10-23 01:29:23 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:29:23 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:29:23 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:29:24 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:29:34 [INFO]  Epoch 13 loss: 167.29065608978271; train accuracy: 0.6650359712230216; test accuracy: 0.2067
+2025-10-23 01:29:34 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:29:34 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:29:34 [INFO]  Round 13 Finish--------|
+2025-10-23 01:29:34 [INFO]  Model variance: mean: 0.0010687941685318947, sum: 11942.654296875
+2025-10-23 01:29:34 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:29:34 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:29:34 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:29:34 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:29:34 [INFO]  g_protos_std (global internal): 0.968712
+2025-10-23 01:29:34 [INFO]  inter_client_proto_std (cross-client): 0.024096
+2025-10-23 01:29:34 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:29:39 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.434
+2025-10-23 01:29:39 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:29:39 [INFO]  Round 14 starts--------|
+2025-10-23 01:29:39 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:29:41 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:30:02 [INFO]  Epoch 14 loss: 329.965295791626; train accuracy: 0.6105145999738117; test accuracy: 0.26
+2025-10-23 01:30:02 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:30:02 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:30:02 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:30:04 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:30:23 [INFO]  Epoch 14 loss: 280.16936016082764; train accuracy: 0.6577503944699076; test accuracy: 0.2219
+2025-10-23 01:30:23 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:30:23 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:30:23 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:30:23 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:30:31 [INFO]  Epoch 14 loss: 86.91897773742676; train accuracy: 0.894903785155424; test accuracy: 0.1187
+2025-10-23 01:30:31 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:30:31 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:30:31 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:30:33 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:30:47 [INFO]  Epoch 14 loss: 186.1579041481018; train accuracy: 0.891148079687821; test accuracy: 0.1829
+2025-10-23 01:30:47 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:30:47 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:30:47 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:30:48 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:30:58 [INFO]  Epoch 14 loss: 162.65517139434814; train accuracy: 0.5907913669064748; test accuracy: 0.1761
+2025-10-23 01:30:58 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:30:58 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:30:58 [INFO]  Round 14 Finish--------|
+2025-10-23 01:30:58 [INFO]  Model variance: mean: 0.0011079172836616635, sum: 12379.814453125
+2025-10-23 01:30:58 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:30:58 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:30:58 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:30:58 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:30:58 [INFO]  g_protos_std (global internal): 0.966035
+2025-10-23 01:30:58 [INFO]  inter_client_proto_std (cross-client): 0.025467
+2025-10-23 01:30:58 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:31:03 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4411
+2025-10-23 01:31:03 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:31:03 [INFO]  Round 15 starts--------|
+2025-10-23 01:31:03 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:31:05 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:31:26 [INFO]  Epoch 15 loss: 328.2880172729492; train accuracy: 0.666426607306534; test accuracy: 0.2658
+2025-10-23 01:31:27 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_0/epoch_15.pth
+2025-10-23 01:31:27 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:31:27 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:31:27 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:31:28 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:31:48 [INFO]  Epoch 15 loss: 278.8597068786621; train accuracy: 0.761214215944098; test accuracy: 0.2323
+2025-10-23 01:31:48 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_1/epoch_15.pth
+2025-10-23 01:31:48 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:31:48 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:31:48 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:31:49 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:31:57 [INFO]  Epoch 15 loss: 86.94152402877808; train accuracy: 0.876295199830831; test accuracy: 0.1
+2025-10-23 01:31:57 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_2/epoch_15.pth
+2025-10-23 01:31:57 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:31:57 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:31:57 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:31:58 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:32:12 [INFO]  Epoch 15 loss: 181.17425918579102; train accuracy: 0.8297391661532142; test accuracy: 0.171
+2025-10-23 01:32:13 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_3/epoch_15.pth
+2025-10-23 01:32:13 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:32:13 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:32:13 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:32:14 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:32:24 [INFO]  Epoch 15 loss: 160.91769790649414; train accuracy: 0.601294964028777; test accuracy: 0.1707
+2025-10-23 01:32:25 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_4/epoch_15.pth
+2025-10-23 01:32:25 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:32:25 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:32:25 [INFO]  Round 15 Finish--------|
+2025-10-23 01:32:25 [INFO]  Model variance: mean: 0.0011435819324105978, sum: 12778.3291015625
+2025-10-23 01:32:25 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:32:25 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:32:25 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:32:25 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:32:25 [INFO]  g_protos_std (global internal): 0.963512
+2025-10-23 01:32:25 [INFO]  inter_client_proto_std (cross-client): 0.026729
+2025-10-23 01:32:25 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:32:29 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4277
+2025-10-23 01:32:29 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:32:29 [INFO]  Round 16 starts--------|
+2025-10-23 01:32:29 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:32:32 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:32:52 [INFO]  Epoch 16 loss: 325.06029987335205; train accuracy: 0.7273798612020427; test accuracy: 0.2734
+2025-10-23 01:32:52 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:32:52 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:32:52 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:32:54 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:33:11 [INFO]  Epoch 16 loss: 275.66704654693604; train accuracy: 0.6958449169734766; test accuracy: 0.2243
+2025-10-23 01:33:11 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:33:11 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:33:11 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:33:12 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:33:20 [INFO]  Epoch 16 loss: 86.32111263275146; train accuracy: 0.6252907591456968; test accuracy: 0.1461
+2025-10-23 01:33:20 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:33:20 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:33:20 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:33:21 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:33:35 [INFO]  Epoch 16 loss: 180.34274673461914; train accuracy: 0.7754158964879853; test accuracy: 0.1604
+2025-10-23 01:33:35 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:33:35 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:33:35 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:33:36 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:33:46 [INFO]  Epoch 16 loss: 159.95423889160156; train accuracy: 0.6699280575539568; test accuracy: 0.2092
+2025-10-23 01:33:46 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:33:46 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:33:46 [INFO]  Round 16 Finish--------|
+2025-10-23 01:33:46 [INFO]  Model variance: mean: 0.001176888239569962, sum: 13150.4931640625
+2025-10-23 01:33:46 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:33:46 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:33:46 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:33:46 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:33:46 [INFO]  g_protos_std (global internal): 0.961143
+2025-10-23 01:33:46 [INFO]  inter_client_proto_std (cross-client): 0.027968
+2025-10-23 01:33:46 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:33:50 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4674
+2025-10-23 01:33:50 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:33:50 [INFO]  Round 17 starts--------|
+2025-10-23 01:33:50 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:33:52 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:34:12 [INFO]  Epoch 17 loss: 315.63359546661377; train accuracy: 0.6242634542359565; test accuracy: 0.2587
+2025-10-23 01:34:12 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:34:12 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:34:12 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:34:14 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:34:34 [INFO]  Epoch 17 loss: 271.91872787475586; train accuracy: 0.8011120294537531; test accuracy: 0.2916
+2025-10-23 01:34:34 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:34:34 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:34:34 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:34:35 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:34:42 [INFO]  Epoch 17 loss: 86.11271619796753; train accuracy: 0.8765066610277014; test accuracy: 0.1003
+2025-10-23 01:34:42 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:34:42 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:34:42 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:34:43 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:34:57 [INFO]  Epoch 17 loss: 177.17139148712158; train accuracy: 0.7476894639556377; test accuracy: 0.156
+2025-10-23 01:34:57 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:34:57 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:34:57 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:34:58 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:35:08 [INFO]  Epoch 17 loss: 156.86150360107422; train accuracy: 0.5667625899280575; test accuracy: 0.1902
+2025-10-23 01:35:08 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:35:08 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:35:08 [INFO]  Round 17 Finish--------|
+2025-10-23 01:35:08 [INFO]  Model variance: mean: 0.0012124830391258001, sum: 13548.2275390625
+2025-10-23 01:35:08 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:35:09 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:35:09 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:35:09 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:35:09 [INFO]  g_protos_std (global internal): 0.958685
+2025-10-23 01:35:09 [INFO]  inter_client_proto_std (cross-client): 0.029161
+2025-10-23 01:35:09 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:35:13 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4625
+2025-10-23 01:35:13 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:35:13 [INFO]  Round 18 starts--------|
+2025-10-23 01:35:13 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:35:15 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:35:35 [INFO]  Epoch 18 loss: 312.29843044281006; train accuracy: 0.5671729736807647; test accuracy: 0.2273
+2025-10-23 01:35:35 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:35:35 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:35:35 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:35:37 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:35:56 [INFO]  Epoch 18 loss: 262.8802089691162; train accuracy: 0.7749643098655046; test accuracy: 0.292
+2025-10-23 01:35:56 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:35:56 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:35:56 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:35:56 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:36:05 [INFO]  Epoch 18 loss: 85.34829521179199; train accuracy: 0.8923662507929795; test accuracy: 0.1497
+2025-10-23 01:36:05 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:36:05 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:36:05 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:36:06 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:36:19 [INFO]  Epoch 18 loss: 178.40829277038574; train accuracy: 0.6433559252413227; test accuracy: 0.1288
+2025-10-23 01:36:19 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:36:19 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:36:19 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:36:20 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:36:30 [INFO]  Epoch 18 loss: 155.13814067840576; train accuracy: 0.538273381294964; test accuracy: 0.137
+2025-10-23 01:36:30 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:36:30 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:36:30 [INFO]  Round 18 Finish--------|
+2025-10-23 01:36:30 [INFO]  Model variance: mean: 0.00124610576312989, sum: 13923.92578125
+2025-10-23 01:36:30 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:36:30 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:36:30 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:36:30 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:36:30 [INFO]  g_protos_std (global internal): 0.956393
+2025-10-23 01:36:30 [INFO]  inter_client_proto_std (cross-client): 0.030334
+2025-10-23 01:36:30 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:36:34 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4799
+2025-10-23 01:36:34 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:36:34 [INFO]  Round 19 starts--------|
+2025-10-23 01:36:34 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:36:37 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:36:57 [INFO]  Epoch 19 loss: 306.50292205810547; train accuracy: 0.747086552311117; test accuracy: 0.2985
+2025-10-23 01:36:57 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:36:57 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:36:57 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:36:59 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:37:17 [INFO]  Epoch 19 loss: 260.9533271789551; train accuracy: 0.6563227890900895; test accuracy: 0.2447
+2025-10-23 01:37:17 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:37:17 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:37:17 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:37:17 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:37:24 [INFO]  Epoch 19 loss: 84.86654329299927; train accuracy: 0.8968069359272574; test accuracy: 0.1174
+2025-10-23 01:37:24 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:37:24 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:37:24 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:37:25 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:37:39 [INFO]  Epoch 19 loss: 177.59683799743652; train accuracy: 0.8798521256931608; test accuracy: 0.1798
+2025-10-23 01:37:39 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:37:39 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:37:39 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:37:40 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:37:50 [INFO]  Epoch 19 loss: 153.27864170074463; train accuracy: 0.6644604316546763; test accuracy: 0.2149
+2025-10-23 01:37:50 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:37:50 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:37:50 [INFO]  Round 19 Finish--------|
+2025-10-23 01:37:50 [INFO]  Model variance: mean: 0.0012784183491021395, sum: 14284.9853515625
+2025-10-23 01:37:50 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:37:50 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:37:50 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:37:50 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:37:50 [INFO]  g_protos_std (global internal): 0.954132
+2025-10-23 01:37:50 [INFO]  inter_client_proto_std (cross-client): 0.031469
+2025-10-23 01:37:50 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:37:55 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4739
+2025-10-23 01:37:55 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:37:55 [INFO]  Round 20 starts--------|
+2025-10-23 01:37:55 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:37:57 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:38:18 [INFO]  Epoch 20 loss: 302.88242530822754; train accuracy: 0.7085242896425298; test accuracy: 0.2897
+2025-10-23 01:38:18 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_0/epoch_20.pth
+2025-10-23 01:38:18 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:38:18 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:38:18 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:38:20 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:38:38 [INFO]  Epoch 20 loss: 258.6076078414917; train accuracy: 0.7433315801337441; test accuracy: 0.2578
+2025-10-23 01:38:38 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_1/epoch_20.pth
+2025-10-23 01:38:38 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:38:38 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:38:38 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:38:39 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:38:47 [INFO]  Epoch 20 loss: 84.54348421096802; train accuracy: 0.7631634595051808; test accuracy: 0.1457
+2025-10-23 01:38:48 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_2/epoch_20.pth
+2025-10-23 01:38:48 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:38:48 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:38:48 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:38:49 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:39:03 [INFO]  Epoch 20 loss: 173.8639268875122; train accuracy: 0.8441158348736907; test accuracy: 0.1731
+2025-10-23 01:39:04 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_3/epoch_20.pth
+2025-10-23 01:39:04 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:39:04 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:39:04 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:39:05 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:39:15 [INFO]  Epoch 20 loss: 154.17278480529785; train accuracy: 0.5693525179856115; test accuracy: 0.1541
+2025-10-23 01:39:15 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_4/epoch_20.pth
+2025-10-23 01:39:15 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:39:15 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:39:15 [INFO]  Round 20 Finish--------|
+2025-10-23 01:39:15 [INFO]  Model variance: mean: 0.0013095049653202295, sum: 14632.345703125
+2025-10-23 01:39:15 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:39:15 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:39:15 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:39:15 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:39:15 [INFO]  g_protos_std (global internal): 0.952058
+2025-10-23 01:39:15 [INFO]  inter_client_proto_std (cross-client): 0.032532
+2025-10-23 01:39:15 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:39:19 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4755
+2025-10-23 01:39:19 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:39:19 [INFO]  Round 21 starts--------|
+2025-10-23 01:39:19 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:39:21 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:39:42 [INFO]  Epoch 21 loss: 297.9316158294678; train accuracy: 0.7063637554013356; test accuracy: 0.2814
+2025-10-23 01:39:42 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:39:42 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:39:42 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:39:44 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:40:02 [INFO]  Epoch 21 loss: 254.0841646194458; train accuracy: 0.6228116312269892; test accuracy: 0.1917
+2025-10-23 01:40:02 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:40:02 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:40:02 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:40:03 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:40:11 [INFO]  Epoch 21 loss: 83.58386993408203; train accuracy: 0.888137026855572; test accuracy: 0.1181
+2025-10-23 01:40:11 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:40:11 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:40:11 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:40:12 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:40:26 [INFO]  Epoch 21 loss: 171.2690715789795; train accuracy: 0.860135551447936; test accuracy: 0.1783
+2025-10-23 01:40:26 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:40:26 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:40:26 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:40:27 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:40:38 [INFO]  Epoch 21 loss: 149.66701889038086; train accuracy: 0.6330935251798561; test accuracy: 0.1853
+2025-10-23 01:40:38 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:40:38 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:40:38 [INFO]  Round 21 Finish--------|
+2025-10-23 01:40:38 [INFO]  Model variance: mean: 0.00134138367138803, sum: 14988.556640625
+2025-10-23 01:40:38 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:40:38 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:40:39 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:40:39 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:40:39 [INFO]  g_protos_std (global internal): 0.949990
+2025-10-23 01:40:39 [INFO]  inter_client_proto_std (cross-client): 0.033581
+2025-10-23 01:40:39 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:40:43 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4802
+2025-10-23 01:40:43 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:40:43 [INFO]  Round 22 starts--------|
+2025-10-23 01:40:43 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:40:45 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:41:05 [INFO]  Epoch 22 loss: 294.5665521621704; train accuracy: 0.8109859892627995; test accuracy: 0.3048
+2025-10-23 01:41:05 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:41:05 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:41:05 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:41:07 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:41:23 [INFO]  Epoch 22 loss: 250.853910446167; train accuracy: 0.7101961078969119; test accuracy: 0.2608
+2025-10-23 01:41:23 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:41:23 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:41:23 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:41:24 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:41:31 [INFO]  Epoch 22 loss: 83.54290342330933; train accuracy: 0.899978853880313; test accuracy: 0.1215
+2025-10-23 01:41:31 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:41:31 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:41:31 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:41:32 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:41:45 [INFO]  Epoch 22 loss: 170.24958086013794; train accuracy: 0.8605463134113781; test accuracy: 0.1777
+2025-10-23 01:41:45 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:41:45 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:41:45 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:41:46 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:41:57 [INFO]  Epoch 22 loss: 150.55780124664307; train accuracy: 0.5405755395683454; test accuracy: 0.1416
+2025-10-23 01:41:57 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:41:57 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:41:57 [INFO]  Round 22 Finish--------|
+2025-10-23 01:41:57 [INFO]  Model variance: mean: 0.001370493439026177, sum: 15313.8271484375
+2025-10-23 01:41:57 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:41:57 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:41:57 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:41:57 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:41:57 [INFO]  g_protos_std (global internal): 0.947928
+2025-10-23 01:41:57 [INFO]  inter_client_proto_std (cross-client): 0.034654
+2025-10-23 01:41:57 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:42:01 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4903
+2025-10-23 01:42:01 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:42:01 [INFO]  Round 23 starts--------|
+2025-10-23 01:42:01 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:42:03 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:42:23 [INFO]  Epoch 23 loss: 289.29799365997314; train accuracy: 0.7081314652350399; test accuracy: 0.2676
+2025-10-23 01:42:23 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:42:23 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:42:23 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:42:25 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:42:42 [INFO]  Epoch 23 loss: 247.98818969726562; train accuracy: 0.7258246299496581; test accuracy: 0.2697
+2025-10-23 01:42:42 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:42:42 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:42:42 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:42:43 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:42:51 [INFO]  Epoch 23 loss: 82.99468517303467; train accuracy: 0.8921547895961092; test accuracy: 0.1194
+2025-10-23 01:42:51 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:42:51 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:42:51 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:42:52 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:43:07 [INFO]  Epoch 23 loss: 166.20059204101562; train accuracy: 0.7242760320394331; test accuracy: 0.1476
+2025-10-23 01:43:07 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:43:07 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:43:07 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:43:07 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:43:18 [INFO]  Epoch 23 loss: 145.9296703338623; train accuracy: 0.6723741007194245; test accuracy: 0.2394
+2025-10-23 01:43:18 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:43:18 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:43:18 [INFO]  Round 23 Finish--------|
+2025-10-23 01:43:18 [INFO]  Model variance: mean: 0.001400980050675571, sum: 15654.4833984375
+2025-10-23 01:43:18 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:43:18 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:43:18 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:43:18 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:43:18 [INFO]  g_protos_std (global internal): 0.945979
+2025-10-23 01:43:18 [INFO]  inter_client_proto_std (cross-client): 0.035614
+2025-10-23 01:43:18 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:43:23 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5016
+2025-10-23 01:43:23 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:43:23 [INFO]  Round 24 starts--------|
+2025-10-23 01:43:23 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:43:25 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:43:45 [INFO]  Epoch 24 loss: 284.98716259002686; train accuracy: 0.7678407751734975; test accuracy: 0.2982
+2025-10-23 01:43:45 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:43:45 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:43:45 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:43:47 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:44:06 [INFO]  Epoch 24 loss: 244.63114261627197; train accuracy: 0.7605379818168156; test accuracy: 0.2883
+2025-10-23 01:44:06 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:44:06 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:44:06 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:44:06 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:44:15 [INFO]  Epoch 24 loss: 82.42277431488037; train accuracy: 0.9039966166208501; test accuracy: 0.1239
+2025-10-23 01:44:15 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:44:15 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:44:15 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:44:16 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:44:29 [INFO]  Epoch 24 loss: 167.55166292190552; train accuracy: 0.890223865270076; test accuracy: 0.1824
+2025-10-23 01:44:29 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:44:29 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:44:29 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:44:30 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:44:41 [INFO]  Epoch 24 loss: 143.5546064376831; train accuracy: 0.6733812949640288; test accuracy: 0.2166
+2025-10-23 01:44:41 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:44:41 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:44:41 [INFO]  Round 24 Finish--------|
+2025-10-23 01:44:41 [INFO]  Model variance: mean: 0.0014298937749117613, sum: 15977.564453125
+2025-10-23 01:44:41 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:44:41 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:44:41 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:44:41 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:44:41 [INFO]  g_protos_std (global internal): 0.944084
+2025-10-23 01:44:41 [INFO]  inter_client_proto_std (cross-client): 0.036599
+2025-10-23 01:44:41 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:44:45 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5098
+2025-10-23 01:44:45 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:44:45 [INFO]  Round 25 starts--------|
+2025-10-23 01:44:45 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:44:47 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:45:08 [INFO]  Epoch 25 loss: 281.46397399902344; train accuracy: 0.8259133167474139; test accuracy: 0.3198
+2025-10-23 01:45:08 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_0/epoch_25.pth
+2025-10-23 01:45:08 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:45:08 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:45:08 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:45:10 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:45:29 [INFO]  Epoch 25 loss: 239.59261989593506; train accuracy: 0.8165151401307386; test accuracy: 0.2806
+2025-10-23 01:45:29 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_1/epoch_25.pth
+2025-10-23 01:45:29 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:45:29 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:45:29 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:45:30 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:45:37 [INFO]  Epoch 25 loss: 81.91790246963501; train accuracy: 0.8822161133432015; test accuracy: 0.1046
+2025-10-23 01:45:37 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_2/epoch_25.pth
+2025-10-23 01:45:37 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:45:37 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:45:37 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:45:38 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:45:53 [INFO]  Epoch 25 loss: 166.36720418930054; train accuracy: 0.6665639761758061; test accuracy: 0.1349
+2025-10-23 01:45:53 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_3/epoch_25.pth
+2025-10-23 01:45:53 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:45:53 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:45:53 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:45:54 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:46:04 [INFO]  Epoch 25 loss: 144.2014856338501; train accuracy: 0.6143884892086331; test accuracy: 0.1719
+2025-10-23 01:46:04 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_4/epoch_25.pth
+2025-10-23 01:46:04 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:46:04 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:46:04 [INFO]  Round 25 Finish--------|
+2025-10-23 01:46:04 [INFO]  Model variance: mean: 0.0014583426527678967, sum: 16295.451171875
+2025-10-23 01:46:04 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:46:04 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:46:04 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:46:04 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:46:04 [INFO]  g_protos_std (global internal): 0.942329
+2025-10-23 01:46:04 [INFO]  inter_client_proto_std (cross-client): 0.037555
+2025-10-23 01:46:04 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:46:09 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5162
+2025-10-23 01:46:09 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:46:09 [INFO]  Round 26 starts--------|
+2025-10-23 01:46:09 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:46:11 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:46:31 [INFO]  Epoch 26 loss: 277.8721008300781; train accuracy: 0.7299332198507267; test accuracy: 0.2676
+2025-10-23 01:46:31 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:46:31 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:46:31 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:46:32 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:46:50 [INFO]  Epoch 26 loss: 240.45985794067383; train accuracy: 0.6664663009993238; test accuracy: 0.2582
+2025-10-23 01:46:50 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:46:50 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:46:50 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:46:51 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:46:59 [INFO]  Epoch 26 loss: 82.35755062103271; train accuracy: 0.9027278494396278; test accuracy: 0.1226
+2025-10-23 01:46:59 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:46:59 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:46:59 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:47:00 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:47:13 [INFO]  Epoch 26 loss: 161.96823263168335; train accuracy: 0.8822140069829534; test accuracy: 0.189
+2025-10-23 01:47:13 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:47:13 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:47:13 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:47:14 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:47:24 [INFO]  Epoch 26 loss: 142.3476505279541; train accuracy: 0.659136690647482; test accuracy: 0.2089
+2025-10-23 01:47:24 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:47:24 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:47:24 [INFO]  Round 26 Finish--------|
+2025-10-23 01:47:24 [INFO]  Model variance: mean: 0.001485960790887475, sum: 16604.0546875
+2025-10-23 01:47:24 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:47:25 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:47:25 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:47:25 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:47:25 [INFO]  g_protos_std (global internal): 0.940619
+2025-10-23 01:47:25 [INFO]  inter_client_proto_std (cross-client): 0.038444
+2025-10-23 01:47:25 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:47:29 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4999
+2025-10-23 01:47:29 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:47:29 [INFO]  Round 27 starts--------|
+2025-10-23 01:47:29 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:47:31 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:47:52 [INFO]  Epoch 27 loss: 273.7311067581177; train accuracy: 0.7239753830037973; test accuracy: 0.2883
+2025-10-23 01:47:52 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:47:52 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:47:52 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:47:54 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:48:13 [INFO]  Epoch 27 loss: 234.38821697235107; train accuracy: 0.8657299571718386; test accuracy: 0.3219
+2025-10-23 01:48:13 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:48:13 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:48:13 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:48:14 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:48:22 [INFO]  Epoch 27 loss: 81.18622398376465; train accuracy: 0.8781983506026644; test accuracy: 0.1025
+2025-10-23 01:48:22 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:48:22 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:48:22 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:48:23 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:48:38 [INFO]  Epoch 27 loss: 161.6760368347168; train accuracy: 0.818032450195112; test accuracy: 0.1683
+2025-10-23 01:48:38 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:48:38 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:48:38 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:48:38 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:48:50 [INFO]  Epoch 27 loss: 141.25307941436768; train accuracy: 0.6122302158273382; test accuracy: 0.1976
+2025-10-23 01:48:50 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:48:50 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:48:50 [INFO]  Round 27 Finish--------|
+2025-10-23 01:48:50 [INFO]  Model variance: mean: 0.001513295923359692, sum: 16909.49609375
+2025-10-23 01:48:50 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:48:50 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:48:50 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:48:50 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:48:50 [INFO]  g_protos_std (global internal): 0.938981
+2025-10-23 01:48:50 [INFO]  inter_client_proto_std (cross-client): 0.039303
+2025-10-23 01:48:50 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:48:55 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5073
+2025-10-23 01:48:55 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:48:55 [INFO]  Round 28 starts--------|
+2025-10-23 01:48:55 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:48:57 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:49:19 [INFO]  Epoch 28 loss: 270.13404178619385; train accuracy: 0.8378944611758544; test accuracy: 0.3257
+2025-10-23 01:49:19 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:49:19 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:49:19 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:49:20 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:49:39 [INFO]  Epoch 28 loss: 231.5325288772583; train accuracy: 0.5379818168156887; test accuracy: 0.2098
+2025-10-23 01:49:39 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:49:39 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:49:39 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:49:40 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:49:48 [INFO]  Epoch 28 loss: 80.81782960891724; train accuracy: 0.9156269824487206; test accuracy: 0.1464
+2025-10-23 01:49:48 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:49:48 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:49:48 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:49:49 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:50:03 [INFO]  Epoch 28 loss: 157.8679175376892; train accuracy: 0.8483261449989731; test accuracy: 0.1722
+2025-10-23 01:50:03 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:50:03 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:50:03 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:50:04 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:50:14 [INFO]  Epoch 28 loss: 138.16742610931396; train accuracy: 0.7017266187050359; test accuracy: 0.2271
+2025-10-23 01:50:14 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:50:14 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:50:14 [INFO]  Round 28 Finish--------|
+2025-10-23 01:50:14 [INFO]  Model variance: mean: 0.0015416658716276288, sum: 17226.5
+2025-10-23 01:50:14 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:50:14 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:50:14 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:50:14 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:50:14 [INFO]  g_protos_std (global internal): 0.937360
+2025-10-23 01:50:14 [INFO]  inter_client_proto_std (cross-client): 0.040128
+2025-10-23 01:50:14 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:50:18 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5213
+2025-10-23 01:50:18 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:50:18 [INFO]  Round 29 starts--------|
+2025-10-23 01:50:18 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:50:20 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:50:40 [INFO]  Epoch 29 loss: 267.5313262939453; train accuracy: 0.691305486447558; test accuracy: 0.2893
+2025-10-23 01:50:40 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:50:40 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:50:41 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:50:42 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:50:59 [INFO]  Epoch 29 loss: 230.74135875701904; train accuracy: 0.81298369524382; test accuracy: 0.3139
+2025-10-23 01:50:59 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:50:59 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:50:59 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:51:00 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:51:07 [INFO]  Epoch 29 loss: 80.9424934387207; train accuracy: 0.8959610911397758; test accuracy: 0.1189
+2025-10-23 01:51:07 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:51:07 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:51:07 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:51:08 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:51:23 [INFO]  Epoch 29 loss: 160.73923444747925; train accuracy: 0.8677346477716164; test accuracy: 0.1809
+2025-10-23 01:51:23 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:51:23 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:51:23 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:51:24 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:51:34 [INFO]  Epoch 29 loss: 133.3068141937256; train accuracy: 0.7188489208633093; test accuracy: 0.2505
+2025-10-23 01:51:34 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:51:34 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:51:34 [INFO]  Round 29 Finish--------|
+2025-10-23 01:51:34 [INFO]  Model variance: mean: 0.0015675120521336794, sum: 17515.3046875
+2025-10-23 01:51:34 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:51:34 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:51:34 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:51:34 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:51:34 [INFO]  g_protos_std (global internal): 0.935878
+2025-10-23 01:51:34 [INFO]  inter_client_proto_std (cross-client): 0.040891
+2025-10-23 01:51:34 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:51:39 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5157
+2025-10-23 01:51:39 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:51:39 [INFO]  Round 30 starts--------|
+2025-10-23 01:51:39 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:51:41 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:52:02 [INFO]  Epoch 30 loss: 263.38994312286377; train accuracy: 0.6746759198638209; test accuracy: 0.2676
+2025-10-23 01:52:02 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_0/epoch_30.pth
+2025-10-23 01:52:02 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:52:02 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:52:02 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:52:04 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:52:22 [INFO]  Epoch 30 loss: 222.54756927490234; train accuracy: 0.8675332481779248; test accuracy: 0.3023
+2025-10-23 01:52:22 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_1/epoch_30.pth
+2025-10-23 01:52:22 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:52:22 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:52:22 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:52:23 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:52:31 [INFO]  Epoch 30 loss: 80.01162481307983; train accuracy: 0.8828504969338127; test accuracy: 0.1062
+2025-10-23 01:52:31 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_2/epoch_30.pth
+2025-10-23 01:52:31 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:52:31 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:52:31 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:52:33 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:52:47 [INFO]  Epoch 30 loss: 156.09509992599487; train accuracy: 0.8181351406859725; test accuracy: 0.1683
+2025-10-23 01:52:48 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_3/epoch_30.pth
+2025-10-23 01:52:48 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:52:48 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:52:48 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:52:49 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:52:59 [INFO]  Epoch 30 loss: 136.58244228363037; train accuracy: 0.580431654676259; test accuracy: 0.1556
+2025-10-23 01:53:00 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_4/epoch_30.pth
+2025-10-23 01:53:00 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:53:00 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:53:00 [INFO]  Round 30 Finish--------|
+2025-10-23 01:53:00 [INFO]  Model variance: mean: 0.0015951321693137288, sum: 17823.9296875
+2025-10-23 01:53:00 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:53:00 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:53:00 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:53:00 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:53:00 [INFO]  g_protos_std (global internal): 0.934419
+2025-10-23 01:53:00 [INFO]  inter_client_proto_std (cross-client): 0.041662
+2025-10-23 01:53:00 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:53:04 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5327
+2025-10-23 01:53:04 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:53:04 [INFO]  Round 31 starts--------|
+2025-10-23 01:53:04 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:53:06 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:53:27 [INFO]  Epoch 31 loss: 257.88570404052734; train accuracy: 0.8145868796647898; test accuracy: 0.3203
+2025-10-23 01:53:27 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:53:27 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:53:27 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:53:29 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:53:49 [INFO]  Epoch 31 loss: 223.05959510803223; train accuracy: 0.8294387256743557; test accuracy: 0.3058
+2025-10-23 01:53:49 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:53:49 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:53:49 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:53:49 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:53:57 [INFO]  Epoch 31 loss: 79.2523341178894; train accuracy: 0.9084373017551279; test accuracy: 0.1411
+2025-10-23 01:53:57 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:53:57 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:53:57 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:53:58 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:54:11 [INFO]  Epoch 31 loss: 158.11484289169312; train accuracy: 0.9208256315465188; test accuracy: 0.2177
+2025-10-23 01:54:11 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:54:11 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:54:11 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:54:13 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:54:23 [INFO]  Epoch 31 loss: 132.56645393371582; train accuracy: 0.680431654676259; test accuracy: 0.1981
+2025-10-23 01:54:23 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:54:23 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:54:23 [INFO]  Round 31 Finish--------|
+2025-10-23 01:54:23 [INFO]  Model variance: mean: 0.001620310707949102, sum: 18105.2734375
+2025-10-23 01:54:23 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:54:23 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:54:23 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:54:23 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:54:23 [INFO]  g_protos_std (global internal): 0.933037
+2025-10-23 01:54:23 [INFO]  inter_client_proto_std (cross-client): 0.042384
+2025-10-23 01:54:23 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:54:28 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5416
+2025-10-23 01:54:28 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:54:28 [INFO]  Round 32 starts--------|
+2025-10-23 01:54:28 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:54:29 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:54:50 [INFO]  Epoch 32 loss: 258.66128158569336; train accuracy: 0.824603902055781; test accuracy: 0.322
+2025-10-23 01:54:50 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:54:50 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:54:50 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:54:51 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:55:10 [INFO]  Epoch 32 loss: 222.66513919830322; train accuracy: 0.8738447666992261; test accuracy: 0.3156
+2025-10-23 01:55:10 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:55:10 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:55:10 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:55:10 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:55:18 [INFO]  Epoch 32 loss: 79.1310625076294; train accuracy: 0.8805244237682385; test accuracy: 0.1033
+2025-10-23 01:55:18 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:55:18 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:55:18 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:55:19 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:55:33 [INFO]  Epoch 32 loss: 153.36110591888428; train accuracy: 0.5856438693776956; test accuracy: 0.1178
+2025-10-23 01:55:33 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:55:33 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:55:33 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:55:34 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:55:45 [INFO]  Epoch 32 loss: 130.0526828765869; train accuracy: 0.6494964028776978; test accuracy: 0.2024
+2025-10-23 01:55:45 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:55:45 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:55:45 [INFO]  Round 32 Finish--------|
+2025-10-23 01:55:45 [INFO]  Model variance: mean: 0.001645145588554442, sum: 18382.77734375
+2025-10-23 01:55:45 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:55:45 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:55:45 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:55:45 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:55:45 [INFO]  g_protos_std (global internal): 0.931761
+2025-10-23 01:55:45 [INFO]  inter_client_proto_std (cross-client): 0.043043
+2025-10-23 01:55:45 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:55:49 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5442
+2025-10-23 01:55:49 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:55:49 [INFO]  Round 33 starts--------|
+2025-10-23 01:55:49 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:55:51 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:56:12 [INFO]  Epoch 33 loss: 255.1209101676941; train accuracy: 0.8541966740866832; test accuracy: 0.32
+2025-10-23 01:56:12 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:56:12 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:56:12 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:56:14 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:56:32 [INFO]  Epoch 33 loss: 216.0171709060669; train accuracy: 0.8214741903974754; test accuracy: 0.2996
+2025-10-23 01:56:32 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:56:32 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:56:32 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:56:33 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:56:42 [INFO]  Epoch 33 loss: 78.94974184036255; train accuracy: 0.8767181222245718; test accuracy: 0.1002
+2025-10-23 01:56:42 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:56:42 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:56:42 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:56:43 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:56:58 [INFO]  Epoch 33 loss: 152.6066393852234; train accuracy: 0.8878619839802834; test accuracy: 0.1809
+2025-10-23 01:56:58 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:56:58 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:56:58 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:56:59 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:57:09 [INFO]  Epoch 33 loss: 129.13646984100342; train accuracy: 0.7618705035971223; test accuracy: 0.2437
+2025-10-23 01:57:09 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:57:09 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:57:09 [INFO]  Round 33 Finish--------|
+2025-10-23 01:57:09 [INFO]  Model variance: mean: 0.001671010977588594, sum: 18671.796875
+2025-10-23 01:57:09 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:57:09 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:57:09 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:57:09 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:57:09 [INFO]  g_protos_std (global internal): 0.930566
+2025-10-23 01:57:09 [INFO]  inter_client_proto_std (cross-client): 0.043698
+2025-10-23 01:57:09 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:57:13 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5467
+2025-10-23 01:57:13 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:57:13 [INFO]  Round 34 starts--------|
+2025-10-23 01:57:13 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:57:15 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:57:35 [INFO]  Epoch 34 loss: 252.27004718780518; train accuracy: 0.8403168783553752; test accuracy: 0.3222
+2025-10-23 01:57:35 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:57:35 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:57:35 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:57:37 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:57:55 [INFO]  Epoch 34 loss: 213.57523393630981; train accuracy: 0.8708392816890825; test accuracy: 0.2982
+2025-10-23 01:57:55 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:57:55 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:57:55 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:57:56 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:58:03 [INFO]  Epoch 34 loss: 78.68569660186768; train accuracy: 0.888137026855572; test accuracy: 0.1086
+2025-10-23 01:58:03 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:58:03 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:58:03 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:58:04 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:58:18 [INFO]  Epoch 34 loss: 154.37214612960815; train accuracy: 0.9444444444444444; test accuracy: 0.2027
+2025-10-23 01:58:18 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:58:18 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:58:18 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:58:19 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:58:29 [INFO]  Epoch 34 loss: 125.85758876800537; train accuracy: 0.7345323741007195; test accuracy: 0.254
+2025-10-23 01:58:29 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:58:29 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:58:29 [INFO]  Round 34 Finish--------|
+2025-10-23 01:58:29 [INFO]  Model variance: mean: 0.001696001156233251, sum: 18951.03515625
+2025-10-23 01:58:29 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:58:29 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:58:29 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:58:29 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:58:29 [INFO]  g_protos_std (global internal): 0.929397
+2025-10-23 01:58:29 [INFO]  inter_client_proto_std (cross-client): 0.044324
+2025-10-23 01:58:29 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:58:33 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5259
+2025-10-23 01:58:33 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:58:33 [INFO]  Round 35 starts--------|
+2025-10-23 01:58:33 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:58:35 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 01:58:55 [INFO]  Epoch 35 loss: 245.12926244735718; train accuracy: 0.6681943171402384; test accuracy: 0.2821
+2025-10-23 01:58:56 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_0/epoch_35.pth
+2025-10-23 01:58:56 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 01:58:56 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 01:58:56 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 01:58:57 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 01:59:16 [INFO]  Epoch 35 loss: 210.90756702423096; train accuracy: 0.7698549853482606; test accuracy: 0.2946
+2025-10-23 01:59:16 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_1/epoch_35.pth
+2025-10-23 01:59:16 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 01:59:16 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 01:59:16 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 01:59:17 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 01:59:25 [INFO]  Epoch 35 loss: 78.72557830810547; train accuracy: 0.8771410446183125; test accuracy: 0.1053
+2025-10-23 01:59:25 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_2/epoch_35.pth
+2025-10-23 01:59:25 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 01:59:25 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 01:59:25 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 01:59:26 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 01:59:41 [INFO]  Epoch 35 loss: 150.08594465255737; train accuracy: 0.9258574655986855; test accuracy: 0.189
+2025-10-23 01:59:41 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_3/epoch_35.pth
+2025-10-23 01:59:41 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 01:59:41 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 01:59:41 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 01:59:42 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 01:59:52 [INFO]  Epoch 35 loss: 125.53774833679199; train accuracy: 0.5994244604316546; test accuracy: 0.1728
+2025-10-23 01:59:52 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_4/epoch_35.pth
+2025-10-23 01:59:52 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 01:59:52 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 01:59:52 [INFO]  Round 35 Finish--------|
+2025-10-23 01:59:52 [INFO]  Model variance: mean: 0.0017216209089383483, sum: 19237.30859375
+2025-10-23 01:59:52 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 01:59:52 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 01:59:52 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 01:59:52 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 01:59:52 [INFO]  g_protos_std (global internal): 0.928318
+2025-10-23 01:59:52 [INFO]  inter_client_proto_std (cross-client): 0.044923
+2025-10-23 01:59:52 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 01:59:57 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.563
+2025-10-23 01:59:57 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 01:59:57 [INFO]  Round 36 starts--------|
+2025-10-23 01:59:57 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 01:59:59 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 02:00:19 [INFO]  Epoch 36 loss: 244.52734518051147; train accuracy: 0.8439177687573655; test accuracy: 0.3272
+2025-10-23 02:00:19 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 02:00:19 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 02:00:19 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 02:00:21 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 02:00:40 [INFO]  Epoch 36 loss: 214.47484731674194; train accuracy: 0.8768502517093696; test accuracy: 0.311
+2025-10-23 02:00:40 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 02:00:40 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 02:00:40 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 02:00:40 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 02:00:48 [INFO]  Epoch 36 loss: 77.33537578582764; train accuracy: 0.9109748361175725; test accuracy: 0.1376
+2025-10-23 02:00:48 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 02:00:48 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 02:00:48 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 02:00:49 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 02:01:03 [INFO]  Epoch 36 loss: 147.7140040397644; train accuracy: 0.8173136167590881; test accuracy: 0.1759
+2025-10-23 02:01:03 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 02:01:03 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 02:01:03 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 02:01:04 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 02:01:15 [INFO]  Epoch 36 loss: 126.85509204864502; train accuracy: 0.6715107913669065; test accuracy: 0.1852
+2025-10-23 02:01:15 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 02:01:15 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 02:01:15 [INFO]  Round 36 Finish--------|
+2025-10-23 02:01:15 [INFO]  Model variance: mean: 0.0017445426201447845, sum: 19493.435546875
+2025-10-23 02:01:15 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 02:01:15 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 02:01:15 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 02:01:15 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 02:01:15 [INFO]  g_protos_std (global internal): 0.927301
+2025-10-23 02:01:15 [INFO]  inter_client_proto_std (cross-client): 0.045461
+2025-10-23 02:01:15 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 02:01:20 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5411
+2025-10-23 02:01:20 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 02:01:20 [INFO]  Round 37 starts--------|
+2025-10-23 02:01:20 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 02:01:22 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 02:01:42 [INFO]  Epoch 37 loss: 239.76720571517944; train accuracy: 0.823163545894985; test accuracy: 0.3277
+2025-10-23 02:01:42 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 02:01:42 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 02:01:42 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 02:01:44 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 02:02:03 [INFO]  Epoch 37 loss: 208.4467487335205; train accuracy: 0.8171913742580209; test accuracy: 0.305
+2025-10-23 02:02:03 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 02:02:03 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 02:02:03 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 02:02:04 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 02:02:12 [INFO]  Epoch 37 loss: 77.343346118927; train accuracy: 0.8792556565870163; test accuracy: 0.1016
+2025-10-23 02:02:12 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 02:02:12 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 02:02:12 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 02:02:13 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 02:02:27 [INFO]  Epoch 37 loss: 146.1188793182373; train accuracy: 0.7187307455329637; test accuracy: 0.1443
+2025-10-23 02:02:27 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 02:02:27 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 02:02:27 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 02:02:28 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 02:02:38 [INFO]  Epoch 37 loss: 122.62920379638672; train accuracy: 0.796115107913669; test accuracy: 0.2903
+2025-10-23 02:02:38 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 02:02:38 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 02:02:38 [INFO]  Round 37 Finish--------|
+2025-10-23 02:02:38 [INFO]  Model variance: mean: 0.0017696492141112685, sum: 19773.974609375
+2025-10-23 02:02:38 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 02:02:38 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 02:02:38 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 02:02:38 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 02:02:38 [INFO]  g_protos_std (global internal): 0.926337
+2025-10-23 02:02:38 [INFO]  inter_client_proto_std (cross-client): 0.046003
+2025-10-23 02:02:38 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 02:02:43 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.56
+2025-10-23 02:02:43 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 02:02:43 [INFO]  Round 38 starts--------|
+2025-10-23 02:02:43 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 02:02:44 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 02:03:04 [INFO]  Epoch 38 loss: 236.58092546463013; train accuracy: 0.792064946968705; test accuracy: 0.3208
+2025-10-23 02:03:04 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 02:03:04 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 02:03:04 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 02:03:06 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 02:03:22 [INFO]  Epoch 38 loss: 200.95288181304932; train accuracy: 0.7781952062514088; test accuracy: 0.2951
+2025-10-23 02:03:22 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 02:03:22 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 02:03:22 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 02:03:23 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 02:03:30 [INFO]  Epoch 38 loss: 76.80976152420044; train accuracy: 0.8885599492493127; test accuracy: 0.1087
+2025-10-23 02:03:30 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 02:03:30 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 02:03:30 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 02:03:32 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 02:03:45 [INFO]  Epoch 38 loss: 143.69502925872803; train accuracy: 0.8433970014376668; test accuracy: 0.174
+2025-10-23 02:03:45 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 02:03:45 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 02:03:45 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 02:03:46 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 02:03:56 [INFO]  Epoch 38 loss: 121.8658218383789; train accuracy: 0.7063309352517986; test accuracy: 0.2132
+2025-10-23 02:03:56 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 02:03:56 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 02:03:56 [INFO]  Round 38 Finish--------|
+2025-10-23 02:03:56 [INFO]  Model variance: mean: 0.0017952838679775596, sum: 20060.416015625
+2025-10-23 02:03:56 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 02:03:56 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 02:03:56 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 02:03:56 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 02:03:56 [INFO]  g_protos_std (global internal): 0.925455
+2025-10-23 02:03:56 [INFO]  inter_client_proto_std (cross-client): 0.046496
+2025-10-23 02:03:56 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 02:04:00 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5405
+2025-10-23 02:04:00 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 02:04:00 [INFO]  Round 39 starts--------|
+2025-10-23 02:04:00 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 02:04:02 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 02:04:22 [INFO]  Epoch 39 loss: 232.47972774505615; train accuracy: 0.7868272882021736; test accuracy: 0.3156
+2025-10-23 02:04:22 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 02:04:22 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 02:04:22 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 02:04:23 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 02:04:42 [INFO]  Epoch 39 loss: 199.744384765625; train accuracy: 0.8531069201292358; test accuracy: 0.3134
+2025-10-23 02:04:42 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 02:04:42 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 02:04:42 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 02:04:43 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 02:04:50 [INFO]  Epoch 39 loss: 75.65320825576782; train accuracy: 0.9147811376612391; test accuracy: 0.1393
+2025-10-23 02:04:50 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 02:04:50 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 02:04:50 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 02:04:51 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 02:05:06 [INFO]  Epoch 39 loss: 146.07690811157227; train accuracy: 0.8998767714109673; test accuracy: 0.2021
+2025-10-23 02:05:06 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 02:05:06 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 02:05:06 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 02:05:06 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 02:05:16 [INFO]  Epoch 39 loss: 116.99757146835327; train accuracy: 0.7300719424460431; test accuracy: 0.2248
+2025-10-23 02:05:16 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 02:05:16 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 02:05:16 [INFO]  Round 39 Finish--------|
+2025-10-23 02:05:16 [INFO]  Model variance: mean: 0.0018196615856140852, sum: 20332.810546875
+2025-10-23 02:05:16 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 02:05:17 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 02:05:17 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 02:05:17 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 02:05:17 [INFO]  g_protos_std (global internal): 0.924660
+2025-10-23 02:05:17 [INFO]  inter_client_proto_std (cross-client): 0.046942
+2025-10-23 02:05:17 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 02:05:21 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5608
+2025-10-23 02:05:21 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 02:05:21 [INFO]  Round 40 starts--------|
+2025-10-23 02:05:21 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 02:05:23 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 02:05:44 [INFO]  Epoch 40 loss: 231.64201736450195; train accuracy: 0.8938719392431583; test accuracy: 0.3442
+2025-10-23 02:05:44 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_0/epoch_40.pth
+2025-10-23 02:05:44 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 02:05:44 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 02:05:44 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 02:05:46 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 02:06:04 [INFO]  Epoch 40 loss: 196.18832921981812; train accuracy: 0.8936809677661732; test accuracy: 0.3265
+2025-10-23 02:06:04 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_1/epoch_40.pth
+2025-10-23 02:06:04 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 02:06:04 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 02:06:04 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 02:06:05 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 02:06:14 [INFO]  Epoch 40 loss: 77.17039966583252; train accuracy: 0.8790441953901459; test accuracy: 0.1016
+2025-10-23 02:06:14 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_2/epoch_40.pth
+2025-10-23 02:06:14 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 02:06:14 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 02:06:14 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 02:06:15 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 02:06:29 [INFO]  Epoch 40 loss: 143.64427495002747; train accuracy: 0.8762579585130417; test accuracy: 0.1792
+2025-10-23 02:06:29 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_3/epoch_40.pth
+2025-10-23 02:06:29 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 02:06:29 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 02:06:29 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 02:06:30 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 02:06:40 [INFO]  Epoch 40 loss: 118.11626529693604; train accuracy: 0.7805755395683454; test accuracy: 0.3066
+2025-10-23 02:06:40 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_4/epoch_40.pth
+2025-10-23 02:06:40 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 02:06:40 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 02:06:40 [INFO]  Round 40 Finish--------|
+2025-10-23 02:06:40 [INFO]  Model variance: mean: 0.001842563971877098, sum: 20588.720703125
+2025-10-23 02:06:40 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 02:06:40 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 02:06:40 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 02:06:40 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 02:06:40 [INFO]  g_protos_std (global internal): 0.923939
+2025-10-23 02:06:40 [INFO]  inter_client_proto_std (cross-client): 0.047365
+2025-10-23 02:06:40 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 02:06:45 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5774
+2025-10-23 02:06:45 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 02:06:45 [INFO]  Round 41 starts--------|
+2025-10-23 02:06:45 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 02:06:47 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 02:07:07 [INFO]  Epoch 41 loss: 230.07597494125366; train accuracy: 0.8783553751473091; test accuracy: 0.3328
+2025-10-23 02:07:07 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 02:07:07 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 02:07:07 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 02:07:09 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 02:07:27 [INFO]  Epoch 41 loss: 199.18018007278442; train accuracy: 0.7987076414456383; test accuracy: 0.2759
+2025-10-23 02:07:27 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 02:07:27 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 02:07:27 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 02:07:28 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 02:07:36 [INFO]  Epoch 41 loss: 76.3609037399292; train accuracy: 0.8997673926834426; test accuracy: 0.1208
+2025-10-23 02:07:36 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 02:07:36 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 02:07:36 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 02:07:38 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 02:07:52 [INFO]  Epoch 41 loss: 140.41915655136108; train accuracy: 0.7897925652084617; test accuracy: 0.1759
+2025-10-23 02:07:52 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 02:07:52 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 02:07:52 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 02:07:53 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 02:08:03 [INFO]  Epoch 41 loss: 115.64569616317749; train accuracy: 0.6388489208633094; test accuracy: 0.1989
+2025-10-23 02:08:03 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 02:08:03 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 02:08:03 [INFO]  Round 41 Finish--------|
+2025-10-23 02:08:03 [INFO]  Model variance: mean: 0.0018650603014975786, sum: 20840.09375
+2025-10-23 02:08:03 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 02:08:03 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 02:08:03 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 02:08:03 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 02:08:03 [INFO]  g_protos_std (global internal): 0.923288
+2025-10-23 02:08:03 [INFO]  inter_client_proto_std (cross-client): 0.047728
+2025-10-23 02:08:03 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 02:08:08 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5729
+2025-10-23 02:08:08 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 02:08:08 [INFO]  Round 42 starts--------|
+2025-10-23 02:08:08 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 02:08:10 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 02:08:31 [INFO]  Epoch 42 loss: 222.30870866775513; train accuracy: 0.7610972895115883; test accuracy: 0.2829
+2025-10-23 02:08:31 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 02:08:31 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 02:08:31 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 02:08:32 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 02:08:50 [INFO]  Epoch 42 loss: 191.37233352661133; train accuracy: 0.8810579307235705; test accuracy: 0.3072
+2025-10-23 02:08:50 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 02:08:50 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 02:08:50 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 02:08:51 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 02:08:59 [INFO]  Epoch 42 loss: 74.9386534690857; train accuracy: 0.8824275745400719; test accuracy: 0.1038
+2025-10-23 02:08:59 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 02:08:59 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 02:08:59 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 02:09:00 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 02:09:14 [INFO]  Epoch 42 loss: 140.309814453125; train accuracy: 0.9151776545491888; test accuracy: 0.2537
+2025-10-23 02:09:14 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 02:09:14 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 02:09:14 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 02:09:15 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 02:09:26 [INFO]  Epoch 42 loss: 115.04632091522217; train accuracy: 0.8092086330935252; test accuracy: 0.2692
+2025-10-23 02:09:26 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 02:09:26 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 02:09:26 [INFO]  Round 42 Finish--------|
+2025-10-23 02:09:26 [INFO]  Model variance: mean: 0.0018890125211328268, sum: 21107.734375
+2025-10-23 02:09:26 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 02:09:26 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 02:09:26 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 02:09:26 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 02:09:26 [INFO]  g_protos_std (global internal): 0.922709
+2025-10-23 02:09:26 [INFO]  inter_client_proto_std (cross-client): 0.048073
+2025-10-23 02:09:26 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 02:09:30 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5765
+2025-10-23 02:09:30 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 02:09:30 [INFO]  Round 43 starts--------|
+2025-10-23 02:09:30 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 02:09:32 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 02:09:52 [INFO]  Epoch 43 loss: 222.0004277229309; train accuracy: 0.8604163938719392; test accuracy: 0.3095
+2025-10-23 02:09:52 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 02:09:52 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 02:09:52 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 02:09:54 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 02:10:13 [INFO]  Epoch 43 loss: 190.75979948043823; train accuracy: 0.836125929821925; test accuracy: 0.2835
+2025-10-23 02:10:13 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 02:10:13 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 02:10:13 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 02:10:14 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 02:10:22 [INFO]  Epoch 43 loss: 75.06504917144775; train accuracy: 0.9058997673926834; test accuracy: 0.1367
+2025-10-23 02:10:22 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 02:10:22 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 02:10:22 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 02:10:23 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 02:10:36 [INFO]  Epoch 43 loss: 139.393536567688; train accuracy: 0.8241938796467447; test accuracy: 0.1668
+2025-10-23 02:10:36 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 02:10:36 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 02:10:36 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 02:10:37 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 02:10:48 [INFO]  Epoch 43 loss: 115.12459993362427; train accuracy: 0.8028776978417266; test accuracy: 0.2782
+2025-10-23 02:10:48 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 02:10:48 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 02:10:48 [INFO]  Round 43 Finish--------|
+2025-10-23 02:10:48 [INFO]  Model variance: mean: 0.0019102920778095722, sum: 21345.51171875
+2025-10-23 02:10:48 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 02:10:48 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 02:10:48 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 02:10:48 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 02:10:48 [INFO]  g_protos_std (global internal): 0.922212
+2025-10-23 02:10:48 [INFO]  inter_client_proto_std (cross-client): 0.048376
+2025-10-23 02:10:48 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 02:10:52 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5859
+2025-10-23 02:10:52 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 02:10:52 [INFO]  Round 44 starts--------|
+2025-10-23 02:10:52 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 02:10:54 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 02:11:15 [INFO]  Epoch 44 loss: 218.1724238395691; train accuracy: 0.8707607699358387; test accuracy: 0.3132
+2025-10-23 02:11:15 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 02:11:15 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 02:11:15 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 02:11:17 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 02:11:35 [INFO]  Epoch 44 loss: 188.705406665802; train accuracy: 0.9114884664512736; test accuracy: 0.311
+2025-10-23 02:11:35 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 02:11:35 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 02:11:35 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 02:11:36 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 02:11:43 [INFO]  Epoch 44 loss: 74.39771175384521; train accuracy: 0.8853880312962571; test accuracy: 0.1052
+2025-10-23 02:11:43 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 02:11:43 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 02:11:43 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 02:11:45 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 02:11:59 [INFO]  Epoch 44 loss: 136.7319576740265; train accuracy: 0.8892996508523311; test accuracy: 0.1891
+2025-10-23 02:11:59 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 02:11:59 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 02:11:59 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 02:12:00 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 02:12:10 [INFO]  Epoch 44 loss: 115.58658266067505; train accuracy: 0.6866187050359712; test accuracy: 0.2032
+2025-10-23 02:12:10 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 02:12:10 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 02:12:10 [INFO]  Round 44 Finish--------|
+2025-10-23 02:12:10 [INFO]  Model variance: mean: 0.001932447194121778, sum: 21593.072265625
+2025-10-23 02:12:10 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 02:12:10 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 02:12:10 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 02:12:10 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 02:12:10 [INFO]  g_protos_std (global internal): 0.921784
+2025-10-23 02:12:10 [INFO]  inter_client_proto_std (cross-client): 0.048625
+2025-10-23 02:12:10 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 02:12:14 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5865
+2025-10-23 02:12:14 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 02:12:14 [INFO]  Round 45 starts--------|
+2025-10-23 02:12:14 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 02:12:16 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 02:12:36 [INFO]  Epoch 45 loss: 217.90069150924683; train accuracy: 0.8665051721880319; test accuracy: 0.3456
+2025-10-23 02:12:37 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_0/epoch_45.pth
+2025-10-23 02:12:37 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 02:12:37 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 02:12:37 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 02:12:38 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 02:12:56 [INFO]  Epoch 45 loss: 185.5321707725525; train accuracy: 0.900668720414757; test accuracy: 0.316
+2025-10-23 02:12:57 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_1/epoch_45.pth
+2025-10-23 02:12:57 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 02:12:57 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 02:12:57 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 02:12:57 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 02:13:05 [INFO]  Epoch 45 loss: 74.5189881324768; train accuracy: 0.9122436032987947; test accuracy: 0.1409
+2025-10-23 02:13:05 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_2/epoch_45.pth
+2025-10-23 02:13:05 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 02:13:05 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 02:13:05 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 02:13:07 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 02:13:21 [INFO]  Epoch 45 loss: 136.0263283252716; train accuracy: 0.7669952762374204; test accuracy: 0.16
+2025-10-23 02:13:21 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_3/epoch_45.pth
+2025-10-23 02:13:21 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 02:13:21 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 02:13:21 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 02:13:22 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 02:13:33 [INFO]  Epoch 45 loss: 109.89556074142456; train accuracy: 0.7499280575539569; test accuracy: 0.2616
+2025-10-23 02:13:33 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_4/epoch_45.pth
+2025-10-23 02:13:33 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 02:13:33 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 02:13:33 [INFO]  Round 45 Finish--------|
+2025-10-23 02:13:33 [INFO]  Model variance: mean: 0.001954332459717989, sum: 21837.6171875
+2025-10-23 02:13:33 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 02:13:33 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 02:13:33 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 02:13:33 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 02:13:33 [INFO]  g_protos_std (global internal): 0.921424
+2025-10-23 02:13:33 [INFO]  inter_client_proto_std (cross-client): 0.048845
+2025-10-23 02:13:33 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 02:13:38 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5929
+2025-10-23 02:13:38 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 02:13:38 [INFO]  Round 46 starts--------|
+2025-10-23 02:13:38 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 02:13:40 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 02:14:00 [INFO]  Epoch 46 loss: 212.1336522102356; train accuracy: 0.754222862380516; test accuracy: 0.3089
+2025-10-23 02:14:00 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 02:14:00 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 02:14:00 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 02:14:02 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 02:14:20 [INFO]  Epoch 46 loss: 181.81045055389404; train accuracy: 0.8128334209933128; test accuracy: 0.2937
+2025-10-23 02:14:20 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 02:14:20 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 02:14:20 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 02:14:20 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 02:14:29 [INFO]  Epoch 46 loss: 74.00175333023071; train accuracy: 0.9018820046521463; test accuracy: 0.1208
+2025-10-23 02:14:29 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 02:14:29 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 02:14:29 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 02:14:30 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 02:14:44 [INFO]  Epoch 46 loss: 136.5478286743164; train accuracy: 0.9190798932018895; test accuracy: 0.2025
+2025-10-23 02:14:44 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 02:14:44 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 02:14:44 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 02:14:45 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 02:14:56 [INFO]  Epoch 46 loss: 108.3894681930542; train accuracy: 0.7477697841726618; test accuracy: 0.2434
+2025-10-23 02:14:56 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 02:14:56 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 02:14:56 [INFO]  Round 46 Finish--------|
+2025-10-23 02:14:56 [INFO]  Model variance: mean: 0.00197729398496449, sum: 22094.1875
+2025-10-23 02:14:56 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 02:14:56 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 02:14:56 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 02:14:56 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 02:14:56 [INFO]  g_protos_std (global internal): 0.921139
+2025-10-23 02:14:56 [INFO]  inter_client_proto_std (cross-client): 0.049043
+2025-10-23 02:14:56 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 02:15:01 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5874
+2025-10-23 02:15:01 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 02:15:01 [INFO]  Round 47 starts--------|
+2025-10-23 02:15:01 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 02:15:03 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 02:15:24 [INFO]  Epoch 47 loss: 211.29899311065674; train accuracy: 0.8408406442320283; test accuracy: 0.3123
+2025-10-23 02:15:24 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 02:15:24 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 02:15:24 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 02:15:25 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 02:15:44 [INFO]  Epoch 47 loss: 182.3854513168335; train accuracy: 0.8332707190622887; test accuracy: 0.2972
+2025-10-23 02:15:44 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 02:15:44 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 02:15:44 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 02:15:44 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 02:15:53 [INFO]  Epoch 47 loss: 72.73391246795654; train accuracy: 0.8805244237682385; test accuracy: 0.103
+2025-10-23 02:15:53 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 02:15:53 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 02:15:53 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 02:15:54 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 02:16:07 [INFO]  Epoch 47 loss: 135.10338521003723; train accuracy: 0.9415691107003491; test accuracy: 0.2497
+2025-10-23 02:16:07 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 02:16:07 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 02:16:07 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 02:16:08 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 02:16:20 [INFO]  Epoch 47 loss: 107.24278163909912; train accuracy: 0.7907913669064748; test accuracy: 0.2704
+2025-10-23 02:16:20 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 02:16:20 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 02:16:20 [INFO]  Round 47 Finish--------|
+2025-10-23 02:16:20 [INFO]  Model variance: mean: 0.00199766643345356, sum: 22321.828125
+2025-10-23 02:16:20 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 02:16:20 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 02:16:20 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 02:16:20 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 02:16:20 [INFO]  g_protos_std (global internal): 0.920934
+2025-10-23 02:16:20 [INFO]  inter_client_proto_std (cross-client): 0.049204
+2025-10-23 02:16:20 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 02:16:24 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5931
+2025-10-23 02:16:24 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 02:16:24 [INFO]  Round 48 starts--------|
+2025-10-23 02:16:24 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 02:16:27 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 02:16:47 [INFO]  Epoch 48 loss: 210.5580234527588; train accuracy: 0.834489982977609; test accuracy: 0.326
+2025-10-23 02:16:47 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 02:16:47 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 02:16:47 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 02:16:49 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 02:17:06 [INFO]  Epoch 48 loss: 179.55698776245117; train accuracy: 0.8869937636186039; test accuracy: 0.3341
+2025-10-23 02:17:06 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 02:17:06 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 02:17:06 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 02:17:07 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 02:17:14 [INFO]  Epoch 48 loss: 73.02924299240112; train accuracy: 0.9067456121801649; test accuracy: 0.1268
+2025-10-23 02:17:14 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 02:17:14 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 02:17:14 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 02:17:15 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 02:17:29 [INFO]  Epoch 48 loss: 133.49081802368164; train accuracy: 0.8256315465187923; test accuracy: 0.1732
+2025-10-23 02:17:29 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 02:17:29 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 02:17:29 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 02:17:30 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 02:17:41 [INFO]  Epoch 48 loss: 107.58886051177979; train accuracy: 0.7697841726618705; test accuracy: 0.2909
+2025-10-23 02:17:41 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 02:17:41 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 02:17:41 [INFO]  Round 48 Finish--------|
+2025-10-23 02:17:41 [INFO]  Model variance: mean: 0.0020187722984701395, sum: 22557.6640625
+2025-10-23 02:17:41 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 02:17:41 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 02:17:41 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 02:17:41 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 02:17:41 [INFO]  g_protos_std (global internal): 0.920800
+2025-10-23 02:17:41 [INFO]  inter_client_proto_std (cross-client): 0.049314
+2025-10-23 02:17:41 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 02:17:45 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.6025
+2025-10-23 02:17:45 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-23 02:17:45 [INFO]  Round 49 starts--------|
+2025-10-23 02:17:45 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-23 02:17:47 [INFO]  Data entropy: 1.9079, Normalized: 0.5743 -> Adaptive Lambda: 5.7859
+2025-10-23 02:18:07 [INFO]  Epoch 49 loss: 206.1728048324585; train accuracy: 0.8483697787089172; test accuracy: 0.3232
+2025-10-23 02:18:07 [INFO]  Client 0 Finish Local Training--------|
+2025-10-23 02:18:07 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-23 02:18:07 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-23 02:18:09 [INFO]  Data entropy: 1.7997, Normalized: 0.5418 -> Adaptive Lambda: 5.4634
+2025-10-23 02:18:27 [INFO]  Epoch 49 loss: 174.38189315795898; train accuracy: 0.8810579307235705; test accuracy: 0.3438
+2025-10-23 02:18:27 [INFO]  Client 1 Finish Local Training--------|
+2025-10-23 02:18:27 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-23 02:18:27 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-23 02:18:27 [INFO]  Data entropy: 0.6091, Normalized: 0.1834 -> Adaptive Lambda: 1.9152
+2025-10-23 02:18:35 [INFO]  Epoch 49 loss: 73.45493698120117; train accuracy: 0.8765066610277014; test accuracy: 0.1007
+2025-10-23 02:18:35 [INFO]  Client 2 Finish Local Training--------|
+2025-10-23 02:18:35 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-23 02:18:35 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-23 02:18:36 [INFO]  Data entropy: 1.1689, Normalized: 0.3519 -> Adaptive Lambda: 3.5837
+2025-10-23 02:18:50 [INFO]  Epoch 49 loss: 131.40018606185913; train accuracy: 0.9180529882932841; test accuracy: 0.2471
+2025-10-23 02:18:50 [INFO]  Client 3 Finish Local Training--------|
+2025-10-23 02:18:50 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-23 02:18:50 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-23 02:18:51 [INFO]  Data entropy: 1.7245, Normalized: 0.5191 -> Adaptive Lambda: 5.2395
+2025-10-23 02:19:01 [INFO]  Epoch 49 loss: 103.8659200668335; train accuracy: 0.7536690647482014; test accuracy: 0.2851
+2025-10-23 02:19:01 [INFO]  Client 4 Finish Local Training--------|
+2025-10-23 02:19:01 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-23 02:19:01 [INFO]  Round 49 Finish--------|
+2025-10-23 02:19:01 [INFO]  Model variance: mean: 0.0020405978430062532, sum: 22801.54296875
+2025-10-23 02:19:01 [INFO]  --- Starting Server-Side Optimization (Plan B) ---
+2025-10-23 02:19:01 [INFO]  Server Epoch 10/20, Avg Loss: 0.0001
+2025-10-23 02:19:01 [INFO]  Server Epoch 20/20, Avg Loss: 0.0001
+2025-10-23 02:19:01 [INFO]  --- Finished Server-Side Optimization ---
+2025-10-23 02:19:01 [INFO]  g_protos_std (global internal): 0.920740
+2025-10-23 02:19:01 [INFO]  inter_client_proto_std (cross-client): 0.049413
+2025-10-23 02:19:01 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-10-23 02:19:06 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5821
+2025-10-23 02:19:06 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV9+SimpleFeatureServer_CIFAR10_results.yaml

@@ -1,0 +1,1558 @@
+2025-10-17 12:36:20 [INFO]  Load config from ./configs/CIFAR10_alpha0.05_l20.yaml
+2025-10-17 12:36:20 [INFO]  config: {'exp_name': 'CIFAR10_alpha0.05', 'dataset': {'data_name': 'CIFAR10', 'root_path': 'H:/codes/dataset', 'train_batch_size': 512, 'test_batch_size': 256, 'channels': 3, 'num_classes': 10, 'image_size': 32}, 'distribution': {'type': 'dirichlet', 'label_num_per_client': 2, 'alpha': 0.05}, 'client': {'num_clients': 5}, 'server': {'num_rounds': 50, 'frac_clients': 1.0, 'lr': 0.05, 'local_epochs': 1, 'optimizer': 'sgd', 'momentum': 0.9, 'weight_decay': 0.0001, 'loss_name': 'ce', 'model_name': 'resnet18', 'aggregated_by_datasize': True, 'lr_decay_per_round': 0.998}, 'device': 'cuda:0', 'checkpoint': {'save_path': './checkpoints/', 'save_freq': 5, 'result_file': 'CIFAR10_results.yaml'}, 'pretrain': {'lr': 0.01, 'epoch': 70, 'model_path': './pretrain/', 'momentum': 0.9, 'weight_decay': 0.0001, 'model_name': 'resnet18', 'model_file_name': 'resnet18-f37072fd.pth'}, 'DBCD': {'alpha_l_pa': 1, 'alpha_l_pb': 1, 'alpha_l_pc': 0.0, 'Beta_alpha': 0.2, 'unsup_method': 'infonce', 'contrastive_temperature': 0.5, 'encoder_epoch': 40, 'projector_epoch': 10, 'use_pretrain': False, 'aug_batch_size': 512, 'encoder_lr': 0.03, 'cls_optimizer': 'sgd', 'cls_lr': 0.05, 'supcon_temp': 0.07, 'super_gr': 100, 'aux_with_public': True}, 'etf': {'loss_name': 'ce'}, 'visualization': {'interval': 5, 'save_path': 'visualization/resnet18', 'vis_size': 16}, 'resume': True, 'resume_best': False, 'seed': 1, 'lambda_align_initial': 20.0}
+2025-10-17 12:36:22 [INFO]  Dataset CIFAR10 loaded
+2025-10-17 12:36:22 [INFO]  Dataset index dict loaded from preprocessed_data/CIFAR10.pt
+2025-10-17 12:36:22 [INFO]  Data distribution generated correctly using the corrected dirichlet function.
+2025-10-17 12:36:22 [INFO]  Total assigned samples: 50000
+2025-10-17 12:36:22 [INFO]  OneshotOursV7 with DRCL (ETF Anchors) and Lambda Annealing
+2025-10-17 12:36:23 [INFO]  Initialized ETF fixed anchors with shape: torch.Size([10, 512])
+2025-10-17 12:36:23 [INFO]  Round 0 starts--------|
+2025-10-17 12:36:23 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 12:36:51 [INFO]  Epoch 0 loss: 904.3467922210693; train accuracy: 0.3768495482519314; test accuracy: 0.1253
+2025-10-17 12:36:52 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_0/epoch_0.pth
+2025-10-17 12:36:52 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 12:36:52 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 12:36:52 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 12:37:16 [INFO]  Epoch 0 loss: 781.9061069488525; train accuracy: 0.4167104966563979; test accuracy: 0.121
+2025-10-17 12:37:17 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_1/epoch_0.pth
+2025-10-17 12:37:17 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 12:37:17 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 12:37:17 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 12:37:27 [INFO]  Epoch 0 loss: 326.9253444671631; train accuracy: 0.8758722774370903; test accuracy: 0.1002
+2025-10-17 12:37:28 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_2/epoch_0.pth
+2025-10-17 12:37:28 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 12:37:28 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 12:37:28 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 12:37:44 [INFO]  Epoch 0 loss: 585.154878616333; train accuracy: 0.571986034093243; test accuracy: 0.1134
+2025-10-17 12:37:45 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_3/epoch_0.pth
+2025-10-17 12:37:45 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 12:37:45 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 12:37:45 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 12:37:58 [INFO]  Epoch 0 loss: 431.1252212524414; train accuracy: 0.4656115107913669; test accuracy: 0.1
+2025-10-17 12:37:58 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_4/epoch_0.pth
+2025-10-17 12:37:58 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 12:37:58 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 12:37:58 [INFO]  Round 0 Finish--------|
+2025-10-17 12:37:58 [INFO]  Model variance: mean: 0.00040317338425666094, sum: 4505.0400390625
+2025-10-17 12:37:58 [INFO]  g_protos_std (global internal): 0.999302
+2025-10-17 12:37:58 [INFO]  inter_client_proto_std (cross-client): 0.006522
+2025-10-17 12:37:58 [INFO]  g_protos_std (global internal): 0.999302
+2025-10-17 12:37:58 [INFO]  inter_client_proto_std (cross-client): 0.006522
+2025-10-17 12:37:58 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 12:38:03 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.2444
+2025-10-17 12:38:03 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 12:38:03 [INFO]  Round 1 starts--------|
+2025-10-17 12:38:03 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 12:38:27 [INFO]  Epoch 1 loss: 841.486291885376; train accuracy: 0.4232028283357339; test accuracy: 0.1536
+2025-10-17 12:38:27 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 12:38:27 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 12:38:27 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 12:38:47 [INFO]  Epoch 1 loss: 725.7501487731934; train accuracy: 0.37478398076489594; test accuracy: 0.1002
+2025-10-17 12:38:47 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 12:38:47 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 12:38:47 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 12:38:56 [INFO]  Epoch 1 loss: 280.8752326965332; train accuracy: 0.876295199830831; test accuracy: 0.1
+2025-10-17 12:38:56 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 12:38:56 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 12:38:56 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 12:39:12 [INFO]  Epoch 1 loss: 543.142635345459; train accuracy: 0.8021154241117272; test accuracy: 0.1639
+2025-10-17 12:39:12 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 12:39:12 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 12:39:12 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 12:39:24 [INFO]  Epoch 1 loss: 401.8940620422363; train accuracy: 0.5176978417266187; test accuracy: 0.1285
+2025-10-17 12:39:24 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 12:39:24 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 12:39:24 [INFO]  Round 1 Finish--------|
+2025-10-17 12:39:24 [INFO]  Model variance: mean: 0.0004973933682776988, sum: 5557.849609375
+2025-10-17 12:39:24 [INFO]  g_protos_std (global internal): 0.989493
+2025-10-17 12:39:24 [INFO]  inter_client_proto_std (cross-client): 0.010928
+2025-10-17 12:39:24 [INFO]  g_protos_std (global internal): 0.989493
+2025-10-17 12:39:24 [INFO]  inter_client_proto_std (cross-client): 0.010928
+2025-10-17 12:39:24 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 12:39:29 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.2934
+2025-10-17 12:39:29 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 12:39:29 [INFO]  Round 2 starts--------|
+2025-10-17 12:39:29 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 12:39:53 [INFO]  Epoch 2 loss: 800.9300403594971; train accuracy: 0.3461437737331413; test accuracy: 0.1103
+2025-10-17 12:39:53 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 12:39:53 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 12:39:53 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 12:40:14 [INFO]  Epoch 2 loss: 694.1186504364014; train accuracy: 0.4669772334510482; test accuracy: 0.1334
+2025-10-17 12:40:14 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 12:40:14 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 12:40:14 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 12:40:23 [INFO]  Epoch 2 loss: 269.7396869659424; train accuracy: 0.876295199830831; test accuracy: 0.1
+2025-10-17 12:40:23 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 12:40:23 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 12:40:23 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 12:40:40 [INFO]  Epoch 2 loss: 525.0759029388428; train accuracy: 0.8008831382214007; test accuracy: 0.1665
+2025-10-17 12:40:40 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 12:40:40 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 12:40:40 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 12:40:52 [INFO]  Epoch 2 loss: 391.66176986694336; train accuracy: 0.47035971223021583; test accuracy: 0.1029
+2025-10-17 12:40:52 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 12:40:52 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 12:40:52 [INFO]  Round 2 Finish--------|
+2025-10-17 12:40:52 [INFO]  Model variance: mean: 0.0005701399641111493, sum: 6370.716796875
+2025-10-17 12:40:52 [INFO]  g_protos_std (global internal): 0.977949
+2025-10-17 12:40:52 [INFO]  inter_client_proto_std (cross-client): 0.015955
+2025-10-17 12:40:52 [INFO]  g_protos_std (global internal): 0.977949
+2025-10-17 12:40:52 [INFO]  inter_client_proto_std (cross-client): 0.015955
+2025-10-17 12:40:52 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 12:40:57 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.3204
+2025-10-17 12:40:57 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 12:40:57 [INFO]  Round 3 starts--------|
+2025-10-17 12:40:57 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 12:41:20 [INFO]  Epoch 3 loss: 766.7613697052002; train accuracy: 0.5606913709571821; test accuracy: 0.196
+2025-10-17 12:41:20 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 12:41:20 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 12:41:20 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 12:41:43 [INFO]  Epoch 3 loss: 668.4043941497803; train accuracy: 0.6042527612893531; test accuracy: 0.1695
+2025-10-17 12:41:43 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 12:41:43 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 12:41:43 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 12:41:52 [INFO]  Epoch 3 loss: 261.98010444641113; train accuracy: 0.8765066610277014; test accuracy: 0.1285
+2025-10-17 12:41:52 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 12:41:52 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 12:41:52 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 12:42:09 [INFO]  Epoch 3 loss: 504.4324417114258; train accuracy: 0.7806531115218731; test accuracy: 0.1606
+2025-10-17 12:42:09 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 12:42:09 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 12:42:09 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 12:42:21 [INFO]  Epoch 3 loss: 380.7796974182129; train accuracy: 0.4892086330935252; test accuracy: 0.1582
+2025-10-17 12:42:21 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 12:42:21 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 12:42:21 [INFO]  Round 3 Finish--------|
+2025-10-17 12:42:21 [INFO]  Model variance: mean: 0.0006295934435911477, sum: 7035.046875
+2025-10-17 12:42:21 [INFO]  g_protos_std (global internal): 0.966386
+2025-10-17 12:42:21 [INFO]  inter_client_proto_std (cross-client): 0.020602
+2025-10-17 12:42:21 [INFO]  g_protos_std (global internal): 0.966386
+2025-10-17 12:42:21 [INFO]  inter_client_proto_std (cross-client): 0.020602
+2025-10-17 12:42:21 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 12:42:26 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.3334
+2025-10-17 12:42:26 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 12:42:26 [INFO]  Round 4 starts--------|
+2025-10-17 12:42:26 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 12:42:50 [INFO]  Epoch 4 loss: 735.1758327484131; train accuracy: 0.54864475579416; test accuracy: 0.1937
+2025-10-17 12:42:50 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 12:42:50 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 12:42:50 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 12:43:11 [INFO]  Epoch 4 loss: 642.1017723083496; train accuracy: 0.6235630024795251; test accuracy: 0.1794
+2025-10-17 12:43:11 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 12:43:11 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 12:43:11 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 12:43:19 [INFO]  Epoch 4 loss: 256.13125801086426; train accuracy: 0.7699302178050328; test accuracy: 0.1388
+2025-10-17 12:43:19 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 12:43:19 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 12:43:19 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 12:43:34 [INFO]  Epoch 4 loss: 487.95992851257324; train accuracy: 0.5171493119737113; test accuracy: 0.101
+2025-10-17 12:43:34 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 12:43:34 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 12:43:34 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 12:43:45 [INFO]  Epoch 4 loss: 372.2957286834717; train accuracy: 0.5496402877697841; test accuracy: 0.1902
+2025-10-17 12:43:45 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 12:43:45 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 12:43:45 [INFO]  Round 4 Finish--------|
+2025-10-17 12:43:45 [INFO]  Model variance: mean: 0.000685078848619014, sum: 7655.0380859375
+2025-10-17 12:43:45 [INFO]  g_protos_std (global internal): 0.954822
+2025-10-17 12:43:45 [INFO]  inter_client_proto_std (cross-client): 0.025395
+2025-10-17 12:43:45 [INFO]  g_protos_std (global internal): 0.954822
+2025-10-17 12:43:45 [INFO]  inter_client_proto_std (cross-client): 0.025395
+2025-10-17 12:43:45 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 12:43:50 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.3313
+2025-10-17 12:43:50 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 12:43:50 [INFO]  Round 5 starts--------|
+2025-10-17 12:43:50 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 12:44:13 [INFO]  Epoch 5 loss: 701.8669853210449; train accuracy: 0.47512112085897606; test accuracy: 0.1596
+2025-10-17 12:44:14 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_0/epoch_5.pth
+2025-10-17 12:44:14 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 12:44:14 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 12:44:14 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 12:44:35 [INFO]  Epoch 5 loss: 615.9593544006348; train accuracy: 0.5754752423172289; test accuracy: 0.1738
+2025-10-17 12:44:36 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_1/epoch_5.pth
+2025-10-17 12:44:36 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 12:44:36 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 12:44:36 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 12:44:45 [INFO]  Epoch 5 loss: 251.1461639404297; train accuracy: 0.8642419116092197; test accuracy: 0.1092
+2025-10-17 12:44:45 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_2/epoch_5.pth
+2025-10-17 12:44:45 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 12:44:45 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 12:44:45 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 12:45:02 [INFO]  Epoch 5 loss: 469.402006149292; train accuracy: 0.8608543848839597; test accuracy: 0.1771
+2025-10-17 12:45:02 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_3/epoch_5.pth
+2025-10-17 12:45:02 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 12:45:02 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 12:45:02 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 12:45:13 [INFO]  Epoch 5 loss: 362.62364768981934; train accuracy: 0.5178417266187051; test accuracy: 0.1344
+2025-10-17 12:45:14 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_4/epoch_5.pth
+2025-10-17 12:45:14 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 12:45:14 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 12:45:14 [INFO]  Round 5 Finish--------|
+2025-10-17 12:45:14 [INFO]  Model variance: mean: 0.0007400086033158004, sum: 8268.8203125
+2025-10-17 12:45:14 [INFO]  g_protos_std (global internal): 0.942959
+2025-10-17 12:45:14 [INFO]  inter_client_proto_std (cross-client): 0.029895
+2025-10-17 12:45:14 [INFO]  g_protos_std (global internal): 0.942959
+2025-10-17 12:45:14 [INFO]  inter_client_proto_std (cross-client): 0.029895
+2025-10-17 12:45:14 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 12:45:19 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.3454
+2025-10-17 12:45:19 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 12:45:19 [INFO]  Round 6 starts--------|
+2025-10-17 12:45:19 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 12:45:42 [INFO]  Epoch 6 loss: 665.8787689208984; train accuracy: 0.48592379206494696; test accuracy: 0.1843
+2025-10-17 12:45:42 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 12:45:42 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 12:45:42 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 12:46:03 [INFO]  Epoch 6 loss: 591.7629280090332; train accuracy: 0.5013900368171914; test accuracy: 0.1442
+2025-10-17 12:46:03 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 12:46:03 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 12:46:03 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 12:46:11 [INFO]  Epoch 6 loss: 244.44549560546875; train accuracy: 0.7443434129837175; test accuracy: 0.143
+2025-10-17 12:46:11 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 12:46:11 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 12:46:11 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 12:46:28 [INFO]  Epoch 6 loss: 452.9505615234375; train accuracy: 0.5780447730540152; test accuracy: 0.1142
+2025-10-17 12:46:28 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 12:46:28 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 12:46:28 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 12:46:39 [INFO]  Epoch 6 loss: 354.13062477111816; train accuracy: 0.5794244604316546; test accuracy: 0.1888
+2025-10-17 12:46:39 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 12:46:39 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 12:46:39 [INFO]  Round 6 Finish--------|
+2025-10-17 12:46:39 [INFO]  Model variance: mean: 0.0007894776063039899, sum: 8821.5849609375
+2025-10-17 12:46:39 [INFO]  g_protos_std (global internal): 0.931436
+2025-10-17 12:46:39 [INFO]  inter_client_proto_std (cross-client): 0.034804
+2025-10-17 12:46:39 [INFO]  g_protos_std (global internal): 0.931436
+2025-10-17 12:46:39 [INFO]  inter_client_proto_std (cross-client): 0.034804
+2025-10-17 12:46:39 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 12:46:44 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.369
+2025-10-17 12:46:44 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 12:46:44 [INFO]  Round 7 starts--------|
+2025-10-17 12:46:44 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 12:47:08 [INFO]  Epoch 7 loss: 636.5562381744385; train accuracy: 0.6333638863428047; test accuracy: 0.234
+2025-10-17 12:47:08 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 12:47:08 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 12:47:08 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 12:47:29 [INFO]  Epoch 7 loss: 569.0051593780518; train accuracy: 0.4853106920129236; test accuracy: 0.1523
+2025-10-17 12:47:29 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 12:47:29 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 12:47:29 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 12:47:38 [INFO]  Epoch 7 loss: 238.7275905609131; train accuracy: 0.8927891731867202; test accuracy: 0.1342
+2025-10-17 12:47:38 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 12:47:38 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 12:47:38 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 12:47:54 [INFO]  Epoch 7 loss: 434.39297676086426; train accuracy: 0.884781269254467; test accuracy: 0.1829
+2025-10-17 12:47:54 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 12:47:54 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 12:47:54 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 12:48:05 [INFO]  Epoch 7 loss: 345.60451889038086; train accuracy: 0.5964028776978417; test accuracy: 0.2043
+2025-10-17 12:48:05 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 12:48:05 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 12:48:05 [INFO]  Round 7 Finish--------|
+2025-10-17 12:48:05 [INFO]  Model variance: mean: 0.0008398575009778142, sum: 9384.52734375
+2025-10-17 12:48:05 [INFO]  g_protos_std (global internal): 0.919252
+2025-10-17 12:48:05 [INFO]  inter_client_proto_std (cross-client): 0.039633
+2025-10-17 12:48:05 [INFO]  g_protos_std (global internal): 0.919252
+2025-10-17 12:48:05 [INFO]  inter_client_proto_std (cross-client): 0.039633
+2025-10-17 12:48:05 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 12:48:09 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.3668
+2025-10-17 12:48:09 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 12:48:09 [INFO]  Round 8 starts--------|
+2025-10-17 12:48:09 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 12:48:32 [INFO]  Epoch 8 loss: 613.4153156280518; train accuracy: 0.49980358779625506; test accuracy: 0.2235
+2025-10-17 12:48:32 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 12:48:32 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 12:48:32 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 12:48:52 [INFO]  Epoch 8 loss: 549.0590972900391; train accuracy: 0.6886317529491321; test accuracy: 0.2023
+2025-10-17 12:48:52 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 12:48:52 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 12:48:52 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 12:49:00 [INFO]  Epoch 8 loss: 232.60589790344238; train accuracy: 0.8913089448086277; test accuracy: 0.1168
+2025-10-17 12:49:00 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 12:49:00 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 12:49:00 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 12:49:16 [INFO]  Epoch 8 loss: 420.83123207092285; train accuracy: 0.7877387553912508; test accuracy: 0.1626
+2025-10-17 12:49:16 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 12:49:16 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 12:49:16 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 12:49:27 [INFO]  Epoch 8 loss: 337.22643280029297; train accuracy: 0.4879136690647482; test accuracy: 0.1585
+2025-10-17 12:49:27 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 12:49:27 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 12:49:27 [INFO]  Round 8 Finish--------|
+2025-10-17 12:49:27 [INFO]  Model variance: mean: 0.0008814539760351181, sum: 9849.32421875
+2025-10-17 12:49:27 [INFO]  g_protos_std (global internal): 0.908293
+2025-10-17 12:49:27 [INFO]  inter_client_proto_std (cross-client): 0.043110
+2025-10-17 12:49:27 [INFO]  g_protos_std (global internal): 0.908293
+2025-10-17 12:49:27 [INFO]  inter_client_proto_std (cross-client): 0.043110
+2025-10-17 12:49:27 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 12:49:32 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.3939
+2025-10-17 12:49:32 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 12:49:32 [INFO]  Round 9 starts--------|
+2025-10-17 12:49:32 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 12:49:54 [INFO]  Epoch 9 loss: 585.3999633789062; train accuracy: 0.5488411679979049; test accuracy: 0.2288
+2025-10-17 12:49:54 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 12:49:54 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 12:49:54 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 12:50:15 [INFO]  Epoch 9 loss: 530.1684112548828; train accuracy: 0.41340446314524004; test accuracy: 0.1247
+2025-10-17 12:50:15 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 12:50:15 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 12:50:15 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 12:50:23 [INFO]  Epoch 9 loss: 226.64763832092285; train accuracy: 0.8771410446183125; test accuracy: 0.1006
+2025-10-17 12:50:23 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 12:50:23 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 12:50:23 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 12:50:38 [INFO]  Epoch 9 loss: 405.66248512268066; train accuracy: 0.8556171698500719; test accuracy: 0.1756
+2025-10-17 12:50:38 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 12:50:38 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 12:50:38 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 12:50:50 [INFO]  Epoch 9 loss: 328.46790504455566; train accuracy: 0.579136690647482; test accuracy: 0.1668
+2025-10-17 12:50:50 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 12:50:50 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 12:50:50 [INFO]  Round 9 Finish--------|
+2025-10-17 12:50:50 [INFO]  Model variance: mean: 0.0009262739331461489, sum: 10350.140625
+2025-10-17 12:50:50 [INFO]  g_protos_std (global internal): 0.897241
+2025-10-17 12:50:50 [INFO]  inter_client_proto_std (cross-client): 0.047331
+2025-10-17 12:50:50 [INFO]  g_protos_std (global internal): 0.897241
+2025-10-17 12:50:50 [INFO]  inter_client_proto_std (cross-client): 0.047331
+2025-10-17 12:50:50 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 12:50:54 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4043
+2025-10-17 12:50:54 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 12:50:54 [INFO]  Round 10 starts--------|
+2025-10-17 12:50:54 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 12:51:18 [INFO]  Epoch 10 loss: 561.3467559814453; train accuracy: 0.6500589236611235; test accuracy: 0.2478
+2025-10-17 12:51:18 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_0/epoch_10.pth
+2025-10-17 12:51:18 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 12:51:18 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 12:51:18 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 12:51:38 [INFO]  Epoch 10 loss: 509.9098663330078; train accuracy: 0.4735893004733639; test accuracy: 0.146
+2025-10-17 12:51:39 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_1/epoch_10.pth
+2025-10-17 12:51:39 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 12:51:39 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 12:51:39 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 12:51:47 [INFO]  Epoch 10 loss: 221.77174758911133; train accuracy: 0.8891943328399239; test accuracy: 0.1131
+2025-10-17 12:51:48 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_2/epoch_10.pth
+2025-10-17 12:51:48 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 12:51:48 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 12:51:48 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 12:52:04 [INFO]  Epoch 10 loss: 388.23316764831543; train accuracy: 0.5330663380570959; test accuracy: 0.1044
+2025-10-17 12:52:04 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_3/epoch_10.pth
+2025-10-17 12:52:04 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 12:52:04 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 12:52:04 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 12:52:15 [INFO]  Epoch 10 loss: 320.2414436340332; train accuracy: 0.6050359712230216; test accuracy: 0.1829
+2025-10-17 12:52:15 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_4/epoch_10.pth
+2025-10-17 12:52:15 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 12:52:15 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 12:52:15 [INFO]  Round 10 Finish--------|
+2025-10-17 12:52:15 [INFO]  Model variance: mean: 0.0009656929178163409, sum: 10790.6064453125
+2025-10-17 12:52:15 [INFO]  g_protos_std (global internal): 0.886543
+2025-10-17 12:52:15 [INFO]  inter_client_proto_std (cross-client): 0.050863
+2025-10-17 12:52:15 [INFO]  g_protos_std (global internal): 0.886543
+2025-10-17 12:52:15 [INFO]  inter_client_proto_std (cross-client): 0.050863
+2025-10-17 12:52:15 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 12:52:20 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.3823
+2025-10-17 12:52:20 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 12:52:20 [INFO]  Round 11 starts--------|
+2025-10-17 12:52:20 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 12:52:42 [INFO]  Epoch 11 loss: 540.2904605865479; train accuracy: 0.6094015974859238; test accuracy: 0.2498
+2025-10-17 12:52:42 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 12:52:42 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 12:52:42 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 12:53:01 [INFO]  Epoch 11 loss: 495.9982452392578; train accuracy: 0.45352768803065596; test accuracy: 0.1263
+2025-10-17 12:53:01 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 12:53:01 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 12:53:01 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 12:53:10 [INFO]  Epoch 11 loss: 216.61820030212402; train accuracy: 0.884753647705646; test accuracy: 0.1097
+2025-10-17 12:53:10 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 12:53:10 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 12:53:10 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 12:53:26 [INFO]  Epoch 11 loss: 373.70726203918457; train accuracy: 0.8707126720065722; test accuracy: 0.179
+2025-10-17 12:53:26 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 12:53:26 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 12:53:26 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 12:53:37 [INFO]  Epoch 11 loss: 312.7199172973633; train accuracy: 0.4752517985611511; test accuracy: 0.1677
+2025-10-17 12:53:37 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 12:53:37 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 12:53:37 [INFO]  Round 11 Finish--------|
+2025-10-17 12:53:37 [INFO]  Model variance: mean: 0.001007337705232203, sum: 11255.943359375
+2025-10-17 12:53:37 [INFO]  g_protos_std (global internal): 0.876198
+2025-10-17 12:53:37 [INFO]  inter_client_proto_std (cross-client): 0.054622
+2025-10-17 12:53:37 [INFO]  g_protos_std (global internal): 0.876198
+2025-10-17 12:53:37 [INFO]  inter_client_proto_std (cross-client): 0.054622
+2025-10-17 12:53:37 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 12:53:42 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4295
+2025-10-17 12:53:42 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 12:53:42 [INFO]  Round 12 starts--------|
+2025-10-17 12:53:42 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 12:54:05 [INFO]  Epoch 12 loss: 519.1682739257812; train accuracy: 0.7030247479376719; test accuracy: 0.2764
+2025-10-17 12:54:05 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 12:54:05 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 12:54:05 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 12:54:27 [INFO]  Epoch 12 loss: 472.3689956665039; train accuracy: 0.6385904275302426; test accuracy: 0.2129
+2025-10-17 12:54:27 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 12:54:27 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 12:54:27 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 12:54:34 [INFO]  Epoch 12 loss: 211.27507400512695; train accuracy: 0.8798900401776274; test accuracy: 0.1016
+2025-10-17 12:54:34 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 12:54:34 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 12:54:34 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 12:54:50 [INFO]  Epoch 12 loss: 362.9929437637329; train accuracy: 0.9100431300061614; test accuracy: 0.188
+2025-10-17 12:54:50 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 12:54:50 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 12:54:50 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 12:55:03 [INFO]  Epoch 12 loss: 302.30285453796387; train accuracy: 0.4856115107913669; test accuracy: 0.1087
+2025-10-17 12:55:03 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 12:55:03 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 12:55:03 [INFO]  Round 12 Finish--------|
+2025-10-17 12:55:03 [INFO]  Model variance: mean: 0.0010468806140124798, sum: 11697.7939453125
+2025-10-17 12:55:03 [INFO]  g_protos_std (global internal): 0.865765
+2025-10-17 12:55:03 [INFO]  inter_client_proto_std (cross-client): 0.057955
+2025-10-17 12:55:03 [INFO]  g_protos_std (global internal): 0.865765
+2025-10-17 12:55:03 [INFO]  inter_client_proto_std (cross-client): 0.057955
+2025-10-17 12:55:03 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 12:55:07 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4287
+2025-10-17 12:55:07 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 12:55:07 [INFO]  Round 13 starts--------|
+2025-10-17 12:55:07 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 12:55:31 [INFO]  Epoch 13 loss: 501.74352073669434; train accuracy: 0.5841953646719916; test accuracy: 0.2415
+2025-10-17 12:55:31 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 12:55:31 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 12:55:31 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 12:55:53 [INFO]  Epoch 13 loss: 460.79047203063965; train accuracy: 0.676083853031783; test accuracy: 0.2213
+2025-10-17 12:55:53 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 12:55:53 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 12:55:53 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 12:56:03 [INFO]  Epoch 13 loss: 205.6624298095703; train accuracy: 0.9014590822584055; test accuracy: 0.1281
+2025-10-17 12:56:03 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 12:56:03 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 12:56:03 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 12:56:19 [INFO]  Epoch 13 loss: 350.46958923339844; train accuracy: 0.8953583898131033; test accuracy: 0.183
+2025-10-17 12:56:19 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 12:56:19 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 12:56:19 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 12:56:31 [INFO]  Epoch 13 loss: 295.35235023498535; train accuracy: 0.5572661870503597; test accuracy: 0.1924
+2025-10-17 12:56:31 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 12:56:31 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 12:56:31 [INFO]  Round 13 Finish--------|
+2025-10-17 12:56:31 [INFO]  Model variance: mean: 0.001083642360754311, sum: 12108.5673828125
+2025-10-17 12:56:31 [INFO]  g_protos_std (global internal): 0.855967
+2025-10-17 12:56:31 [INFO]  inter_client_proto_std (cross-client): 0.061260
+2025-10-17 12:56:31 [INFO]  g_protos_std (global internal): 0.855967
+2025-10-17 12:56:31 [INFO]  inter_client_proto_std (cross-client): 0.061260
+2025-10-17 12:56:31 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 12:56:36 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4321
+2025-10-17 12:56:36 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 12:56:36 [INFO]  Round 14 starts--------|
+2025-10-17 12:56:36 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 12:57:00 [INFO]  Epoch 14 loss: 483.6818323135376; train accuracy: 0.7130417703286631; test accuracy: 0.2774
+2025-10-17 12:57:00 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 12:57:00 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 12:57:00 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 12:57:20 [INFO]  Epoch 14 loss: 438.709753036499; train accuracy: 0.5369298970621385; test accuracy: 0.1599
+2025-10-17 12:57:20 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 12:57:20 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 12:57:20 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 12:57:29 [INFO]  Epoch 14 loss: 200.4416961669922; train accuracy: 0.8803129625713682; test accuracy: 0.1028
+2025-10-17 12:57:29 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 12:57:29 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 12:57:29 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 12:57:45 [INFO]  Epoch 14 loss: 335.55430126190186; train accuracy: 0.8884781269254467; test accuracy: 0.1838
+2025-10-17 12:57:45 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 12:57:45 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 12:57:45 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 12:57:57 [INFO]  Epoch 14 loss: 287.0340576171875; train accuracy: 0.6300719424460431; test accuracy: 0.1817
+2025-10-17 12:57:57 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 12:57:57 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 12:57:57 [INFO]  Round 14 Finish--------|
+2025-10-17 12:57:57 [INFO]  Model variance: mean: 0.0011211378732696176, sum: 12527.541015625
+2025-10-17 12:57:57 [INFO]  g_protos_std (global internal): 0.845910
+2025-10-17 12:57:57 [INFO]  inter_client_proto_std (cross-client): 0.064509
+2025-10-17 12:57:57 [INFO]  g_protos_std (global internal): 0.845910
+2025-10-17 12:57:57 [INFO]  inter_client_proto_std (cross-client): 0.064509
+2025-10-17 12:57:57 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 12:58:02 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4461
+2025-10-17 12:58:02 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 12:58:02 [INFO]  Round 15 starts--------|
+2025-10-17 12:58:02 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 12:58:26 [INFO]  Epoch 15 loss: 465.13479709625244; train accuracy: 0.7626031164069661; test accuracy: 0.2898
+2025-10-17 12:58:26 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_0/epoch_15.pth
+2025-10-17 12:58:26 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 12:58:26 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 12:58:26 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 12:58:46 [INFO]  Epoch 15 loss: 428.23881244659424; train accuracy: 0.7382973927417537; test accuracy: 0.2518
+2025-10-17 12:58:47 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_1/epoch_15.pth
+2025-10-17 12:58:47 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 12:58:47 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 12:58:47 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 12:58:55 [INFO]  Epoch 15 loss: 195.91297721862793; train accuracy: 0.8834848805244238; test accuracy: 0.1044
+2025-10-17 12:58:56 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_2/epoch_15.pth
+2025-10-17 12:58:56 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 12:58:56 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 12:58:56 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 12:59:13 [INFO]  Epoch 15 loss: 325.20284938812256; train accuracy: 0.7749024440336825; test accuracy: 0.158
+2025-10-17 12:59:14 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_3/epoch_15.pth
+2025-10-17 12:59:14 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 12:59:14 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 12:59:14 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 12:59:27 [INFO]  Epoch 15 loss: 281.29158782958984; train accuracy: 0.5827338129496403; test accuracy: 0.1695
+2025-10-17 12:59:27 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_4/epoch_15.pth
+2025-10-17 12:59:27 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 12:59:27 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 12:59:27 [INFO]  Round 15 Finish--------|
+2025-10-17 12:59:27 [INFO]  Model variance: mean: 0.0011574779637157917, sum: 12933.603515625
+2025-10-17 12:59:27 [INFO]  g_protos_std (global internal): 0.836807
+2025-10-17 12:59:27 [INFO]  inter_client_proto_std (cross-client): 0.067552
+2025-10-17 12:59:27 [INFO]  g_protos_std (global internal): 0.836807
+2025-10-17 12:59:27 [INFO]  inter_client_proto_std (cross-client): 0.067552
+2025-10-17 12:59:27 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 12:59:32 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4567
+2025-10-17 12:59:32 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 12:59:32 [INFO]  Round 16 starts--------|
+2025-10-17 12:59:32 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 12:59:55 [INFO]  Epoch 16 loss: 448.6020498275757; train accuracy: 0.726594212387063; test accuracy: 0.2971
+2025-10-17 12:59:55 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 12:59:55 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 12:59:55 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:00:16 [INFO]  Epoch 16 loss: 411.82998180389404; train accuracy: 0.7690284769704712; test accuracy: 0.2831
+2025-10-17 13:00:16 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:00:16 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:00:16 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:00:24 [INFO]  Epoch 16 loss: 190.90916442871094; train accuracy: 0.8794671177838866; test accuracy: 0.1019
+2025-10-17 13:00:24 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:00:24 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:00:24 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:00:39 [INFO]  Epoch 16 loss: 315.04626178741455; train accuracy: 0.9079893201889505; test accuracy: 0.1889
+2025-10-17 13:00:39 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:00:39 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:00:39 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:00:50 [INFO]  Epoch 16 loss: 273.62724113464355; train accuracy: 0.5753956834532374; test accuracy: 0.1919
+2025-10-17 13:00:50 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:00:50 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:00:50 [INFO]  Round 16 Finish--------|
+2025-10-17 13:00:51 [INFO]  Model variance: mean: 0.0011941551929339767, sum: 13343.4326171875
+2025-10-17 13:00:51 [INFO]  g_protos_std (global internal): 0.827536
+2025-10-17 13:00:51 [INFO]  inter_client_proto_std (cross-client): 0.070884
+2025-10-17 13:00:51 [INFO]  g_protos_std (global internal): 0.827536
+2025-10-17 13:00:51 [INFO]  inter_client_proto_std (cross-client): 0.070884
+2025-10-17 13:00:51 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:00:55 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4521
+2025-10-17 13:00:55 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:00:55 [INFO]  Round 17 starts--------|
+2025-10-17 13:00:55 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:01:18 [INFO]  Epoch 17 loss: 431.97926330566406; train accuracy: 0.6435773209375409; test accuracy: 0.2452
+2025-10-17 13:01:18 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:01:18 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:01:18 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:01:39 [INFO]  Epoch 17 loss: 398.48300647735596; train accuracy: 0.7350664963558494; test accuracy: 0.2292
+2025-10-17 13:01:39 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:01:39 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:01:39 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:01:48 [INFO]  Epoch 17 loss: 185.79232788085938; train accuracy: 0.8765066610277014; test accuracy: 0.1
+2025-10-17 13:01:48 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:01:48 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:01:48 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:02:03 [INFO]  Epoch 17 loss: 301.3207950592041; train accuracy: 0.910145820497022; test accuracy: 0.1862
+2025-10-17 13:02:03 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:02:03 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:02:03 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:02:16 [INFO]  Epoch 17 loss: 270.147518157959; train accuracy: 0.5894964028776979; test accuracy: 0.1865
+2025-10-17 13:02:16 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:02:16 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:02:16 [INFO]  Round 17 Finish--------|
+2025-10-17 13:02:16 [INFO]  Model variance: mean: 0.0012310883030295372, sum: 13756.1220703125
+2025-10-17 13:02:16 [INFO]  g_protos_std (global internal): 0.818515
+2025-10-17 13:02:16 [INFO]  inter_client_proto_std (cross-client): 0.073909
+2025-10-17 13:02:16 [INFO]  g_protos_std (global internal): 0.818515
+2025-10-17 13:02:16 [INFO]  inter_client_proto_std (cross-client): 0.073909
+2025-10-17 13:02:16 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:02:20 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4687
+2025-10-17 13:02:20 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:02:20 [INFO]  Round 18 starts--------|
+2025-10-17 13:02:20 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:02:44 [INFO]  Epoch 18 loss: 420.42462825775146; train accuracy: 0.6772947492470865; test accuracy: 0.2753
+2025-10-17 13:02:44 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:02:44 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:02:44 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:03:05 [INFO]  Epoch 18 loss: 387.3138837814331; train accuracy: 0.7781200691261553; test accuracy: 0.2915
+2025-10-17 13:03:05 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:03:05 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:03:05 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:03:14 [INFO]  Epoch 18 loss: 181.75335502624512; train accuracy: 0.8817931909494607; test accuracy: 0.103
+2025-10-17 13:03:14 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:03:14 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:03:14 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:03:31 [INFO]  Epoch 18 loss: 295.26880168914795; train accuracy: 0.9011090573012939; test accuracy: 0.1826
+2025-10-17 13:03:31 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:03:31 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:03:31 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:03:43 [INFO]  Epoch 18 loss: 261.69083976745605; train accuracy: 0.6283453237410072; test accuracy: 0.18
+2025-10-17 13:03:43 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:03:43 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:03:43 [INFO]  Round 18 Finish--------|
+2025-10-17 13:03:43 [INFO]  Model variance: mean: 0.0012642084620893002, sum: 14126.205078125
+2025-10-17 13:03:43 [INFO]  g_protos_std (global internal): 0.810479
+2025-10-17 13:03:43 [INFO]  inter_client_proto_std (cross-client): 0.076657
+2025-10-17 13:03:43 [INFO]  g_protos_std (global internal): 0.810479
+2025-10-17 13:03:43 [INFO]  inter_client_proto_std (cross-client): 0.076657
+2025-10-17 13:03:43 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:03:48 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4452
+2025-10-17 13:03:48 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:03:48 [INFO]  Round 19 starts--------|
+2025-10-17 13:03:48 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:04:12 [INFO]  Epoch 19 loss: 403.8869113922119; train accuracy: 0.6978525599057221; test accuracy: 0.292
+2025-10-17 13:04:12 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:04:12 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:04:12 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:04:33 [INFO]  Epoch 19 loss: 371.80327224731445; train accuracy: 0.45495529341047414; test accuracy: 0.1308
+2025-10-17 13:04:33 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:04:33 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:04:33 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:04:41 [INFO]  Epoch 19 loss: 177.6603240966797; train accuracy: 0.8906745612180165; test accuracy: 0.1439
+2025-10-17 13:04:41 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:04:41 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:04:41 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:04:56 [INFO]  Epoch 19 loss: 285.6025848388672; train accuracy: 0.8852947217087698; test accuracy: 0.1806
+2025-10-17 13:04:56 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:04:56 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:04:56 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:05:08 [INFO]  Epoch 19 loss: 255.77741622924805; train accuracy: 0.6044604316546762; test accuracy: 0.1934
+2025-10-17 13:05:08 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:05:08 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:05:08 [INFO]  Round 19 Finish--------|
+2025-10-17 13:05:08 [INFO]  Model variance: mean: 0.0012983952183276415, sum: 14508.2060546875
+2025-10-17 13:05:08 [INFO]  g_protos_std (global internal): 0.802334
+2025-10-17 13:05:08 [INFO]  inter_client_proto_std (cross-client): 0.079640
+2025-10-17 13:05:08 [INFO]  g_protos_std (global internal): 0.802334
+2025-10-17 13:05:08 [INFO]  inter_client_proto_std (cross-client): 0.079640
+2025-10-17 13:05:08 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:05:13 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4624
+2025-10-17 13:05:13 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:05:13 [INFO]  Round 20 starts--------|
+2025-10-17 13:05:13 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:05:36 [INFO]  Epoch 20 loss: 391.66138553619385; train accuracy: 0.6863297106193531; test accuracy: 0.272
+2025-10-17 13:05:37 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_0/epoch_20.pth
+2025-10-17 13:05:37 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:05:37 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:05:37 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:05:56 [INFO]  Epoch 20 loss: 365.34635066986084; train accuracy: 0.7459613795176196; test accuracy: 0.247
+2025-10-17 13:05:56 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_1/epoch_20.pth
+2025-10-17 13:05:56 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:05:56 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:05:56 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:06:04 [INFO]  Epoch 20 loss: 172.2375888824463; train accuracy: 0.8858109536899978; test accuracy: 0.1081
+2025-10-17 13:06:04 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_2/epoch_20.pth
+2025-10-17 13:06:04 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:06:04 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:06:04 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:06:20 [INFO]  Epoch 20 loss: 274.5515422821045; train accuracy: 0.8092010679811049; test accuracy: 0.1665
+2025-10-17 13:06:20 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_3/epoch_20.pth
+2025-10-17 13:06:20 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:06:20 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:06:20 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:06:32 [INFO]  Epoch 20 loss: 247.83309173583984; train accuracy: 0.5743884892086331; test accuracy: 0.1595
+2025-10-17 13:06:32 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_4/epoch_20.pth
+2025-10-17 13:06:32 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:06:32 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:06:32 [INFO]  Round 20 Finish--------|
+2025-10-17 13:06:32 [INFO]  Model variance: mean: 0.0013312563532963395, sum: 14875.39453125
+2025-10-17 13:06:32 [INFO]  g_protos_std (global internal): 0.794652
+2025-10-17 13:06:32 [INFO]  inter_client_proto_std (cross-client): 0.082137
+2025-10-17 13:06:32 [INFO]  g_protos_std (global internal): 0.794652
+2025-10-17 13:06:32 [INFO]  inter_client_proto_std (cross-client): 0.082137
+2025-10-17 13:06:32 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:06:37 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4863
+2025-10-17 13:06:37 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:06:37 [INFO]  Round 21 starts--------|
+2025-10-17 13:06:37 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:07:01 [INFO]  Epoch 21 loss: 381.5489320755005; train accuracy: 0.7885295273012963; test accuracy: 0.3161
+2025-10-17 13:07:01 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:07:01 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:07:01 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:07:23 [INFO]  Epoch 21 loss: 352.7727298736572; train accuracy: 0.7871365241565857; test accuracy: 0.2653
+2025-10-17 13:07:23 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:07:23 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:07:23 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:07:33 [INFO]  Epoch 21 loss: 168.45729064941406; train accuracy: 0.8817931909494607; test accuracy: 0.1033
+2025-10-17 13:07:33 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:07:33 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:07:33 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:07:48 [INFO]  Epoch 21 loss: 265.99162101745605; train accuracy: 0.8962826042308483; test accuracy: 0.1845
+2025-10-17 13:07:48 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:07:48 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:07:48 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:08:01 [INFO]  Epoch 21 loss: 243.26622200012207; train accuracy: 0.6410071942446043; test accuracy: 0.196
+2025-10-17 13:08:01 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:08:01 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:08:01 [INFO]  Round 21 Finish--------|
+2025-10-17 13:08:01 [INFO]  Model variance: mean: 0.0013637067750096321, sum: 15237.994140625
+2025-10-17 13:08:01 [INFO]  g_protos_std (global internal): 0.787047
+2025-10-17 13:08:01 [INFO]  inter_client_proto_std (cross-client): 0.084708
+2025-10-17 13:08:01 [INFO]  g_protos_std (global internal): 0.787047
+2025-10-17 13:08:01 [INFO]  inter_client_proto_std (cross-client): 0.084708
+2025-10-17 13:08:01 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:08:06 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4779
+2025-10-17 13:08:06 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:08:06 [INFO]  Round 22 starts--------|
+2025-10-17 13:08:06 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:08:29 [INFO]  Epoch 22 loss: 369.02735137939453; train accuracy: 0.817860416393872; test accuracy: 0.3235
+2025-10-17 13:08:29 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:08:29 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:08:29 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:08:50 [INFO]  Epoch 22 loss: 340.1230001449585; train accuracy: 0.7364941017356675; test accuracy: 0.2662
+2025-10-17 13:08:50 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:08:50 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:08:50 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:08:59 [INFO]  Epoch 22 loss: 164.436861038208; train accuracy: 0.9046310002114611; test accuracy: 0.141
+2025-10-17 13:08:59 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:08:59 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:08:59 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:09:16 [INFO]  Epoch 22 loss: 258.3329153060913; train accuracy: 0.9098377490244404; test accuracy: 0.1845
+2025-10-17 13:09:16 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:09:16 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:09:16 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:09:28 [INFO]  Epoch 22 loss: 235.39337348937988; train accuracy: 0.5233093525179856; test accuracy: 0.1278
+2025-10-17 13:09:28 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:09:28 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:09:28 [INFO]  Round 22 Finish--------|
+2025-10-17 13:09:28 [INFO]  Model variance: mean: 0.001396942650899291, sum: 15609.3701171875
+2025-10-17 13:09:28 [INFO]  g_protos_std (global internal): 0.779926
+2025-10-17 13:09:28 [INFO]  inter_client_proto_std (cross-client): 0.087063
+2025-10-17 13:09:28 [INFO]  g_protos_std (global internal): 0.779926
+2025-10-17 13:09:28 [INFO]  inter_client_proto_std (cross-client): 0.087063
+2025-10-17 13:09:28 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:09:32 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4865
+2025-10-17 13:09:32 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:09:32 [INFO]  Round 23 starts--------|
+2025-10-17 13:09:32 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:09:59 [INFO]  Epoch 23 loss: 362.8495111465454; train accuracy: 0.7825716904543669; test accuracy: 0.3124
+2025-10-17 13:09:59 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:09:59 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:09:59 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:10:20 [INFO]  Epoch 23 loss: 332.66058254241943; train accuracy: 0.859643850026298; test accuracy: 0.3074
+2025-10-17 13:10:20 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:10:20 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:10:20 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:10:30 [INFO]  Epoch 23 loss: 160.3327980041504; train accuracy: 0.8731232818777754; test accuracy: 0.1469
+2025-10-17 13:10:30 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:10:30 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:10:30 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:10:45 [INFO]  Epoch 23 loss: 251.4345293045044; train accuracy: 0.7388580817416307; test accuracy: 0.1496
+2025-10-17 13:10:45 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:10:45 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:10:45 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:10:58 [INFO]  Epoch 23 loss: 229.98410320281982; train accuracy: 0.7132374100719424; test accuracy: 0.2305
+2025-10-17 13:10:58 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:10:58 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:10:58 [INFO]  Round 23 Finish--------|
+2025-10-17 13:10:58 [INFO]  Model variance: mean: 0.0014263668563216925, sum: 15938.154296875
+2025-10-17 13:10:58 [INFO]  g_protos_std (global internal): 0.773114
+2025-10-17 13:10:58 [INFO]  inter_client_proto_std (cross-client): 0.089530
+2025-10-17 13:10:58 [INFO]  g_protos_std (global internal): 0.773114
+2025-10-17 13:10:58 [INFO]  inter_client_proto_std (cross-client): 0.089530
+2025-10-17 13:10:58 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:11:03 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5064
+2025-10-17 13:11:03 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:11:03 [INFO]  Round 24 starts--------|
+2025-10-17 13:11:03 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:11:26 [INFO]  Epoch 24 loss: 353.2257595062256; train accuracy: 0.8107895770590546; test accuracy: 0.3242
+2025-10-17 13:11:26 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:11:26 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:11:26 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:11:48 [INFO]  Epoch 24 loss: 324.2751636505127; train accuracy: 0.8196708993913893; test accuracy: 0.2905
+2025-10-17 13:11:48 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:11:48 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:11:48 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:11:56 [INFO]  Epoch 24 loss: 156.85194301605225; train accuracy: 0.5988581095369; test accuracy: 0.1482
+2025-10-17 13:11:56 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:11:56 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:11:56 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:12:11 [INFO]  Epoch 24 loss: 243.52663803100586; train accuracy: 0.8818032450195112; test accuracy: 0.1802
+2025-10-17 13:12:11 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:12:11 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:12:11 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:12:23 [INFO]  Epoch 24 loss: 225.2819700241089; train accuracy: 0.6719424460431654; test accuracy: 0.1953
+2025-10-17 13:12:23 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:12:23 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:12:23 [INFO]  Round 24 Finish--------|
+2025-10-17 13:12:23 [INFO]  Model variance: mean: 0.0014571690699085593, sum: 16282.3369140625
+2025-10-17 13:12:23 [INFO]  g_protos_std (global internal): 0.766787
+2025-10-17 13:12:23 [INFO]  inter_client_proto_std (cross-client): 0.091717
+2025-10-17 13:12:23 [INFO]  g_protos_std (global internal): 0.766787
+2025-10-17 13:12:23 [INFO]  inter_client_proto_std (cross-client): 0.091717
+2025-10-17 13:12:23 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:12:27 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5014
+2025-10-17 13:12:27 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:12:27 [INFO]  Round 25 starts--------|
+2025-10-17 13:12:27 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:12:51 [INFO]  Epoch 25 loss: 342.89043617248535; train accuracy: 0.6618436558858191; test accuracy: 0.2653
+2025-10-17 13:12:51 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_0/epoch_25.pth
+2025-10-17 13:12:51 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:12:51 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:12:51 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:13:12 [INFO]  Epoch 25 loss: 316.5490713119507; train accuracy: 0.6934405289653618; test accuracy: 0.2708
+2025-10-17 13:13:12 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_1/epoch_25.pth
+2025-10-17 13:13:12 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:13:12 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:13:12 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:13:21 [INFO]  Epoch 25 loss: 152.64520931243896; train accuracy: 0.8889828716430535; test accuracy: 0.107
+2025-10-17 13:13:22 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_2/epoch_25.pth
+2025-10-17 13:13:22 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:13:22 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:13:22 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:13:37 [INFO]  Epoch 25 loss: 235.79360675811768; train accuracy: 0.9336619429040871; test accuracy: 0.1907
+2025-10-17 13:13:37 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_3/epoch_25.pth
+2025-10-17 13:13:37 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:13:37 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:13:37 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:13:48 [INFO]  Epoch 25 loss: 220.05729007720947; train accuracy: 0.6492086330935252; test accuracy: 0.2021
+2025-10-17 13:13:49 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_4/epoch_25.pth
+2025-10-17 13:13:49 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:13:49 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:13:49 [INFO]  Round 25 Finish--------|
+2025-10-17 13:13:49 [INFO]  Model variance: mean: 0.0014880088856443763, sum: 16626.939453125
+2025-10-17 13:13:49 [INFO]  g_protos_std (global internal): 0.760568
+2025-10-17 13:13:49 [INFO]  inter_client_proto_std (cross-client): 0.093655
+2025-10-17 13:13:49 [INFO]  g_protos_std (global internal): 0.760568
+2025-10-17 13:13:49 [INFO]  inter_client_proto_std (cross-client): 0.093655
+2025-10-17 13:13:49 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:13:54 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4998
+2025-10-17 13:13:54 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:13:54 [INFO]  Round 26 starts--------|
+2025-10-17 13:13:54 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:14:18 [INFO]  Epoch 26 loss: 333.812539100647; train accuracy: 0.7356291737593296; test accuracy: 0.3017
+2025-10-17 13:14:18 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:14:18 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:14:18 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:14:40 [INFO]  Epoch 26 loss: 303.42902278900146; train accuracy: 0.8035164174618679; test accuracy: 0.2949
+2025-10-17 13:14:40 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:14:40 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:14:40 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:14:49 [INFO]  Epoch 26 loss: 148.62399196624756; train accuracy: 0.8957496299429055; test accuracy: 0.1223
+2025-10-17 13:14:49 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:14:49 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:14:49 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:15:05 [INFO]  Epoch 26 loss: 231.54092121124268; train accuracy: 0.5996097761347299; test accuracy: 0.12
+2025-10-17 13:15:05 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:15:05 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:15:05 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:15:17 [INFO]  Epoch 26 loss: 214.45466423034668; train accuracy: 0.5966906474820144; test accuracy: 0.1642
+2025-10-17 13:15:17 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:15:17 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:15:17 [INFO]  Round 26 Finish--------|
+2025-10-17 13:15:17 [INFO]  Model variance: mean: 0.0015190416015684605, sum: 16973.697265625
+2025-10-17 13:15:17 [INFO]  g_protos_std (global internal): 0.754552
+2025-10-17 13:15:17 [INFO]  inter_client_proto_std (cross-client): 0.095771
+2025-10-17 13:15:17 [INFO]  g_protos_std (global internal): 0.754552
+2025-10-17 13:15:17 [INFO]  inter_client_proto_std (cross-client): 0.095771
+2025-10-17 13:15:17 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:15:22 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.509
+2025-10-17 13:15:22 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:15:22 [INFO]  Round 27 starts--------|
+2025-10-17 13:15:22 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:15:45 [INFO]  Epoch 27 loss: 322.11749267578125; train accuracy: 0.7903627078695823; test accuracy: 0.3113
+2025-10-17 13:15:45 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:15:45 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:15:45 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:16:05 [INFO]  Epoch 27 loss: 301.7876453399658; train accuracy: 0.7614396273198587; test accuracy: 0.3023
+2025-10-17 13:16:05 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:16:05 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:16:05 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:16:14 [INFO]  Epoch 27 loss: 145.7179536819458; train accuracy: 0.8972298583209981; test accuracy: 0.1166
+2025-10-17 13:16:14 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:16:14 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:16:14 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:16:30 [INFO]  Epoch 27 loss: 225.9635362625122; train accuracy: 0.9166153214212364; test accuracy: 0.1881
+2025-10-17 13:16:30 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:16:30 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:16:30 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:16:42 [INFO]  Epoch 27 loss: 207.15702056884766; train accuracy: 0.6873381294964028; test accuracy: 0.2308
+2025-10-17 13:16:42 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:16:42 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:16:42 [INFO]  Round 27 Finish--------|
+2025-10-17 13:16:42 [INFO]  Model variance: mean: 0.0015497342683374882, sum: 17316.65625
+2025-10-17 13:16:42 [INFO]  g_protos_std (global internal): 0.749115
+2025-10-17 13:16:42 [INFO]  inter_client_proto_std (cross-client): 0.097643
+2025-10-17 13:16:42 [INFO]  g_protos_std (global internal): 0.749115
+2025-10-17 13:16:42 [INFO]  inter_client_proto_std (cross-client): 0.097643
+2025-10-17 13:16:42 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:16:47 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5144
+2025-10-17 13:16:47 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:16:47 [INFO]  Round 28 starts--------|
+2025-10-17 13:16:47 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:17:10 [INFO]  Epoch 28 loss: 317.69133472442627; train accuracy: 0.8009034961372267; test accuracy: 0.3102
+2025-10-17 13:17:10 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:17:10 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:17:10 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:17:32 [INFO]  Epoch 28 loss: 293.3699703216553; train accuracy: 0.8440153279735517; test accuracy: 0.2907
+2025-10-17 13:17:32 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:17:32 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:17:32 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:17:42 [INFO]  Epoch 28 loss: 141.35424137115479; train accuracy: 0.7544935504334954; test accuracy: 0.1559
+2025-10-17 13:17:42 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:17:42 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:17:42 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:17:57 [INFO]  Epoch 28 loss: 219.37652015686035; train accuracy: 0.881392483056069; test accuracy: 0.1823
+2025-10-17 13:17:57 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:17:57 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:17:57 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:18:10 [INFO]  Epoch 28 loss: 203.91249179840088; train accuracy: 0.62431654676259; test accuracy: 0.1777
+2025-10-17 13:18:10 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:18:10 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:18:10 [INFO]  Round 28 Finish--------|
+2025-10-17 13:18:10 [INFO]  Model variance: mean: 0.0015764461131766438, sum: 17615.1328125
+2025-10-17 13:18:10 [INFO]  g_protos_std (global internal): 0.744195
+2025-10-17 13:18:10 [INFO]  inter_client_proto_std (cross-client): 0.099232
+2025-10-17 13:18:10 [INFO]  g_protos_std (global internal): 0.744195
+2025-10-17 13:18:10 [INFO]  inter_client_proto_std (cross-client): 0.099232
+2025-10-17 13:18:10 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:18:15 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5088
+2025-10-17 13:18:15 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:18:15 [INFO]  Round 29 starts--------|
+2025-10-17 13:18:15 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:18:39 [INFO]  Epoch 29 loss: 307.87736988067627; train accuracy: 0.7583475186591594; test accuracy: 0.265
+2025-10-17 13:18:39 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:18:39 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:18:39 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:19:00 [INFO]  Epoch 29 loss: 279.4806137084961; train accuracy: 0.8618228266586521; test accuracy: 0.3244
+2025-10-17 13:19:00 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:19:00 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:19:00 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:19:09 [INFO]  Epoch 29 loss: 137.70881938934326; train accuracy: 0.8807358849651089; test accuracy: 0.1028
+2025-10-17 13:19:09 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:19:09 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:19:09 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:19:26 [INFO]  Epoch 29 loss: 212.4484987258911; train accuracy: 0.8278907373177243; test accuracy: 0.1745
+2025-10-17 13:19:26 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:19:26 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:19:26 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:19:38 [INFO]  Epoch 29 loss: 197.60004901885986; train accuracy: 0.5952517985611511; test accuracy: 0.1729
+2025-10-17 13:19:38 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:19:38 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:19:38 [INFO]  Round 29 Finish--------|
+2025-10-17 13:19:38 [INFO]  Model variance: mean: 0.0016058911569416523, sum: 17944.150390625
+2025-10-17 13:19:38 [INFO]  g_protos_std (global internal): 0.739081
+2025-10-17 13:19:38 [INFO]  inter_client_proto_std (cross-client): 0.100872
+2025-10-17 13:19:38 [INFO]  g_protos_std (global internal): 0.739081
+2025-10-17 13:19:38 [INFO]  inter_client_proto_std (cross-client): 0.100872
+2025-10-17 13:19:38 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:19:43 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5186
+2025-10-17 13:19:43 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:19:43 [INFO]  Round 30 starts--------|
+2025-10-17 13:19:43 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:20:07 [INFO]  Epoch 30 loss: 301.4330711364746; train accuracy: 0.8339662171009559; test accuracy: 0.312
+2025-10-17 13:20:08 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_0/epoch_30.pth
+2025-10-17 13:20:08 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:20:08 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:20:08 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:20:28 [INFO]  Epoch 30 loss: 277.60821056365967; train accuracy: 0.8449921106018484; test accuracy: 0.2875
+2025-10-17 13:20:29 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_1/epoch_30.pth
+2025-10-17 13:20:29 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:20:29 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:20:29 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:20:38 [INFO]  Epoch 30 loss: 133.3598232269287; train accuracy: 0.893212095580461; test accuracy: 0.1163
+2025-10-17 13:20:38 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_2/epoch_30.pth
+2025-10-17 13:20:38 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:20:38 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:20:38 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:20:54 [INFO]  Epoch 30 loss: 207.28927421569824; train accuracy: 0.8885808174163072; test accuracy: 0.1796
+2025-10-17 13:20:55 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_3/epoch_30.pth
+2025-10-17 13:20:55 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:20:55 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:20:55 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:21:07 [INFO]  Epoch 30 loss: 191.32476425170898; train accuracy: 0.6720863309352518; test accuracy: 0.1879
+2025-10-17 13:21:08 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_4/epoch_30.pth
+2025-10-17 13:21:08 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:21:08 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:21:08 [INFO]  Round 30 Finish--------|
+2025-10-17 13:21:08 [INFO]  Model variance: mean: 0.0016336815897375345, sum: 18254.6796875
+2025-10-17 13:21:08 [INFO]  g_protos_std (global internal): 0.734233
+2025-10-17 13:21:08 [INFO]  inter_client_proto_std (cross-client): 0.102370
+2025-10-17 13:21:08 [INFO]  g_protos_std (global internal): 0.734233
+2025-10-17 13:21:08 [INFO]  inter_client_proto_std (cross-client): 0.102370
+2025-10-17 13:21:08 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:21:13 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5336
+2025-10-17 13:21:13 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:21:13 [INFO]  Round 31 starts--------|
+2025-10-17 13:21:13 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:21:38 [INFO]  Epoch 31 loss: 296.4299154281616; train accuracy: 0.7250883854916852; test accuracy: 0.2791
+2025-10-17 13:21:38 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:21:38 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:21:38 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:22:00 [INFO]  Epoch 31 loss: 266.09504985809326; train accuracy: 0.8627996092869487; test accuracy: 0.2856
+2025-10-17 13:22:00 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:22:00 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:22:00 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:22:09 [INFO]  Epoch 31 loss: 130.33512687683105; train accuracy: 0.8927891731867202; test accuracy: 0.1124
+2025-10-17 13:22:09 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:22:09 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:22:09 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:22:25 [INFO]  Epoch 31 loss: 201.5441870689392; train accuracy: 0.8785171493119737; test accuracy: 0.1832
+2025-10-17 13:22:25 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:22:25 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:22:25 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:22:38 [INFO]  Epoch 31 loss: 189.59084033966064; train accuracy: 0.6247482014388489; test accuracy: 0.1889
+2025-10-17 13:22:38 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:22:38 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:22:38 [INFO]  Round 31 Finish--------|
+2025-10-17 13:22:38 [INFO]  Model variance: mean: 0.0016613107873126864, sum: 18563.40625
+2025-10-17 13:22:38 [INFO]  g_protos_std (global internal): 0.729722
+2025-10-17 13:22:38 [INFO]  inter_client_proto_std (cross-client): 0.103917
+2025-10-17 13:22:38 [INFO]  g_protos_std (global internal): 0.729722
+2025-10-17 13:22:38 [INFO]  inter_client_proto_std (cross-client): 0.103917
+2025-10-17 13:22:38 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:22:43 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5219
+2025-10-17 13:22:43 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:22:43 [INFO]  Round 32 starts--------|
+2025-10-17 13:22:43 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:23:07 [INFO]  Epoch 32 loss: 285.4224510192871; train accuracy: 0.8416917637815896; test accuracy: 0.3299
+2025-10-17 13:23:07 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:23:07 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:23:07 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:23:28 [INFO]  Epoch 32 loss: 261.519793510437; train accuracy: 0.8265835149147194; test accuracy: 0.2879
+2025-10-17 13:23:28 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:23:28 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:23:28 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:23:38 [INFO]  Epoch 32 loss: 126.51680660247803; train accuracy: 0.8955381687460351; test accuracy: 0.1478
+2025-10-17 13:23:38 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:23:38 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:23:38 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:23:54 [INFO]  Epoch 32 loss: 198.63846683502197; train accuracy: 0.5341959334565619; test accuracy: 0.1066
+2025-10-17 13:23:54 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:23:54 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:23:54 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:24:05 [INFO]  Epoch 32 loss: 182.7483787536621; train accuracy: 0.7730935251798561; test accuracy: 0.2489
+2025-10-17 13:24:05 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:24:05 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:24:05 [INFO]  Round 32 Finish--------|
+2025-10-17 13:24:05 [INFO]  Model variance: mean: 0.0016900246264413, sum: 18884.25390625
+2025-10-17 13:24:05 [INFO]  g_protos_std (global internal): 0.725377
+2025-10-17 13:24:05 [INFO]  inter_client_proto_std (cross-client): 0.105273
+2025-10-17 13:24:05 [INFO]  g_protos_std (global internal): 0.725377
+2025-10-17 13:24:05 [INFO]  inter_client_proto_std (cross-client): 0.105273
+2025-10-17 13:24:05 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:24:10 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5347
+2025-10-17 13:24:10 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:24:10 [INFO]  Round 33 starts--------|
+2025-10-17 13:24:10 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:24:35 [INFO]  Epoch 33 loss: 280.6965913772583; train accuracy: 0.7946837763519706; test accuracy: 0.2738
+2025-10-17 13:24:35 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:24:35 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:24:35 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:24:55 [INFO]  Epoch 33 loss: 256.4775505065918; train accuracy: 0.8444661507250733; test accuracy: 0.3155
+2025-10-17 13:24:55 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:24:55 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:24:55 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:25:04 [INFO]  Epoch 33 loss: 124.1028823852539; train accuracy: 0.9075914569676464; test accuracy: 0.1319
+2025-10-17 13:25:04 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:25:04 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:25:04 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:25:21 [INFO]  Epoch 33 loss: 195.22865772247314; train accuracy: 0.8451427397822961; test accuracy: 0.1779
+2025-10-17 13:25:21 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:25:21 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:25:21 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:25:33 [INFO]  Epoch 33 loss: 177.75315952301025; train accuracy: 0.6492086330935252; test accuracy: 0.2081
+2025-10-17 13:25:33 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:25:33 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:25:33 [INFO]  Round 33 Finish--------|
+2025-10-17 13:25:33 [INFO]  Model variance: mean: 0.0017144425073638558, sum: 19157.09765625
+2025-10-17 13:25:33 [INFO]  g_protos_std (global internal): 0.721578
+2025-10-17 13:25:33 [INFO]  inter_client_proto_std (cross-client): 0.106547
+2025-10-17 13:25:33 [INFO]  g_protos_std (global internal): 0.721578
+2025-10-17 13:25:33 [INFO]  inter_client_proto_std (cross-client): 0.106547
+2025-10-17 13:25:33 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:25:38 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5298
+2025-10-17 13:25:38 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:25:38 [INFO]  Round 34 starts--------|
+2025-10-17 13:25:38 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:26:02 [INFO]  Epoch 34 loss: 275.96192741394043; train accuracy: 0.815830823621841; test accuracy: 0.3232
+2025-10-17 13:26:02 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:26:02 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:26:02 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:26:22 [INFO]  Epoch 34 loss: 251.4717836380005; train accuracy: 0.8023893605830641; test accuracy: 0.3093
+2025-10-17 13:26:22 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:26:22 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:26:22 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:26:31 [INFO]  Epoch 34 loss: 120.78811740875244; train accuracy: 0.8938464791710721; test accuracy: 0.1154
+2025-10-17 13:26:31 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:26:31 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:26:31 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:26:48 [INFO]  Epoch 34 loss: 189.9373540878296; train accuracy: 0.9059355103717396; test accuracy: 0.1849
+2025-10-17 13:26:48 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:26:48 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:26:48 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:27:00 [INFO]  Epoch 34 loss: 174.77667808532715; train accuracy: 0.6233093525179856; test accuracy: 0.1707
+2025-10-17 13:27:00 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:27:00 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:27:00 [INFO]  Round 34 Finish--------|
+2025-10-17 13:27:00 [INFO]  Model variance: mean: 0.0017417272320017219, sum: 19461.9765625
+2025-10-17 13:27:00 [INFO]  g_protos_std (global internal): 0.717918
+2025-10-17 13:27:00 [INFO]  inter_client_proto_std (cross-client): 0.107811
+2025-10-17 13:27:00 [INFO]  g_protos_std (global internal): 0.717918
+2025-10-17 13:27:00 [INFO]  inter_client_proto_std (cross-client): 0.107811
+2025-10-17 13:27:00 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:27:05 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5584
+2025-10-17 13:27:05 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:27:05 [INFO]  Round 35 starts--------|
+2025-10-17 13:27:05 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:27:28 [INFO]  Epoch 35 loss: 269.1526880264282; train accuracy: 0.8521016105800707; test accuracy: 0.3312
+2025-10-17 13:27:28 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_0/epoch_35.pth
+2025-10-17 13:27:28 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:27:28 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:27:28 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:27:48 [INFO]  Epoch 35 loss: 243.6402587890625; train accuracy: 0.8837628672326997; test accuracy: 0.3166
+2025-10-17 13:27:49 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_1/epoch_35.pth
+2025-10-17 13:27:49 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:27:49 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:27:49 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:27:58 [INFO]  Epoch 35 loss: 117.51482486724854; train accuracy: 0.9008246986677945; test accuracy: 0.1314
+2025-10-17 13:27:59 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_2/epoch_35.pth
+2025-10-17 13:27:59 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:27:59 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:27:59 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:28:15 [INFO]  Epoch 35 loss: 183.28302001953125; train accuracy: 0.8061203532552885; test accuracy: 0.1635
+2025-10-17 13:28:15 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_3/epoch_35.pth
+2025-10-17 13:28:15 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:28:15 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:28:15 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:28:27 [INFO]  Epoch 35 loss: 167.36169528961182; train accuracy: 0.7581294964028777; test accuracy: 0.2631
+2025-10-17 13:28:28 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_4/epoch_35.pth
+2025-10-17 13:28:28 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:28:28 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:28:28 [INFO]  Round 35 Finish--------|
+2025-10-17 13:28:28 [INFO]  Model variance: mean: 0.0017690059030428529, sum: 19766.787109375
+2025-10-17 13:28:28 [INFO]  g_protos_std (global internal): 0.714306
+2025-10-17 13:28:28 [INFO]  inter_client_proto_std (cross-client): 0.109050
+2025-10-17 13:28:28 [INFO]  g_protos_std (global internal): 0.714306
+2025-10-17 13:28:28 [INFO]  inter_client_proto_std (cross-client): 0.109050
+2025-10-17 13:28:28 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:28:33 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5477
+2025-10-17 13:28:33 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:28:33 [INFO]  Round 36 starts--------|
+2025-10-17 13:28:33 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:28:55 [INFO]  Epoch 36 loss: 267.96969509124756; train accuracy: 0.7583475186591594; test accuracy: 0.2941
+2025-10-17 13:28:55 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:28:55 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:28:55 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:29:16 [INFO]  Epoch 36 loss: 239.89338874816895; train accuracy: 0.8352994214441355; test accuracy: 0.3067
+2025-10-17 13:29:16 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:29:16 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:29:16 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:29:25 [INFO]  Epoch 36 loss: 114.68603801727295; train accuracy: 0.910763374920702; test accuracy: 0.137
+2025-10-17 13:29:25 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:29:25 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:29:25 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:29:41 [INFO]  Epoch 36 loss: 178.63621950149536; train accuracy: 0.9460874922982132; test accuracy: 0.1958
+2025-10-17 13:29:41 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:29:41 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:29:41 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:29:54 [INFO]  Epoch 36 loss: 161.1641731262207; train accuracy: 0.6565467625899281; test accuracy: 0.2108
+2025-10-17 13:29:54 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:29:54 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:29:54 [INFO]  Round 36 Finish--------|
+2025-10-17 13:29:54 [INFO]  Model variance: mean: 0.0017939101671800017, sum: 20045.06640625
+2025-10-17 13:29:54 [INFO]  g_protos_std (global internal): 0.711035
+2025-10-17 13:29:54 [INFO]  inter_client_proto_std (cross-client): 0.110130
+2025-10-17 13:29:54 [INFO]  g_protos_std (global internal): 0.711035
+2025-10-17 13:29:54 [INFO]  inter_client_proto_std (cross-client): 0.110130
+2025-10-17 13:29:54 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:29:58 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5519
+2025-10-17 13:29:58 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:29:58 [INFO]  Round 37 starts--------|
+2025-10-17 13:29:58 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:30:21 [INFO]  Epoch 37 loss: 259.8421506881714; train accuracy: 0.8433940028807123; test accuracy: 0.337
+2025-10-17 13:30:21 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:30:21 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:30:21 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:30:42 [INFO]  Epoch 37 loss: 233.40366649627686; train accuracy: 0.8458186189796378; test accuracy: 0.3357
+2025-10-17 13:30:42 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:30:42 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:30:42 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:30:51 [INFO]  Epoch 37 loss: 110.77006435394287; train accuracy: 0.8777754282089236; test accuracy: 0.1015
+2025-10-17 13:30:51 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:30:51 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:30:51 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:31:08 [INFO]  Epoch 37 loss: 175.3987011909485; train accuracy: 0.8345656192236599; test accuracy: 0.1698
+2025-10-17 13:31:08 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:31:08 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:31:08 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:31:19 [INFO]  Epoch 37 loss: 160.71248054504395; train accuracy: 0.6935251798561151; test accuracy: 0.2085
+2025-10-17 13:31:19 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:31:19 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:31:19 [INFO]  Round 37 Finish--------|
+2025-10-17 13:31:19 [INFO]  Model variance: mean: 0.0018181903287768364, sum: 20316.37109375
+2025-10-17 13:31:19 [INFO]  g_protos_std (global internal): 0.707976
+2025-10-17 13:31:19 [INFO]  inter_client_proto_std (cross-client): 0.111078
+2025-10-17 13:31:19 [INFO]  g_protos_std (global internal): 0.707976
+2025-10-17 13:31:19 [INFO]  inter_client_proto_std (cross-client): 0.111078
+2025-10-17 13:31:19 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:31:24 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5792
+2025-10-17 13:31:24 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:31:24 [INFO]  Round 38 starts--------|
+2025-10-17 13:31:24 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:31:48 [INFO]  Epoch 38 loss: 255.13100051879883; train accuracy: 0.789511588320021; test accuracy: 0.301
+2025-10-17 13:31:48 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:31:48 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:31:48 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:32:09 [INFO]  Epoch 38 loss: 230.48741817474365; train accuracy: 0.9135171688331204; test accuracy: 0.3283
+2025-10-17 13:32:09 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:32:09 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:32:09 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:32:18 [INFO]  Epoch 38 loss: 107.86246967315674; train accuracy: 0.912455064495665; test accuracy: 0.1609
+2025-10-17 13:32:18 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:32:18 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:32:18 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:32:33 [INFO]  Epoch 38 loss: 171.15399360656738; train accuracy: 0.8486342164715547; test accuracy: 0.1729
+2025-10-17 13:32:33 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:32:33 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:32:33 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:32:46 [INFO]  Epoch 38 loss: 155.41992282867432; train accuracy: 0.7430215827338129; test accuracy: 0.2741
+2025-10-17 13:32:46 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:32:46 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:32:46 [INFO]  Round 38 Finish--------|
+2025-10-17 13:32:46 [INFO]  Model variance: mean: 0.0018439304549247026, sum: 20603.990234375
+2025-10-17 13:32:46 [INFO]  g_protos_std (global internal): 0.705199
+2025-10-17 13:32:46 [INFO]  inter_client_proto_std (cross-client): 0.112042
+2025-10-17 13:32:46 [INFO]  g_protos_std (global internal): 0.705199
+2025-10-17 13:32:46 [INFO]  inter_client_proto_std (cross-client): 0.112042
+2025-10-17 13:32:46 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:32:51 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5597
+2025-10-17 13:32:51 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:32:51 [INFO]  Round 39 starts--------|
+2025-10-17 13:32:51 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:33:13 [INFO]  Epoch 39 loss: 248.3021273612976; train accuracy: 0.8551132643708262; test accuracy: 0.3303
+2025-10-17 13:33:13 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:33:13 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:33:13 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:33:36 [INFO]  Epoch 39 loss: 227.2037649154663; train accuracy: 0.8706890074385754; test accuracy: 0.3347
+2025-10-17 13:33:36 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:33:36 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:33:36 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:33:45 [INFO]  Epoch 39 loss: 104.3189058303833; train accuracy: 0.8824275745400719; test accuracy: 0.1055
+2025-10-17 13:33:45 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:33:45 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:33:45 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:34:02 [INFO]  Epoch 39 loss: 166.96377897262573; train accuracy: 0.93797494352023; test accuracy: 0.1949
+2025-10-17 13:34:02 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:34:02 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:34:02 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:34:15 [INFO]  Epoch 39 loss: 151.4499864578247; train accuracy: 0.6371223021582734; test accuracy: 0.2162
+2025-10-17 13:34:15 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:34:15 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:34:15 [INFO]  Round 39 Finish--------|
+2025-10-17 13:34:15 [INFO]  Model variance: mean: 0.0018685056129470468, sum: 20878.591796875
+2025-10-17 13:34:15 [INFO]  g_protos_std (global internal): 0.702519
+2025-10-17 13:34:15 [INFO]  inter_client_proto_std (cross-client): 0.112849
+2025-10-17 13:34:15 [INFO]  g_protos_std (global internal): 0.702519
+2025-10-17 13:34:15 [INFO]  inter_client_proto_std (cross-client): 0.112849
+2025-10-17 13:34:15 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:34:20 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5538
+2025-10-17 13:34:20 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:34:20 [INFO]  Round 40 starts--------|
+2025-10-17 13:34:20 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:34:44 [INFO]  Epoch 40 loss: 244.37512636184692; train accuracy: 0.7983501374885427; test accuracy: 0.311
+2025-10-17 13:34:44 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_0/epoch_40.pth
+2025-10-17 13:34:44 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:34:44 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:34:44 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:35:07 [INFO]  Epoch 40 loss: 218.71985578536987; train accuracy: 0.8801562852205275; test accuracy: 0.3082
+2025-10-17 13:35:07 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_1/epoch_40.pth
+2025-10-17 13:35:07 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:35:07 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:35:07 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:35:16 [INFO]  Epoch 40 loss: 100.9348554611206; train accuracy: 0.9109748361175725; test accuracy: 0.1483
+2025-10-17 13:35:17 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_2/epoch_40.pth
+2025-10-17 13:35:17 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:35:17 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:35:17 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:35:32 [INFO]  Epoch 40 loss: 165.28664302825928; train accuracy: 0.6983980283425755; test accuracy: 0.142
+2025-10-17 13:35:33 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_3/epoch_40.pth
+2025-10-17 13:35:33 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:35:33 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:35:33 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:35:46 [INFO]  Epoch 40 loss: 145.91785144805908; train accuracy: 0.7440287769784173; test accuracy: 0.242
+2025-10-17 13:35:46 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_4/epoch_40.pth
+2025-10-17 13:35:46 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:35:46 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:35:46 [INFO]  Round 40 Finish--------|
+2025-10-17 13:35:46 [INFO]  Model variance: mean: 0.0018940727459266782, sum: 21164.27734375
+2025-10-17 13:35:46 [INFO]  g_protos_std (global internal): 0.700308
+2025-10-17 13:35:46 [INFO]  inter_client_proto_std (cross-client): 0.113569
+2025-10-17 13:35:46 [INFO]  g_protos_std (global internal): 0.700308
+2025-10-17 13:35:46 [INFO]  inter_client_proto_std (cross-client): 0.113569
+2025-10-17 13:35:46 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:35:51 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5723
+2025-10-17 13:35:51 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:35:51 [INFO]  Round 41 starts--------|
+2025-10-17 13:35:51 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:36:15 [INFO]  Epoch 41 loss: 242.4733943939209; train accuracy: 0.7802147440094278; test accuracy: 0.2932
+2025-10-17 13:36:15 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:36:15 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:36:15 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:36:36 [INFO]  Epoch 41 loss: 212.93227291107178; train accuracy: 0.8209482305207003; test accuracy: 0.2689
+2025-10-17 13:36:36 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:36:36 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:36:36 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:36:45 [INFO]  Epoch 41 loss: 97.99001598358154; train accuracy: 0.8841192641150349; test accuracy: 0.1059
+2025-10-17 13:36:45 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:36:45 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:36:45 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:37:01 [INFO]  Epoch 41 loss: 159.29202127456665; train accuracy: 0.8084822345450812; test accuracy: 0.1665
+2025-10-17 13:37:01 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:37:01 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:37:01 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:37:13 [INFO]  Epoch 41 loss: 143.2088680267334; train accuracy: 0.696978417266187; test accuracy: 0.2117
+2025-10-17 13:37:13 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:37:13 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:37:13 [INFO]  Round 41 Finish--------|
+2025-10-17 13:37:13 [INFO]  Model variance: mean: 0.0019163404358550906, sum: 21413.095703125
+2025-10-17 13:37:13 [INFO]  g_protos_std (global internal): 0.698191
+2025-10-17 13:37:13 [INFO]  inter_client_proto_std (cross-client): 0.114288
+2025-10-17 13:37:13 [INFO]  g_protos_std (global internal): 0.698191
+2025-10-17 13:37:13 [INFO]  inter_client_proto_std (cross-client): 0.114288
+2025-10-17 13:37:13 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:37:18 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5568
+2025-10-17 13:37:18 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:37:18 [INFO]  Round 42 starts--------|
+2025-10-17 13:37:18 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:37:42 [INFO]  Epoch 42 loss: 237.19295978546143; train accuracy: 0.8649993452926542; test accuracy: 0.3139
+2025-10-17 13:37:42 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:37:42 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:37:42 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:38:03 [INFO]  Epoch 42 loss: 209.2466335296631; train accuracy: 0.8832369073559245; test accuracy: 0.323
+2025-10-17 13:38:03 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:38:03 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:38:03 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:38:13 [INFO]  Epoch 42 loss: 96.00366401672363; train accuracy: 0.9075914569676464; test accuracy: 0.1286
+2025-10-17 13:38:13 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:38:13 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:38:13 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:38:28 [INFO]  Epoch 42 loss: 157.1579568386078; train accuracy: 0.9093242965701376; test accuracy: 0.1853
+2025-10-17 13:38:28 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:38:28 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:38:28 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:38:41 [INFO]  Epoch 42 loss: 138.9957275390625; train accuracy: 0.7156834532374101; test accuracy: 0.2268
+2025-10-17 13:38:41 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:38:41 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:38:41 [INFO]  Round 42 Finish--------|
+2025-10-17 13:38:41 [INFO]  Model variance: mean: 0.0019404641352593899, sum: 21682.65234375
+2025-10-17 13:38:41 [INFO]  g_protos_std (global internal): 0.696424
+2025-10-17 13:38:41 [INFO]  inter_client_proto_std (cross-client): 0.114863
+2025-10-17 13:38:41 [INFO]  g_protos_std (global internal): 0.696424
+2025-10-17 13:38:41 [INFO]  inter_client_proto_std (cross-client): 0.114863
+2025-10-17 13:38:41 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:38:46 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.564
+2025-10-17 13:38:46 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:38:46 [INFO]  Round 43 starts--------|
+2025-10-17 13:38:46 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:39:09 [INFO]  Epoch 43 loss: 228.4943208694458; train accuracy: 0.842542883331151; test accuracy: 0.3214
+2025-10-17 13:39:09 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:39:09 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:39:09 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:39:30 [INFO]  Epoch 43 loss: 204.4148726463318; train accuracy: 0.8696370876850251; test accuracy: 0.325
+2025-10-17 13:39:30 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:39:30 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:39:30 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:39:39 [INFO]  Epoch 43 loss: 92.30771923065186; train accuracy: 0.8853880312962571; test accuracy: 0.1066
+2025-10-17 13:39:39 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:39:39 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:39:39 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:39:55 [INFO]  Epoch 43 loss: 151.61650800704956; train accuracy: 0.9289381803245019; test accuracy: 0.1928
+2025-10-17 13:39:55 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:39:55 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:39:55 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:40:08 [INFO]  Epoch 43 loss: 132.84858417510986; train accuracy: 0.8083453237410072; test accuracy: 0.2599
+2025-10-17 13:40:08 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:40:08 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:40:08 [INFO]  Round 43 Finish--------|
+2025-10-17 13:40:08 [INFO]  Model variance: mean: 0.0019647052977234125, sum: 21953.5234375
+2025-10-17 13:40:08 [INFO]  g_protos_std (global internal): 0.694807
+2025-10-17 13:40:08 [INFO]  inter_client_proto_std (cross-client): 0.115424
+2025-10-17 13:40:08 [INFO]  g_protos_std (global internal): 0.694807
+2025-10-17 13:40:08 [INFO]  inter_client_proto_std (cross-client): 0.115424
+2025-10-17 13:40:08 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:40:13 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5797
+2025-10-17 13:40:13 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:40:13 [INFO]  Round 44 starts--------|
+2025-10-17 13:40:13 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:40:38 [INFO]  Epoch 44 loss: 224.05993938446045; train accuracy: 0.8949849417310463; test accuracy: 0.3472
+2025-10-17 13:40:38 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:40:38 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:40:38 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:41:00 [INFO]  Epoch 44 loss: 198.71000623703003; train accuracy: 0.9007438575400105; test accuracy: 0.3273
+2025-10-17 13:41:00 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:41:00 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:41:00 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:41:09 [INFO]  Epoch 44 loss: 89.3618369102478; train accuracy: 0.8788327341932756; test accuracy: 0.1027
+2025-10-17 13:41:09 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:41:09 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:41:09 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:41:26 [INFO]  Epoch 44 loss: 149.36120176315308; train accuracy: 0.9510166358595195; test accuracy: 0.2105
+2025-10-17 13:41:26 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:41:26 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:41:26 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:41:39 [INFO]  Epoch 44 loss: 127.48389530181885; train accuracy: 0.7517985611510791; test accuracy: 0.2697
+2025-10-17 13:41:39 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:41:39 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:41:39 [INFO]  Round 44 Finish--------|
+2025-10-17 13:41:39 [INFO]  Model variance: mean: 0.0019868009258061647, sum: 22200.41796875
+2025-10-17 13:41:39 [INFO]  g_protos_std (global internal): 0.693472
+2025-10-17 13:41:39 [INFO]  inter_client_proto_std (cross-client): 0.115913
+2025-10-17 13:41:39 [INFO]  g_protos_std (global internal): 0.693472
+2025-10-17 13:41:39 [INFO]  inter_client_proto_std (cross-client): 0.115913
+2025-10-17 13:41:39 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:41:43 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5928
+2025-10-17 13:41:44 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:41:44 [INFO]  Round 45 starts--------|
+2025-10-17 13:41:44 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:42:07 [INFO]  Epoch 45 loss: 221.44709014892578; train accuracy: 0.8456200078564882; test accuracy: 0.313
+2025-10-17 13:42:08 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_0/epoch_45.pth
+2025-10-17 13:42:08 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:42:08 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:42:08 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:42:29 [INFO]  Epoch 45 loss: 199.11959838867188; train accuracy: 0.8458186189796378; test accuracy: 0.3262
+2025-10-17 13:42:30 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_1/epoch_45.pth
+2025-10-17 13:42:30 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:42:30 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:42:30 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:42:39 [INFO]  Epoch 45 loss: 86.37613010406494; train accuracy: 0.9067456121801649; test accuracy: 0.13
+2025-10-17 13:42:40 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_2/epoch_45.pth
+2025-10-17 13:42:40 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:42:40 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:42:40 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:42:57 [INFO]  Epoch 45 loss: 146.7382616996765; train accuracy: 0.718422674060382; test accuracy: 0.1454
+2025-10-17 13:42:58 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_3/epoch_45.pth
+2025-10-17 13:42:58 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:42:58 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:42:58 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:43:11 [INFO]  Epoch 45 loss: 127.19369888305664; train accuracy: 0.7261870503597122; test accuracy: 0.2188
+2025-10-17 13:43:11 [INFO]  Save the model in ./checkpoints/CIFAR10_alpha0.05/local_models/client_4/epoch_45.pth
+2025-10-17 13:43:11 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:43:11 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:43:11 [INFO]  Round 45 Finish--------|
+2025-10-17 13:43:11 [INFO]  Model variance: mean: 0.0020082336850464344, sum: 22439.90625
+2025-10-17 13:43:11 [INFO]  g_protos_std (global internal): 0.692374
+2025-10-17 13:43:11 [INFO]  inter_client_proto_std (cross-client): 0.116317
+2025-10-17 13:43:11 [INFO]  g_protos_std (global internal): 0.692374
+2025-10-17 13:43:11 [INFO]  inter_client_proto_std (cross-client): 0.116317
+2025-10-17 13:43:11 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:43:16 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5764
+2025-10-17 13:43:16 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:43:16 [INFO]  Round 46 starts--------|
+2025-10-17 13:43:16 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:43:41 [INFO]  Epoch 46 loss: 219.30239725112915; train accuracy: 0.7631268822836192; test accuracy: 0.302
+2025-10-17 13:43:41 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:43:41 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:43:41 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:44:03 [INFO]  Epoch 46 loss: 195.8552966117859; train accuracy: 0.8824855361033886; test accuracy: 0.3269
+2025-10-17 13:44:03 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:44:03 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:44:03 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:44:12 [INFO]  Epoch 46 loss: 84.01714086532593; train accuracy: 0.9139352928737576; test accuracy: 0.1478
+2025-10-17 13:44:12 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:44:12 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:44:12 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:44:29 [INFO]  Epoch 46 loss: 141.72360038757324; train accuracy: 0.8168001643047854; test accuracy: 0.1711
+2025-10-17 13:44:29 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:44:29 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:44:29 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:44:42 [INFO]  Epoch 46 loss: 120.62746906280518; train accuracy: 0.8454676258992806; test accuracy: 0.3115
+2025-10-17 13:44:42 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:44:42 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:44:42 [INFO]  Round 46 Finish--------|
+2025-10-17 13:44:42 [INFO]  Model variance: mean: 0.0020304189529269934, sum: 22687.802734375
+2025-10-17 13:44:42 [INFO]  g_protos_std (global internal): 0.691513
+2025-10-17 13:44:42 [INFO]  inter_client_proto_std (cross-client): 0.116646
+2025-10-17 13:44:42 [INFO]  g_protos_std (global internal): 0.691513
+2025-10-17 13:44:42 [INFO]  inter_client_proto_std (cross-client): 0.116646
+2025-10-17 13:44:42 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:44:47 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5909
+2025-10-17 13:44:47 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:44:47 [INFO]  Round 47 starts--------|
+2025-10-17 13:44:47 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:45:12 [INFO]  Epoch 47 loss: 217.41158533096313; train accuracy: 0.8665051721880319; test accuracy: 0.3246
+2025-10-17 13:45:12 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:45:12 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:45:12 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:45:34 [INFO]  Epoch 47 loss: 188.92770433425903; train accuracy: 0.8261326921631978; test accuracy: 0.318
+2025-10-17 13:45:34 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:45:34 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:45:34 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:45:43 [INFO]  Epoch 47 loss: 80.2661771774292; train accuracy: 0.8887714104461831; test accuracy: 0.1085
+2025-10-17 13:45:43 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:45:43 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:45:43 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:45:59 [INFO]  Epoch 47 loss: 140.2785449028015; train accuracy: 0.7840418977202711; test accuracy: 0.1581
+2025-10-17 13:45:59 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:45:59 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:45:59 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:46:12 [INFO]  Epoch 47 loss: 115.65063810348511; train accuracy: 0.7764028776978418; test accuracy: 0.2574
+2025-10-17 13:46:12 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:46:12 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:46:12 [INFO]  Round 47 Finish--------|
+2025-10-17 13:46:12 [INFO]  Model variance: mean: 0.002053314819931984, sum: 22943.640625
+2025-10-17 13:46:12 [INFO]  g_protos_std (global internal): 0.690870
+2025-10-17 13:46:12 [INFO]  inter_client_proto_std (cross-client): 0.116887
+2025-10-17 13:46:12 [INFO]  g_protos_std (global internal): 0.690870
+2025-10-17 13:46:12 [INFO]  inter_client_proto_std (cross-client): 0.116887
+2025-10-17 13:46:12 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:46:17 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5776
+2025-10-17 13:46:17 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:46:17 [INFO]  Round 48 starts--------|
+2025-10-17 13:46:17 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:46:42 [INFO]  Epoch 48 loss: 208.96150875091553; train accuracy: 0.8878486316616473; test accuracy: 0.3432
+2025-10-17 13:46:42 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:46:42 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:46:42 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:47:04 [INFO]  Epoch 48 loss: 183.77601194381714; train accuracy: 0.8167405515064994; test accuracy: 0.3055
+2025-10-17 13:47:04 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:47:04 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:47:04 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:47:14 [INFO]  Epoch 48 loss: 77.88979196548462; train accuracy: 0.8868682596743498; test accuracy: 0.1059
+2025-10-17 13:47:14 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:47:14 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:47:14 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:47:31 [INFO]  Epoch 48 loss: 137.15341472625732; train accuracy: 0.9416718011912097; test accuracy: 0.2154
+2025-10-17 13:47:31 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:47:31 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:47:31 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:47:44 [INFO]  Epoch 48 loss: 111.40398359298706; train accuracy: 0.699568345323741; test accuracy: 0.2063
+2025-10-17 13:47:44 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:47:44 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:47:44 [INFO]  Round 48 Finish--------|
+2025-10-17 13:47:44 [INFO]  Model variance: mean: 0.0020755063742399216, sum: 23191.609375
+2025-10-17 13:47:44 [INFO]  g_protos_std (global internal): 0.690441
+2025-10-17 13:47:44 [INFO]  inter_client_proto_std (cross-client): 0.117058
+2025-10-17 13:47:44 [INFO]  g_protos_std (global internal): 0.690441
+2025-10-17 13:47:44 [INFO]  inter_client_proto_std (cross-client): 0.117058
+2025-10-17 13:47:44 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:47:49 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5983
+2025-10-17 13:47:49 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-17 13:47:49 [INFO]  Round 49 starts--------|
+2025-10-17 13:47:49 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-17 13:48:14 [INFO]  Epoch 49 loss: 206.3570294380188; train accuracy: 0.8733795993191044; test accuracy: 0.3435
+2025-10-17 13:48:14 [INFO]  Client 0 Finish Local Training--------|
+2025-10-17 13:48:14 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-17 13:48:14 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-17 13:48:37 [INFO]  Epoch 49 loss: 179.13116884231567; train accuracy: 0.7362686903599068; test accuracy: 0.2848
+2025-10-17 13:48:37 [INFO]  Client 1 Finish Local Training--------|
+2025-10-17 13:48:37 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-17 13:48:37 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-17 13:48:46 [INFO]  Epoch 49 loss: 74.50283765792847; train accuracy: 0.9075914569676464; test accuracy: 0.1241
+2025-10-17 13:48:46 [INFO]  Client 2 Finish Local Training--------|
+2025-10-17 13:48:46 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-17 13:48:46 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-17 13:49:02 [INFO]  Epoch 49 loss: 133.0604453086853; train accuracy: 0.8238858081741631; test accuracy: 0.1726
+2025-10-17 13:49:02 [INFO]  Client 3 Finish Local Training--------|
+2025-10-17 13:49:02 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-17 13:49:02 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-17 13:49:14 [INFO]  Epoch 49 loss: 105.24088048934937; train accuracy: 0.7381294964028777; test accuracy: 0.2386
+2025-10-17 13:49:14 [INFO]  Client 4 Finish Local Training--------|
+2025-10-17 13:49:14 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-17 13:49:14 [INFO]  Round 49 Finish--------|
+2025-10-17 13:49:14 [INFO]  Model variance: mean: 0.002097636228427291, sum: 23438.88671875
+2025-10-17 13:49:14 [INFO]  g_protos_std (global internal): 0.690254
+2025-10-17 13:49:14 [INFO]  inter_client_proto_std (cross-client): 0.117163
+2025-10-17 13:49:14 [INFO]  g_protos_std (global internal): 0.690254
+2025-10-17 13:49:14 [INFO]  inter_client_proto_std (cross-client): 0.117163
+2025-10-17 13:49:14 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-17 13:49:19 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5968
+2025-10-17 13:49:19 [INFO]  Save config to ./checkpoints/CIFAR10_alpha0.05/baselines_OursV7+SimpleFeatureServer_CIFAR10_results.yaml

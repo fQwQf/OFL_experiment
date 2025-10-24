@@ -1,0 +1,1558 @@
+2025-10-24 00:56:26 [INFO]  Load config from ./configs/SVHN_alpha0.05_l2.5.yaml
+2025-10-24 00:56:26 [INFO]  config: {'exp_name': 'SVHN_alpha0.05', 'dataset': {'data_name': 'SVHN', 'root_path': '~/datasets/', 'train_batch_size': 256, 'test_batch_size': 256, 'channels': 3, 'num_classes': 10, 'image_size': 32, 'aux_data_name': 'SVHN', 'aux_root_path': '~/datasets/', 'aux_split': 'test'}, 'distribution': {'type': 'dirichlet', 'label_num_per_client': 2, 'alpha': 0.05}, 'client': {'num_clients': 5}, 'server': {'num_rounds': 50, 'frac_clients': 1.0, 'lr': 0.05, 'local_epochs': 1, 'optimizer': 'sgd', 'momentum': 0.9, 'weight_decay': 0.0001, 'loss_name': 'ce', 'model_name': 'resnet18', 'aggregated_by_datasize': True, 'lr_decay_per_round': 0.998}, 'device': 'cuda:0', 'checkpoint': {'save_path': './checkpoints/', 'save_freq': 5, 'result_file': 'SVHN_results.yaml'}, 'pretrain': {'lr': 0.01, 'epoch': 70, 'model_path': './pretrain/', 'momentum': 0.9, 'weight_decay': 0.0001, 'model_name': 'resnet18', 'model_file_name': 'resnet18-f37072fd.pth'}, 'DBCD': {'alpha_l_pa': 1, 'alpha_l_pb': 1, 'alpha_l_pc': 0.0, 'Beta_alpha': 0.2, 'unsup_method': 'infonce', 'contrastive_temperature': 0.5, 'encoder_epoch': 40, 'projector_epoch': 10, 'use_pretrain': False, 'aug_batch_size': 512, 'encoder_lr': 0.03, 'cls_optimizer': 'sgd', 'cls_lr': 0.05, 'supcon_temp': 0.07, 'super_gr': 100, 'aux_with_public': True}, 'etf': {'loss_name': 'ce'}, 'visualization': {'interval': 5, 'save_path': 'visualization/resnet18', 'vis_size': 16}, 'resume': True, 'resume_best': False, 'seed': 114514, 'lambda_align_initial': 2.5}
+2025-10-24 00:56:30 [INFO]  Dataset SVHN loaded
+2025-10-24 00:56:30 [INFO]  Dataset index dict loaded from preprocessed_data/SVHN.pt
+2025-10-24 00:56:30 [INFO]  Data distribution generated correctly using the corrected dirichlet function.
+2025-10-24 00:56:30 [INFO]  Total assigned samples: 73257
+2025-10-24 00:56:31 [INFO]  OneshotOursV7 with DRCL (ETF Anchors) and Lambda Annealing
+2025-10-24 00:56:31 [INFO]  Initialized ETF fixed anchors with shape: torch.Size([10, 512])
+2025-10-24 00:56:31 [INFO]  Round 0 starts--------|
+2025-10-24 00:56:31 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 00:56:50 [INFO]  Epoch 0 loss: 130.59620094299316; train accuracy: 0.35362453531598514; test accuracy: 0.0645359557467732
+2025-10-24 00:56:50 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_0.pth
+2025-10-24 00:56:50 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 00:56:50 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 00:56:50 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 00:57:30 [INFO]  Epoch 0 loss: 463.4436254501343; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-10-24 00:57:30 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_0.pth
+2025-10-24 00:57:30 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 00:57:30 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 00:57:30 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 00:58:11 [INFO]  Epoch 0 loss: 510.86698055267334; train accuracy: 0.6306494810847003; test accuracy: 0.09930086047940996
+2025-10-24 00:58:11 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_0.pth
+2025-10-24 00:58:11 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 00:58:11 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 00:58:11 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 00:59:34 [INFO]  Epoch 0 loss: 1345.2913818359375; train accuracy: 0.4176760563380282; test accuracy: 0.22579901659496004
+2025-10-24 00:59:35 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_0.pth
+2025-10-24 00:59:35 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 00:59:35 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 00:59:35 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 01:00:34 [INFO]  Epoch 0 loss: 932.7803897857666; train accuracy: 0.4446508358853356; test accuracy: 0.13026275353411187
+2025-10-24 01:00:34 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_0.pth
+2025-10-24 01:00:34 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 01:00:34 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 01:00:34 [INFO]  Round 0 Finish--------|
+2025-10-24 01:00:34 [INFO]  Model variance: mean: 0.0007150276796892285, sum: 7989.68505859375
+2025-10-24 01:00:34 [INFO]  g_protos_std (global internal): 0.997338
+2025-10-24 01:00:34 [INFO]  inter_client_proto_std (cross-client): 0.007684
+2025-10-24 01:00:34 [INFO]  g_protos_std (global internal): 0.997338
+2025-10-24 01:00:34 [INFO]  inter_client_proto_std (cross-client): 0.007684
+2025-10-24 01:00:34 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 01:00:57 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.2840734480639213
+2025-10-24 01:00:57 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 01:00:57 [INFO]  Round 1 starts--------|
+2025-10-24 01:00:57 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 01:01:14 [INFO]  Epoch 1 loss: 110.8979663848877; train accuracy: 0.2741635687732342; test accuracy: 0.0762138905961893
+2025-10-24 01:01:14 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 01:01:14 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 01:01:14 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 01:01:48 [INFO]  Epoch 1 loss: 381.78462982177734; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-10-24 01:01:48 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 01:01:48 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 01:01:48 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 01:02:26 [INFO]  Epoch 1 loss: 485.7936096191406; train accuracy: 0.5657013726146636; test accuracy: 0.09081130915795943
+2025-10-24 01:02:26 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 01:02:26 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 01:02:26 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 01:03:42 [INFO]  Epoch 1 loss: 1241.5158672332764; train accuracy: 0.4096830985915493; test accuracy: 0.15388752304855563
+2025-10-24 01:03:42 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 01:03:42 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 01:03:42 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 01:04:38 [INFO]  Epoch 1 loss: 830.2945232391357; train accuracy: 0.534665394849139; test accuracy: 0.2103180700676091
+2025-10-24 01:04:38 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 01:04:38 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 01:04:38 [INFO]  Round 1 Finish--------|
+2025-10-24 01:04:38 [INFO]  Model variance: mean: 0.0008964651497080922, sum: 10017.05859375
+2025-10-24 01:04:38 [INFO]  g_protos_std (global internal): 0.987904
+2025-10-24 01:04:38 [INFO]  inter_client_proto_std (cross-client): 0.012503
+2025-10-24 01:04:38 [INFO]  g_protos_std (global internal): 0.987904
+2025-10-24 01:04:38 [INFO]  inter_client_proto_std (cross-client): 0.012503
+2025-10-24 01:04:38 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 01:05:04 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.34027350952673635
+2025-10-24 01:05:04 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 01:05:04 [INFO]  Round 2 starts--------|
+2025-10-24 01:05:04 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 01:05:20 [INFO]  Epoch 2 loss: 101.67472648620605; train accuracy: 0.375; test accuracy: 0.0658420405654579
+2025-10-24 01:05:20 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 01:05:20 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 01:05:20 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 01:05:54 [INFO]  Epoch 2 loss: 376.4671287536621; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-10-24 01:05:54 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 01:05:54 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 01:05:54 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 01:06:30 [INFO]  Epoch 2 loss: 476.86702060699463; train accuracy: 0.6835453632407097; test accuracy: 0.10698371235402582
+2025-10-24 01:06:30 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 01:06:30 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 01:06:30 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 01:07:42 [INFO]  Epoch 2 loss: 1178.06529712677; train accuracy: 0.6353873239436619; test accuracy: 0.28272894898586354
+2025-10-24 01:07:42 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 01:07:42 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 01:07:42 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 01:08:35 [INFO]  Epoch 2 loss: 808.0104122161865; train accuracy: 0.5644861689843867; test accuracy: 0.1658343577135833
+2025-10-24 01:08:35 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 01:08:35 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 01:08:35 [INFO]  Round 2 Finish--------|
+2025-10-24 01:08:35 [INFO]  Model variance: mean: 0.0010807625949382782, sum: 12076.388671875
+2025-10-24 01:08:35 [INFO]  g_protos_std (global internal): 0.977919
+2025-10-24 01:08:35 [INFO]  inter_client_proto_std (cross-client): 0.017383
+2025-10-24 01:08:35 [INFO]  g_protos_std (global internal): 0.977919
+2025-10-24 01:08:35 [INFO]  inter_client_proto_std (cross-client): 0.017383
+2025-10-24 01:08:35 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 01:09:00 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.3814920098340504
+2025-10-24 01:09:00 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 01:09:00 [INFO]  Round 3 starts--------|
+2025-10-24 01:09:00 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 01:09:17 [INFO]  Epoch 3 loss: 100.50977802276611; train accuracy: 0.366635687732342; test accuracy: 0.06480485556238476
+2025-10-24 01:09:17 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 01:09:17 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 01:09:17 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 01:09:52 [INFO]  Epoch 3 loss: 371.1759901046753; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-10-24 01:09:52 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 01:09:52 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 01:09:52 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 01:10:28 [INFO]  Epoch 3 loss: 466.3548831939697; train accuracy: 0.7629728824907934; test accuracy: 0.1198140749846343
+2025-10-24 01:10:28 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 01:10:28 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 01:10:28 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 01:11:40 [INFO]  Epoch 3 loss: 1118.900255203247; train accuracy: 0.8483450704225353; test accuracy: 0.42055931161647203
+2025-10-24 01:11:40 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 01:11:40 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 01:11:40 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 01:12:30 [INFO]  Epoch 3 loss: 791.2886924743652; train accuracy: 0.6640895627290526; test accuracy: 0.2531499692685925
+2025-10-24 01:12:30 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 01:12:30 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 01:12:30 [INFO]  Round 3 Finish--------|
+2025-10-24 01:12:30 [INFO]  Model variance: mean: 0.0012436493998393416, sum: 13896.478515625
+2025-10-24 01:12:30 [INFO]  g_protos_std (global internal): 0.968048
+2025-10-24 01:12:30 [INFO]  inter_client_proto_std (cross-client): 0.022261
+2025-10-24 01:12:30 [INFO]  g_protos_std (global internal): 0.968048
+2025-10-24 01:12:30 [INFO]  inter_client_proto_std (cross-client): 0.022261
+2025-10-24 01:12:30 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 01:12:54 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4115319606637984
+2025-10-24 01:12:54 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 01:12:54 [INFO]  Round 4 starts--------|
+2025-10-24 01:12:54 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 01:13:10 [INFO]  Epoch 4 loss: 100.36868000030518; train accuracy: 0.28345724907063197; test accuracy: 0.06737861094038107
+2025-10-24 01:13:10 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 01:13:10 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 01:13:10 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 01:13:44 [INFO]  Epoch 4 loss: 366.16739559173584; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-10-24 01:13:44 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 01:13:44 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 01:13:44 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 01:14:20 [INFO]  Epoch 4 loss: 460.7815828323364; train accuracy: 0.7300803481754269; test accuracy: 0.12219575906576521
+2025-10-24 01:14:20 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 01:14:20 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 01:14:20 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 01:15:30 [INFO]  Epoch 4 loss: 1092.9058389663696; train accuracy: 0.7827112676056338; test accuracy: 0.35802089735709897
+2025-10-24 01:15:30 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 01:15:30 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 01:15:30 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 01:16:21 [INFO]  Epoch 4 loss: 773.6875333786011; train accuracy: 0.7325166926050505; test accuracy: 0.2954824830977259
+2025-10-24 01:16:21 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 01:16:21 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 01:16:21 [INFO]  Round 4 Finish--------|
+2025-10-24 01:16:21 [INFO]  Model variance: mean: 0.0013940013013780117, sum: 15576.50390625
+2025-10-24 01:16:21 [INFO]  g_protos_std (global internal): 0.957915
+2025-10-24 01:16:21 [INFO]  inter_client_proto_std (cross-client): 0.027232
+2025-10-24 01:16:21 [INFO]  g_protos_std (global internal): 0.957915
+2025-10-24 01:16:21 [INFO]  inter_client_proto_std (cross-client): 0.027232
+2025-10-24 01:16:21 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 01:16:44 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4200983405039951
+2025-10-24 01:16:44 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 01:16:44 [INFO]  Round 5 starts--------|
+2025-10-24 01:16:44 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 01:17:00 [INFO]  Epoch 5 loss: 100.46104526519775; train accuracy: 0.383364312267658; test accuracy: 0.06369084204056545
+2025-10-24 01:17:00 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_5.pth
+2025-10-24 01:17:00 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 01:17:00 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 01:17:00 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 01:17:36 [INFO]  Epoch 5 loss: 361.7621660232544; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-10-24 01:17:36 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_5.pth
+2025-10-24 01:17:36 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 01:17:36 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 01:17:36 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 01:18:13 [INFO]  Epoch 5 loss: 446.9536018371582; train accuracy: 0.7719283562102444; test accuracy: 0.12841886908420405
+2025-10-24 01:18:13 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_5.pth
+2025-10-24 01:18:13 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 01:18:13 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 01:18:13 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 01:19:23 [INFO]  Epoch 5 loss: 1061.8085107803345; train accuracy: 0.8346478873239437; test accuracy: 0.40012292562999385
+2025-10-24 01:19:23 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_5.pth
+2025-10-24 01:19:23 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 01:19:23 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 01:19:23 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 01:20:22 [INFO]  Epoch 5 loss: 756.1863079071045; train accuracy: 0.7584718108338772; test accuracy: 0.2919099569760295
+2025-10-24 01:20:22 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_5.pth
+2025-10-24 01:20:22 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 01:20:22 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 01:20:22 [INFO]  Round 5 Finish--------|
+2025-10-24 01:20:22 [INFO]  Model variance: mean: 0.0015283826505765319, sum: 17078.07421875
+2025-10-24 01:20:22 [INFO]  g_protos_std (global internal): 0.948341
+2025-10-24 01:20:22 [INFO]  inter_client_proto_std (cross-client): 0.032163
+2025-10-24 01:20:22 [INFO]  g_protos_std (global internal): 0.948341
+2025-10-24 01:20:22 [INFO]  inter_client_proto_std (cross-client): 0.032163
+2025-10-24 01:20:22 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 01:20:46 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4261677934849416
+2025-10-24 01:20:46 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 01:20:46 [INFO]  Round 6 starts--------|
+2025-10-24 01:20:46 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 01:21:02 [INFO]  Epoch 6 loss: 97.69952487945557; train accuracy: 0.28763940520446096; test accuracy: 0.07444683466502766
+2025-10-24 01:21:02 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 01:21:02 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 01:21:02 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 01:21:39 [INFO]  Epoch 6 loss: 357.340940952301; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-10-24 01:21:39 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 01:21:39 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 01:21:39 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 01:22:18 [INFO]  Epoch 6 loss: 437.7393465042114; train accuracy: 0.7265651155005022; test accuracy: 0.1275737553779963
+2025-10-24 01:22:18 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 01:22:18 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 01:22:18 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 01:23:30 [INFO]  Epoch 6 loss: 1037.6482610702515; train accuracy: 0.8844718309859155; test accuracy: 0.43127688998156116
+2025-10-24 01:23:30 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 01:23:30 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 01:23:30 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 01:24:26 [INFO]  Epoch 6 loss: 737.8949527740479; train accuracy: 0.7006877855314022; test accuracy: 0.222380147510756
+2025-10-24 01:24:26 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 01:24:26 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 01:24:26 [INFO]  Round 6 Finish--------|
+2025-10-24 01:24:26 [INFO]  Model variance: mean: 0.0016543046804144979, sum: 18485.12109375
+2025-10-24 01:24:26 [INFO]  g_protos_std (global internal): 0.938840
+2025-10-24 01:24:26 [INFO]  inter_client_proto_std (cross-client): 0.036968
+2025-10-24 01:24:26 [INFO]  g_protos_std (global internal): 0.938840
+2025-10-24 01:24:26 [INFO]  inter_client_proto_std (cross-client): 0.036968
+2025-10-24 01:24:26 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 01:24:47 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.43846035648432696
+2025-10-24 01:24:47 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 01:24:47 [INFO]  Round 7 starts--------|
+2025-10-24 01:24:47 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 01:25:02 [INFO]  Epoch 7 loss: 97.20444297790527; train accuracy: 0.3596654275092937; test accuracy: 0.06653349723417333
+2025-10-24 01:25:02 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 01:25:02 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 01:25:02 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 01:25:36 [INFO]  Epoch 7 loss: 353.41758823394775; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-10-24 01:25:36 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 01:25:36 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 01:25:36 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 01:26:12 [INFO]  Epoch 7 loss: 432.4414367675781; train accuracy: 0.8460830264479411; test accuracy: 0.14178703134603565
+2025-10-24 01:26:12 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 01:26:12 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 01:26:12 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 01:27:23 [INFO]  Epoch 7 loss: 1021.4750518798828; train accuracy: 0.8799647887323944; test accuracy: 0.43196834665027656
+2025-10-24 01:27:23 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 01:27:23 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 01:27:23 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 01:28:17 [INFO]  Epoch 7 loss: 717.5135183334351; train accuracy: 0.7061599477885436; test accuracy: 0.2583358942839582
+2025-10-24 01:28:17 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 01:28:17 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 01:28:17 [INFO]  Round 7 Finish--------|
+2025-10-24 01:28:17 [INFO]  Model variance: mean: 0.0017704705242067575, sum: 19783.15234375
+2025-10-24 01:28:17 [INFO]  g_protos_std (global internal): 0.929625
+2025-10-24 01:28:17 [INFO]  inter_client_proto_std (cross-client): 0.041732
+2025-10-24 01:28:17 [INFO]  g_protos_std (global internal): 0.929625
+2025-10-24 01:28:17 [INFO]  inter_client_proto_std (cross-client): 0.041732
+2025-10-24 01:28:17 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 01:28:38 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.43477258758451137
+2025-10-24 01:28:38 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 01:28:38 [INFO]  Round 8 starts--------|
+2025-10-24 01:28:38 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 01:28:54 [INFO]  Epoch 8 loss: 96.5337610244751; train accuracy: 0.35223048327137546; test accuracy: 0.07402427781192379
+2025-10-24 01:28:54 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 01:28:54 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 01:28:54 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 01:29:29 [INFO]  Epoch 8 loss: 349.7159605026245; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-10-24 01:29:29 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 01:29:29 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 01:29:29 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 01:30:07 [INFO]  Epoch 8 loss: 428.22902965545654; train accuracy: 0.8326916638767995; test accuracy: 0.17843423478795328
+2025-10-24 01:30:07 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 01:30:07 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 01:30:07 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 01:31:15 [INFO]  Epoch 8 loss: 1004.8292245864868; train accuracy: 0.8784507042253521; test accuracy: 0.43811462814996927
+2025-10-24 01:31:15 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 01:31:15 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 01:31:15 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 01:32:10 [INFO]  Epoch 8 loss: 711.7968692779541; train accuracy: 0.8107334705557508; test accuracy: 0.3151505838967425
+2025-10-24 01:32:10 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 01:32:10 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 01:32:10 [INFO]  Round 8 Finish--------|
+2025-10-24 01:32:10 [INFO]  Model variance: mean: 0.0018850148189812899, sum: 21063.064453125
+2025-10-24 01:32:10 [INFO]  g_protos_std (global internal): 0.920449
+2025-10-24 01:32:10 [INFO]  inter_client_proto_std (cross-client): 0.046384
+2025-10-24 01:32:10 [INFO]  g_protos_std (global internal): 0.920449
+2025-10-24 01:32:10 [INFO]  inter_client_proto_std (cross-client): 0.046384
+2025-10-24 01:32:10 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 01:32:32 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4459895513214505
+2025-10-24 01:32:32 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 01:32:32 [INFO]  Round 9 starts--------|
+2025-10-24 01:32:32 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 01:32:47 [INFO]  Epoch 9 loss: 95.8409595489502; train accuracy: 0.36477695167286245; test accuracy: 0.0701060233558697
+2025-10-24 01:32:47 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 01:32:47 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 01:32:47 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 01:33:21 [INFO]  Epoch 9 loss: 345.71546268463135; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-10-24 01:33:21 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 01:33:21 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 01:33:21 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 01:33:58 [INFO]  Epoch 9 loss: 422.5036506652832; train accuracy: 0.8162035487110814; test accuracy: 0.15127535341118623
+2025-10-24 01:33:58 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 01:33:58 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 01:33:58 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 01:35:11 [INFO]  Epoch 9 loss: 978.4800682067871; train accuracy: 0.8904929577464789; test accuracy: 0.43746158574062693
+2025-10-24 01:35:11 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 01:35:11 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 01:35:11 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 01:36:04 [INFO]  Epoch 9 loss: 690.901150226593; train accuracy: 0.8940709874993724; test accuracy: 0.3388521819299324
+2025-10-24 01:36:04 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 01:36:04 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 01:36:04 [INFO]  Round 9 Finish--------|
+2025-10-24 01:36:04 [INFO]  Model variance: mean: 0.0019898207392543554, sum: 22234.16015625
+2025-10-24 01:36:04 [INFO]  g_protos_std (global internal): 0.911288
+2025-10-24 01:36:04 [INFO]  inter_client_proto_std (cross-client): 0.050945
+2025-10-24 01:36:04 [INFO]  g_protos_std (global internal): 0.911288
+2025-10-24 01:36:04 [INFO]  inter_client_proto_std (cross-client): 0.050945
+2025-10-24 01:36:04 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 01:36:26 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4422633681622618
+2025-10-24 01:36:26 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 01:36:26 [INFO]  Round 10 starts--------|
+2025-10-24 01:36:26 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 01:36:41 [INFO]  Epoch 10 loss: 95.46191883087158; train accuracy: 0.3722118959107807; test accuracy: 0.0710279655808236
+2025-10-24 01:36:42 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_10.pth
+2025-10-24 01:36:42 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 01:36:42 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 01:36:42 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 01:37:17 [INFO]  Epoch 10 loss: 342.44542121887207; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-10-24 01:37:17 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_10.pth
+2025-10-24 01:37:17 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 01:37:17 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 01:37:17 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 01:37:54 [INFO]  Epoch 10 loss: 418.17319202423096; train accuracy: 0.8739537997991296; test accuracy: 0.14655039950829749
+2025-10-24 01:37:54 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_10.pth
+2025-10-24 01:37:54 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 01:37:54 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 01:37:54 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 01:39:08 [INFO]  Epoch 10 loss: 960.931746006012; train accuracy: 0.9055633802816901; test accuracy: 0.4533266748617087
+2025-10-24 01:39:08 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_10.pth
+2025-10-24 01:39:08 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 01:39:08 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 01:39:08 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 01:40:06 [INFO]  Epoch 10 loss: 690.2360415458679; train accuracy: 0.8986896932576937; test accuracy: 0.33662415488629377
+2025-10-24 01:40:06 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_10.pth
+2025-10-24 01:40:06 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 01:40:06 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 01:40:06 [INFO]  Round 10 Finish--------|
+2025-10-24 01:40:06 [INFO]  Model variance: mean: 0.002090041758492589, sum: 23354.02734375
+2025-10-24 01:40:06 [INFO]  g_protos_std (global internal): 0.902677
+2025-10-24 01:40:06 [INFO]  inter_client_proto_std (cross-client): 0.055328
+2025-10-24 01:40:06 [INFO]  g_protos_std (global internal): 0.902677
+2025-10-24 01:40:06 [INFO]  inter_client_proto_std (cross-client): 0.055328
+2025-10-24 01:40:06 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 01:40:32 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.45236631837738167
+2025-10-24 01:40:32 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 01:40:32 [INFO]  Round 11 starts--------|
+2025-10-24 01:40:32 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 01:40:48 [INFO]  Epoch 11 loss: 95.35555267333984; train accuracy: 0.3787174721189591; test accuracy: 0.06653349723417333
+2025-10-24 01:40:48 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 01:40:48 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 01:40:48 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 01:41:28 [INFO]  Epoch 11 loss: 339.00474405288696; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-10-24 01:41:28 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 01:41:28 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 01:41:28 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 01:42:10 [INFO]  Epoch 11 loss: 410.3108711242676; train accuracy: 0.8469199866086374; test accuracy: 0.17443915181315303
+2025-10-24 01:42:10 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 01:42:10 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 01:42:10 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 01:43:31 [INFO]  Epoch 11 loss: 952.2112584114075; train accuracy: 0.8935211267605634; test accuracy: 0.4310848186846958
+2025-10-24 01:43:31 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 01:43:31 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 01:43:31 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 01:44:32 [INFO]  Epoch 11 loss: 674.3789925575256; train accuracy: 0.8834278829258497; test accuracy: 0.34945451751690226
+2025-10-24 01:44:32 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 01:44:32 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 01:44:32 [INFO]  Round 11 Finish--------|
+2025-10-24 01:44:32 [INFO]  Model variance: mean: 0.0021901282016187906, sum: 24472.38671875
+2025-10-24 01:44:32 [INFO]  g_protos_std (global internal): 0.894021
+2025-10-24 01:44:32 [INFO]  inter_client_proto_std (cross-client): 0.059613
+2025-10-24 01:44:32 [INFO]  g_protos_std (global internal): 0.894021
+2025-10-24 01:44:32 [INFO]  inter_client_proto_std (cross-client): 0.059613
+2025-10-24 01:44:32 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 01:44:57 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.45655347264904733
+2025-10-24 01:44:57 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 01:44:57 [INFO]  Round 12 starts--------|
+2025-10-24 01:44:57 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 01:45:15 [INFO]  Epoch 12 loss: 94.54181671142578; train accuracy: 0.37732342007434944; test accuracy: 0.06941456668715427
+2025-10-24 01:45:15 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 01:45:15 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 01:45:15 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 01:45:54 [INFO]  Epoch 12 loss: 335.9330983161926; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-10-24 01:45:54 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 01:45:54 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 01:45:54 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 01:46:37 [INFO]  Epoch 12 loss: 403.5155882835388; train accuracy: 0.8886006026113157; test accuracy: 0.16679471419791025
+2025-10-24 01:46:37 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 01:46:37 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 01:46:37 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 01:47:59 [INFO]  Epoch 12 loss: 940.380588054657; train accuracy: 0.9157394366197183; test accuracy: 0.45113706207744314
+2025-10-24 01:47:59 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 01:47:59 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 01:47:59 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 01:49:01 [INFO]  Epoch 12 loss: 673.5771193504333; train accuracy: 0.8749937245845675; test accuracy: 0.3082360172095882
+2025-10-24 01:49:01 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 01:49:01 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 01:49:01 [INFO]  Round 12 Finish--------|
+2025-10-24 01:49:01 [INFO]  Model variance: mean: 0.0022852483671158552, sum: 25535.255859375
+2025-10-24 01:49:01 [INFO]  g_protos_std (global internal): 0.885457
+2025-10-24 01:49:01 [INFO]  inter_client_proto_std (cross-client): 0.063749
+2025-10-24 01:49:01 [INFO]  g_protos_std (global internal): 0.885457
+2025-10-24 01:49:01 [INFO]  inter_client_proto_std (cross-client): 0.063749
+2025-10-24 01:49:01 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 01:49:27 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.45555470190534725
+2025-10-24 01:49:27 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 01:49:27 [INFO]  Round 13 starts--------|
+2025-10-24 01:49:27 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 01:49:45 [INFO]  Epoch 13 loss: 93.6322546005249; train accuracy: 0.3517657992565056; test accuracy: 0.07275660725261217
+2025-10-24 01:49:45 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 01:49:45 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 01:49:45 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 01:50:24 [INFO]  Epoch 13 loss: 332.85056591033936; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-10-24 01:50:24 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 01:50:24 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 01:50:24 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 01:51:06 [INFO]  Epoch 13 loss: 399.36886072158813; train accuracy: 0.918814864412454; test accuracy: 0.15938076213890595
+2025-10-24 01:51:06 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 01:51:06 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 01:51:06 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 01:52:25 [INFO]  Epoch 13 loss: 931.3253507614136; train accuracy: 0.8877816901408451; test accuracy: 0.42912569145666873
+2025-10-24 01:52:25 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 01:52:25 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 01:52:25 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 01:53:26 [INFO]  Epoch 13 loss: 661.7042541503906; train accuracy: 0.8985892866107736; test accuracy: 0.3474953902888752
+2025-10-24 01:53:26 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 01:53:26 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 01:53:26 [INFO]  Round 13 Finish--------|
+2025-10-24 01:53:26 [INFO]  Model variance: mean: 0.0023777505848556757, sum: 26568.87109375
+2025-10-24 01:53:26 [INFO]  g_protos_std (global internal): 0.877369
+2025-10-24 01:53:26 [INFO]  inter_client_proto_std (cross-client): 0.067754
+2025-10-24 01:53:26 [INFO]  g_protos_std (global internal): 0.877369
+2025-10-24 01:53:26 [INFO]  inter_client_proto_std (cross-client): 0.067754
+2025-10-24 01:53:26 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 01:53:52 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4595113706207744
+2025-10-24 01:53:52 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 01:53:52 [INFO]  Round 14 starts--------|
+2025-10-24 01:53:52 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 01:54:08 [INFO]  Epoch 14 loss: 92.92771530151367; train accuracy: 0.3271375464684015; test accuracy: 0.06284572833435771
+2025-10-24 01:54:08 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 01:54:08 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 01:54:08 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 01:54:46 [INFO]  Epoch 14 loss: 329.94988775253296; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-10-24 01:54:46 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 01:54:46 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 01:54:46 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 01:55:27 [INFO]  Epoch 14 loss: 395.59222412109375; train accuracy: 0.8852527619685303; test accuracy: 0.15738322065150584
+2025-10-24 01:55:27 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 01:55:27 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 01:55:27 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 01:56:44 [INFO]  Epoch 14 loss: 911.9495520591736; train accuracy: 0.9180985915492957; test accuracy: 0.4527120467117394
+2025-10-24 01:56:44 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 01:56:44 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 01:56:44 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 01:57:46 [INFO]  Epoch 14 loss: 655.1759028434753; train accuracy: 0.896430543701993; test accuracy: 0.3382759680393362
+2025-10-24 01:57:46 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 01:57:46 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 01:57:46 [INFO]  Round 14 Finish--------|
+2025-10-24 01:57:46 [INFO]  Model variance: mean: 0.002466393169015646, sum: 27559.359375
+2025-10-24 01:57:46 [INFO]  g_protos_std (global internal): 0.869420
+2025-10-24 01:57:46 [INFO]  inter_client_proto_std (cross-client): 0.071573
+2025-10-24 01:57:46 [INFO]  g_protos_std (global internal): 0.869420
+2025-10-24 01:57:46 [INFO]  inter_client_proto_std (cross-client): 0.071573
+2025-10-24 01:57:46 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 01:58:11 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4512523048555624
+2025-10-24 01:58:11 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 01:58:11 [INFO]  Round 15 starts--------|
+2025-10-24 01:58:11 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 01:58:29 [INFO]  Epoch 15 loss: 92.76890754699707; train accuracy: 0.38801115241635686; test accuracy: 0.0638060848186847
+2025-10-24 01:58:29 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_15.pth
+2025-10-24 01:58:29 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 01:58:29 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 01:58:29 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 01:59:06 [INFO]  Epoch 15 loss: 326.95323753356934; train accuracy: 0.9764716737405426; test accuracy: 0.1594960049170252
+2025-10-24 01:59:07 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_15.pth
+2025-10-24 01:59:07 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 01:59:07 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 01:59:07 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 01:59:49 [INFO]  Epoch 15 loss: 393.108519077301; train accuracy: 0.9247572815533981; test accuracy: 0.20924247080516287
+2025-10-24 01:59:49 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_15.pth
+2025-10-24 01:59:49 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 01:59:49 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 01:59:49 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 02:01:09 [INFO]  Epoch 15 loss: 908.7512555122375; train accuracy: 0.9086267605633803; test accuracy: 0.45286570374923174
+2025-10-24 02:01:10 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_15.pth
+2025-10-24 02:01:10 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 02:01:10 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 02:01:10 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 02:02:13 [INFO]  Epoch 15 loss: 648.2431144714355; train accuracy: 0.888699231889151; test accuracy: 0.33485709895513216
+2025-10-24 02:02:14 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_15.pth
+2025-10-24 02:02:14 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 02:02:14 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 02:02:14 [INFO]  Round 15 Finish--------|
+2025-10-24 02:02:14 [INFO]  Model variance: mean: 0.002550865989178419, sum: 28503.25390625
+2025-10-24 02:02:14 [INFO]  g_protos_std (global internal): 0.861607
+2025-10-24 02:02:14 [INFO]  inter_client_proto_std (cross-client): 0.075312
+2025-10-24 02:02:14 [INFO]  g_protos_std (global internal): 0.861607
+2025-10-24 02:02:14 [INFO]  inter_client_proto_std (cross-client): 0.075312
+2025-10-24 02:02:14 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 02:02:39 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.46281499692685923
+2025-10-24 02:02:39 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 02:02:39 [INFO]  Round 16 starts--------|
+2025-10-24 02:02:39 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 02:02:56 [INFO]  Epoch 16 loss: 92.45478630065918; train accuracy: 0.2950743494423792; test accuracy: 0.07006760909649662
+2025-10-24 02:02:56 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 02:02:56 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 02:02:56 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 02:03:34 [INFO]  Epoch 16 loss: 324.54711294174194; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-10-24 02:03:34 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 02:03:34 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 02:03:34 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 02:04:15 [INFO]  Epoch 16 loss: 389.2149953842163; train accuracy: 0.8943756277201205; test accuracy: 0.18884449907805778
+2025-10-24 02:04:15 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 02:04:15 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 02:04:15 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 02:05:34 [INFO]  Epoch 16 loss: 913.9405555725098; train accuracy: 0.8979929577464789; test accuracy: 0.4425706822372465
+2025-10-24 02:05:34 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 02:05:34 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 02:05:34 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 02:06:38 [INFO]  Epoch 16 loss: 632.2293829917908; train accuracy: 0.9022039258998946; test accuracy: 0.35010755992624465
+2025-10-24 02:06:38 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 02:06:38 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 02:06:38 [INFO]  Round 16 Finish--------|
+2025-10-24 02:06:38 [INFO]  Model variance: mean: 0.0026322791818529367, sum: 29412.9609375
+2025-10-24 02:06:38 [INFO]  g_protos_std (global internal): 0.854008
+2025-10-24 02:06:38 [INFO]  inter_client_proto_std (cross-client): 0.078918
+2025-10-24 02:06:38 [INFO]  g_protos_std (global internal): 0.854008
+2025-10-24 02:06:38 [INFO]  inter_client_proto_std (cross-client): 0.078918
+2025-10-24 02:06:38 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 02:07:03 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4620082974800246
+2025-10-24 02:07:03 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 02:07:03 [INFO]  Round 17 starts--------|
+2025-10-24 02:07:03 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 02:07:20 [INFO]  Epoch 17 loss: 91.43326759338379; train accuracy: 0.38894052044609667; test accuracy: 0.06376767055931162
+2025-10-24 02:07:20 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 02:07:20 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 02:07:20 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 02:07:57 [INFO]  Epoch 17 loss: 321.94334745407104; train accuracy: 0.976563941686658; test accuracy: 0.15957283343577136
+2025-10-24 02:07:57 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 02:07:57 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 02:07:57 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 02:08:39 [INFO]  Epoch 17 loss: 386.96260118484497; train accuracy: 0.9312855708068296; test accuracy: 0.19522126613398894
+2025-10-24 02:08:39 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 02:08:39 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 02:08:39 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 02:09:58 [INFO]  Epoch 17 loss: 889.822126865387; train accuracy: 0.9179225352112677; test accuracy: 0.45928088506453596
+2025-10-24 02:09:58 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 02:09:58 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 02:09:58 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 02:10:59 [INFO]  Epoch 17 loss: 626.847188949585; train accuracy: 0.9184698027009388; test accuracy: 0.3516441303011678
+2025-10-24 02:10:59 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 02:10:59 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 02:10:59 [INFO]  Round 17 Finish--------|
+2025-10-24 02:10:59 [INFO]  Model variance: mean: 0.0027149361558258533, sum: 30336.56640625
+2025-10-24 02:10:59 [INFO]  g_protos_std (global internal): 0.846798
+2025-10-24 02:10:59 [INFO]  inter_client_proto_std (cross-client): 0.082379
+2025-10-24 02:10:59 [INFO]  g_protos_std (global internal): 0.846798
+2025-10-24 02:10:59 [INFO]  inter_client_proto_std (cross-client): 0.082379
+2025-10-24 02:10:59 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 02:11:25 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.46162415488629377
+2025-10-24 02:11:25 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 02:11:25 [INFO]  Round 18 starts--------|
+2025-10-24 02:11:25 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 02:11:42 [INFO]  Epoch 18 loss: 91.25195407867432; train accuracy: 0.3434014869888476; test accuracy: 0.07191149354640443
+2025-10-24 02:11:42 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 02:11:42 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 02:11:42 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 02:12:20 [INFO]  Epoch 18 loss: 319.50447702407837; train accuracy: 0.976748477578889; test accuracy: 0.15976490473263674
+2025-10-24 02:12:20 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 02:12:20 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 02:12:20 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 02:13:02 [INFO]  Epoch 18 loss: 380.8441381454468; train accuracy: 0.90366588550385; test accuracy: 0.2223417332513829
+2025-10-24 02:13:02 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 02:13:02 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 02:13:02 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 02:14:22 [INFO]  Epoch 18 loss: 876.7939524650574; train accuracy: 0.9241901408450705; test accuracy: 0.452020590043024
+2025-10-24 02:14:22 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 02:14:22 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 02:14:22 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 02:15:24 [INFO]  Epoch 18 loss: 627.6457672119141; train accuracy: 0.861539233897284; test accuracy: 0.3038183773816841
+2025-10-24 02:15:24 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 02:15:24 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 02:15:24 [INFO]  Round 18 Finish--------|
+2025-10-24 02:15:24 [INFO]  Model variance: mean: 0.0027924987953156233, sum: 31203.248046875
+2025-10-24 02:15:24 [INFO]  g_protos_std (global internal): 0.839734
+2025-10-24 02:15:24 [INFO]  inter_client_proto_std (cross-client): 0.085772
+2025-10-24 02:15:24 [INFO]  g_protos_std (global internal): 0.839734
+2025-10-24 02:15:24 [INFO]  inter_client_proto_std (cross-client): 0.085772
+2025-10-24 02:15:24 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 02:15:52 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4623156115550092
+2025-10-24 02:15:52 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 02:15:52 [INFO]  Round 19 starts--------|
+2025-10-24 02:15:52 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 02:16:10 [INFO]  Epoch 19 loss: 91.25260543823242; train accuracy: 0.3903345724907063; test accuracy: 0.06388291333743086
+2025-10-24 02:16:10 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 02:16:10 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 02:16:10 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 02:16:48 [INFO]  Epoch 19 loss: 317.18993759155273; train accuracy: 0.976748477578889; test accuracy: 0.1606100184388445
+2025-10-24 02:16:48 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 02:16:48 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 02:16:48 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 02:17:28 [INFO]  Epoch 19 loss: 374.57568740844727; train accuracy: 0.8870940743220622; test accuracy: 0.17244161032575292
+2025-10-24 02:17:28 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 02:17:28 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 02:17:28 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 02:18:48 [INFO]  Epoch 19 loss: 871.0631523132324; train accuracy: 0.9249647887323944; test accuracy: 0.4550937307928703
+2025-10-24 02:18:48 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 02:18:48 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 02:18:48 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 02:19:51 [INFO]  Epoch 19 loss: 625.6158947944641; train accuracy: 0.9295647371856017; test accuracy: 0.35679164105716044
+2025-10-24 02:19:51 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 02:19:51 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 02:19:51 [INFO]  Round 19 Finish--------|
+2025-10-24 02:19:51 [INFO]  Model variance: mean: 0.0028687231242656708, sum: 32054.974609375
+2025-10-24 02:19:51 [INFO]  g_protos_std (global internal): 0.832879
+2025-10-24 02:19:51 [INFO]  inter_client_proto_std (cross-client): 0.089101
+2025-10-24 02:19:51 [INFO]  g_protos_std (global internal): 0.832879
+2025-10-24 02:19:51 [INFO]  inter_client_proto_std (cross-client): 0.089101
+2025-10-24 02:19:51 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 02:20:20 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.47045943454210204
+2025-10-24 02:20:20 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 02:20:20 [INFO]  Round 20 starts--------|
+2025-10-24 02:20:20 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 02:20:37 [INFO]  Epoch 20 loss: 90.1545181274414; train accuracy: 0.4107806691449814; test accuracy: 0.06945298094652735
+2025-10-24 02:20:38 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_20.pth
+2025-10-24 02:20:38 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 02:20:38 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 02:20:38 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 02:21:16 [INFO]  Epoch 20 loss: 314.7815771102905; train accuracy: 0.9771175493633512; test accuracy: 0.1606100184388445
+2025-10-24 02:21:16 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_20.pth
+2025-10-24 02:21:16 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 02:21:16 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 02:21:16 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 02:21:59 [INFO]  Epoch 20 loss: 376.29011631011963; train accuracy: 0.8970539002343488; test accuracy: 0.21727105101413643
+2025-10-24 02:21:59 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_20.pth
+2025-10-24 02:21:59 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 02:21:59 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 02:21:59 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 02:23:20 [INFO]  Epoch 20 loss: 857.9926543235779; train accuracy: 0.9269366197183099; test accuracy: 0.46189305470190534
+2025-10-24 02:23:21 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_20.pth
+2025-10-24 02:23:21 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 02:23:21 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 02:23:21 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 02:24:23 [INFO]  Epoch 20 loss: 616.3673324584961; train accuracy: 0.8934183442943923; test accuracy: 0.3436539643515673
+2025-10-24 02:24:23 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_20.pth
+2025-10-24 02:24:23 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 02:24:23 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 02:24:23 [INFO]  Round 20 Finish--------|
+2025-10-24 02:24:23 [INFO]  Model variance: mean: 0.0029418712947517633, sum: 32872.328125
+2025-10-24 02:24:23 [INFO]  g_protos_std (global internal): 0.826347
+2025-10-24 02:24:23 [INFO]  inter_client_proto_std (cross-client): 0.092186
+2025-10-24 02:24:23 [INFO]  g_protos_std (global internal): 0.826347
+2025-10-24 02:24:23 [INFO]  inter_client_proto_std (cross-client): 0.092186
+2025-10-24 02:24:23 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 02:24:49 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.46427473878303627
+2025-10-24 02:24:49 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 02:24:49 [INFO]  Round 21 starts--------|
+2025-10-24 02:24:49 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 02:25:07 [INFO]  Epoch 21 loss: 89.33424091339111; train accuracy: 0.3406133828996282; test accuracy: 0.08001690227412415
+2025-10-24 02:25:07 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 02:25:07 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 02:25:07 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 02:25:45 [INFO]  Epoch 21 loss: 312.76681089401245; train accuracy: 0.9764716737405426; test accuracy: 0.15957283343577136
+2025-10-24 02:25:45 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 02:25:45 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 02:25:45 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 02:26:26 [INFO]  Epoch 21 loss: 375.0461688041687; train accuracy: 0.9518747907599598; test accuracy: 0.22038260602335588
+2025-10-24 02:26:26 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 02:26:26 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 02:26:26 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 02:27:46 [INFO]  Epoch 21 loss: 857.4072222709656; train accuracy: 0.9272887323943662; test accuracy: 0.4545559311616472
+2025-10-24 02:27:46 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 02:27:46 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 02:27:46 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 02:28:49 [INFO]  Epoch 21 loss: 615.3962168693542; train accuracy: 0.9351875094131231; test accuracy: 0.3515673017824216
+2025-10-24 02:28:49 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 02:28:49 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 02:28:49 [INFO]  Round 21 Finish--------|
+2025-10-24 02:28:49 [INFO]  Model variance: mean: 0.0030143021140247583, sum: 33681.66796875
+2025-10-24 02:28:49 [INFO]  g_protos_std (global internal): 0.820130
+2025-10-24 02:28:49 [INFO]  inter_client_proto_std (cross-client): 0.095092
+2025-10-24 02:28:49 [INFO]  g_protos_std (global internal): 0.820130
+2025-10-24 02:28:49 [INFO]  inter_client_proto_std (cross-client): 0.095092
+2025-10-24 02:28:49 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 02:29:14 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.45878149969268595
+2025-10-24 02:29:14 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 02:29:14 [INFO]  Round 22 starts--------|
+2025-10-24 02:29:14 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 02:29:32 [INFO]  Epoch 22 loss: 88.5585470199585; train accuracy: 0.43029739776951675; test accuracy: 0.07022126613398894
+2025-10-24 02:29:32 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 02:29:32 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 02:29:32 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 02:30:10 [INFO]  Epoch 22 loss: 310.88140773773193; train accuracy: 0.9779479608783909; test accuracy: 0.16326060233558698
+2025-10-24 02:30:10 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 02:30:10 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 02:30:10 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 02:30:51 [INFO]  Epoch 22 loss: 366.79361152648926; train accuracy: 0.9244224974891195; test accuracy: 0.22284111862323294
+2025-10-24 02:30:51 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 02:30:51 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 02:30:51 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 02:32:12 [INFO]  Epoch 22 loss: 864.4493680000305; train accuracy: 0.9199295774647888; test accuracy: 0.44487553779963124
+2025-10-24 02:32:12 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 02:32:12 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 02:32:12 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 02:33:13 [INFO]  Epoch 22 loss: 604.3087468147278; train accuracy: 0.9312716501832421; test accuracy: 0.35302704363859866
+2025-10-24 02:33:13 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 02:33:13 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 02:33:13 [INFO]  Round 22 Finish--------|
+2025-10-24 02:33:13 [INFO]  Model variance: mean: 0.0030875869560986757, sum: 34500.546875
+2025-10-24 02:33:13 [INFO]  g_protos_std (global internal): 0.814089
+2025-10-24 02:33:13 [INFO]  inter_client_proto_std (cross-client): 0.097920
+2025-10-24 02:33:13 [INFO]  g_protos_std (global internal): 0.814089
+2025-10-24 02:33:13 [INFO]  inter_client_proto_std (cross-client): 0.097920
+2025-10-24 02:33:13 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 02:33:39 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4716502765826675
+2025-10-24 02:33:39 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 02:33:39 [INFO]  Round 23 starts--------|
+2025-10-24 02:33:39 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 02:33:56 [INFO]  Epoch 23 loss: 88.13804721832275; train accuracy: 0.3745353159851301; test accuracy: 0.07122003687768899
+2025-10-24 02:33:56 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 02:33:56 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 02:33:56 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 02:34:36 [INFO]  Epoch 23 loss: 309.2416591644287; train accuracy: 0.9764716737405426; test accuracy: 0.15941917639827904
+2025-10-24 02:34:36 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 02:34:36 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 02:34:36 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 02:35:18 [INFO]  Epoch 23 loss: 365.69097995758057; train accuracy: 0.8827418814864413; test accuracy: 0.19026582667486172
+2025-10-24 02:35:18 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 02:35:18 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 02:35:18 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 02:36:40 [INFO]  Epoch 23 loss: 854.6552720069885; train accuracy: 0.9219718309859155; test accuracy: 0.4511754763368162
+2025-10-24 02:36:40 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 02:36:40 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 02:36:40 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 02:37:42 [INFO]  Epoch 23 loss: 611.7055358886719; train accuracy: 0.9007480295195542; test accuracy: 0.3388521819299324
+2025-10-24 02:37:42 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 02:37:42 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 02:37:42 [INFO]  Round 23 Finish--------|
+2025-10-24 02:37:42 [INFO]  Model variance: mean: 0.003158638020977378, sum: 35294.46875
+2025-10-24 02:37:42 [INFO]  g_protos_std (global internal): 0.808278
+2025-10-24 02:37:42 [INFO]  inter_client_proto_std (cross-client): 0.100679
+2025-10-24 02:37:42 [INFO]  g_protos_std (global internal): 0.808278
+2025-10-24 02:37:42 [INFO]  inter_client_proto_std (cross-client): 0.100679
+2025-10-24 02:37:42 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 02:38:09 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.47545328826060235
+2025-10-24 02:38:09 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 02:38:09 [INFO]  Round 24 starts--------|
+2025-10-24 02:38:09 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 02:38:25 [INFO]  Epoch 24 loss: 87.88824272155762; train accuracy: 0.4474907063197026; test accuracy: 0.0860479409956976
+2025-10-24 02:38:25 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 02:38:25 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 02:38:25 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 02:39:04 [INFO]  Epoch 24 loss: 307.133930683136; train accuracy: 0.9772098173094667; test accuracy: 0.161339889366933
+2025-10-24 02:39:04 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 02:39:04 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 02:39:04 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 02:39:46 [INFO]  Epoch 24 loss: 361.8590455055237; train accuracy: 0.9348008034817543; test accuracy: 0.19483712354025814
+2025-10-24 02:39:46 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 02:39:46 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 02:39:46 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 02:41:05 [INFO]  Epoch 24 loss: 851.5166120529175; train accuracy: 0.9142605633802817; test accuracy: 0.4446834665027658
+2025-10-24 02:41:05 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 02:41:05 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 02:41:05 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 02:42:06 [INFO]  Epoch 24 loss: 592.6024293899536; train accuracy: 0.9303177870375019; test accuracy: 0.34707283343577133
+2025-10-24 02:42:06 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 02:42:06 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 02:42:06 [INFO]  Round 24 Finish--------|
+2025-10-24 02:42:06 [INFO]  Model variance: mean: 0.0032287980429828167, sum: 36078.43359375
+2025-10-24 02:42:06 [INFO]  g_protos_std (global internal): 0.802637
+2025-10-24 02:42:06 [INFO]  inter_client_proto_std (cross-client): 0.103354
+2025-10-24 02:42:06 [INFO]  g_protos_std (global internal): 0.802637
+2025-10-24 02:42:06 [INFO]  inter_client_proto_std (cross-client): 0.103354
+2025-10-24 02:42:06 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 02:42:32 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4855946527350953
+2025-10-24 02:42:32 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 02:42:32 [INFO]  Round 25 starts--------|
+2025-10-24 02:42:32 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 02:42:49 [INFO]  Epoch 25 loss: 87.31872653961182; train accuracy: 0.4767657992565056; test accuracy: 0.08942839582052858
+2025-10-24 02:42:49 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_25.pth
+2025-10-24 02:42:49 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 02:42:49 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 02:42:49 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 02:43:28 [INFO]  Epoch 25 loss: 305.04858207702637; train accuracy: 0.9785938365011995; test accuracy: 0.16502765826674862
+2025-10-24 02:43:28 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_25.pth
+2025-10-24 02:43:28 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 02:43:28 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 02:43:28 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 02:44:11 [INFO]  Epoch 25 loss: 359.9008779525757; train accuracy: 0.9289420823568798; test accuracy: 0.23805316533497234
+2025-10-24 02:44:11 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_25.pth
+2025-10-24 02:44:11 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 02:44:11 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 02:44:11 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 02:45:35 [INFO]  Epoch 25 loss: 833.452175617218; train accuracy: 0.9399295774647888; test accuracy: 0.46304548248309774
+2025-10-24 02:45:35 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_25.pth
+2025-10-24 02:45:35 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 02:45:35 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 02:45:35 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 02:46:40 [INFO]  Epoch 25 loss: 593.3265252113342; train accuracy: 0.9355891360008033; test accuracy: 0.3613245236631838
+2025-10-24 02:46:40 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_25.pth
+2025-10-24 02:46:40 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 02:46:40 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 02:46:40 [INFO]  Round 25 Finish--------|
+2025-10-24 02:46:40 [INFO]  Model variance: mean: 0.0032968332525342703, sum: 36838.65625
+2025-10-24 02:46:40 [INFO]  g_protos_std (global internal): 0.797360
+2025-10-24 02:46:40 [INFO]  inter_client_proto_std (cross-client): 0.105860
+2025-10-24 02:46:40 [INFO]  g_protos_std (global internal): 0.797360
+2025-10-24 02:46:40 [INFO]  inter_client_proto_std (cross-client): 0.105860
+2025-10-24 02:46:40 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 02:47:05 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.48248309772587583
+2025-10-24 02:47:05 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 02:47:05 [INFO]  Round 26 starts--------|
+2025-10-24 02:47:05 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 02:47:23 [INFO]  Epoch 26 loss: 86.58164310455322; train accuracy: 0.49395910780669144; test accuracy: 0.09388444990780578
+2025-10-24 02:47:23 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 02:47:23 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 02:47:23 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 02:48:03 [INFO]  Epoch 26 loss: 303.7388348579407; train accuracy: 0.9773020852555823; test accuracy: 0.15991856177012906
+2025-10-24 02:48:03 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 02:48:03 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 02:48:03 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 02:48:47 [INFO]  Epoch 26 loss: 358.8080635070801; train accuracy: 0.9374790759959826; test accuracy: 0.2381299938537185
+2025-10-24 02:48:47 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 02:48:47 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 02:48:47 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 02:50:14 [INFO]  Epoch 26 loss: 823.4787096977234; train accuracy: 0.9244014084507042; test accuracy: 0.45405654578979715
+2025-10-24 02:50:14 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 02:50:14 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 02:50:14 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 02:51:13 [INFO]  Epoch 26 loss: 585.5645618438721; train accuracy: 0.9164114664390782; test accuracy: 0.3392363245236632
+2025-10-24 02:51:13 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 02:51:13 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 02:51:13 [INFO]  Round 26 Finish--------|
+2025-10-24 02:51:14 [INFO]  Model variance: mean: 0.0033615094143897295, sum: 37561.34375
+2025-10-24 02:51:14 [INFO]  g_protos_std (global internal): 0.792280
+2025-10-24 02:51:14 [INFO]  inter_client_proto_std (cross-client): 0.108260
+2025-10-24 02:51:14 [INFO]  g_protos_std (global internal): 0.792280
+2025-10-24 02:51:14 [INFO]  inter_client_proto_std (cross-client): 0.108260
+2025-10-24 02:51:14 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 02:51:39 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4838275968039336
+2025-10-24 02:51:39 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 02:51:39 [INFO]  Round 27 starts--------|
+2025-10-24 02:51:39 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 02:51:57 [INFO]  Epoch 27 loss: 85.7291431427002; train accuracy: 0.42936802973977695; test accuracy: 0.07709741856177013
+2025-10-24 02:51:57 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 02:51:57 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 02:51:57 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 02:52:36 [INFO]  Epoch 27 loss: 301.7844891548157; train accuracy: 0.9801623915851633; test accuracy: 0.17032882606023356
+2025-10-24 02:52:36 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 02:52:36 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 02:52:36 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 02:53:19 [INFO]  Epoch 27 loss: 355.12819147109985; train accuracy: 0.9224974891195179; test accuracy: 0.23709280885064535
+2025-10-24 02:53:19 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 02:53:19 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 02:53:19 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 02:54:40 [INFO]  Epoch 27 loss: 820.0497169494629; train accuracy: 0.9374647887323944; test accuracy: 0.46027965580823604
+2025-10-24 02:54:40 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 02:54:40 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 02:54:40 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 02:55:41 [INFO]  Epoch 27 loss: 585.4305305480957; train accuracy: 0.9297655504794418; test accuracy: 0.3564074984634296
+2025-10-24 02:55:41 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 02:55:41 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 02:55:41 [INFO]  Round 27 Finish--------|
+2025-10-24 02:55:41 [INFO]  Model variance: mean: 0.003427300602197647, sum: 38296.4921875
+2025-10-24 02:55:41 [INFO]  g_protos_std (global internal): 0.787475
+2025-10-24 02:55:41 [INFO]  inter_client_proto_std (cross-client): 0.110547
+2025-10-24 02:55:41 [INFO]  g_protos_std (global internal): 0.787475
+2025-10-24 02:55:41 [INFO]  inter_client_proto_std (cross-client): 0.110547
+2025-10-24 02:55:41 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 02:56:07 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.48263675476336815
+2025-10-24 02:56:07 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 02:56:07 [INFO]  Round 28 starts--------|
+2025-10-24 02:56:07 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 02:56:24 [INFO]  Epoch 28 loss: 85.91331672668457; train accuracy: 0.4804832713754647; test accuracy: 0.08454978488014751
+2025-10-24 02:56:24 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 02:56:24 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 02:56:24 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 02:57:03 [INFO]  Epoch 28 loss: 300.0694999694824; train accuracy: 0.981177338992434; test accuracy: 0.17144283958205286
+2025-10-24 02:57:03 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 02:57:03 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 02:57:03 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 02:57:47 [INFO]  Epoch 28 loss: 352.70803022384644; train accuracy: 0.9410780046869769; test accuracy: 0.20209741856177013
+2025-10-24 02:57:47 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 02:57:47 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 02:57:47 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 02:59:07 [INFO]  Epoch 28 loss: 828.9878420829773; train accuracy: 0.9374647887323944; test accuracy: 0.4578979717271051
+2025-10-24 02:59:07 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 02:59:07 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 02:59:07 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 03:00:06 [INFO]  Epoch 28 loss: 580.2251033782959; train accuracy: 0.9272051809829811; test accuracy: 0.3464966195451752
+2025-10-24 03:00:06 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 03:00:06 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 03:00:06 [INFO]  Round 28 Finish--------|
+2025-10-24 03:00:06 [INFO]  Model variance: mean: 0.0034916072618216276, sum: 39015.05078125
+2025-10-24 03:00:06 [INFO]  g_protos_std (global internal): 0.782961
+2025-10-24 03:00:06 [INFO]  inter_client_proto_std (cross-client): 0.112678
+2025-10-24 03:00:06 [INFO]  g_protos_std (global internal): 0.782961
+2025-10-24 03:00:06 [INFO]  inter_client_proto_std (cross-client): 0.112678
+2025-10-24 03:00:06 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 03:00:32 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.48820682237246465
+2025-10-24 03:00:32 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 03:00:32 [INFO]  Round 29 starts--------|
+2025-10-24 03:00:32 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 03:00:49 [INFO]  Epoch 29 loss: 85.4983549118042; train accuracy: 0.5464684014869888; test accuracy: 0.10675322679778734
+2025-10-24 03:00:49 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 03:00:49 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 03:00:49 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 03:01:28 [INFO]  Epoch 29 loss: 298.615375995636; train accuracy: 0.9773943532016978; test accuracy: 0.16310694529809466
+2025-10-24 03:01:28 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 03:01:28 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 03:01:28 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 03:02:10 [INFO]  Epoch 29 loss: 348.7817134857178; train accuracy: 0.9606628724472716; test accuracy: 0.23025507068223725
+2025-10-24 03:02:10 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 03:02:10 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 03:02:10 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 03:03:32 [INFO]  Epoch 29 loss: 825.242326259613; train accuracy: 0.9282042253521127; test accuracy: 0.4540181315304241
+2025-10-24 03:03:32 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 03:03:32 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 03:03:32 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 03:04:33 [INFO]  Epoch 29 loss: 578.0649824142456; train accuracy: 0.9400572317887445; test accuracy: 0.36078672403196066
+2025-10-24 03:04:33 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 03:04:33 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 03:04:33 [INFO]  Round 29 Finish--------|
+2025-10-24 03:04:33 [INFO]  Model variance: mean: 0.0035533697810024023, sum: 39705.18359375
+2025-10-24 03:04:33 [INFO]  g_protos_std (global internal): 0.778670
+2025-10-24 03:04:33 [INFO]  inter_client_proto_std (cross-client): 0.114699
+2025-10-24 03:04:33 [INFO]  g_protos_std (global internal): 0.778670
+2025-10-24 03:04:33 [INFO]  inter_client_proto_std (cross-client): 0.114699
+2025-10-24 03:04:33 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 03:05:00 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.48448063921327594
+2025-10-24 03:05:00 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 03:05:00 [INFO]  Round 30 starts--------|
+2025-10-24 03:05:00 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 03:05:17 [INFO]  Epoch 30 loss: 85.59530925750732; train accuracy: 0.4228624535315985; test accuracy: 0.07886447449293178
+2025-10-24 03:05:18 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_30.pth
+2025-10-24 03:05:18 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 03:05:18 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 03:05:18 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 03:05:55 [INFO]  Epoch 30 loss: 297.03138303756714; train accuracy: 0.9791474441778926; test accuracy: 0.1672556853103872
+2025-10-24 03:05:55 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_30.pth
+2025-10-24 03:05:55 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 03:05:55 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 03:05:55 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 03:06:38 [INFO]  Epoch 30 loss: 347.58344650268555; train accuracy: 0.9433377971208571; test accuracy: 0.23505685310387217
+2025-10-24 03:06:38 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_30.pth
+2025-10-24 03:06:38 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 03:06:38 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 03:06:38 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 03:08:02 [INFO]  Epoch 30 loss: 808.4762892723083; train accuracy: 0.9281338028169014; test accuracy: 0.4572449293177627
+2025-10-24 03:08:02 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_30.pth
+2025-10-24 03:08:02 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 03:08:02 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 03:08:02 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 03:09:04 [INFO]  Epoch 30 loss: 575.6412763595581; train accuracy: 0.9392539786133842; test accuracy: 0.3555239704978488
+2025-10-24 03:09:04 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_30.pth
+2025-10-24 03:09:04 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 03:09:04 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 03:09:04 [INFO]  Round 30 Finish--------|
+2025-10-24 03:09:04 [INFO]  Model variance: mean: 0.003616176312789321, sum: 40406.98046875
+2025-10-24 03:09:04 [INFO]  g_protos_std (global internal): 0.774551
+2025-10-24 03:09:04 [INFO]  inter_client_proto_std (cross-client): 0.116604
+2025-10-24 03:09:04 [INFO]  g_protos_std (global internal): 0.774551
+2025-10-24 03:09:04 [INFO]  inter_client_proto_std (cross-client): 0.116604
+2025-10-24 03:09:04 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 03:09:32 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.47706668715427164
+2025-10-24 03:09:32 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 03:09:32 [INFO]  Round 31 starts--------|
+2025-10-24 03:09:32 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 03:09:49 [INFO]  Epoch 31 loss: 84.24592208862305; train accuracy: 0.4846654275092937; test accuracy: 0.0864320835894284
+2025-10-24 03:09:49 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 03:09:49 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 03:09:49 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 03:10:27 [INFO]  Epoch 31 loss: 295.57459354400635; train accuracy: 0.980808267207972; test accuracy: 0.1732098955132145
+2025-10-24 03:10:27 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 03:10:27 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 03:10:27 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 03:11:10 [INFO]  Epoch 31 loss: 349.8941240310669; train accuracy: 0.9556411114830934; test accuracy: 0.2578365089121082
+2025-10-24 03:11:10 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 03:11:10 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 03:11:10 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 03:12:35 [INFO]  Epoch 31 loss: 809.3320889472961; train accuracy: 0.9061267605633803; test accuracy: 0.4465657652120467
+2025-10-24 03:12:35 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 03:12:35 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 03:12:35 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 03:13:37 [INFO]  Epoch 31 loss: 569.5593953132629; train accuracy: 0.9352377127365832; test accuracy: 0.35617701290719117
+2025-10-24 03:13:37 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 03:13:37 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 03:13:37 [INFO]  Round 31 Finish--------|
+2025-10-24 03:13:37 [INFO]  Model variance: mean: 0.003676176769658923, sum: 41077.421875
+2025-10-24 03:13:37 [INFO]  g_protos_std (global internal): 0.770558
+2025-10-24 03:13:37 [INFO]  inter_client_proto_std (cross-client): 0.118473
+2025-10-24 03:13:37 [INFO]  g_protos_std (global internal): 0.770558
+2025-10-24 03:13:37 [INFO]  inter_client_proto_std (cross-client): 0.118473
+2025-10-24 03:13:37 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 03:14:05 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.48935925015365705
+2025-10-24 03:14:05 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 03:14:05 [INFO]  Round 32 starts--------|
+2025-10-24 03:14:05 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 03:14:21 [INFO]  Epoch 32 loss: 83.09502792358398; train accuracy: 0.5794609665427509; test accuracy: 0.11439766441303012
+2025-10-24 03:14:21 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 03:14:21 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 03:14:21 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 03:15:00 [INFO]  Epoch 32 loss: 294.9473295211792; train accuracy: 0.9813618748846651; test accuracy: 0.18093116164720344
+2025-10-24 03:15:00 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 03:15:00 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 03:15:00 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 03:15:43 [INFO]  Epoch 32 loss: 344.2512502670288; train accuracy: 0.9564780716437897; test accuracy: 0.23113859864781808
+2025-10-24 03:15:43 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 03:15:43 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 03:15:43 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 03:17:06 [INFO]  Epoch 32 loss: 802.2163076400757; train accuracy: 0.9451760563380281; test accuracy: 0.4608174554394591
+2025-10-24 03:17:06 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 03:17:06 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 03:17:06 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 03:18:06 [INFO]  Epoch 32 loss: 564.7247772216797; train accuracy: 0.9284100607460214; test accuracy: 0.3543331284572833
+2025-10-24 03:18:06 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 03:18:06 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 03:18:06 [INFO]  Round 32 Finish--------|
+2025-10-24 03:18:06 [INFO]  Model variance: mean: 0.0037349583581089973, sum: 41734.24609375
+2025-10-24 03:18:06 [INFO]  g_protos_std (global internal): 0.766868
+2025-10-24 03:18:06 [INFO]  inter_client_proto_std (cross-client): 0.120256
+2025-10-24 03:18:06 [INFO]  g_protos_std (global internal): 0.766868
+2025-10-24 03:18:06 [INFO]  inter_client_proto_std (cross-client): 0.120256
+2025-10-24 03:18:06 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 03:18:33 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4814459127228027
+2025-10-24 03:18:33 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 03:18:33 [INFO]  Round 33 starts--------|
+2025-10-24 03:18:33 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 03:18:50 [INFO]  Epoch 33 loss: 82.89746189117432; train accuracy: 0.5227695167286245; test accuracy: 0.10575445605408727
+2025-10-24 03:18:50 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 03:18:50 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 03:18:50 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 03:19:31 [INFO]  Epoch 33 loss: 292.8081650733948; train accuracy: 0.9825613581841668; test accuracy: 0.18461893054701906
+2025-10-24 03:19:31 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 03:19:31 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 03:19:31 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 03:20:12 [INFO]  Epoch 33 loss: 340.8945531845093; train accuracy: 0.9396551724137931; test accuracy: 0.2022894898586355
+2025-10-24 03:20:12 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 03:20:12 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 03:20:12 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 03:21:37 [INFO]  Epoch 33 loss: 801.0460271835327; train accuracy: 0.9413028169014085; test accuracy: 0.45905039950829746
+2025-10-24 03:21:37 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 03:21:37 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 03:21:37 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 03:22:39 [INFO]  Epoch 33 loss: 561.6726245880127; train accuracy: 0.9378984888799639; test accuracy: 0.35921173939766443
+2025-10-24 03:22:39 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 03:22:39 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 03:22:39 [INFO]  Round 33 Finish--------|
+2025-10-24 03:22:39 [INFO]  Model variance: mean: 0.0037943823263049126, sum: 42398.24609375
+2025-10-24 03:22:39 [INFO]  g_protos_std (global internal): 0.763428
+2025-10-24 03:22:39 [INFO]  inter_client_proto_std (cross-client): 0.121917
+2025-10-24 03:22:39 [INFO]  g_protos_std (global internal): 0.763428
+2025-10-24 03:22:39 [INFO]  inter_client_proto_std (cross-client): 0.121917
+2025-10-24 03:22:39 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 03:23:06 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4855946527350953
+2025-10-24 03:23:06 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 03:23:06 [INFO]  Round 34 starts--------|
+2025-10-24 03:23:06 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 03:23:23 [INFO]  Epoch 34 loss: 82.12096309661865; train accuracy: 0.5218401486988847; test accuracy: 0.10625384142593731
+2025-10-24 03:23:23 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 03:23:23 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 03:23:23 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 03:24:01 [INFO]  Epoch 34 loss: 291.60217666625977; train accuracy: 0.981177338992434; test accuracy: 0.17854947756607253
+2025-10-24 03:24:01 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 03:24:01 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 03:24:01 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 03:24:44 [INFO]  Epoch 34 loss: 342.0144147872925; train accuracy: 0.9544693672581185; test accuracy: 0.21823140749846343
+2025-10-24 03:24:44 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 03:24:44 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 03:24:44 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 03:26:03 [INFO]  Epoch 34 loss: 796.5497360229492; train accuracy: 0.9483802816901409; test accuracy: 0.46369852489244007
+2025-10-24 03:26:03 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 03:26:03 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 03:26:03 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 03:27:04 [INFO]  Epoch 34 loss: 561.1574511528015; train accuracy: 0.927054571012601; test accuracy: 0.3499923171481254
+2025-10-24 03:27:04 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 03:27:04 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 03:27:04 [INFO]  Round 34 Finish--------|
+2025-10-24 03:27:04 [INFO]  Model variance: mean: 0.0038528775330632925, sum: 43051.8671875
+2025-10-24 03:27:04 [INFO]  g_protos_std (global internal): 0.760165
+2025-10-24 03:27:04 [INFO]  inter_client_proto_std (cross-client): 0.123462
+2025-10-24 03:27:04 [INFO]  g_protos_std (global internal): 0.760165
+2025-10-24 03:27:04 [INFO]  inter_client_proto_std (cross-client): 0.123462
+2025-10-24 03:27:04 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 03:27:31 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4853257529194837
+2025-10-24 03:27:32 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 03:27:32 [INFO]  Round 35 starts--------|
+2025-10-24 03:27:32 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 03:27:49 [INFO]  Epoch 35 loss: 82.19078540802002; train accuracy: 0.5785315985130112; test accuracy: 0.10613859864781806
+2025-10-24 03:27:49 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_35.pth
+2025-10-24 03:27:49 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 03:27:49 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 03:27:49 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 03:28:28 [INFO]  Epoch 35 loss: 290.48628187179565; train accuracy: 0.9822845543458203; test accuracy: 0.17724339274738782
+2025-10-24 03:28:28 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_35.pth
+2025-10-24 03:28:28 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 03:28:28 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 03:28:28 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 03:29:10 [INFO]  Epoch 35 loss: 335.7286081314087; train accuracy: 0.920656176765986; test accuracy: 0.17701290719114934
+2025-10-24 03:29:10 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_35.pth
+2025-10-24 03:29:10 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 03:29:10 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 03:29:10 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 03:30:30 [INFO]  Epoch 35 loss: 795.6804041862488; train accuracy: 0.9317605633802817; test accuracy: 0.4566687154271666
+2025-10-24 03:30:31 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_35.pth
+2025-10-24 03:30:31 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 03:30:31 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 03:30:31 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 03:31:26 [INFO]  Epoch 35 loss: 555.4649415016174; train accuracy: 0.9433706511371053; test accuracy: 0.35613859864781805
+2025-10-24 03:31:26 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_35.pth
+2025-10-24 03:31:26 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 03:31:26 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 03:31:26 [INFO]  Round 35 Finish--------|
+2025-10-24 03:31:26 [INFO]  Model variance: mean: 0.003910641651600599, sum: 43697.3203125
+2025-10-24 03:31:26 [INFO]  g_protos_std (global internal): 0.757135
+2025-10-24 03:31:26 [INFO]  inter_client_proto_std (cross-client): 0.124914
+2025-10-24 03:31:26 [INFO]  g_protos_std (global internal): 0.757135
+2025-10-24 03:31:26 [INFO]  inter_client_proto_std (cross-client): 0.124914
+2025-10-24 03:31:26 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 03:31:48 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4850184388444991
+2025-10-24 03:31:48 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 03:31:48 [INFO]  Round 36 starts--------|
+2025-10-24 03:31:48 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 03:32:03 [INFO]  Epoch 36 loss: 80.79495620727539; train accuracy: 0.5190520446096655; test accuracy: 0.09284726490473263
+2025-10-24 03:32:03 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 03:32:03 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 03:32:03 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 03:32:38 [INFO]  Epoch 36 loss: 288.986750125885; train accuracy: 0.9837608414836686; test accuracy: 0.18642440073755379
+2025-10-24 03:32:38 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 03:32:38 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 03:32:38 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 03:33:15 [INFO]  Epoch 36 loss: 341.00864458084106; train accuracy: 0.9645965852025443; test accuracy: 0.23048555623847572
+2025-10-24 03:33:15 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 03:33:15 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 03:33:15 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 03:34:26 [INFO]  Epoch 36 loss: 796.89564037323; train accuracy: 0.9430281690140845; test accuracy: 0.46020282728948986
+2025-10-24 03:34:26 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 03:34:26 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 03:34:26 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 03:35:19 [INFO]  Epoch 36 loss: 549.1222705841064; train accuracy: 0.9407098749937246; test accuracy: 0.3572526121696374
+2025-10-24 03:35:19 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 03:35:19 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 03:35:19 [INFO]  Round 36 Finish--------|
+2025-10-24 03:35:19 [INFO]  Model variance: mean: 0.003966485615819693, sum: 44321.3203125
+2025-10-24 03:35:19 [INFO]  g_protos_std (global internal): 0.754360
+2025-10-24 03:35:19 [INFO]  inter_client_proto_std (cross-client): 0.126273
+2025-10-24 03:35:19 [INFO]  g_protos_std (global internal): 0.754360
+2025-10-24 03:35:19 [INFO]  inter_client_proto_std (cross-client): 0.126273
+2025-10-24 03:35:19 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 03:35:40 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.49028119237861095
+2025-10-24 03:35:40 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 03:35:40 [INFO]  Round 37 starts--------|
+2025-10-24 03:35:40 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 03:35:55 [INFO]  Epoch 37 loss: 81.15966415405273; train accuracy: 0.5845724907063197; test accuracy: 0.10298862937922557
+2025-10-24 03:35:55 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 03:35:55 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 03:35:55 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 03:36:29 [INFO]  Epoch 37 loss: 287.69632053375244; train accuracy: 0.9840376453220151; test accuracy: 0.18258297480024585
+2025-10-24 03:36:29 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 03:36:29 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 03:36:29 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 03:37:06 [INFO]  Epoch 37 loss: 333.6032977104187; train accuracy: 0.9492802142618011; test accuracy: 0.2193838352796558
+2025-10-24 03:37:06 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 03:37:06 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 03:37:06 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 03:38:18 [INFO]  Epoch 37 loss: 783.9303288459778; train accuracy: 0.9280985915492957; test accuracy: 0.45636140135218195
+2025-10-24 03:38:18 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 03:38:18 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 03:38:18 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 03:39:09 [INFO]  Epoch 37 loss: 555.8029475212097; train accuracy: 0.9335307997389427; test accuracy: 0.35963429625076826
+2025-10-24 03:39:09 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 03:39:09 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 03:39:09 [INFO]  Round 37 Finish--------|
+2025-10-24 03:39:09 [INFO]  Model variance: mean: 0.004024030175060034, sum: 44964.3203125
+2025-10-24 03:39:09 [INFO]  g_protos_std (global internal): 0.751798
+2025-10-24 03:39:09 [INFO]  inter_client_proto_std (cross-client): 0.127522
+2025-10-24 03:39:09 [INFO]  g_protos_std (global internal): 0.751798
+2025-10-24 03:39:09 [INFO]  inter_client_proto_std (cross-client): 0.127522
+2025-10-24 03:39:09 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 03:39:30 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.48751536570374926
+2025-10-24 03:39:30 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 03:39:30 [INFO]  Round 38 starts--------|
+2025-10-24 03:39:30 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 03:39:45 [INFO]  Epoch 38 loss: 80.79110908508301; train accuracy: 0.5343866171003717; test accuracy: 0.10283497234173325
+2025-10-24 03:39:45 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 03:39:45 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 03:39:45 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 03:40:18 [INFO]  Epoch 38 loss: 287.14831590652466; train accuracy: 0.9823768222919358; test accuracy: 0.17732022126613398
+2025-10-24 03:40:18 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 03:40:18 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 03:40:18 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 03:40:56 [INFO]  Epoch 38 loss: 333.4134774208069; train accuracy: 0.9285236022765316; test accuracy: 0.1839658881376767
+2025-10-24 03:40:56 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 03:40:56 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 03:40:56 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 03:42:08 [INFO]  Epoch 38 loss: 780.4523992538452; train accuracy: 0.9402816901408451; test accuracy: 0.4584357713583282
+2025-10-24 03:42:08 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 03:42:08 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 03:42:08 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 03:43:00 [INFO]  Epoch 38 loss: 544.270366191864; train accuracy: 0.9398564184949043; test accuracy: 0.36101720958819916
+2025-10-24 03:43:00 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 03:43:00 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 03:43:00 [INFO]  Round 38 Finish--------|
+2025-10-24 03:43:00 [INFO]  Model variance: mean: 0.00407907459884882, sum: 45579.3828125
+2025-10-24 03:43:00 [INFO]  g_protos_std (global internal): 0.749455
+2025-10-24 03:43:00 [INFO]  inter_client_proto_std (cross-client): 0.128703
+2025-10-24 03:43:00 [INFO]  g_protos_std (global internal): 0.749455
+2025-10-24 03:43:00 [INFO]  inter_client_proto_std (cross-client): 0.128703
+2025-10-24 03:43:00 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 03:43:21 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4772587584511371
+2025-10-24 03:43:21 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 03:43:21 [INFO]  Round 39 starts--------|
+2025-10-24 03:43:21 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 03:43:36 [INFO]  Epoch 39 loss: 80.12818717956543; train accuracy: 0.5278810408921933; test accuracy: 0.10064535955746773
+2025-10-24 03:43:36 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 03:43:36 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 03:43:36 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 03:44:10 [INFO]  Epoch 39 loss: 285.5570402145386; train accuracy: 0.9823768222919358; test accuracy: 0.17732022126613398
+2025-10-24 03:44:10 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 03:44:10 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 03:44:10 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 03:44:45 [INFO]  Epoch 39 loss: 327.6575303077698; train accuracy: 0.9515400066956813; test accuracy: 0.2219575906576521
+2025-10-24 03:44:45 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 03:44:45 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 03:44:45 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 03:45:56 [INFO]  Epoch 39 loss: 777.2221431732178; train accuracy: 0.9441197183098592; test accuracy: 0.4608942839582053
+2025-10-24 03:45:56 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 03:45:56 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 03:45:56 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 03:46:50 [INFO]  Epoch 39 loss: 554.8069763183594; train accuracy: 0.9452281741051257; test accuracy: 0.3641671788567916
+2025-10-24 03:46:50 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 03:46:50 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 03:46:50 [INFO]  Round 39 Finish--------|
+2025-10-24 03:46:50 [INFO]  Model variance: mean: 0.004133911803364754, sum: 46192.1328125
+2025-10-24 03:46:50 [INFO]  g_protos_std (global internal): 0.747312
+2025-10-24 03:46:50 [INFO]  inter_client_proto_std (cross-client): 0.129776
+2025-10-24 03:46:50 [INFO]  g_protos_std (global internal): 0.747312
+2025-10-24 03:46:50 [INFO]  inter_client_proto_std (cross-client): 0.129776
+2025-10-24 03:46:50 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 03:47:11 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.48655500921942224
+2025-10-24 03:47:11 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 03:47:11 [INFO]  Round 40 starts--------|
+2025-10-24 03:47:11 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 03:47:26 [INFO]  Epoch 40 loss: 77.38914680480957; train accuracy: 0.5562267657992565; test accuracy: 0.10487092808850645
+2025-10-24 03:47:26 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_40.pth
+2025-10-24 03:47:26 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 03:47:26 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 03:47:26 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 03:48:02 [INFO]  Epoch 40 loss: 283.8863229751587; train accuracy: 0.9852371286215169; test accuracy: 0.1889981561155501
+2025-10-24 03:48:02 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_40.pth
+2025-10-24 03:48:02 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 03:48:02 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 03:48:02 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 03:48:41 [INFO]  Epoch 40 loss: 324.35377264022827; train accuracy: 0.9463508536993639; test accuracy: 0.22706668715427167
+2025-10-24 03:48:41 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_40.pth
+2025-10-24 03:48:41 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 03:48:41 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 03:48:41 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 03:49:54 [INFO]  Epoch 40 loss: 779.2825126647949; train accuracy: 0.9408098591549295; test accuracy: 0.45321143208358944
+2025-10-24 03:49:54 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_40.pth
+2025-10-24 03:49:54 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 03:49:54 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 03:49:54 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 03:50:50 [INFO]  Epoch 40 loss: 551.2165570259094; train accuracy: 0.9273055876299011; test accuracy: 0.33835279655808237
+2025-10-24 03:50:50 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_40.pth
+2025-10-24 03:50:50 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 03:50:50 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 03:50:50 [INFO]  Round 40 Finish--------|
+2025-10-24 03:50:50 [INFO]  Model variance: mean: 0.004189679399132729, sum: 46815.2734375
+2025-10-24 03:50:50 [INFO]  g_protos_std (global internal): 0.745379
+2025-10-24 03:50:50 [INFO]  inter_client_proto_std (cross-client): 0.130763
+2025-10-24 03:50:50 [INFO]  g_protos_std (global internal): 0.745379
+2025-10-24 03:50:50 [INFO]  inter_client_proto_std (cross-client): 0.130763
+2025-10-24 03:50:50 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 03:51:13 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4905500921942225
+2025-10-24 03:51:13 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 03:51:13 [INFO]  Round 41 starts--------|
+2025-10-24 03:51:13 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 03:51:27 [INFO]  Epoch 41 loss: 78.11209058761597; train accuracy: 0.42936802973977695; test accuracy: 0.09841733251382913
+2025-10-24 03:51:27 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 03:51:27 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 03:51:27 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 03:52:04 [INFO]  Epoch 41 loss: 283.4058928489685; train accuracy: 0.9795165159623547; test accuracy: 0.16706361401352182
+2025-10-24 03:52:04 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 03:52:04 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 03:52:04 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 03:52:40 [INFO]  Epoch 41 loss: 327.407817363739; train accuracy: 0.9440073652494141; test accuracy: 0.2036339889366933
+2025-10-24 03:52:40 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 03:52:41 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 03:52:41 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 03:53:54 [INFO]  Epoch 41 loss: 763.4492330551147; train accuracy: 0.9509859154929577; test accuracy: 0.46888444990780576
+2025-10-24 03:53:54 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 03:53:54 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 03:53:54 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 03:54:48 [INFO]  Epoch 41 loss: 540.8488783836365; train accuracy: 0.9511521662734073; test accuracy: 0.363859864781807
+2025-10-24 03:54:48 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 03:54:48 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 03:54:48 [INFO]  Round 41 Finish--------|
+2025-10-24 03:54:48 [INFO]  Model variance: mean: 0.004241660237312317, sum: 47396.109375
+2025-10-24 03:54:48 [INFO]  g_protos_std (global internal): 0.743678
+2025-10-24 03:54:48 [INFO]  inter_client_proto_std (cross-client): 0.131621
+2025-10-24 03:54:48 [INFO]  g_protos_std (global internal): 0.743678
+2025-10-24 03:54:48 [INFO]  inter_client_proto_std (cross-client): 0.131621
+2025-10-24 03:54:48 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 03:55:10 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.48878303626306085
+2025-10-24 03:55:10 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 03:55:10 [INFO]  Round 42 starts--------|
+2025-10-24 03:55:10 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 03:55:26 [INFO]  Epoch 42 loss: 77.49987745285034; train accuracy: 0.5441449814126395; test accuracy: 0.10510141364474493
+2025-10-24 03:55:26 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 03:55:26 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 03:55:26 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 03:56:01 [INFO]  Epoch 42 loss: 282.6719675064087; train accuracy: 0.9851448606754014; test accuracy: 0.1886140135218193
+2025-10-24 03:56:01 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 03:56:01 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 03:56:01 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 03:56:37 [INFO]  Epoch 42 loss: 325.067654132843; train accuracy: 0.9308670907264814; test accuracy: 0.24024277811923786
+2025-10-24 03:56:37 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 03:56:37 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 03:56:37 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 03:57:52 [INFO]  Epoch 42 loss: 766.535539150238; train accuracy: 0.9548943661971832; test accuracy: 0.46784726490473266
+2025-10-24 03:57:52 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 03:57:52 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 03:57:52 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 03:58:47 [INFO]  Epoch 42 loss: 537.5279774665833; train accuracy: 0.9516039961845474; test accuracy: 0.3674323909035034
+2025-10-24 03:58:47 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 03:58:47 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 03:58:47 [INFO]  Round 42 Finish--------|
+2025-10-24 03:58:47 [INFO]  Model variance: mean: 0.004294862970709801, sum: 47990.59375
+2025-10-24 03:58:47 [INFO]  g_protos_std (global internal): 0.742144
+2025-10-24 03:58:47 [INFO]  inter_client_proto_std (cross-client): 0.132427
+2025-10-24 03:58:47 [INFO]  g_protos_std (global internal): 0.742144
+2025-10-24 03:58:47 [INFO]  inter_client_proto_std (cross-client): 0.132427
+2025-10-24 03:58:47 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 03:59:09 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4929317762753534
+2025-10-24 03:59:09 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 03:59:09 [INFO]  Round 43 starts--------|
+2025-10-24 03:59:09 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 03:59:25 [INFO]  Epoch 43 loss: 76.73033142089844; train accuracy: 0.5975836431226765; test accuracy: 0.11939151813153043
+2025-10-24 03:59:25 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 03:59:25 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 03:59:25 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 04:00:01 [INFO]  Epoch 43 loss: 281.56455993652344; train accuracy: 0.9810850710463185; test accuracy: 0.17428549477566072
+2025-10-24 04:00:01 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 04:00:01 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 04:00:01 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 04:00:37 [INFO]  Epoch 43 loss: 324.79814052581787; train accuracy: 0.9532976230331436; test accuracy: 0.22852642901044867
+2025-10-24 04:00:37 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 04:00:37 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 04:00:37 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 04:01:49 [INFO]  Epoch 43 loss: 769.4897336959839; train accuracy: 0.9378169014084508; test accuracy: 0.4585894283958205
+2025-10-24 04:01:49 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 04:01:49 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 04:01:49 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 04:02:44 [INFO]  Epoch 43 loss: 540.4765539169312; train accuracy: 0.9359405592650234; test accuracy: 0.3450752919483712
+2025-10-24 04:02:45 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 04:02:45 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 04:02:45 [INFO]  Round 43 Finish--------|
+2025-10-24 04:02:45 [INFO]  Model variance: mean: 0.004345784895122051, sum: 48559.58984375
+2025-10-24 04:02:45 [INFO]  g_protos_std (global internal): 0.740840
+2025-10-24 04:02:45 [INFO]  inter_client_proto_std (cross-client): 0.133110
+2025-10-24 04:02:45 [INFO]  g_protos_std (global internal): 0.740840
+2025-10-24 04:02:45 [INFO]  inter_client_proto_std (cross-client): 0.133110
+2025-10-24 04:02:45 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 04:03:07 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.49950061462815
+2025-10-24 04:03:07 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 04:03:07 [INFO]  Round 44 starts--------|
+2025-10-24 04:03:07 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 04:03:22 [INFO]  Epoch 44 loss: 76.86778163909912; train accuracy: 0.5534386617100372; test accuracy: 0.10252765826674862
+2025-10-24 04:03:22 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 04:03:22 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 04:03:22 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 04:03:58 [INFO]  Epoch 44 loss: 279.8849172592163; train accuracy: 0.9815464107768961; test accuracy: 0.17501536570374923
+2025-10-24 04:03:58 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 04:03:58 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 04:03:58 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 04:04:35 [INFO]  Epoch 44 loss: 325.1492347717285; train accuracy: 0.9518747907599598; test accuracy: 0.23882145052243392
+2025-10-24 04:04:35 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 04:04:35 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 04:04:35 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 04:05:47 [INFO]  Epoch 44 loss: 753.320876121521; train accuracy: 0.9371126760563381; test accuracy: 0.45743700061462816
+2025-10-24 04:05:47 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 04:05:47 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 04:05:47 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 04:06:44 [INFO]  Epoch 44 loss: 534.0354776382446; train accuracy: 0.942366584667905; test accuracy: 0.3555239704978488
+2025-10-24 04:06:44 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 04:06:44 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 04:06:44 [INFO]  Round 44 Finish--------|
+2025-10-24 04:06:44 [INFO]  Model variance: mean: 0.004396950360387564, sum: 49131.3125
+2025-10-24 04:06:44 [INFO]  g_protos_std (global internal): 0.739734
+2025-10-24 04:06:44 [INFO]  inter_client_proto_std (cross-client): 0.133733
+2025-10-24 04:06:44 [INFO]  g_protos_std (global internal): 0.739734
+2025-10-24 04:06:44 [INFO]  inter_client_proto_std (cross-client): 0.133733
+2025-10-24 04:06:44 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 04:07:05 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.4970036877688998
+2025-10-24 04:07:05 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 04:07:05 [INFO]  Round 45 starts--------|
+2025-10-24 04:07:05 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 04:07:22 [INFO]  Epoch 45 loss: 75.617422580719; train accuracy: 0.6050185873605948; test accuracy: 0.11620313460356484
+2025-10-24 04:07:22 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_45.pth
+2025-10-24 04:07:22 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 04:07:22 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 04:07:22 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 04:07:59 [INFO]  Epoch 45 loss: 279.37755012512207; train accuracy: 0.9798855877468168; test accuracy: 0.1667178856791641
+2025-10-24 04:07:59 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_45.pth
+2025-10-24 04:07:59 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 04:07:59 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 04:07:59 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 04:08:36 [INFO]  Epoch 45 loss: 311.77822971343994; train accuracy: 0.9631737529293606; test accuracy: 0.2813460356484327
+2025-10-24 04:08:37 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_45.pth
+2025-10-24 04:08:37 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 04:08:37 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 04:08:37 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 04:09:52 [INFO]  Epoch 45 loss: 760.5253024101257; train accuracy: 0.9453169014084507; test accuracy: 0.4644283958205286
+2025-10-24 04:09:52 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_45.pth
+2025-10-24 04:09:52 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 04:09:52 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 04:09:52 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 04:10:49 [INFO]  Epoch 45 loss: 538.8759207725525; train accuracy: 0.9411115015814047; test accuracy: 0.35502458512599877
+2025-10-24 04:10:49 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_45.pth
+2025-10-24 04:10:49 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 04:10:49 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 04:10:49 [INFO]  Round 45 Finish--------|
+2025-10-24 04:10:49 [INFO]  Model variance: mean: 0.0044463095255196095, sum: 49682.84765625
+2025-10-24 04:10:49 [INFO]  g_protos_std (global internal): 0.738832
+2025-10-24 04:10:49 [INFO]  inter_client_proto_std (cross-client): 0.134269
+2025-10-24 04:10:49 [INFO]  g_protos_std (global internal): 0.738832
+2025-10-24 04:10:49 [INFO]  inter_client_proto_std (cross-client): 0.134269
+2025-10-24 04:10:49 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 04:11:11 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5044944683466502
+2025-10-24 04:11:11 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 04:11:11 [INFO]  Round 46 starts--------|
+2025-10-24 04:11:11 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 04:11:28 [INFO]  Epoch 46 loss: 74.36618709564209; train accuracy: 0.6296468401486989; test accuracy: 0.12196527350952674
+2025-10-24 04:11:28 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 04:11:28 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 04:11:28 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 04:12:05 [INFO]  Epoch 46 loss: 278.0923767089844; train accuracy: 0.9839453773758996; test accuracy: 0.2015980331899201
+2025-10-24 04:12:05 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 04:12:05 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 04:12:05 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 04:12:43 [INFO]  Epoch 46 loss: 318.3520426750183; train accuracy: 0.9545530632741881; test accuracy: 0.2685156730178242
+2025-10-24 04:12:43 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 04:12:43 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 04:12:43 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 04:14:01 [INFO]  Epoch 46 loss: 747.794029712677; train accuracy: 0.9542957746478873; test accuracy: 0.46688690842040564
+2025-10-24 04:14:01 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 04:14:01 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 04:14:01 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 04:14:54 [INFO]  Epoch 46 loss: 530.2171335220337; train accuracy: 0.950148099804207; test accuracy: 0.36097879532882604
+2025-10-24 04:14:54 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 04:14:54 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 04:14:54 [INFO]  Round 46 Finish--------|
+2025-10-24 04:14:54 [INFO]  Model variance: mean: 0.00449588755145669, sum: 50236.83203125
+2025-10-24 04:14:54 [INFO]  g_protos_std (global internal): 0.738148
+2025-10-24 04:14:54 [INFO]  inter_client_proto_std (cross-client): 0.134689
+2025-10-24 04:14:54 [INFO]  g_protos_std (global internal): 0.738148
+2025-10-24 04:14:54 [INFO]  inter_client_proto_std (cross-client): 0.134689
+2025-10-24 04:14:54 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 04:15:18 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5015365703749232
+2025-10-24 04:15:18 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 04:15:18 [INFO]  Round 47 starts--------|
+2025-10-24 04:15:18 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 04:15:34 [INFO]  Epoch 47 loss: 74.60694742202759; train accuracy: 0.578996282527881; test accuracy: 0.10464044253226798
+2025-10-24 04:15:34 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 04:15:34 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 04:15:34 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 04:16:09 [INFO]  Epoch 47 loss: 277.721631526947; train accuracy: 0.9797010518545857; test accuracy: 0.16629532882606024
+2025-10-24 04:16:09 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 04:16:09 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 04:16:09 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 04:16:46 [INFO]  Epoch 47 loss: 317.2232766151428; train accuracy: 0.9564780716437897; test accuracy: 0.23789950829748002
+2025-10-24 04:16:46 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 04:16:46 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 04:16:46 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 04:17:58 [INFO]  Epoch 47 loss: 747.7022442817688; train accuracy: 0.9549647887323943; test accuracy: 0.46796250768285186
+2025-10-24 04:17:58 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 04:17:58 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 04:17:58 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 04:18:50 [INFO]  Epoch 47 loss: 524.2395582199097; train accuracy: 0.9550178221798283; test accuracy: 0.3633220651505839
+2025-10-24 04:18:50 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 04:18:50 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 04:18:50 [INFO]  Round 47 Finish--------|
+2025-10-24 04:18:50 [INFO]  Model variance: mean: 0.004544392693787813, sum: 50778.82421875
+2025-10-24 04:18:50 [INFO]  g_protos_std (global internal): 0.737670
+2025-10-24 04:18:50 [INFO]  inter_client_proto_std (cross-client): 0.135024
+2025-10-24 04:18:50 [INFO]  g_protos_std (global internal): 0.737670
+2025-10-24 04:18:50 [INFO]  inter_client_proto_std (cross-client): 0.135024
+2025-10-24 04:18:50 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 04:19:15 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.49661954517516904
+2025-10-24 04:19:15 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 04:19:15 [INFO]  Round 48 starts--------|
+2025-10-24 04:19:15 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 04:19:30 [INFO]  Epoch 48 loss: 75.09165620803833; train accuracy: 0.5924721189591078; test accuracy: 0.12338660110633067
+2025-10-24 04:19:30 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 04:19:30 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 04:19:30 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 04:20:05 [INFO]  Epoch 48 loss: 276.2728567123413; train accuracy: 0.9853293965676324; test accuracy: 0.18984326982175784
+2025-10-24 04:20:05 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 04:20:05 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 04:20:05 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 04:20:41 [INFO]  Epoch 48 loss: 313.64180612564087; train accuracy: 0.9413290927351858; test accuracy: 0.23013982790411802
+2025-10-24 04:20:41 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 04:20:41 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 04:20:41 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 04:21:51 [INFO]  Epoch 48 loss: 738.8309998512268; train accuracy: 0.9379577464788732; test accuracy: 0.4579363859864782
+2025-10-24 04:21:51 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 04:21:51 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 04:21:51 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 04:22:44 [INFO]  Epoch 48 loss: 525.6065373420715; train accuracy: 0.9490938300115468; test accuracy: 0.3671634910878918
+2025-10-24 04:22:44 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 04:22:44 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 04:22:44 [INFO]  Round 48 Finish--------|
+2025-10-24 04:22:44 [INFO]  Model variance: mean: 0.004593567922711372, sum: 51328.30859375
+2025-10-24 04:22:44 [INFO]  g_protos_std (global internal): 0.737388
+2025-10-24 04:22:44 [INFO]  inter_client_proto_std (cross-client): 0.135313
+2025-10-24 04:22:44 [INFO]  g_protos_std (global internal): 0.737388
+2025-10-24 04:22:44 [INFO]  inter_client_proto_std (cross-client): 0.135313
+2025-10-24 04:22:44 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 04:23:06 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5034572833435771
+2025-10-24 04:23:06 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
+2025-10-24 04:23:06 [INFO]  Round 49 starts--------|
+2025-10-24 04:23:06 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-24 04:23:20 [INFO]  Epoch 49 loss: 73.07850313186646; train accuracy: 0.46886617100371747; test accuracy: 0.08554855562384757
+2025-10-24 04:23:20 [INFO]  Client 0 Finish Local Training--------|
+2025-10-24 04:23:20 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-24 04:23:20 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-24 04:23:52 [INFO]  Epoch 49 loss: 275.27307987213135; train accuracy: 0.9824690902380513; test accuracy: 0.1774738783036263
+2025-10-24 04:23:52 [INFO]  Client 1 Finish Local Training--------|
+2025-10-24 04:23:52 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-24 04:23:52 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-24 04:24:25 [INFO]  Epoch 49 loss: 312.19143438339233; train accuracy: 0.9601606963508537; test accuracy: 0.2173478795328826
+2025-10-24 04:24:25 [INFO]  Client 2 Finish Local Training--------|
+2025-10-24 04:24:25 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-24 04:24:25 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-24 04:25:31 [INFO]  Epoch 49 loss: 748.5020546913147; train accuracy: 0.9394014084507042; test accuracy: 0.45762907191149355
+2025-10-24 04:25:31 [INFO]  Client 3 Finish Local Training--------|
+2025-10-24 04:25:31 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-24 04:25:31 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-24 04:26:21 [INFO]  Epoch 49 loss: 527.6936526298523; train accuracy: 0.9415633314925448; test accuracy: 0.3641671788567916
+2025-10-24 04:26:21 [INFO]  Client 4 Finish Local Training--------|
+2025-10-24 04:26:21 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-24 04:26:21 [INFO]  Round 49 Finish--------|
+2025-10-24 04:26:21 [INFO]  Model variance: mean: 0.004641289822757244, sum: 51861.55078125
+2025-10-24 04:26:21 [INFO]  g_protos_std (global internal): 0.737318
+2025-10-24 04:26:21 [INFO]  inter_client_proto_std (cross-client): 0.135531
+2025-10-24 04:26:21 [INFO]  g_protos_std (global internal): 0.737318
+2025-10-24 04:26:21 [INFO]  inter_client_proto_std (cross-client): 0.135531
+2025-10-24 04:26:21 [INFO]  V7 Training | Using Simple Feature-level Server.
+2025-10-24 04:26:40 [INFO]  The test accuracy of OursV7+SimpleFeatureServer: 0.5073755377996312
+2025-10-24 04:26:40 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV7+SimpleFeatureServer_SVHN_results.yaml
