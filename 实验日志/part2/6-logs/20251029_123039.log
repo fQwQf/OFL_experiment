@@ -1,0 +1,562 @@
+2025-10-29 12:30:40 [INFO]  Load config from ./configs/Tiny_alpha0.1.yaml
+2025-10-29 12:30:40 [INFO]  config: {'exp_name': 'Tiny_alpha0.1', 'dataset': {'data_name': 'Tiny-ImageNet', 'root_path': '~/datasets/', 'train_batch_size': 256, 'test_batch_size': 256, 'channels': 3, 'num_classes': 200, 'image_size': 64, 'aux_data_name': 'Tiny-ImageNet', 'aux_root_path': '~/datasets/', 'aux_split': 'test'}, 'distribution': {'type': 'dirichlet', 'label_num_per_client': 2, 'alpha': 0.1}, 'client': {'num_clients': 5}, 'server': {'num_rounds': 10, 'frac_clients': 1.0, 'lr': 0.05, 'local_epochs': 5, 'optimizer': 'sgd', 'momentum': 0.9, 'weight_decay': 0.0001, 'loss_name': 'ce', 'model_name': 'resnet18', 'aggregated_by_datasize': True, 'lr_decay_per_round': 0.998}, 'device': 'cuda:0', 'checkpoint': {'save_path': './checkpoints/', 'save_freq': 5, 'result_file': 'CIFAR10_results.yaml'}, 'pretrain': {'lr': 0.01, 'epoch': 70, 'model_path': './pretrain/', 'momentum': 0.9, 'weight_decay': 0.0001, 'model_name': 'resnet18', 'model_file_name': 'resnet18-f37072fd.pth'}, 'DBCD': {'alpha_l_pa': 1, 'alpha_l_pb': 1, 'alpha_l_pc': 0.0, 'Beta_alpha': 0.2, 'unsup_method': 'infonce', 'contrastive_temperature': 0.5, 'encoder_epoch': 40, 'projector_epoch': 10, 'use_pretrain': False, 'aug_batch_size': 512, 'encoder_lr': 0.03, 'cls_optimizer': 'sgd', 'cls_lr': 0.05, 'supcon_temp': 0.07, 'super_gr': 100, 'aux_with_public': True}, 'etf': {'loss_name': 'ce'}, 'visualization': {'interval': 5, 'save_path': 'visualization/resnet18', 'vis_size': 16}, 'resume': True, 'resume_best': False, 'seed': 1, 'lambda_align_initial': 20.0, 'v9_config': {'use_adaptive_lambda': True, 'lambda_min': 0.1, 'lambda_max': 20.0, 'use_server_optimization': False, 'server_lr': 0.001, 'server_epochs': 20, 'gamma_etf_reg': 0.1}, 'v10_config': {'use_uncertainty_weighting': True, 'sigma_lr': 0.0001}}
+2025-10-29 12:30:40 [INFO]  Dataset Tiny-ImageNet loaded
+2025-10-29 12:30:40 [INFO]  Dataset index dict loaded from preprocessed_data/Tiny-ImageNet.pt
+2025-10-29 12:30:40 [INFO]  Data distribution generated correctly using the corrected dirichlet function.
+2025-10-29 12:30:40 [INFO]  Total assigned samples: 100000
+2025-10-29 12:30:41 [INFO]  OneshotOurs
+2025-10-29 12:30:41 [INFO]  Round 0 starts--------|
+2025-10-29 12:30:41 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-29 12:31:04 [INFO]  generating sample per sample
+2025-10-29 12:31:56 [INFO]  Epoch 0 loss: 962.1211395263672; train accuracy: 0.04383803929000063; test accuracy: 0.0012
+2025-10-29 12:31:57 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_0/epoch_0.pth
+2025-10-29 12:32:49 [INFO]  Epoch 1 loss: 873.1646375656128; train accuracy: 0.05375529025330049; test accuracy: 0.0
+2025-10-29 12:33:41 [INFO]  Epoch 2 loss: 834.0720310211182; train accuracy: 0.08142252542479944; test accuracy: 0.0017
+2025-10-29 12:34:35 [INFO]  Epoch 3 loss: 794.6807556152344; train accuracy: 0.08104352220327206; test accuracy: 0.0053
+2025-10-29 12:35:43 [INFO]  Epoch 4 loss: 776.944525718689; train accuracy: 0.10157286336933864; test accuracy: 0.0004
+2025-10-29 12:35:43 [INFO]  Client 0 Finish Local Training--------|
+2025-10-29 12:35:43 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-29 12:35:43 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-29 12:36:12 [INFO]  generating sample per sample
+2025-10-29 12:37:40 [INFO]  Epoch 0 loss: 1221.978274345398; train accuracy: 0.04382987220447284; test accuracy: 0.0
+2025-10-29 12:37:41 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_1/epoch_0.pth
+2025-10-29 12:39:09 [INFO]  Epoch 1 loss: 1093.5377159118652; train accuracy: 0.06354832268370607; test accuracy: 0.0
+2025-10-29 12:40:38 [INFO]  Epoch 2 loss: 1049.5026893615723; train accuracy: 0.1021865015974441; test accuracy: 0.0
+2025-10-29 12:42:07 [INFO]  Epoch 3 loss: 1007.2787141799927; train accuracy: 0.06444688498402557; test accuracy: 0.0
+2025-10-29 12:43:38 [INFO]  Epoch 4 loss: 982.1127119064331; train accuracy: 0.07468051118210862; test accuracy: 0.0
+2025-10-29 12:43:38 [INFO]  Client 1 Finish Local Training--------|
+2025-10-29 12:43:38 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-29 12:43:38 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-29 12:44:03 [INFO]  generating sample per sample
+2025-10-29 12:45:27 [INFO]  Epoch 0 loss: 1072.3893728256226; train accuracy: 0.05002258355916892; test accuracy: 0.0
+2025-10-29 12:45:28 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_2/epoch_0.pth
+2025-10-29 12:46:51 [INFO]  Epoch 1 loss: 961.4770050048828; train accuracy: 0.06955736224028906; test accuracy: 0.0
+2025-10-29 12:48:14 [INFO]  Epoch 2 loss: 921.0236988067627; train accuracy: 0.08034101174345076; test accuracy: 0.0
+2025-10-29 12:49:39 [INFO]  Epoch 3 loss: 892.7196998596191; train accuracy: 0.06820234869015357; test accuracy: 0.0
+2025-10-29 12:51:06 [INFO]  Epoch 4 loss: 861.9130201339722; train accuracy: 0.07531616982836495; test accuracy: 0.0
+2025-10-29 12:51:06 [INFO]  Client 2 Finish Local Training--------|
+2025-10-29 12:51:06 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-29 12:51:06 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-29 12:51:42 [INFO]  generating sample per sample
+2025-10-29 12:53:42 [INFO]  Epoch 0 loss: 1510.0114307403564; train accuracy: 0.04850328157515608; test accuracy: 0.0
+2025-10-29 12:53:43 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_3/epoch_0.pth
+2025-10-29 12:55:46 [INFO]  Epoch 1 loss: 1374.276135444641; train accuracy: 0.04085961261405475; test accuracy: 0.0
+2025-10-29 12:57:48 [INFO]  Epoch 2 loss: 1310.9461650848389; train accuracy: 0.05534656635184889; test accuracy: 0.0
+2025-10-29 12:59:55 [INFO]  Epoch 3 loss: 1256.1011371612549; train accuracy: 0.09712662077797343; test accuracy: 0.0
+2025-10-29 13:02:16 [INFO]  Epoch 4 loss: 1218.9378299713135; train accuracy: 0.08247959020329758; test accuracy: 0.0
+2025-10-29 13:02:16 [INFO]  Client 3 Finish Local Training--------|
+2025-10-29 13:02:16 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-29 13:02:16 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-29 13:02:49 [INFO]  generating sample per sample
+2025-10-29 13:04:42 [INFO]  Epoch 0 loss: 1292.3878831863403; train accuracy: 0.05275924802910855; test accuracy: 0.0
+2025-10-29 13:04:42 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_4/epoch_0.pth
+2025-10-29 13:06:44 [INFO]  Epoch 1 loss: 1179.645426750183; train accuracy: 0.05677100340532724; test accuracy: 0.0022
+2025-10-29 13:08:44 [INFO]  Epoch 2 loss: 1119.3920698165894; train accuracy: 0.08979801278163922; test accuracy: 0.0003
+2025-10-29 13:10:43 [INFO]  Epoch 3 loss: 1088.379885673523; train accuracy: 0.12501749311937305; test accuracy: 0.0002
+2025-10-29 13:12:39 [INFO]  Epoch 4 loss: 1058.2618618011475; train accuracy: 0.10439893641834212; test accuracy: 0.0
+2025-10-29 13:12:39 [INFO]  Client 4 Finish Local Training--------|
+2025-10-29 13:12:39 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-29 13:12:39 [INFO]  Round 0 Finish--------|
+2025-10-29 13:12:39 [INFO]  Model variance: mean: 0.002246263436973095, sum: 25318.158203125
+2025-10-29 13:12:39 [INFO]  g_protos_std (global internal): 1.003931
+2025-10-29 13:12:39 [INFO]  inter_client_proto_std (cross-client): 0.008052
+2025-10-29 13:12:39 [INFO]  g_protos_std (global internal): 1.003931
+2025-10-29 13:12:39 [INFO]  inter_client_proto_std (cross-client): 0.008052
+2025-10-29 13:12:39 [INFO]  V4 Training | Using Simple Feature-level Server.
+2025-10-29 13:12:59 [INFO]  The test accuracy of OursV4+SimpleFeatureServer: 0.009
+2025-10-29 13:12:59 [INFO]  Save config to ./checkpoints/Tiny_alpha0.1/baselines_OursV4+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-29 13:12:59 [INFO]  Round 1 starts--------|
+2025-10-29 13:12:59 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-29 13:14:28 [INFO]  Epoch 5 loss: 757.9209098815918; train accuracy: 0.1430105489229992; test accuracy: 0.0
+2025-10-29 13:14:29 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_0/epoch_5.pth
+2025-10-29 13:16:00 [INFO]  Epoch 6 loss: 746.093807220459; train accuracy: 0.13650432695344578; test accuracy: 0.0013
+2025-10-29 13:17:29 [INFO]  Epoch 7 loss: 726.0854253768921; train accuracy: 0.11186911755416588; test accuracy: 0.0001
+2025-10-29 13:18:57 [INFO]  Epoch 8 loss: 716.595911026001; train accuracy: 0.18634325058429663; test accuracy: 0.009
+2025-10-29 13:20:26 [INFO]  Epoch 9 loss: 707.0222587585449; train accuracy: 0.17522582275282672; test accuracy: 0.0002
+2025-10-29 13:20:26 [INFO]  Client 0 Finish Local Training--------|
+2025-10-29 13:20:26 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-29 13:20:26 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-29 13:22:19 [INFO]  Epoch 5 loss: 953.7964935302734; train accuracy: 0.09270167731629393; test accuracy: 0.0
+2025-10-29 13:22:19 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_1/epoch_5.pth
+2025-10-29 13:24:12 [INFO]  Epoch 6 loss: 923.2946243286133; train accuracy: 0.13218849840255592; test accuracy: 0.0
+2025-10-29 13:26:07 [INFO]  Epoch 7 loss: 916.1592807769775; train accuracy: 0.1882488019169329; test accuracy: 0.0
+2025-10-29 13:28:02 [INFO]  Epoch 8 loss: 889.7323322296143; train accuracy: 0.13283746006389777; test accuracy: 0.0
+2025-10-29 13:29:58 [INFO]  Epoch 9 loss: 874.8288831710815; train accuracy: 0.18116014376996806; test accuracy: 0.0
+2025-10-29 13:29:58 [INFO]  Client 1 Finish Local Training--------|
+2025-10-29 13:29:58 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-29 13:29:58 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-29 13:31:42 [INFO]  Epoch 5 loss: 841.8794479370117; train accuracy: 0.13166214995483289; test accuracy: 0.0
+2025-10-29 13:31:43 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_2/epoch_5.pth
+2025-10-29 13:33:28 [INFO]  Epoch 6 loss: 817.7995595932007; train accuracy: 0.16119015356820235; test accuracy: 0.0
+2025-10-29 13:35:12 [INFO]  Epoch 7 loss: 793.7546491622925; train accuracy: 0.1561088527551942; test accuracy: 0.0
+2025-10-29 13:36:58 [INFO]  Epoch 8 loss: 786.633547782898; train accuracy: 0.15012420957542907; test accuracy: 0.0
+2025-10-29 13:38:42 [INFO]  Epoch 9 loss: 771.2441082000732; train accuracy: 0.2077122854561879; test accuracy: 0.0
+2025-10-29 13:38:42 [INFO]  Client 2 Finish Local Training--------|
+2025-10-29 13:38:42 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-29 13:38:42 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-29 13:40:54 [INFO]  Epoch 5 loss: 1189.6186237335205; train accuracy: 0.06423083079878342; test accuracy: 0.0
+2025-10-29 13:40:54 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_3/epoch_5.pth
+2025-10-29 13:43:08 [INFO]  Epoch 6 loss: 1161.3394403457642; train accuracy: 0.11657595645910036; test accuracy: 0.0
+2025-10-29 13:45:00 [INFO]  Epoch 7 loss: 1135.065996170044; train accuracy: 0.11481511125340163; test accuracy: 0.0
+2025-10-29 13:46:38 [INFO]  Epoch 8 loss: 1121.8483476638794; train accuracy: 0.14931166960140868; test accuracy: 0.0
+2025-10-29 13:48:35 [INFO]  Epoch 9 loss: 1088.6994695663452; train accuracy: 0.13978709780694734; test accuracy: 0.0
+2025-10-29 13:48:35 [INFO]  Client 3 Finish Local Training--------|
+2025-10-29 13:48:35 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-29 13:48:35 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-29 13:50:15 [INFO]  Epoch 5 loss: 1029.7016515731812; train accuracy: 0.13439380510332602; test accuracy: 0.0
+2025-10-29 13:50:15 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_4/epoch_5.pth
+2025-10-29 13:51:59 [INFO]  Epoch 6 loss: 1000.8747930526733; train accuracy: 0.1199328264216075; test accuracy: 0.0001
+2025-10-29 13:53:44 [INFO]  Epoch 7 loss: 988.614182472229; train accuracy: 0.11209590894248263; test accuracy: 0.0028
+2025-10-29 13:55:24 [INFO]  Epoch 8 loss: 962.3744916915894; train accuracy: 0.2191071511871997; test accuracy: 0.0049
+2025-10-29 13:57:01 [INFO]  Epoch 9 loss: 945.7005367279053; train accuracy: 0.17926948733498158; test accuracy: 0.0003
+2025-10-29 13:57:01 [INFO]  Client 4 Finish Local Training--------|
+2025-10-29 13:57:01 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-29 13:57:01 [INFO]  Round 1 Finish--------|
+2025-10-29 13:57:01 [INFO]  Model variance: mean: 0.00323927472345531, sum: 36510.6171875
+2025-10-29 13:57:01 [INFO]  g_protos_std (global internal): 1.004315
+2025-10-29 13:57:01 [INFO]  inter_client_proto_std (cross-client): 0.012234
+2025-10-29 13:57:01 [INFO]  g_protos_std (global internal): 1.004315
+2025-10-29 13:57:01 [INFO]  inter_client_proto_std (cross-client): 0.012234
+2025-10-29 13:57:01 [INFO]  V4 Training | Using Simple Feature-level Server.
+2025-10-29 13:57:16 [INFO]  The test accuracy of OursV4+SimpleFeatureServer: 0.0065
+2025-10-29 13:57:16 [INFO]  Save config to ./checkpoints/Tiny_alpha0.1/baselines_OursV4+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-29 13:57:16 [INFO]  Round 2 starts--------|
+2025-10-29 13:57:16 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-29 13:58:33 [INFO]  Epoch 10 loss: 684.4731149673462; train accuracy: 0.19537616069736594; test accuracy: 0.0003
+2025-10-29 13:58:33 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_0/epoch_10.pth
+2025-10-29 13:59:39 [INFO]  Epoch 11 loss: 679.241213798523; train accuracy: 0.19954519613416713; test accuracy: 0.0135
+2025-10-29 14:00:43 [INFO]  Epoch 12 loss: 665.4016017913818; train accuracy: 0.20864127345082434; test accuracy: 0.004
+2025-10-29 14:01:49 [INFO]  Epoch 13 loss: 653.7839221954346; train accuracy: 0.21685300991725096; test accuracy: 0.0031
+2025-10-29 14:02:56 [INFO]  Epoch 14 loss: 647.9544410705566; train accuracy: 0.22809677215589666; test accuracy: 0.0027
+2025-10-29 14:02:56 [INFO]  Client 0 Finish Local Training--------|
+2025-10-29 14:02:56 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-29 14:02:56 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-29 14:04:16 [INFO]  Epoch 10 loss: 850.4453048706055; train accuracy: 0.20327476038338657; test accuracy: 0.0
+2025-10-29 14:04:17 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_1/epoch_10.pth
+2025-10-29 14:05:38 [INFO]  Epoch 11 loss: 841.8832130432129; train accuracy: 0.1796126198083067; test accuracy: 0.0
+2025-10-29 14:07:00 [INFO]  Epoch 12 loss: 822.1861386299133; train accuracy: 0.22014776357827476; test accuracy: 0.0
+2025-10-29 14:08:28 [INFO]  Epoch 13 loss: 812.8543367385864; train accuracy: 0.20377396166134185; test accuracy: 0.0
+2025-10-29 14:09:47 [INFO]  Epoch 14 loss: 809.5857601165771; train accuracy: 0.2582867412140575; test accuracy: 0.0
+2025-10-29 14:09:47 [INFO]  Client 1 Finish Local Training--------|
+2025-10-29 14:09:47 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-29 14:09:47 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-29 14:10:58 [INFO]  Epoch 10 loss: 745.0838918685913; train accuracy: 0.2702687443541102; test accuracy: 0.0
+2025-10-29 14:10:59 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_2/epoch_10.pth
+2025-10-29 14:12:11 [INFO]  Epoch 11 loss: 738.0386610031128; train accuracy: 0.2203026196928636; test accuracy: 0.0
+2025-10-29 14:13:23 [INFO]  Epoch 12 loss: 718.1940984725952; train accuracy: 0.3017163504968383; test accuracy: 0.0
+2025-10-29 14:14:39 [INFO]  Epoch 13 loss: 716.8375844955444; train accuracy: 0.2593157181571816; test accuracy: 0.0
+2025-10-29 14:15:50 [INFO]  Epoch 14 loss: 701.9060196876526; train accuracy: 0.2867547425474255; test accuracy: 0.0
+2025-10-29 14:15:50 [INFO]  Client 2 Finish Local Training--------|
+2025-10-29 14:15:50 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-29 14:15:50 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-29 14:17:31 [INFO]  Epoch 10 loss: 1071.9881353378296; train accuracy: 0.16291820073635346; test accuracy: 0.0
+2025-10-29 14:17:31 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_3/epoch_10.pth
+2025-10-29 14:19:11 [INFO]  Epoch 11 loss: 1055.2379512786865; train accuracy: 0.18648951496718424; test accuracy: 0.0
+2025-10-29 14:20:55 [INFO]  Epoch 12 loss: 1043.3621835708618; train accuracy: 0.1998959500560269; test accuracy: 0.0
+2025-10-29 14:22:44 [INFO]  Epoch 13 loss: 1029.240237236023; train accuracy: 0.1792860573075076; test accuracy: 0.0
+2025-10-29 14:24:26 [INFO]  Epoch 14 loss: 1016.8434047698975; train accuracy: 0.16327837361933728; test accuracy: 0.0
+2025-10-29 14:24:26 [INFO]  Client 3 Finish Local Training--------|
+2025-10-29 14:24:26 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-29 14:24:26 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-29 14:25:49 [INFO]  Epoch 10 loss: 930.3557977676392; train accuracy: 0.20301348136399683; test accuracy: 0.0012
+2025-10-29 14:25:50 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_4/epoch_10.pth
+2025-10-29 14:27:15 [INFO]  Epoch 11 loss: 912.6524028778076; train accuracy: 0.2372066986985119; test accuracy: 0.0007
+2025-10-29 14:28:55 [INFO]  Epoch 12 loss: 903.6699323654175; train accuracy: 0.26958063161823015; test accuracy: 0.0051
+2025-10-29 14:30:27 [INFO]  Epoch 13 loss: 891.5366268157959; train accuracy: 0.21476885758268413; test accuracy: 0.0001
+2025-10-29 14:31:51 [INFO]  Epoch 14 loss: 881.7116212844849; train accuracy: 0.2452768577692774; test accuracy: 0.0021
+2025-10-29 14:31:51 [INFO]  Client 4 Finish Local Training--------|
+2025-10-29 14:31:51 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-29 14:31:51 [INFO]  Round 2 Finish--------|
+2025-10-29 14:31:51 [INFO]  Model variance: mean: 0.004046402871608734, sum: 45607.9453125
+2025-10-29 14:31:51 [INFO]  g_protos_std (global internal): 1.004653
+2025-10-29 14:31:51 [INFO]  inter_client_proto_std (cross-client): 0.015193
+2025-10-29 14:31:51 [INFO]  g_protos_std (global internal): 1.004653
+2025-10-29 14:31:51 [INFO]  inter_client_proto_std (cross-client): 0.015193
+2025-10-29 14:31:51 [INFO]  V4 Training | Using Simple Feature-level Server.
+2025-10-29 14:32:05 [INFO]  The test accuracy of OursV4+SimpleFeatureServer: 0.0051
+2025-10-29 14:32:05 [INFO]  Save config to ./checkpoints/Tiny_alpha0.1/baselines_OursV4+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-29 14:32:05 [INFO]  Round 3 starts--------|
+2025-10-29 14:32:05 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-29 14:33:10 [INFO]  Epoch 15 loss: 647.2847175598145; train accuracy: 0.21457899058808666; test accuracy: 0.0001
+2025-10-29 14:33:10 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_0/epoch_15.pth
+2025-10-29 14:34:22 [INFO]  Epoch 16 loss: 629.321681022644; train accuracy: 0.26568125829069544; test accuracy: 0.0038
+2025-10-29 14:35:31 [INFO]  Epoch 17 loss: 626.9379663467407; train accuracy: 0.2711768050028425; test accuracy: 0.0041
+2025-10-29 14:36:34 [INFO]  Epoch 18 loss: 600.6650867462158; train accuracy: 0.3249952624597309; test accuracy: 0.0281
+2025-10-29 14:37:37 [INFO]  Epoch 19 loss: 609.5090065002441; train accuracy: 0.2872212747141684; test accuracy: 0.0023
+2025-10-29 14:37:37 [INFO]  Client 0 Finish Local Training--------|
+2025-10-29 14:37:37 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-29 14:37:37 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-29 14:38:58 [INFO]  Epoch 15 loss: 782.0578012466431; train accuracy: 0.1931908945686901; test accuracy: 0.0
+2025-10-29 14:38:58 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_1/epoch_15.pth
+2025-10-29 14:40:19 [INFO]  Epoch 16 loss: 780.2415075302124; train accuracy: 0.2852935303514377; test accuracy: 0.0
+2025-10-29 14:41:39 [INFO]  Epoch 17 loss: 767.3112354278564; train accuracy: 0.2973742012779553; test accuracy: 0.0
+2025-10-29 14:43:08 [INFO]  Epoch 18 loss: 761.7796640396118; train accuracy: 0.28978634185303515; test accuracy: 0.0
+2025-10-29 14:44:45 [INFO]  Epoch 19 loss: 744.68790102005; train accuracy: 0.3461461661341853; test accuracy: 0.0
+2025-10-29 14:44:45 [INFO]  Client 1 Finish Local Training--------|
+2025-10-29 14:44:45 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-29 14:44:45 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-29 14:46:01 [INFO]  Epoch 15 loss: 691.3539180755615; train accuracy: 0.27755194218608853; test accuracy: 0.0
+2025-10-29 14:46:01 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_2/epoch_15.pth
+2025-10-29 14:47:24 [INFO]  Epoch 16 loss: 684.171633720398; train accuracy: 0.3381887985546522; test accuracy: 0.0
+2025-10-29 14:48:51 [INFO]  Epoch 17 loss: 669.8300614356995; train accuracy: 0.31458897922312556; test accuracy: 0.0
+2025-10-29 14:50:14 [INFO]  Epoch 18 loss: 660.6316766738892; train accuracy: 0.3214769647696477; test accuracy: 0.0
+2025-10-29 14:51:37 [INFO]  Epoch 19 loss: 658.6073417663574; train accuracy: 0.35100496838301715; test accuracy: 0.0
+2025-10-29 14:51:37 [INFO]  Client 2 Finish Local Training--------|
+2025-10-29 14:51:37 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-29 14:51:37 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-29 14:53:39 [INFO]  Epoch 15 loss: 1007.5006160736084; train accuracy: 0.2248679366095726; test accuracy: 0.0
+2025-10-29 14:53:39 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_3/epoch_15.pth
+2025-10-29 14:55:42 [INFO]  Epoch 16 loss: 972.2929058074951; train accuracy: 0.25196094125180085; test accuracy: 0.0
+2025-10-29 14:57:46 [INFO]  Epoch 17 loss: 982.1037883758545; train accuracy: 0.23571314230830798; test accuracy: 0.0
+2025-10-29 14:59:52 [INFO]  Epoch 18 loss: 955.9764728546143; train accuracy: 0.2614054746278214; test accuracy: 0.0
+2025-10-29 15:01:56 [INFO]  Epoch 19 loss: 955.3246040344238; train accuracy: 0.3171122138626541; test accuracy: 0.0
+2025-10-29 15:01:56 [INFO]  Client 3 Finish Local Training--------|
+2025-10-29 15:01:56 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-29 15:01:56 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-29 15:03:46 [INFO]  Epoch 15 loss: 859.1605453491211; train accuracy: 0.26496244810374586; test accuracy: 0.0124
+2025-10-29 15:03:47 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_4/epoch_15.pth
+2025-10-29 15:05:38 [INFO]  Epoch 16 loss: 843.7246131896973; train accuracy: 0.33638102346410415; test accuracy: 0.0161
+2025-10-29 15:07:26 [INFO]  Epoch 17 loss: 844.3887710571289; train accuracy: 0.30857862574054207; test accuracy: 0.0039
+2025-10-29 15:09:20 [INFO]  Epoch 18 loss: 834.3047065734863; train accuracy: 0.31245043616177637; test accuracy: 0.0122
+2025-10-29 15:11:06 [INFO]  Epoch 19 loss: 832.203049659729; train accuracy: 0.30834538414890145; test accuracy: 0.0038
+2025-10-29 15:11:06 [INFO]  Client 4 Finish Local Training--------|
+2025-10-29 15:11:06 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-29 15:11:06 [INFO]  Round 3 Finish--------|
+2025-10-29 15:11:06 [INFO]  Model variance: mean: 0.004748930223286152, sum: 53526.296875
+2025-10-29 15:11:06 [INFO]  g_protos_std (global internal): 1.004952
+2025-10-29 15:11:06 [INFO]  inter_client_proto_std (cross-client): 0.017479
+2025-10-29 15:11:06 [INFO]  g_protos_std (global internal): 1.004952
+2025-10-29 15:11:06 [INFO]  inter_client_proto_std (cross-client): 0.017479
+2025-10-29 15:11:06 [INFO]  V4 Training | Using Simple Feature-level Server.
+2025-10-29 15:11:21 [INFO]  The test accuracy of OursV4+SimpleFeatureServer: 0.0057
+2025-10-29 15:11:21 [INFO]  Save config to ./checkpoints/Tiny_alpha0.1/baselines_OursV4+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-29 15:11:21 [INFO]  Round 4 starts--------|
+2025-10-29 15:11:21 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-29 15:12:41 [INFO]  Epoch 20 loss: 604.364725112915; train accuracy: 0.31520434590360685; test accuracy: 0.0092
+2025-10-29 15:12:42 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_0/epoch_20.pth
+2025-10-29 15:14:04 [INFO]  Epoch 21 loss: 586.6133470535278; train accuracy: 0.30882445834122924; test accuracy: 0.0133
+2025-10-29 15:15:29 [INFO]  Epoch 22 loss: 572.6716508865356; train accuracy: 0.27326132272124315; test accuracy: 0.0058
+2025-10-29 15:16:51 [INFO]  Epoch 23 loss: 581.7274503707886; train accuracy: 0.36226391257659024; test accuracy: 0.0131
+2025-10-29 15:18:15 [INFO]  Epoch 24 loss: 575.8611078262329; train accuracy: 0.355631356199861; test accuracy: 0.0549
+2025-10-29 15:18:15 [INFO]  Client 0 Finish Local Training--------|
+2025-10-29 15:18:15 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-29 15:18:15 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-29 15:19:53 [INFO]  Epoch 20 loss: 739.9755172729492; train accuracy: 0.3571785143769968; test accuracy: 0.0
+2025-10-29 15:19:54 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_1/epoch_20.pth
+2025-10-29 15:21:36 [INFO]  Epoch 21 loss: 743.5324034690857; train accuracy: 0.3133985623003195; test accuracy: 0.0
+2025-10-29 15:23:14 [INFO]  Epoch 22 loss: 718.2938585281372; train accuracy: 0.29308107028753994; test accuracy: 0.0
+2025-10-29 15:24:52 [INFO]  Epoch 23 loss: 719.9277791976929; train accuracy: 0.3867811501597444; test accuracy: 0.0
+2025-10-29 15:26:31 [INFO]  Epoch 24 loss: 710.7822470664978; train accuracy: 0.3502396166134185; test accuracy: 0.0
+2025-10-29 15:26:31 [INFO]  Client 1 Finish Local Training--------|
+2025-10-29 15:26:31 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-29 15:26:31 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-29 15:28:01 [INFO]  Epoch 20 loss: 641.5522146224976; train accuracy: 0.32079945799457993; test accuracy: 0.0
+2025-10-29 15:28:01 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_2/epoch_20.pth
+2025-10-29 15:29:28 [INFO]  Epoch 21 loss: 636.520131111145; train accuracy: 0.3678297199638663; test accuracy: 0.0
+2025-10-29 15:30:55 [INFO]  Epoch 22 loss: 631.6536531448364; train accuracy: 0.41982836495031617; test accuracy: 0.0
+2025-10-29 15:32:20 [INFO]  Epoch 23 loss: 613.7675423622131; train accuracy: 0.3150406504065041; test accuracy: 0.0
+2025-10-29 15:33:49 [INFO]  Epoch 24 loss: 610.1020526885986; train accuracy: 0.3844850948509485; test accuracy: 0.0
+2025-10-29 15:33:49 [INFO]  Client 2 Finish Local Training--------|
+2025-10-29 15:33:49 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-29 15:33:49 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-29 15:35:54 [INFO]  Epoch 20 loss: 937.6490364074707; train accuracy: 0.23375220105650713; test accuracy: 0.0
+2025-10-29 15:35:54 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_3/epoch_20.pth
+2025-10-29 15:37:58 [INFO]  Epoch 21 loss: 935.6147766113281; train accuracy: 0.23687369937570033; test accuracy: 0.0
+2025-10-29 15:40:00 [INFO]  Epoch 22 loss: 903.5754852294922; train accuracy: 0.2716503921882504; test accuracy: 0.0
+2025-10-29 15:42:03 [INFO]  Epoch 23 loss: 903.3148379325867; train accuracy: 0.3396430286537538; test accuracy: 0.0
+2025-10-29 15:44:09 [INFO]  Epoch 24 loss: 883.3217086791992; train accuracy: 0.3224347686889707; test accuracy: 0.0
+2025-10-29 15:44:09 [INFO]  Client 3 Finish Local Training--------|
+2025-10-29 15:44:09 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-29 15:44:09 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-29 15:45:55 [INFO]  Epoch 20 loss: 812.6253070831299; train accuracy: 0.3305499836730886; test accuracy: 0.0115
+2025-10-29 15:45:55 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_4/epoch_20.pth
+2025-10-29 15:47:40 [INFO]  Epoch 21 loss: 815.0529727935791; train accuracy: 0.2846480384382143; test accuracy: 0.0058
+2025-10-29 15:49:27 [INFO]  Epoch 22 loss: 791.8108205795288; train accuracy: 0.3534543079721976; test accuracy: 0.0051
+2025-10-29 15:51:14 [INFO]  Epoch 23 loss: 783.9505310058594; train accuracy: 0.33717404487568226; test accuracy: 0.0117
+2025-10-29 15:53:01 [INFO]  Epoch 24 loss: 766.6793279647827; train accuracy: 0.27018705975649576; test accuracy: 0.0116
+2025-10-29 15:53:01 [INFO]  Client 4 Finish Local Training--------|
+2025-10-29 15:53:01 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-29 15:53:01 [INFO]  Round 4 Finish--------|
+2025-10-29 15:53:01 [INFO]  Model variance: mean: 0.005379182752221823, sum: 60630.01953125
+2025-10-29 15:53:01 [INFO]  g_protos_std (global internal): 1.005222
+2025-10-29 15:53:01 [INFO]  inter_client_proto_std (cross-client): 0.019313
+2025-10-29 15:53:01 [INFO]  g_protos_std (global internal): 1.005222
+2025-10-29 15:53:01 [INFO]  inter_client_proto_std (cross-client): 0.019313
+2025-10-29 15:53:01 [INFO]  V4 Training | Using Simple Feature-level Server.
+2025-10-29 15:53:16 [INFO]  The test accuracy of OursV4+SimpleFeatureServer: 0.009
+2025-10-29 15:53:16 [INFO]  Save config to ./checkpoints/Tiny_alpha0.1/baselines_OursV4+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-29 15:53:16 [INFO]  Round 5 starts--------|
+2025-10-29 15:53:16 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-29 15:54:35 [INFO]  Epoch 25 loss: 557.7481327056885; train accuracy: 0.32467942644179143; test accuracy: 0.0015
+2025-10-29 15:54:36 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_0/epoch_25.pth
+2025-10-29 15:55:57 [INFO]  Epoch 26 loss: 564.5023312568665; train accuracy: 0.2921483165940244; test accuracy: 0.0059
+2025-10-29 15:57:18 [INFO]  Epoch 27 loss: 571.7394208908081; train accuracy: 0.37382351083317544; test accuracy: 0.019
+2025-10-29 15:58:36 [INFO]  Epoch 28 loss: 540.543194770813; train accuracy: 0.36232707978017814; test accuracy: 0.0109
+2025-10-29 15:59:57 [INFO]  Epoch 29 loss: 525.6719069480896; train accuracy: 0.35196765839176297; test accuracy: 0.0071
+2025-10-29 15:59:57 [INFO]  Client 0 Finish Local Training--------|
+2025-10-29 15:59:57 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-29 15:59:57 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-29 16:01:37 [INFO]  Epoch 25 loss: 699.0310392379761; train accuracy: 0.3891773162939297; test accuracy: 0.0
+2025-10-29 16:01:37 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_1/epoch_25.pth
+2025-10-29 16:03:15 [INFO]  Epoch 26 loss: 685.4821019172668; train accuracy: 0.35163738019169327; test accuracy: 0.0
+2025-10-29 16:04:57 [INFO]  Epoch 27 loss: 682.0286469459534; train accuracy: 0.4332567891373802; test accuracy: 0.0
+2025-10-29 16:06:33 [INFO]  Epoch 28 loss: 677.5558032989502; train accuracy: 0.374051517571885; test accuracy: 0.0
+2025-10-29 16:08:12 [INFO]  Epoch 29 loss: 674.9628739356995; train accuracy: 0.36846046325878595; test accuracy: 0.0
+2025-10-29 16:08:12 [INFO]  Client 1 Finish Local Training--------|
+2025-10-29 16:08:12 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-29 16:08:12 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-29 16:09:39 [INFO]  Epoch 25 loss: 608.6861414909363; train accuracy: 0.423046522131888; test accuracy: 0.0
+2025-10-29 16:09:39 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_2/epoch_25.pth
+2025-10-29 16:11:07 [INFO]  Epoch 26 loss: 619.5692782402039; train accuracy: 0.4373870822041554; test accuracy: 0.0
+2025-10-29 16:12:39 [INFO]  Epoch 27 loss: 604.5876822471619; train accuracy: 0.38679990966576333; test accuracy: 0.0
+2025-10-29 16:14:11 [INFO]  Epoch 28 loss: 595.013885974884; train accuracy: 0.43823396567299006; test accuracy: 0.0
+2025-10-29 16:15:39 [INFO]  Epoch 29 loss: 585.5459055900574; train accuracy: 0.4163843721770551; test accuracy: 0.0
+2025-10-29 16:15:39 [INFO]  Client 2 Finish Local Training--------|
+2025-10-29 16:15:39 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-29 16:15:39 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-29 16:17:38 [INFO]  Epoch 25 loss: 879.2964673042297; train accuracy: 0.3345205698735393; test accuracy: 0.0
+2025-10-29 16:17:39 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_3/epoch_25.pth
+2025-10-29 16:19:36 [INFO]  Epoch 26 loss: 869.411262512207; train accuracy: 0.2989434928765808; test accuracy: 0.0
+2025-10-29 16:21:31 [INFO]  Epoch 27 loss: 865.720329284668; train accuracy: 0.3683368016647991; test accuracy: 0.0
+2025-10-29 16:23:32 [INFO]  Epoch 28 loss: 848.9938325881958; train accuracy: 0.28621738434448535; test accuracy: 0.0
+2025-10-29 16:25:30 [INFO]  Epoch 29 loss: 834.0914759635925; train accuracy: 0.39807107411557546; test accuracy: 0.0
+2025-10-29 16:25:30 [INFO]  Client 3 Finish Local Training--------|
+2025-10-29 16:25:30 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-29 16:25:30 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-29 16:27:13 [INFO]  Epoch 25 loss: 760.9263153076172; train accuracy: 0.3594252927181975; test accuracy: 0.0031
+2025-10-29 16:27:13 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_4/epoch_25.pth
+2025-10-29 16:28:56 [INFO]  Epoch 26 loss: 771.7054171562195; train accuracy: 0.37290665671502543; test accuracy: 0.0139
+2025-10-29 16:30:42 [INFO]  Epoch 27 loss: 751.8941521644592; train accuracy: 0.39921630825208754; test accuracy: 0.0083
+2025-10-29 16:32:25 [INFO]  Epoch 28 loss: 752.1721615791321; train accuracy: 0.4105518496058217; test accuracy: 0.0065
+2025-10-29 16:34:07 [INFO]  Epoch 29 loss: 736.1865592002869; train accuracy: 0.3463171152679946; test accuracy: 0.0073
+2025-10-29 16:34:07 [INFO]  Client 4 Finish Local Training--------|
+2025-10-29 16:34:07 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-29 16:34:07 [INFO]  Round 5 Finish--------|
+2025-10-29 16:34:07 [INFO]  Model variance: mean: 0.00595811614766717, sum: 67155.3125
+2025-10-29 16:34:07 [INFO]  g_protos_std (global internal): 1.005471
+2025-10-29 16:34:07 [INFO]  inter_client_proto_std (cross-client): 0.020844
+2025-10-29 16:34:07 [INFO]  g_protos_std (global internal): 1.005471
+2025-10-29 16:34:07 [INFO]  inter_client_proto_std (cross-client): 0.020844
+2025-10-29 16:34:07 [INFO]  V4 Training | Using Simple Feature-level Server.
+2025-10-29 16:34:22 [INFO]  The test accuracy of OursV4+SimpleFeatureServer: 0.0078
+2025-10-29 16:34:22 [INFO]  Save config to ./checkpoints/Tiny_alpha0.1/baselines_OursV4+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-29 16:34:22 [INFO]  Round 6 starts--------|
+2025-10-29 16:34:22 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-29 16:35:40 [INFO]  Epoch 30 loss: 539.4187021255493; train accuracy: 0.4235361000568505; test accuracy: 0.0067
+2025-10-29 16:35:41 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_0/epoch_30.pth
+2025-10-29 16:37:01 [INFO]  Epoch 31 loss: 525.1394619941711; train accuracy: 0.38892047249068284; test accuracy: 0.0433
+2025-10-29 16:38:21 [INFO]  Epoch 32 loss: 524.9862322807312; train accuracy: 0.40938664645316153; test accuracy: 0.0151
+2025-10-29 16:39:38 [INFO]  Epoch 33 loss: 510.9374237060547; train accuracy: 0.4348430294990841; test accuracy: 0.0274
+2025-10-29 16:40:55 [INFO]  Epoch 34 loss: 504.8581557273865; train accuracy: 0.42574695218242686; test accuracy: 0.0039
+2025-10-29 16:40:55 [INFO]  Client 0 Finish Local Training--------|
+2025-10-29 16:40:55 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-29 16:40:55 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-29 16:42:33 [INFO]  Epoch 30 loss: 664.0981254577637; train accuracy: 0.36591453674121405; test accuracy: 0.0
+2025-10-29 16:42:34 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_1/epoch_30.pth
+2025-10-29 16:44:14 [INFO]  Epoch 31 loss: 658.1444125175476; train accuracy: 0.41828075079872207; test accuracy: 0.0
+2025-10-29 16:45:50 [INFO]  Epoch 32 loss: 646.397331237793; train accuracy: 0.39601637380191695; test accuracy: 0.0
+2025-10-29 16:47:28 [INFO]  Epoch 33 loss: 646.6604814529419; train accuracy: 0.3992112619808307; test accuracy: 0.0
+2025-10-29 16:49:03 [INFO]  Epoch 34 loss: 636.8295497894287; train accuracy: 0.4104432907348243; test accuracy: 0.0
+2025-10-29 16:49:03 [INFO]  Client 1 Finish Local Training--------|
+2025-10-29 16:49:03 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-29 16:49:03 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-29 16:50:29 [INFO]  Epoch 30 loss: 576.1749038696289; train accuracy: 0.3897922312556459; test accuracy: 0.0
+2025-10-29 16:50:29 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_2/epoch_30.pth
+2025-10-29 16:51:53 [INFO]  Epoch 31 loss: 576.6751923561096; train accuracy: 0.3875903342366757; test accuracy: 0.0
+2025-10-29 16:53:20 [INFO]  Epoch 32 loss: 571.7874097824097; train accuracy: 0.3654019873532069; test accuracy: 0.0
+2025-10-29 16:54:48 [INFO]  Epoch 33 loss: 550.0756335258484; train accuracy: 0.4253048780487805; test accuracy: 0.0
+2025-10-29 16:56:14 [INFO]  Epoch 34 loss: 544.0431289672852; train accuracy: 0.4636404697380307; test accuracy: 0.0
+2025-10-29 16:56:14 [INFO]  Client 2 Finish Local Training--------|
+2025-10-29 16:56:14 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-29 16:56:14 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-29 16:58:11 [INFO]  Epoch 30 loss: 815.4797096252441; train accuracy: 0.399151592764527; test accuracy: 0.0
+2025-10-29 16:58:12 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_3/epoch_30.pth
+2025-10-29 17:00:13 [INFO]  Epoch 31 loss: 833.1185750961304; train accuracy: 0.3930686729630222; test accuracy: 0.0
+2025-10-29 17:02:10 [INFO]  Epoch 32 loss: 823.6307621002197; train accuracy: 0.3770209700656315; test accuracy: 0.0
+2025-10-29 17:04:12 [INFO]  Epoch 33 loss: 816.8572745323181; train accuracy: 0.33568112694093166; test accuracy: 0.0
+2025-10-29 17:06:13 [INFO]  Epoch 34 loss: 785.0430569648743; train accuracy: 0.28777813350408193; test accuracy: 0.0
+2025-10-29 17:06:13 [INFO]  Client 3 Finish Local Training--------|
+2025-10-29 17:06:13 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-29 17:06:13 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-29 17:07:55 [INFO]  Epoch 30 loss: 734.2651791572571; train accuracy: 0.39273219200447823; test accuracy: 0.0069
+2025-10-29 17:07:55 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_4/epoch_30.pth
+2025-10-29 17:09:37 [INFO]  Epoch 31 loss: 737.894965171814; train accuracy: 0.33694080328404163; test accuracy: 0.0014
+2025-10-29 17:11:25 [INFO]  Epoch 32 loss: 710.6986327171326; train accuracy: 0.4126510239305873; test accuracy: 0.0276
+2025-10-29 17:13:09 [INFO]  Epoch 33 loss: 710.7006845474243; train accuracy: 0.4232401921910715; test accuracy: 0.0243
+2025-10-29 17:14:53 [INFO]  Epoch 34 loss: 707.1637163162231; train accuracy: 0.434295843634837; test accuracy: 0.014
+2025-10-29 17:14:53 [INFO]  Client 4 Finish Local Training--------|
+2025-10-29 17:14:53 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-29 17:14:53 [INFO]  Round 6 Finish--------|
+2025-10-29 17:14:53 [INFO]  Model variance: mean: 0.006502027157694101, sum: 73285.859375
+2025-10-29 17:14:53 [INFO]  g_protos_std (global internal): 1.005708
+2025-10-29 17:14:53 [INFO]  inter_client_proto_std (cross-client): 0.022147
+2025-10-29 17:14:53 [INFO]  g_protos_std (global internal): 1.005708
+2025-10-29 17:14:53 [INFO]  inter_client_proto_std (cross-client): 0.022147
+2025-10-29 17:14:53 [INFO]  V4 Training | Using Simple Feature-level Server.
+2025-10-29 17:15:07 [INFO]  The test accuracy of OursV4+SimpleFeatureServer: 0.0061
+2025-10-29 17:15:07 [INFO]  Save config to ./checkpoints/Tiny_alpha0.1/baselines_OursV4+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-29 17:15:07 [INFO]  Round 7 starts--------|
+2025-10-29 17:15:07 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-29 17:16:23 [INFO]  Epoch 35 loss: 498.7936210632324; train accuracy: 0.4406544122291706; test accuracy: 0.0041
+2025-10-29 17:16:24 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_0/epoch_35.pth
+2025-10-29 17:17:42 [INFO]  Epoch 36 loss: 503.67029094696045; train accuracy: 0.4480449750489546; test accuracy: 0.0055
+2025-10-29 17:19:02 [INFO]  Epoch 37 loss: 497.86686992645264; train accuracy: 0.42656812582906956; test accuracy: 0.0411
+2025-10-29 17:20:22 [INFO]  Epoch 38 loss: 489.1503744125366; train accuracy: 0.4299159876192281; test accuracy: 0.0347
+2025-10-29 17:21:39 [INFO]  Epoch 39 loss: 478.08488416671753; train accuracy: 0.4867664708483355; test accuracy: 0.0055
+2025-10-29 17:21:39 [INFO]  Client 0 Finish Local Training--------|
+2025-10-29 17:21:39 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-29 17:21:39 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-29 17:23:16 [INFO]  Epoch 35 loss: 632.6800937652588; train accuracy: 0.39836261980830673; test accuracy: 0.0
+2025-10-29 17:23:17 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_1/epoch_35.pth
+2025-10-29 17:24:55 [INFO]  Epoch 36 loss: 626.7224292755127; train accuracy: 0.35123801916932906; test accuracy: 0.0
+2025-10-29 17:26:32 [INFO]  Epoch 37 loss: 624.7960057258606; train accuracy: 0.4112420127795527; test accuracy: 0.0
+2025-10-29 17:28:11 [INFO]  Epoch 38 loss: 621.9282202720642; train accuracy: 0.379642571884984; test accuracy: 0.0
+2025-10-29 17:29:49 [INFO]  Epoch 39 loss: 592.6029715538025; train accuracy: 0.43964656549520764; test accuracy: 0.0
+2025-10-29 17:29:49 [INFO]  Client 1 Finish Local Training--------|
+2025-10-29 17:29:49 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-29 17:29:49 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-29 17:31:16 [INFO]  Epoch 35 loss: 547.4106011390686; train accuracy: 0.3982610659439928; test accuracy: 0.0
+2025-10-29 17:31:16 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_2/epoch_35.pth
+2025-10-29 17:32:44 [INFO]  Epoch 36 loss: 536.9464712142944; train accuracy: 0.39312330623306235; test accuracy: 0.0
+2025-10-29 17:34:10 [INFO]  Epoch 37 loss: 544.3198494911194; train accuracy: 0.45387308039747065; test accuracy: 0.0
+2025-10-29 17:35:34 [INFO]  Epoch 38 loss: 527.7633752822876; train accuracy: 0.49311201445347785; test accuracy: 0.0
+2025-10-29 17:37:00 [INFO]  Epoch 39 loss: 526.6701827049255; train accuracy: 0.4829494128274616; test accuracy: 0.0
+2025-10-29 17:37:00 [INFO]  Client 2 Finish Local Training--------|
+2025-10-29 17:37:00 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-29 17:37:00 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-29 17:39:02 [INFO]  Epoch 35 loss: 786.7895770072937; train accuracy: 0.3903073475268129; test accuracy: 0.0
+2025-10-29 17:39:02 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_3/epoch_35.pth
+2025-10-29 17:41:16 [INFO]  Epoch 36 loss: 802.3672938346863; train accuracy: 0.40435408996318234; test accuracy: 0.0
+2025-10-29 17:43:21 [INFO]  Epoch 37 loss: 784.6875810623169; train accuracy: 0.4132783736193373; test accuracy: 0.0
+2025-10-29 17:45:25 [INFO]  Epoch 38 loss: 768.378598690033; train accuracy: 0.4950776372658876; test accuracy: 0.0
+2025-10-29 17:47:30 [INFO]  Epoch 39 loss: 766.5738592147827; train accuracy: 0.3636545541860093; test accuracy: 0.0
+2025-10-29 17:47:30 [INFO]  Client 3 Finish Local Training--------|
+2025-10-29 17:47:30 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-29 17:47:30 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-29 17:49:19 [INFO]  Epoch 35 loss: 709.0752844810486; train accuracy: 0.4595792321686803; test accuracy: 0.0074
+2025-10-29 17:49:20 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_4/epoch_35.pth
+2025-10-29 17:51:08 [INFO]  Epoch 36 loss: 689.137966632843; train accuracy: 0.41003871810421233; test accuracy: 0.0802
+2025-10-29 17:52:55 [INFO]  Epoch 37 loss: 676.2589712142944; train accuracy: 0.40075570275691563; test accuracy: 0.0109
+2025-10-29 17:54:41 [INFO]  Epoch 38 loss: 679.7229723930359; train accuracy: 0.3393665158371041; test accuracy: 0.0069
+2025-10-29 17:56:27 [INFO]  Epoch 39 loss: 675.7907404899597; train accuracy: 0.4701217521108364; test accuracy: 0.0096
+2025-10-29 17:56:27 [INFO]  Client 4 Finish Local Training--------|
+2025-10-29 17:56:27 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-29 17:56:27 [INFO]  Round 7 Finish--------|
+2025-10-29 17:56:27 [INFO]  Model variance: mean: 0.007016380783170462, sum: 79083.2578125
+2025-10-29 17:56:27 [INFO]  g_protos_std (global internal): 1.005933
+2025-10-29 17:56:27 [INFO]  inter_client_proto_std (cross-client): 0.023271
+2025-10-29 17:56:27 [INFO]  g_protos_std (global internal): 1.005933
+2025-10-29 17:56:27 [INFO]  inter_client_proto_std (cross-client): 0.023271
+2025-10-29 17:56:27 [INFO]  V4 Training | Using Simple Feature-level Server.
+2025-10-29 17:56:42 [INFO]  The test accuracy of OursV4+SimpleFeatureServer: 0.0077
+2025-10-29 17:56:42 [INFO]  Save config to ./checkpoints/Tiny_alpha0.1/baselines_OursV4+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-29 17:56:42 [INFO]  Round 8 starts--------|
+2025-10-29 17:56:42 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-29 17:58:00 [INFO]  Epoch 40 loss: 476.94557905197144; train accuracy: 0.4874613100878024; test accuracy: 0.0063
+2025-10-29 17:58:00 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_0/epoch_40.pth
+2025-10-29 17:59:19 [INFO]  Epoch 41 loss: 480.3018822669983; train accuracy: 0.5096961657507422; test accuracy: 0.0241
+2025-10-29 18:00:36 [INFO]  Epoch 42 loss: 468.89906883239746; train accuracy: 0.43989640578611583; test accuracy: 0.1187
+2025-10-29 18:01:56 [INFO]  Epoch 43 loss: 459.84162950515747; train accuracy: 0.5282673236055839; test accuracy: 0.0352
+2025-10-29 18:03:16 [INFO]  Epoch 44 loss: 474.8764214515686; train accuracy: 0.48430294990840755; test accuracy: 0.0344
+2025-10-29 18:03:16 [INFO]  Client 0 Finish Local Training--------|
+2025-10-29 18:03:16 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-29 18:03:16 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-29 18:04:54 [INFO]  Epoch 40 loss: 607.0764021873474; train accuracy: 0.43625199680511184; test accuracy: 0.0
+2025-10-29 18:04:55 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_1/epoch_40.pth
+2025-10-29 18:06:33 [INFO]  Epoch 41 loss: 598.9547562599182; train accuracy: 0.4815794728434505; test accuracy: 0.0
+2025-10-29 18:08:09 [INFO]  Epoch 42 loss: 603.6437125205994; train accuracy: 0.42397164536741216; test accuracy: 0.0
+2025-10-29 18:09:44 [INFO]  Epoch 43 loss: 579.3885788917542; train accuracy: 0.45981429712460065; test accuracy: 0.0
+2025-10-29 18:11:19 [INFO]  Epoch 44 loss: 578.5056338310242; train accuracy: 0.4790834664536741; test accuracy: 0.0
+2025-10-29 18:11:19 [INFO]  Client 1 Finish Local Training--------|
+2025-10-29 18:11:19 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-29 18:11:19 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-29 18:12:46 [INFO]  Epoch 40 loss: 512.2157578468323; train accuracy: 0.5063798554652214; test accuracy: 0.0
+2025-10-29 18:12:46 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_2/epoch_40.pth
+2025-10-29 18:14:13 [INFO]  Epoch 41 loss: 520.4450440406799; train accuracy: 0.5084688346883469; test accuracy: 0.0
+2025-10-29 18:15:35 [INFO]  Epoch 42 loss: 511.442006111145; train accuracy: 0.4753274616079494; test accuracy: 0.0
+2025-10-29 18:17:01 [INFO]  Epoch 43 loss: 499.85726165771484; train accuracy: 0.45387308039747065; test accuracy: 0.0
+2025-10-29 18:18:26 [INFO]  Epoch 44 loss: 495.00125646591187; train accuracy: 0.45838979223125564; test accuracy: 0.0
+2025-10-29 18:18:26 [INFO]  Client 2 Finish Local Training--------|
+2025-10-29 18:18:26 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-29 18:18:26 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-29 18:20:28 [INFO]  Epoch 40 loss: 739.6430926322937; train accuracy: 0.4147190651512726; test accuracy: 0.0
+2025-10-29 18:20:29 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_3/epoch_40.pth
+2025-10-29 18:22:28 [INFO]  Epoch 41 loss: 749.5807538032532; train accuracy: 0.3511685609092364; test accuracy: 0.0
+2025-10-29 18:24:29 [INFO]  Epoch 42 loss: 727.6800422668457; train accuracy: 0.380262526012486; test accuracy: 0.0
+2025-10-29 18:26:31 [INFO]  Epoch 43 loss: 716.4414129257202; train accuracy: 0.4106771250200096; test accuracy: 0.0
+2025-10-29 18:28:32 [INFO]  Epoch 44 loss: 740.3126692771912; train accuracy: 0.5132063390427405; test accuracy: 0.0
+2025-10-29 18:28:32 [INFO]  Client 3 Finish Local Training--------|
+2025-10-29 18:28:32 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-29 18:28:32 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-29 18:30:17 [INFO]  Epoch 40 loss: 672.3915419578552; train accuracy: 0.42599244297243083; test accuracy: 0.013
+2025-10-29 18:30:17 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_4/epoch_40.pth
+2025-10-29 18:32:02 [INFO]  Epoch 41 loss: 666.1376175880432; train accuracy: 0.48556234547744553; test accuracy: 0.0066
+2025-10-29 18:33:49 [INFO]  Epoch 42 loss: 660.8864736557007; train accuracy: 0.45346830246769604; test accuracy: 0.0051
+2025-10-29 18:35:34 [INFO]  Epoch 43 loss: 662.8922543525696; train accuracy: 0.46536362364136774; test accuracy: 0.0173
+2025-10-29 18:37:17 [INFO]  Epoch 44 loss: 637.4514021873474; train accuracy: 0.49064701217521106; test accuracy: 0.0447
+2025-10-29 18:37:17 [INFO]  Client 4 Finish Local Training--------|
+2025-10-29 18:37:17 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-29 18:37:17 [INFO]  Round 8 Finish--------|
+2025-10-29 18:37:17 [INFO]  Model variance: mean: 0.007505203131586313, sum: 84592.890625
+2025-10-29 18:37:17 [INFO]  g_protos_std (global internal): 1.006151
+2025-10-29 18:37:17 [INFO]  inter_client_proto_std (cross-client): 0.024241
+2025-10-29 18:37:17 [INFO]  g_protos_std (global internal): 1.006151
+2025-10-29 18:37:17 [INFO]  inter_client_proto_std (cross-client): 0.024241
+2025-10-29 18:37:17 [INFO]  V4 Training | Using Simple Feature-level Server.
+2025-10-29 18:37:32 [INFO]  The test accuracy of OursV4+SimpleFeatureServer: 0.0088
+2025-10-29 18:37:32 [INFO]  Save config to ./checkpoints/Tiny_alpha0.1/baselines_OursV4+SimpleFeatureServer_CIFAR10_results.yaml
+2025-10-29 18:37:32 [INFO]  Round 9 starts--------|
+2025-10-29 18:37:32 [INFO]  Client 0 Starts Local Trainning--------|
+2025-10-29 18:38:54 [INFO]  Epoch 45 loss: 442.1367335319519; train accuracy: 0.49485187290758637; test accuracy: 0.0083
+2025-10-29 18:38:55 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_0/epoch_45.pth
+2025-10-29 18:40:15 [INFO]  Epoch 46 loss: 470.55980825424194; train accuracy: 0.46421577916745627; test accuracy: 0.0114
+2025-10-29 18:41:36 [INFO]  Epoch 47 loss: 442.4362201690674; train accuracy: 0.4718590108015918; test accuracy: 0.0373
+2025-10-29 18:42:57 [INFO]  Epoch 48 loss: 453.8966293334961; train accuracy: 0.4749542037773988; test accuracy: 0.0113
+2025-10-29 18:44:18 [INFO]  Epoch 49 loss: 444.88074111938477; train accuracy: 0.5470911502747773; test accuracy: 0.0168
+2025-10-29 18:44:18 [INFO]  Client 0 Finish Local Training--------|
+2025-10-29 18:44:18 [INFO]  Client 0 Collecting Local Prototypes--------|
+2025-10-29 18:44:18 [INFO]  Client 1 Starts Local Trainning--------|
+2025-10-29 18:45:58 [INFO]  Epoch 45 loss: 577.4558944702148; train accuracy: 0.43520367412140576; test accuracy: 0.0
+2025-10-29 18:45:58 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_1/epoch_45.pth
+2025-10-29 18:47:39 [INFO]  Epoch 46 loss: 562.4411973953247; train accuracy: 0.4231729233226837; test accuracy: 0.0
+2025-10-29 18:49:20 [INFO]  Epoch 47 loss: 567.902841091156; train accuracy: 0.4601138178913738; test accuracy: 0.0
+2025-10-29 18:51:00 [INFO]  Epoch 48 loss: 563.8057909011841; train accuracy: 0.4792332268370607; test accuracy: 0.0
+2025-10-29 18:52:41 [INFO]  Epoch 49 loss: 562.6670808792114; train accuracy: 0.4477835463258786; test accuracy: 0.0
+2025-10-29 18:52:41 [INFO]  Client 1 Finish Local Training--------|
+2025-10-29 18:52:41 [INFO]  Client 1 Collecting Local Prototypes--------|
+2025-10-29 18:52:41 [INFO]  Client 2 Starts Local Trainning--------|
+2025-10-29 18:54:10 [INFO]  Epoch 45 loss: 499.6042251586914; train accuracy: 0.5509823848238482; test accuracy: 0.0
+2025-10-29 18:54:10 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_2/epoch_45.pth
+2025-10-29 18:55:39 [INFO]  Epoch 46 loss: 498.75192737579346; train accuracy: 0.5583220415537489; test accuracy: 0.0
+2025-10-29 18:57:09 [INFO]  Epoch 47 loss: 492.40533351898193; train accuracy: 0.551490514905149; test accuracy: 0.0
+2025-10-29 18:58:38 [INFO]  Epoch 48 loss: 478.09179162979126; train accuracy: 0.5362466124661247; test accuracy: 0.0
+2025-10-29 19:00:09 [INFO]  Epoch 49 loss: 466.2058229446411; train accuracy: 0.5100496838301717; test accuracy: 0.0
+2025-10-29 19:00:09 [INFO]  Client 2 Finish Local Training--------|
+2025-10-29 19:00:09 [INFO]  Client 2 Collecting Local Prototypes--------|
+2025-10-29 19:00:09 [INFO]  Client 3 Starts Local Trainning--------|
+2025-10-29 19:02:12 [INFO]  Epoch 45 loss: 708.3407759666443; train accuracy: 0.3933087882183448; test accuracy: 0.0
+2025-10-29 19:02:13 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_3/epoch_45.pth
+2025-10-29 19:04:16 [INFO]  Epoch 46 loss: 703.3798146247864; train accuracy: 0.42460380982871776; test accuracy: 0.0
+2025-10-29 19:06:18 [INFO]  Epoch 47 loss: 689.304605960846; train accuracy: 0.49015527453177526; test accuracy: 0.0
+2025-10-29 19:08:19 [INFO]  Epoch 48 loss: 694.4747610092163; train accuracy: 0.36449495757963823; test accuracy: 0.0
+2025-10-29 19:10:22 [INFO]  Epoch 49 loss: 700.186354637146; train accuracy: 0.5074035537057787; test accuracy: 0.0
+2025-10-29 19:10:22 [INFO]  Client 3 Finish Local Training--------|
+2025-10-29 19:10:22 [INFO]  Client 3 Collecting Local Prototypes--------|
+2025-10-29 19:10:22 [INFO]  Client 4 Starts Local Trainning--------|
+2025-10-29 19:12:06 [INFO]  Epoch 45 loss: 626.7772846221924; train accuracy: 0.5601996548024444; test accuracy: 0.0071
+2025-10-29 19:12:07 [INFO]  Save the model in ./checkpoints/Tiny_alpha0.1/local_models/client_4/epoch_45.pth
+2025-10-29 19:13:50 [INFO]  Epoch 46 loss: 628.5853552818298; train accuracy: 0.5104258991463357; test accuracy: 0.0124
+2025-10-29 19:15:36 [INFO]  Epoch 47 loss: 613.0502028465271; train accuracy: 0.5250734711013668; test accuracy: 0.017
+2025-10-29 19:17:19 [INFO]  Epoch 48 loss: 602.9491596221924; train accuracy: 0.4355086999113682; test accuracy: 0.0115
+2025-10-29 19:19:03 [INFO]  Epoch 49 loss: 615.2767443656921; train accuracy: 0.5433129635676633; test accuracy: 0.0071
+2025-10-29 19:19:03 [INFO]  Client 4 Finish Local Training--------|
+2025-10-29 19:19:03 [INFO]  Client 4 Collecting Local Prototypes--------|
+2025-10-29 19:19:03 [INFO]  Round 9 Finish--------|
+2025-10-29 19:19:03 [INFO]  Model variance: mean: 0.007975156418979168, sum: 89889.84375
+2025-10-29 19:19:03 [INFO]  g_protos_std (global internal): 1.006364
+2025-10-29 19:19:03 [INFO]  inter_client_proto_std (cross-client): 0.025085
+2025-10-29 19:19:03 [INFO]  g_protos_std (global internal): 1.006364
+2025-10-29 19:19:03 [INFO]  inter_client_proto_std (cross-client): 0.025085
+2025-10-29 19:19:03 [INFO]  V4 Training | Using Simple Feature-level Server.
+2025-10-29 19:19:18 [INFO]  The test accuracy of OursV4+SimpleFeatureServer: 0.0088
+2025-10-29 19:19:18 [INFO]  Save config to ./checkpoints/Tiny_alpha0.1/baselines_OursV4+SimpleFeatureServer_CIFAR10_results.yaml
