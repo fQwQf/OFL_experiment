@@ -1,0 +1,1239 @@
+2025-11-04 10:46:25 [INFO]  Load config from ./configs/CIFAR100_alpha0.05.yaml
+2025-11-04 10:46:25 [INFO]  config: {'exp_name': 'CIFAR100_alpha0.05', 'dataset': {'data_name': 'CIFAR100', 'root_path': 'H:/codes/dataset', 'train_batch_size': 512, 'test_batch_size': 256, 'channels': 3, 'num_classes': 100, 'image_size': 32}, 'distribution': {'type': 'dirichlet', 'label_num_per_client': 2, 'alpha': 0.05}, 'client': {'num_clients': 5}, 'server': {'num_rounds': 10, 'frac_clients': 1.0, 'lr': 0.05, 'local_epochs': 10, 'optimizer': 'sgd', 'momentum': 0.9, 'weight_decay': 0.0001, 'loss_name': 'ce', 'model_name': 'resnet18', 'aggregated_by_datasize': True, 'lr_decay_per_round': 0.998}, 'device': 'cuda:0', 'checkpoint': {'save_path': './checkpoints/', 'save_freq': 5, 'result_file': 'CIFAR10_results.yaml'}, 'pretrain': {'lr': 0.01, 'epoch': 70, 'model_path': './pretrain/', 'momentum': 0.9, 'weight_decay': 0.0001, 'model_name': 'resnet18', 'model_file_name': 'resnet18-f37072fd.pth'}, 'DBCD': {'alpha_l_pa': 1, 'alpha_l_pb': 1, 'alpha_l_pc': 0.0, 'Beta_alpha': 0.2, 'unsup_method': 'infonce', 'contrastive_temperature': 0.5, 'encoder_epoch': 40, 'projector_epoch': 10, 'use_pretrain': False, 'aug_batch_size': 512, 'encoder_lr': 0.03, 'cls_optimizer': 'sgd', 'cls_lr': 0.05, 'supcon_temp': 0.07, 'super_gr': 100, 'aux_with_public': True}, 'etf': {'loss_name': 'ce'}, 'visualization': {'interval': 5, 'save_path': 'visualization/resnet18', 'vis_size': 16}, 'resume': True, 'resume_best': False, 'seed': 1, 'lambda_align_initial': 20.0, 'v9_config': {'use_adaptive_lambda': True, 'lambda_min': 0.1, 'lambda_max': 20.0, 'use_server_optimization': False, 'server_lr': 0.001, 'server_epochs': 20, 'gamma_etf_reg': 0.1}, 'v10_config': {'use_uncertainty_weighting': True, 'sigma_lr': 0.005}}
+2025-11-04 10:46:27 [INFO]  Dataset CIFAR100 loaded
+2025-11-04 10:46:27 [INFO]  Dataset index dict loaded from preprocessed_data/CIFAR100.pt
+2025-11-04 10:46:27 [INFO]  Data distribution generated correctly using the corrected dirichlet function.
+2025-11-04 10:46:27 [INFO]  Total assigned samples: 50000
+2025-11-04 10:46:27 [INFO]  OneshotOursV11: Consensus-Driven Dynamic Annealing with Uncertainty Weighting
+2025-11-04 10:46:28 [INFO]  --- Pre-heating V11 models with V9's adaptive lambda strategy ---
+2025-11-04 10:46:30 [INFO]  Data entropy: 4.4785, Normalized: 0.6741 -> Adaptive Lambda: 13.5142
+2025-11-04 10:46:30 [INFO]  Client 0: Calculated initial lambda = 13.5142
+2025-11-04 10:46:33 [INFO]  Data entropy: 4.6434, Normalized: 0.6989 -> Adaptive Lambda: 14.0082
+2025-11-04 10:46:33 [INFO]  Client 1: Calculated initial lambda = 14.0082
+2025-11-04 10:46:36 [INFO]  Data entropy: 4.7612, Normalized: 0.7166 -> Adaptive Lambda: 14.3611
+2025-11-04 10:46:36 [INFO]  Client 2: Calculated initial lambda = 14.3611
+2025-11-04 10:46:38 [INFO]  Data entropy: 4.6978, Normalized: 0.7071 -> Adaptive Lambda: 14.1710
+2025-11-04 10:46:38 [INFO]  Client 3: Calculated initial lambda = 14.1710
+2025-11-04 10:46:41 [INFO]  Data entropy: 4.9407, Normalized: 0.7437 -> Adaptive Lambda: 14.8987
+2025-11-04 10:46:41 [INFO]  Client 4: Calculated initial lambda = 14.8987
+2025-11-04 10:46:41 [INFO]  --- V11 model pre-heating complete. ---
+2025-11-04 10:46:41 [INFO]  Round 0 starts---| Annealing Factor for this round: 1.0000
+2025-11-04 10:46:41 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-04 10:46:48 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 10:47:06 [INFO]  Epoch 0 loss: 505.85687255859375; train accuracy: 0.11777012060054147; test accuracy: 0.0222
+2025-11-04 10:47:06 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_0.pth
+2025-11-04 10:47:22 [INFO]  Epoch 1 loss: 468.4233703613281; train accuracy: 0.13438346049716957; test accuracy: 0.0226
+2025-11-04 10:47:22 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_1.pth
+2025-11-04 10:47:38 [INFO]  Epoch 2 loss: 456.4605484008789; train accuracy: 0.15284272704897858; test accuracy: 0.027
+2025-11-04 10:47:38 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_2.pth
+2025-11-04 10:47:53 [INFO]  Epoch 3 loss: 452.82655143737793; train accuracy: 0.18065468865370415; test accuracy: 0.0291
+2025-11-04 10:47:54 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_3.pth
+2025-11-04 10:48:10 [INFO]  Epoch 4 loss: 448.2579154968262; train accuracy: 0.18471572729510213; test accuracy: 0.033
+2025-11-04 10:48:10 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_4.pth
+2025-11-04 10:48:28 [INFO]  Epoch 5 loss: 443.9307384490967; train accuracy: 0.1713019936007876; test accuracy: 0.0305
+2025-11-04 10:48:28 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_5.pth
+2025-11-04 10:48:44 [INFO]  Epoch 6 loss: 436.43123054504395; train accuracy: 0.17954713266059563; test accuracy: 0.0326
+2025-11-04 10:48:44 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_6.pth
+2025-11-04 10:49:00 [INFO]  Epoch 7 loss: 429.4449825286865; train accuracy: 0.2252030519320699; test accuracy: 0.0414
+2025-11-04 10:49:00 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_7.pth
+2025-11-04 10:49:17 [INFO]  Epoch 8 loss: 425.99743270874023; train accuracy: 0.23910903273443268; test accuracy: 0.0423
+2025-11-04 10:49:18 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_8.pth
+2025-11-04 10:49:34 [INFO]  Epoch 9 loss: 426.14520263671875; train accuracy: 0.2895643613093773; test accuracy: 0.0524
+2025-11-04 10:49:34 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_9.pth
+2025-11-04 10:49:34 [INFO]  Client 0 Learned Sigmas -> L_local: 3.5744, L_align: 0.9957. Effective Lambda: 12.8860
+2025-11-04 10:49:34 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-04 10:49:43 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 10:50:00 [INFO]  Epoch 0 loss: 580.3274059295654; train accuracy: 0.15543418896777716; test accuracy: 0.029
+2025-11-04 10:50:00 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_0.pth
+2025-11-04 10:50:17 [INFO]  Epoch 1 loss: 540.2313175201416; train accuracy: 0.21496450027307482; test accuracy: 0.0389
+2025-11-04 10:50:17 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_1.pth
+2025-11-04 10:50:33 [INFO]  Epoch 2 loss: 526.6142234802246; train accuracy: 0.1851447296559257; test accuracy: 0.0333
+2025-11-04 10:50:34 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_2.pth
+2025-11-04 10:50:51 [INFO]  Epoch 3 loss: 519.0675868988037; train accuracy: 0.17411250682687057; test accuracy: 0.0371
+2025-11-04 10:50:51 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_3.pth
+2025-11-04 10:51:08 [INFO]  Epoch 4 loss: 510.3755855560303; train accuracy: 0.1635172037138176; test accuracy: 0.0328
+2025-11-04 10:51:09 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_4.pth
+2025-11-04 10:51:26 [INFO]  Epoch 5 loss: 506.1595993041992; train accuracy: 0.2040415073730202; test accuracy: 0.04
+2025-11-04 10:51:26 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_5.pth
+2025-11-04 10:51:44 [INFO]  Epoch 6 loss: 504.1743507385254; train accuracy: 0.1914800655379574; test accuracy: 0.0388
+2025-11-04 10:51:44 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_6.pth
+2025-11-04 10:52:01 [INFO]  Epoch 7 loss: 500.1099262237549; train accuracy: 0.19770617149098854; test accuracy: 0.0397
+2025-11-04 10:52:01 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_7.pth
+2025-11-04 10:52:20 [INFO]  Epoch 8 loss: 495.4262580871582; train accuracy: 0.21409066084107045; test accuracy: 0.0466
+2025-11-04 10:52:21 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_8.pth
+2025-11-04 10:52:38 [INFO]  Epoch 9 loss: 489.74463081359863; train accuracy: 0.20873839432004368; test accuracy: 0.0432
+2025-11-04 10:52:38 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_9.pth
+2025-11-04 10:52:38 [INFO]  Client 1 Learned Sigmas -> L_local: 3.6116, L_align: 0.9944. Effective Lambda: 13.1912
+2025-11-04 10:52:38 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-04 10:52:50 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 10:53:11 [INFO]  Epoch 0 loss: 720.2217025756836; train accuracy: 0.11016873493438085; test accuracy: 0.0256
+2025-11-04 10:53:11 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_0.pth
+2025-11-04 10:53:31 [INFO]  Epoch 1 loss: 669.5356769561768; train accuracy: 0.1499866083385412; test accuracy: 0.0339
+2025-11-04 10:53:32 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_1.pth
+2025-11-04 10:53:52 [INFO]  Epoch 2 loss: 647.4806461334229; train accuracy: 0.19980358896527095; test accuracy: 0.0495
+2025-11-04 10:53:53 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_2.pth
+2025-11-04 10:54:13 [INFO]  Epoch 3 loss: 635.3857555389404; train accuracy: 0.23158646549415232; test accuracy: 0.0544
+2025-11-04 10:54:13 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_3.pth
+2025-11-04 10:54:33 [INFO]  Epoch 4 loss: 628.3503322601318; train accuracy: 0.18632264976341398; test accuracy: 0.0425
+2025-11-04 10:54:34 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_4.pth
+2025-11-04 10:54:55 [INFO]  Epoch 5 loss: 615.9650821685791; train accuracy: 0.19658959021515937; test accuracy: 0.0481
+2025-11-04 10:54:55 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_5.pth
+2025-11-04 10:55:16 [INFO]  Epoch 6 loss: 607.86794090271; train accuracy: 0.19159003660387466; test accuracy: 0.0451
+2025-11-04 10:55:17 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_6.pth
+2025-11-04 10:55:37 [INFO]  Epoch 7 loss: 595.3985786437988; train accuracy: 0.1865012052495313; test accuracy: 0.0456
+2025-11-04 10:55:37 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_7.pth
+2025-11-04 10:55:57 [INFO]  Epoch 8 loss: 587.7605857849121; train accuracy: 0.2412284617444871; test accuracy: 0.0591
+2025-11-04 10:55:58 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_8.pth
+2025-11-04 10:56:18 [INFO]  Epoch 9 loss: 580.9053859710693; train accuracy: 0.21498080528524238; test accuracy: 0.0538
+2025-11-04 10:56:19 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_9.pth
+2025-11-04 10:56:19 [INFO]  Client 2 Learned Sigmas -> L_local: 3.5776, L_align: 0.9926. Effective Lambda: 12.9904
+2025-11-04 10:56:19 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-04 10:56:30 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 10:56:50 [INFO]  Epoch 0 loss: 662.5841960906982; train accuracy: 0.13473723443906074; test accuracy: 0.0292
+2025-11-04 10:56:50 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_0.pth
+2025-11-04 10:57:09 [INFO]  Epoch 1 loss: 620.3156147003174; train accuracy: 0.14256429370108087; test accuracy: 0.0312
+2025-11-04 10:57:10 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_1.pth
+2025-11-04 10:57:30 [INFO]  Epoch 2 loss: 601.6149787902832; train accuracy: 0.16446142377935147; test accuracy: 0.0337
+2025-11-04 10:57:30 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_2.pth
+2025-11-04 10:57:49 [INFO]  Epoch 3 loss: 592.7385005950928; train accuracy: 0.17918374953410363; test accuracy: 0.0367
+2025-11-04 10:57:49 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_3.pth
+2025-11-04 10:58:11 [INFO]  Epoch 4 loss: 582.0126342773438; train accuracy: 0.15067089079388743; test accuracy: 0.0319
+2025-11-04 10:58:11 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_4.pth
+2025-11-04 10:58:31 [INFO]  Epoch 5 loss: 573.5181407928467; train accuracy: 0.19232202758106598; test accuracy: 0.041
+2025-11-04 10:58:31 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_5.pth
+2025-11-04 10:58:51 [INFO]  Epoch 6 loss: 565.2273368835449; train accuracy: 0.1833768169959001; test accuracy: 0.039
+2025-11-04 10:58:51 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_6.pth
+2025-11-04 10:59:10 [INFO]  Epoch 7 loss: 556.3819255828857; train accuracy: 0.2423592992918375; test accuracy: 0.0517
+2025-11-04 10:59:10 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_7.pth
+2025-11-04 10:59:31 [INFO]  Epoch 8 loss: 548.02219581604; train accuracy: 0.2481364144614238; test accuracy: 0.0542
+2025-11-04 10:59:31 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_8.pth
+2025-11-04 10:59:52 [INFO]  Epoch 9 loss: 548.7330322265625; train accuracy: 0.21049198658218413; test accuracy: 0.0455
+2025-11-04 10:59:52 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_9.pth
+2025-11-04 10:59:52 [INFO]  Client 3 Learned Sigmas -> L_local: 3.5482, L_align: 0.9939. Effective Lambda: 12.7455
+2025-11-04 10:59:52 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-04 11:00:02 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 11:00:22 [INFO]  Epoch 0 loss: 724.5704135894775; train accuracy: 0.126274800667532; test accuracy: 0.0271
+2025-11-04 11:00:23 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_0.pth
+2025-11-04 11:00:43 [INFO]  Epoch 1 loss: 680.6057052612305; train accuracy: 0.16577044316706843; test accuracy: 0.037
+2025-11-04 11:00:43 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_1.pth
+2025-11-04 11:01:04 [INFO]  Epoch 2 loss: 665.1027774810791; train accuracy: 0.15093639903578712; test accuracy: 0.0316
+2025-11-04 11:01:04 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_2.pth
+2025-11-04 11:01:24 [INFO]  Epoch 3 loss: 651.9812507629395; train accuracy: 0.1759688485073243; test accuracy: 0.0385
+2025-11-04 11:01:24 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_3.pth
+2025-11-04 11:01:43 [INFO]  Epoch 4 loss: 642.4091777801514; train accuracy: 0.15019469682922307; test accuracy: 0.0325
+2025-11-04 11:01:44 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_4.pth
+2025-11-04 11:02:05 [INFO]  Epoch 5 loss: 634.3894271850586; train accuracy: 0.15807528277396626; test accuracy: 0.0349
+2025-11-04 11:02:06 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_5.pth
+2025-11-04 11:02:26 [INFO]  Epoch 6 loss: 625.784984588623; train accuracy: 0.1873725199332468; test accuracy: 0.0442
+2025-11-04 11:02:26 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_6.pth
+2025-11-04 11:02:47 [INFO]  Epoch 7 loss: 612.446834564209; train accuracy: 0.13415538661227516; test accuracy: 0.0336
+2025-11-04 11:02:48 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_7.pth
+2025-11-04 11:03:10 [INFO]  Epoch 8 loss: 603.0356063842773; train accuracy: 0.19274986093083626; test accuracy: 0.0495
+2025-11-04 11:03:10 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_8.pth
+2025-11-04 11:03:30 [INFO]  Epoch 9 loss: 600.7324485778809; train accuracy: 0.201279436306323; test accuracy: 0.0494
+2025-11-04 11:03:30 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_9.pth
+2025-11-04 11:03:30 [INFO]  Client 4 Learned Sigmas -> L_local: 3.6263, L_align: 0.9911. Effective Lambda: 13.3884
+2025-11-04 11:03:30 [INFO]  Current annealing strategy: cosine. Next round's annealing factor set to: 0.9755
+2025-11-04 11:03:30 [INFO]  Round 0 Finish--------|
+2025-11-04 11:03:30 [INFO]  g_protos_std (global internal): 0.985388
+2025-11-04 11:03:30 [INFO]  inter_client_proto_std (cross-client): 0.007404
+2025-11-04 11:03:36 [INFO]  The test accuracy of OursV11+SimpleFeatureServer: 0.1081
+2025-11-04 11:03:36 [INFO]  Save config to ./checkpoints/CIFAR100_alpha0.05/baselines_OursV11+SimpleFeatureServer_CIFAR10_results.yaml
+2025-11-04 11:03:36 [INFO]  Round 1 starts---| Annealing Factor for this round: 0.9755
+2025-11-04 11:03:36 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-04 11:03:36 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 11:03:51 [INFO]  Epoch 10 loss: 411.6840229034424; train accuracy: 0.2691361063253753; test accuracy: 0.0451
+2025-11-04 11:03:52 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_10.pth
+2025-11-04 11:04:07 [INFO]  Epoch 11 loss: 411.6920566558838; train accuracy: 0.2981786857002215; test accuracy: 0.0556
+2025-11-04 11:04:08 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_11.pth
+2025-11-04 11:04:24 [INFO]  Epoch 12 loss: 411.8122673034668; train accuracy: 0.30137829190253507; test accuracy: 0.0549
+2025-11-04 11:04:25 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_12.pth
+2025-11-04 11:04:41 [INFO]  Epoch 13 loss: 409.59414291381836; train accuracy: 0.3112232340634999; test accuracy: 0.0575
+2025-11-04 11:04:42 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_13.pth
+2025-11-04 11:04:59 [INFO]  Epoch 14 loss: 405.0582504272461; train accuracy: 0.31860694068422346; test accuracy: 0.0588
+2025-11-04 11:04:59 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_14.pth
+2025-11-04 11:05:17 [INFO]  Epoch 15 loss: 397.1014633178711; train accuracy: 0.3717696283534334; test accuracy: 0.0697
+2025-11-04 11:05:18 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_15.pth
+2025-11-04 11:05:35 [INFO]  Epoch 16 loss: 394.8115749359131; train accuracy: 0.3368200836820084; test accuracy: 0.0624
+2025-11-04 11:05:35 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_16.pth
+2025-11-04 11:05:52 [INFO]  Epoch 17 loss: 393.2183589935303; train accuracy: 0.26716711789318237; test accuracy: 0.0504
+2025-11-04 11:05:53 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_17.pth
+2025-11-04 11:06:10 [INFO]  Epoch 18 loss: 395.39076042175293; train accuracy: 0.3210681762244647; test accuracy: 0.0599
+2025-11-04 11:06:10 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_18.pth
+2025-11-04 11:06:26 [INFO]  Epoch 19 loss: 383.0493621826172; train accuracy: 0.28734924932316025; test accuracy: 0.053
+2025-11-04 11:06:26 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_19.pth
+2025-11-04 11:06:26 [INFO]  Client 0 Learned Sigmas -> L_local: 3.4307, L_align: 0.9893. Effective Lambda: 12.0246
+2025-11-04 11:06:26 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-04 11:06:26 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 11:06:45 [INFO]  Epoch 10 loss: 481.6385078430176; train accuracy: 0.20884762424904424; test accuracy: 0.0413
+2025-11-04 11:06:45 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_10.pth
+2025-11-04 11:07:05 [INFO]  Epoch 11 loss: 478.4183864593506; train accuracy: 0.19868924085199344; test accuracy: 0.0419
+2025-11-04 11:07:05 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_11.pth
+2025-11-04 11:07:22 [INFO]  Epoch 12 loss: 476.6001625061035; train accuracy: 0.26968869470234846; test accuracy: 0.0561
+2025-11-04 11:07:22 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_12.pth
+2025-11-04 11:07:40 [INFO]  Epoch 13 loss: 470.94853019714355; train accuracy: 0.2002184598580011; test accuracy: 0.0388
+2025-11-04 11:07:41 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_13.pth
+2025-11-04 11:08:00 [INFO]  Epoch 14 loss: 471.9527359008789; train accuracy: 0.212998361551065; test accuracy: 0.045
+2025-11-04 11:08:01 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_14.pth
+2025-11-04 11:08:19 [INFO]  Epoch 15 loss: 468.0797233581543; train accuracy: 0.20305843801201529; test accuracy: 0.0409
+2025-11-04 11:08:19 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_15.pth
+2025-11-04 11:08:38 [INFO]  Epoch 16 loss: 467.22801208496094; train accuracy: 0.24511196067722557; test accuracy: 0.0488
+2025-11-04 11:08:38 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_16.pth
+2025-11-04 11:08:56 [INFO]  Epoch 17 loss: 469.4588432312012; train accuracy: 0.26237028945931185; test accuracy: 0.0489
+2025-11-04 11:08:57 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_17.pth
+2025-11-04 11:09:15 [INFO]  Epoch 18 loss: 462.3763732910156; train accuracy: 0.2416166029492081; test accuracy: 0.048
+2025-11-04 11:09:15 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_18.pth
+2025-11-04 11:09:34 [INFO]  Epoch 19 loss: 460.7825756072998; train accuracy: 0.22479519388312397; test accuracy: 0.0472
+2025-11-04 11:09:34 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_19.pth
+2025-11-04 11:09:34 [INFO]  Client 1 Learned Sigmas -> L_local: 3.4895, L_align: 0.9846. Effective Lambda: 12.5606
+2025-11-04 11:09:34 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-04 11:09:34 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 11:09:56 [INFO]  Epoch 10 loss: 570.9600162506104; train accuracy: 0.2249799125078118; test accuracy: 0.0542
+2025-11-04 11:09:57 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_10.pth
+2025-11-04 11:10:18 [INFO]  Epoch 11 loss: 566.9294414520264; train accuracy: 0.2647085081689135; test accuracy: 0.0602
+2025-11-04 11:10:18 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_11.pth
+2025-11-04 11:10:39 [INFO]  Epoch 12 loss: 557.2198505401611; train accuracy: 0.24997768056423533; test accuracy: 0.0589
+2025-11-04 11:10:40 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_12.pth
+2025-11-04 11:11:02 [INFO]  Epoch 13 loss: 552.810037612915; train accuracy: 0.3123828229622355; test accuracy: 0.0726
+2025-11-04 11:11:02 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_13.pth
+2025-11-04 11:11:24 [INFO]  Epoch 14 loss: 551.162145614624; train accuracy: 0.25176323542540846; test accuracy: 0.06
+2025-11-04 11:11:24 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_14.pth
+2025-11-04 11:11:47 [INFO]  Epoch 15 loss: 543.1951217651367; train accuracy: 0.2962235514686189; test accuracy: 0.0727
+2025-11-04 11:11:47 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_15.pth
+2025-11-04 11:12:10 [INFO]  Epoch 16 loss: 541.6961193084717; train accuracy: 0.34898669761628426; test accuracy: 0.0863
+2025-11-04 11:12:10 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_16.pth
+2025-11-04 11:12:32 [INFO]  Epoch 17 loss: 533.5456390380859; train accuracy: 0.25961967681457015; test accuracy: 0.0639
+2025-11-04 11:12:32 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_17.pth
+2025-11-04 11:12:53 [INFO]  Epoch 18 loss: 531.384895324707; train accuracy: 0.3675564681724846; test accuracy: 0.0884
+2025-11-04 11:12:53 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_18.pth
+2025-11-04 11:13:16 [INFO]  Epoch 19 loss: 522.7866401672363; train accuracy: 0.3072047138648335; test accuracy: 0.0756
+2025-11-04 11:13:16 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_19.pth
+2025-11-04 11:13:16 [INFO]  Client 2 Learned Sigmas -> L_local: 3.3927, L_align: 0.9826. Effective Lambda: 11.9215
+2025-11-04 11:13:16 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-04 11:13:16 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 11:13:35 [INFO]  Epoch 10 loss: 532.2425231933594; train accuracy: 0.2660268356317555; test accuracy: 0.0591
+2025-11-04 11:13:36 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_10.pth
+2025-11-04 11:13:58 [INFO]  Epoch 11 loss: 533.2915134429932; train accuracy: 0.28242638837122624; test accuracy: 0.0597
+2025-11-04 11:13:58 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_11.pth
+2025-11-04 11:14:19 [INFO]  Epoch 12 loss: 524.5006427764893; train accuracy: 0.2747856876630637; test accuracy: 0.0623
+2025-11-04 11:14:20 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_12.pth
+2025-11-04 11:14:41 [INFO]  Epoch 13 loss: 513.4267654418945; train accuracy: 0.30367126351099516; test accuracy: 0.0648
+2025-11-04 11:14:41 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_13.pth
+2025-11-04 11:15:02 [INFO]  Epoch 14 loss: 516.2139415740967; train accuracy: 0.31019381289601194; test accuracy: 0.0709
+2025-11-04 11:15:02 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_14.pth
+2025-11-04 11:15:23 [INFO]  Epoch 15 loss: 505.66887855529785; train accuracy: 0.26556093924711144; test accuracy: 0.0592
+2025-11-04 11:15:24 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_15.pth
+2025-11-04 11:15:45 [INFO]  Epoch 16 loss: 498.41673278808594; train accuracy: 0.347651882221394; test accuracy: 0.0768
+2025-11-04 11:15:45 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_16.pth
+2025-11-04 11:16:04 [INFO]  Epoch 17 loss: 499.3446235656738; train accuracy: 0.30944837868058145; test accuracy: 0.0683
+2025-11-04 11:16:04 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_17.pth
+2025-11-04 11:16:25 [INFO]  Epoch 18 loss: 496.82250022888184; train accuracy: 0.3025531121878494; test accuracy: 0.0693
+2025-11-04 11:16:25 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_18.pth
+2025-11-04 11:16:46 [INFO]  Epoch 19 loss: 490.00878524780273; train accuracy: 0.3395452851285874; test accuracy: 0.0789
+2025-11-04 11:16:47 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_19.pth
+2025-11-04 11:16:47 [INFO]  Client 3 Learned Sigmas -> L_local: 3.3554, L_align: 0.9850. Effective Lambda: 11.6044
+2025-11-04 11:16:47 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-04 11:16:47 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 11:17:07 [INFO]  Epoch 10 loss: 592.6563167572021; train accuracy: 0.2172260337474504; test accuracy: 0.0508
+2025-11-04 11:17:07 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_10.pth
+2025-11-04 11:17:28 [INFO]  Epoch 11 loss: 587.829231262207; train accuracy: 0.1862599666234007; test accuracy: 0.0475
+2025-11-04 11:17:28 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_11.pth
+2025-11-04 11:17:49 [INFO]  Epoch 12 loss: 586.1442642211914; train accuracy: 0.1896903393287595; test accuracy: 0.0461
+2025-11-04 11:17:49 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_12.pth
+2025-11-04 11:18:10 [INFO]  Epoch 13 loss: 579.2892780303955; train accuracy: 0.2332653439643983; test accuracy: 0.0574
+2025-11-04 11:18:10 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_13.pth
+2025-11-04 11:18:31 [INFO]  Epoch 14 loss: 570.9451999664307; train accuracy: 0.20489523456332281; test accuracy: 0.05
+2025-11-04 11:18:31 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_14.pth
+2025-11-04 11:18:51 [INFO]  Epoch 15 loss: 575.4761352539062; train accuracy: 0.22909326905247543; test accuracy: 0.0561
+2025-11-04 11:18:52 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_15.pth
+2025-11-04 11:19:13 [INFO]  Epoch 16 loss: 565.4731864929199; train accuracy: 0.20443167068422027; test accuracy: 0.0495
+2025-11-04 11:19:13 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_16.pth
+2025-11-04 11:19:33 [INFO]  Epoch 17 loss: 564.4051208496094; train accuracy: 0.20090858520304097; test accuracy: 0.0524
+2025-11-04 11:19:34 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_17.pth
+2025-11-04 11:19:54 [INFO]  Epoch 18 loss: 548.4536037445068; train accuracy: 0.2149082143519377; test accuracy: 0.0631
+2025-11-04 11:19:55 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_18.pth
+2025-11-04 11:20:15 [INFO]  Epoch 19 loss: 553.9044742584229; train accuracy: 0.22918598182829594; test accuracy: 0.0585
+2025-11-04 11:20:15 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_19.pth
+2025-11-04 11:20:15 [INFO]  Client 4 Learned Sigmas -> L_local: 3.4738, L_align: 0.9793. Effective Lambda: 12.5832
+2025-11-04 11:20:15 [INFO]  Current annealing strategy: cosine. Next round's annealing factor set to: 0.9045
+2025-11-04 11:20:15 [INFO]  Round 1 Finish--------|
+2025-11-04 11:20:15 [INFO]  g_protos_std (global internal): 0.975201
+2025-11-04 11:20:15 [INFO]  inter_client_proto_std (cross-client): 0.010551
+2025-11-04 11:20:22 [INFO]  The test accuracy of OursV11+SimpleFeatureServer: 0.1622
+2025-11-04 11:20:22 [INFO]  Save config to ./checkpoints/CIFAR100_alpha0.05/baselines_OursV11+SimpleFeatureServer_CIFAR10_results.yaml
+2025-11-04 11:20:22 [INFO]  Round 2 starts---| Annealing Factor for this round: 0.9045
+2025-11-04 11:20:22 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-04 11:20:22 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 11:20:40 [INFO]  Epoch 20 loss: 369.6482696533203; train accuracy: 0.36906226925916813; test accuracy: 0.0694
+2025-11-04 11:20:40 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_20.pth
+2025-11-04 11:20:57 [INFO]  Epoch 21 loss: 366.72980308532715; train accuracy: 0.40339650504553287; test accuracy: 0.0762
+2025-11-04 11:20:57 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_21.pth
+2025-11-04 11:21:14 [INFO]  Epoch 22 loss: 369.12111473083496; train accuracy: 0.47711050947575684; test accuracy: 0.0904
+2025-11-04 11:21:15 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_22.pth
+2025-11-04 11:21:31 [INFO]  Epoch 23 loss: 365.682653427124; train accuracy: 0.3349741570268275; test accuracy: 0.0605
+2025-11-04 11:21:32 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_23.pth
+2025-11-04 11:21:47 [INFO]  Epoch 24 loss: 364.0440616607666; train accuracy: 0.42160964804331774; test accuracy: 0.081
+2025-11-04 11:21:48 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_24.pth
+2025-11-04 11:22:03 [INFO]  Epoch 25 loss: 358.8641185760498; train accuracy: 0.3776765936500123; test accuracy: 0.0711
+2025-11-04 11:22:04 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_25.pth
+2025-11-04 11:22:20 [INFO]  Epoch 26 loss: 357.1187801361084; train accuracy: 0.47181885306423826; test accuracy: 0.0882
+2025-11-04 11:22:20 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_26.pth
+2025-11-04 11:22:37 [INFO]  Epoch 27 loss: 355.9324188232422; train accuracy: 0.3807531380753138; test accuracy: 0.0752
+2025-11-04 11:22:37 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_27.pth
+2025-11-04 11:22:52 [INFO]  Epoch 28 loss: 349.0474376678467; train accuracy: 0.420132906719173; test accuracy: 0.084
+2025-11-04 11:22:53 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_28.pth
+2025-11-04 11:23:09 [INFO]  Epoch 29 loss: 348.9854927062988; train accuracy: 0.3835835589465912; test accuracy: 0.073
+2025-11-04 11:23:10 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_29.pth
+2025-11-04 11:23:10 [INFO]  Client 0 Learned Sigmas -> L_local: 3.3065, L_align: 0.9832. Effective Lambda: 11.3084
+2025-11-04 11:23:10 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-04 11:23:10 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 11:23:28 [INFO]  Epoch 20 loss: 442.9375629425049; train accuracy: 0.3155652648825778; test accuracy: 0.0643
+2025-11-04 11:23:28 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_20.pth
+2025-11-04 11:23:47 [INFO]  Epoch 21 loss: 439.22043228149414; train accuracy: 0.22403058438012016; test accuracy: 0.0431
+2025-11-04 11:23:47 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_21.pth
+2025-11-04 11:24:06 [INFO]  Epoch 22 loss: 433.4208106994629; train accuracy: 0.2783178590933916; test accuracy: 0.0566
+2025-11-04 11:24:06 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_22.pth
+2025-11-04 11:24:26 [INFO]  Epoch 23 loss: 434.4433345794678; train accuracy: 0.2992900054614965; test accuracy: 0.0586
+2025-11-04 11:24:26 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_23.pth
+2025-11-04 11:24:43 [INFO]  Epoch 24 loss: 423.80834197998047; train accuracy: 0.2793009284543965; test accuracy: 0.0574
+2025-11-04 11:24:43 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_24.pth
+2025-11-04 11:25:03 [INFO]  Epoch 25 loss: 424.36687660217285; train accuracy: 0.312397596941562; test accuracy: 0.0625
+2025-11-04 11:25:03 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_25.pth
+2025-11-04 11:25:20 [INFO]  Epoch 26 loss: 422.2371425628662; train accuracy: 0.2620425996723102; test accuracy: 0.051
+2025-11-04 11:25:20 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_26.pth
+2025-11-04 11:25:40 [INFO]  Epoch 27 loss: 423.1697063446045; train accuracy: 0.2931731294374659; test accuracy: 0.0607
+2025-11-04 11:25:41 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_27.pth
+2025-11-04 11:25:59 [INFO]  Epoch 28 loss: 418.0542907714844; train accuracy: 0.31064991807755327; test accuracy: 0.0622
+2025-11-04 11:26:00 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_28.pth
+2025-11-04 11:26:19 [INFO]  Epoch 29 loss: 418.0281009674072; train accuracy: 0.29503003823047513; test accuracy: 0.0595
+2025-11-04 11:26:19 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_29.pth
+2025-11-04 11:26:19 [INFO]  Client 1 Learned Sigmas -> L_local: 3.3802, L_align: 0.9758. Effective Lambda: 11.9994
+2025-11-04 11:26:19 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-04 11:26:19 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 11:26:42 [INFO]  Epoch 20 loss: 506.69347953796387; train accuracy: 0.34246942237300243; test accuracy: 0.0796
+2025-11-04 11:26:43 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_20.pth
+2025-11-04 11:27:05 [INFO]  Epoch 21 loss: 503.4905834197998; train accuracy: 0.3416659226854745; test accuracy: 0.0882
+2025-11-04 11:27:06 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_21.pth
+2025-11-04 11:27:27 [INFO]  Epoch 22 loss: 498.77927589416504; train accuracy: 0.3681814123738952; test accuracy: 0.088
+2025-11-04 11:27:27 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_22.pth
+2025-11-04 11:27:50 [INFO]  Epoch 23 loss: 496.9534511566162; train accuracy: 0.3164895991429337; test accuracy: 0.0787
+2025-11-04 11:27:50 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_23.pth
+2025-11-04 11:28:12 [INFO]  Epoch 24 loss: 495.2755947113037; train accuracy: 0.36121774841532006; test accuracy: 0.0898
+2025-11-04 11:28:12 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_24.pth
+2025-11-04 11:28:33 [INFO]  Epoch 25 loss: 482.01636123657227; train accuracy: 0.3789840192839925; test accuracy: 0.0951
+2025-11-04 11:28:33 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_25.pth
+2025-11-04 11:28:55 [INFO]  Epoch 26 loss: 490.20030784606934; train accuracy: 0.4279975002231944; test accuracy: 0.1053
+2025-11-04 11:28:55 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_26.pth
+2025-11-04 11:29:17 [INFO]  Epoch 27 loss: 474.70607566833496; train accuracy: 0.39630390143737165; test accuracy: 0.0997
+2025-11-04 11:29:17 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_27.pth
+2025-11-04 11:29:40 [INFO]  Epoch 28 loss: 475.9598217010498; train accuracy: 0.38389429515221857; test accuracy: 0.0992
+2025-11-04 11:29:40 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_28.pth
+2025-11-04 11:30:00 [INFO]  Epoch 29 loss: 465.5800952911377; train accuracy: 0.4050531202571199; test accuracy: 0.1077
+2025-11-04 11:30:01 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_29.pth
+2025-11-04 11:30:01 [INFO]  Client 2 Learned Sigmas -> L_local: 3.2563, L_align: 0.9737. Effective Lambda: 11.1833
+2025-11-04 11:30:01 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-04 11:30:01 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 11:30:22 [INFO]  Epoch 20 loss: 466.5662956237793; train accuracy: 0.35016772269847185; test accuracy: 0.0803
+2025-11-04 11:30:22 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_20.pth
+2025-11-04 11:30:44 [INFO]  Epoch 21 loss: 466.70360946655273; train accuracy: 0.3826872903466269; test accuracy: 0.0887
+2025-11-04 11:30:44 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_21.pth
+2025-11-04 11:31:05 [INFO]  Epoch 22 loss: 459.7672805786133; train accuracy: 0.38715989563920983; test accuracy: 0.093
+2025-11-04 11:31:06 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_22.pth
+2025-11-04 11:31:28 [INFO]  Epoch 23 loss: 456.09945487976074; train accuracy: 0.31438688035780843; test accuracy: 0.075
+2025-11-04 11:31:29 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_23.pth
+2025-11-04 11:31:50 [INFO]  Epoch 24 loss: 449.7207431793213; train accuracy: 0.38976891539321656; test accuracy: 0.0933
+2025-11-04 11:31:50 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_24.pth
+2025-11-04 11:32:11 [INFO]  Epoch 25 loss: 457.5115737915039; train accuracy: 0.4702758106597093; test accuracy: 0.1144
+2025-11-04 11:32:12 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_25.pth
+2025-11-04 11:32:32 [INFO]  Epoch 26 loss: 447.65034103393555; train accuracy: 0.44632873648900484; test accuracy: 0.1056
+2025-11-04 11:32:32 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_26.pth
+2025-11-04 11:32:54 [INFO]  Epoch 27 loss: 452.1331100463867; train accuracy: 0.36405143496086473; test accuracy: 0.0884
+2025-11-04 11:32:54 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_27.pth
+2025-11-04 11:33:15 [INFO]  Epoch 28 loss: 442.29466247558594; train accuracy: 0.4239657100260902; test accuracy: 0.1046
+2025-11-04 11:33:15 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_28.pth
+2025-11-04 11:33:36 [INFO]  Epoch 29 loss: 437.5726261138916; train accuracy: 0.49235929929183747; test accuracy: 0.1187
+2025-11-04 11:33:36 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_29.pth
+2025-11-04 11:33:36 [INFO]  Client 3 Learned Sigmas -> L_local: 3.2132, L_align: 0.9769. Effective Lambda: 10.8183
+2025-11-04 11:33:36 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-04 11:33:36 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 11:33:57 [INFO]  Epoch 20 loss: 529.5558433532715; train accuracy: 0.19358427591322083; test accuracy: 0.0488
+2025-11-04 11:33:58 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_20.pth
+2025-11-04 11:34:19 [INFO]  Epoch 21 loss: 521.7042217254639; train accuracy: 0.24865566475060263; test accuracy: 0.07
+2025-11-04 11:34:19 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_21.pth
+2025-11-04 11:34:39 [INFO]  Epoch 22 loss: 517.2163791656494; train accuracy: 0.3267198219914704; test accuracy: 0.0874
+2025-11-04 11:34:39 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_22.pth
+2025-11-04 11:35:00 [INFO]  Epoch 23 loss: 519.6034202575684; train accuracy: 0.2900982755423697; test accuracy: 0.0837
+2025-11-04 11:35:01 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_23.pth
+2025-11-04 11:35:21 [INFO]  Epoch 24 loss: 512.7562255859375; train accuracy: 0.3231967365102911; test accuracy: 0.091
+2025-11-04 11:35:21 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_24.pth
+2025-11-04 11:35:41 [INFO]  Epoch 25 loss: 512.2734794616699; train accuracy: 0.3016873725199333; test accuracy: 0.082
+2025-11-04 11:35:41 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_25.pth
+2025-11-04 11:36:02 [INFO]  Epoch 26 loss: 508.9191493988037; train accuracy: 0.2804561468570369; test accuracy: 0.0811
+2025-11-04 11:36:02 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_26.pth
+2025-11-04 11:36:24 [INFO]  Epoch 27 loss: 504.01466941833496; train accuracy: 0.3046541813461895; test accuracy: 0.0848
+2025-11-04 11:36:24 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_27.pth
+2025-11-04 11:36:44 [INFO]  Epoch 28 loss: 507.8719596862793; train accuracy: 0.3056740218802151; test accuracy: 0.088
+2025-11-04 11:36:45 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_28.pth
+2025-11-04 11:37:06 [INFO]  Epoch 29 loss: 506.6847286224365; train accuracy: 0.3467457815687002; test accuracy: 0.0939
+2025-11-04 11:37:06 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_29.pth
+2025-11-04 11:37:06 [INFO]  Client 4 Learned Sigmas -> L_local: 3.3576, L_align: 0.9697. Effective Lambda: 11.9879
+2025-11-04 11:37:06 [INFO]  Current annealing strategy: cosine. Next round's annealing factor set to: 0.7939
+2025-11-04 11:37:06 [INFO]  Round 2 Finish--------|
+2025-11-04 11:37:06 [INFO]  g_protos_std (global internal): 0.967467
+2025-11-04 11:37:06 [INFO]  inter_client_proto_std (cross-client): 0.012681
+2025-11-04 11:37:13 [INFO]  The test accuracy of OursV11+SimpleFeatureServer: 0.2126
+2025-11-04 11:37:13 [INFO]  Save config to ./checkpoints/CIFAR100_alpha0.05/baselines_OursV11+SimpleFeatureServer_CIFAR10_results.yaml
+2025-11-04 11:37:13 [INFO]  Round 3 starts---| Annealing Factor for this round: 0.7939
+2025-11-04 11:37:13 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-04 11:37:13 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 11:37:30 [INFO]  Epoch 30 loss: 324.77659034729004; train accuracy: 0.3990893428501108; test accuracy: 0.0773
+2025-11-04 11:37:30 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_30.pth
+2025-11-04 11:37:47 [INFO]  Epoch 31 loss: 323.92039489746094; train accuracy: 0.4910164902781196; test accuracy: 0.0944
+2025-11-04 11:37:47 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_31.pth
+2025-11-04 11:38:04 [INFO]  Epoch 32 loss: 327.3456516265869; train accuracy: 0.4095495938961359; test accuracy: 0.0796
+2025-11-04 11:38:05 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_32.pth
+2025-11-04 11:38:22 [INFO]  Epoch 33 loss: 323.79320526123047; train accuracy: 0.4883091311838543; test accuracy: 0.093
+2025-11-04 11:38:22 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_33.pth
+2025-11-04 11:38:40 [INFO]  Epoch 34 loss: 321.5642604827881; train accuracy: 0.4729264090573468; test accuracy: 0.0927
+2025-11-04 11:38:40 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_34.pth
+2025-11-04 11:38:58 [INFO]  Epoch 35 loss: 318.59768295288086; train accuracy: 0.473295594388383; test accuracy: 0.0962
+2025-11-04 11:38:58 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_35.pth
+2025-11-04 11:39:14 [INFO]  Epoch 36 loss: 321.88111686706543; train accuracy: 0.4096726556731479; test accuracy: 0.0808
+2025-11-04 11:39:15 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_36.pth
+2025-11-04 11:39:31 [INFO]  Epoch 37 loss: 318.232873916626; train accuracy: 0.5084912626138322; test accuracy: 0.0997
+2025-11-04 11:39:32 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_37.pth
+2025-11-04 11:39:50 [INFO]  Epoch 38 loss: 314.370943069458; train accuracy: 0.45299040118139305; test accuracy: 0.0908
+2025-11-04 11:39:50 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_38.pth
+2025-11-04 11:40:08 [INFO]  Epoch 39 loss: 320.13171768188477; train accuracy: 0.467265567314792; test accuracy: 0.0887
+2025-11-04 11:40:09 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_39.pth
+2025-11-04 11:40:09 [INFO]  Client 0 Learned Sigmas -> L_local: 3.2040, L_align: 0.9778. Effective Lambda: 10.7371
+2025-11-04 11:40:09 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-04 11:40:09 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 11:40:28 [INFO]  Epoch 30 loss: 395.4369926452637; train accuracy: 0.4204259967231021; test accuracy: 0.0807
+2025-11-04 11:40:29 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_30.pth
+2025-11-04 11:40:49 [INFO]  Epoch 31 loss: 392.91246223449707; train accuracy: 0.3600218459858001; test accuracy: 0.0751
+2025-11-04 11:40:49 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_31.pth
+2025-11-04 11:41:08 [INFO]  Epoch 32 loss: 385.5049800872803; train accuracy: 0.38798470780993993; test accuracy: 0.0767
+2025-11-04 11:41:08 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_32.pth
+2025-11-04 11:41:26 [INFO]  Epoch 33 loss: 385.3644046783447; train accuracy: 0.2918623702894593; test accuracy: 0.0586
+2025-11-04 11:41:27 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_33.pth
+2025-11-04 11:41:45 [INFO]  Epoch 34 loss: 382.11029052734375; train accuracy: 0.38252321135991263; test accuracy: 0.0772
+2025-11-04 11:41:45 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_34.pth
+2025-11-04 11:42:04 [INFO]  Epoch 35 loss: 386.0364074707031; train accuracy: 0.33129437465865647; test accuracy: 0.0686
+2025-11-04 11:42:04 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_35.pth
+2025-11-04 11:42:24 [INFO]  Epoch 36 loss: 384.6326026916504; train accuracy: 0.3632987438558165; test accuracy: 0.0738
+2025-11-04 11:42:24 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_36.pth
+2025-11-04 11:42:42 [INFO]  Epoch 37 loss: 379.8820209503174; train accuracy: 0.3271436373566357; test accuracy: 0.0661
+2025-11-04 11:42:43 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_37.pth
+2025-11-04 11:43:01 [INFO]  Epoch 38 loss: 378.89447593688965; train accuracy: 0.3025669033315128; test accuracy: 0.0609
+2025-11-04 11:43:01 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_38.pth
+2025-11-04 11:43:21 [INFO]  Epoch 39 loss: 375.64924812316895; train accuracy: 0.3671217913708356; test accuracy: 0.0737
+2025-11-04 11:43:21 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_39.pth
+2025-11-04 11:43:21 [INFO]  Client 1 Learned Sigmas -> L_local: 3.2919, L_align: 0.9686. Effective Lambda: 11.5492
+2025-11-04 11:43:21 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-04 11:43:21 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 11:43:44 [INFO]  Epoch 30 loss: 438.1334800720215; train accuracy: 0.4546022676546737; test accuracy: 0.1182
+2025-11-04 11:43:44 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_30.pth
+2025-11-04 11:44:07 [INFO]  Epoch 31 loss: 443.19634437561035; train accuracy: 0.43397910900812425; test accuracy: 0.1147
+2025-11-04 11:44:07 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_31.pth
+2025-11-04 11:44:30 [INFO]  Epoch 32 loss: 430.1997356414795; train accuracy: 0.4597803767520757; test accuracy: 0.1199
+2025-11-04 11:44:30 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_32.pth
+2025-11-04 11:44:51 [INFO]  Epoch 33 loss: 430.6385440826416; train accuracy: 0.4238907240424962; test accuracy: 0.1094
+2025-11-04 11:44:52 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_33.pth
+2025-11-04 11:45:13 [INFO]  Epoch 34 loss: 423.0474662780762; train accuracy: 0.4778144808499241; test accuracy: 0.1226
+2025-11-04 11:45:13 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_34.pth
+2025-11-04 11:45:35 [INFO]  Epoch 35 loss: 424.0345287322998; train accuracy: 0.47201142755111153; test accuracy: 0.1217
+2025-11-04 11:45:35 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_35.pth
+2025-11-04 11:45:57 [INFO]  Epoch 36 loss: 425.38497734069824; train accuracy: 0.4687974288009999; test accuracy: 0.1212
+2025-11-04 11:45:57 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_36.pth
+2025-11-04 11:46:20 [INFO]  Epoch 37 loss: 419.1218948364258; train accuracy: 0.49575930720471384; test accuracy: 0.1318
+2025-11-04 11:46:20 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_37.pth
+2025-11-04 11:46:43 [INFO]  Epoch 38 loss: 422.04308319091797; train accuracy: 0.489242031961432; test accuracy: 0.1299
+2025-11-04 11:46:43 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_38.pth
+2025-11-04 11:47:04 [INFO]  Epoch 39 loss: 417.1857051849365; train accuracy: 0.465404874564771; test accuracy: 0.1233
+2025-11-04 11:47:04 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_39.pth
+2025-11-04 11:47:04 [INFO]  Client 2 Learned Sigmas -> L_local: 3.1263, L_align: 0.9664. Effective Lambda: 10.4654
+2025-11-04 11:47:05 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-04 11:47:05 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 11:47:25 [INFO]  Epoch 30 loss: 415.91210746765137; train accuracy: 0.4348676854267611; test accuracy: 0.1103
+2025-11-04 11:47:25 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_30.pth
+2025-11-04 11:47:47 [INFO]  Epoch 31 loss: 415.0767517089844; train accuracy: 0.36693999254565784; test accuracy: 0.0917
+2025-11-04 11:47:47 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_31.pth
+2025-11-04 11:48:08 [INFO]  Epoch 32 loss: 412.86134147644043; train accuracy: 0.5087588520313082; test accuracy: 0.1247
+2025-11-04 11:48:08 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_32.pth
+2025-11-04 11:48:29 [INFO]  Epoch 33 loss: 405.1276226043701; train accuracy: 0.4636600819977637; test accuracy: 0.1127
+2025-11-04 11:48:30 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_33.pth
+2025-11-04 11:48:51 [INFO]  Epoch 34 loss: 412.51366996765137; train accuracy: 0.4367312709653373; test accuracy: 0.111
+2025-11-04 11:48:52 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_34.pth
+2025-11-04 11:49:13 [INFO]  Epoch 35 loss: 402.5128173828125; train accuracy: 0.4563920983973164; test accuracy: 0.115
+2025-11-04 11:49:13 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_35.pth
+2025-11-04 11:49:35 [INFO]  Epoch 36 loss: 400.9764709472656; train accuracy: 0.45005590756615726; test accuracy: 0.1109
+2025-11-04 11:49:35 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_36.pth
+2025-11-04 11:49:56 [INFO]  Epoch 37 loss: 396.8162269592285; train accuracy: 0.49897502795378307; test accuracy: 0.1237
+2025-11-04 11:49:56 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_37.pth
+2025-11-04 11:50:16 [INFO]  Epoch 38 loss: 396.19958305358887; train accuracy: 0.49096161013790535; test accuracy: 0.1208
+2025-11-04 11:50:16 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_38.pth
+2025-11-04 11:50:37 [INFO]  Epoch 39 loss: 393.269832611084; train accuracy: 0.43794260156541187; test accuracy: 0.1086
+2025-11-04 11:50:37 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_39.pth
+2025-11-04 11:50:37 [INFO]  Client 3 Learned Sigmas -> L_local: 3.1090, L_align: 0.9701. Effective Lambda: 10.2713
+2025-11-04 11:50:37 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-04 11:50:37 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 11:50:59 [INFO]  Epoch 30 loss: 462.39893341064453; train accuracy: 0.34192471722603374; test accuracy: 0.0962
+2025-11-04 11:50:59 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_30.pth
+2025-11-04 11:51:20 [INFO]  Epoch 31 loss: 463.9248352050781; train accuracy: 0.38318190246615985; test accuracy: 0.1126
+2025-11-04 11:51:20 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_31.pth
+2025-11-04 11:51:41 [INFO]  Epoch 32 loss: 467.5654754638672; train accuracy: 0.34878546263675136; test accuracy: 0.1027
+2025-11-04 11:51:41 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_32.pth
+2025-11-04 11:52:01 [INFO]  Epoch 33 loss: 464.33266830444336; train accuracy: 0.3665863155942889; test accuracy: 0.1097
+2025-11-04 11:52:01 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_33.pth
+2025-11-04 11:52:21 [INFO]  Epoch 34 loss: 456.2404022216797; train accuracy: 0.3334878546263675; test accuracy: 0.1012
+2025-11-04 11:52:22 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_34.pth
+2025-11-04 11:52:44 [INFO]  Epoch 35 loss: 452.2094039916992; train accuracy: 0.37520860374559617; test accuracy: 0.1052
+2025-11-04 11:52:44 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_35.pth
+2025-11-04 11:53:05 [INFO]  Epoch 36 loss: 453.52761459350586; train accuracy: 0.3387724828481365; test accuracy: 0.1023
+2025-11-04 11:53:06 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_36.pth
+2025-11-04 11:53:27 [INFO]  Epoch 37 loss: 451.9414291381836; train accuracy: 0.3117930650843686; test accuracy: 0.0955
+2025-11-04 11:53:28 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_37.pth
+2025-11-04 11:53:49 [INFO]  Epoch 38 loss: 442.33386993408203; train accuracy: 0.316243278323753; test accuracy: 0.0985
+2025-11-04 11:53:50 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_38.pth
+2025-11-04 11:54:11 [INFO]  Epoch 39 loss: 443.03928661346436; train accuracy: 0.4347302058223623; test accuracy: 0.1217
+2025-11-04 11:54:12 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_39.pth
+2025-11-04 11:54:12 [INFO]  Client 4 Learned Sigmas -> L_local: 3.2407, L_align: 0.9617. Effective Lambda: 11.3551
+2025-11-04 11:54:12 [INFO]  Current annealing strategy: cosine. Next round's annealing factor set to: 0.6545
+2025-11-04 11:54:12 [INFO]  Round 3 Finish--------|
+2025-11-04 11:54:12 [INFO]  g_protos_std (global internal): 0.961541
+2025-11-04 11:54:12 [INFO]  inter_client_proto_std (cross-client): 0.014295
+2025-11-04 11:54:17 [INFO]  The test accuracy of OursV11+SimpleFeatureServer: 0.2526
+2025-11-04 11:54:17 [INFO]  Save config to ./checkpoints/CIFAR100_alpha0.05/baselines_OursV11+SimpleFeatureServer_CIFAR10_results.yaml
+2025-11-04 11:54:17 [INFO]  Round 4 starts---| Annealing Factor for this round: 0.6545
+2025-11-04 11:54:17 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-04 11:54:17 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 11:54:35 [INFO]  Epoch 40 loss: 295.08740043640137; train accuracy: 0.47489539748953974; test accuracy: 0.0898
+2025-11-04 11:54:35 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_40.pth
+2025-11-04 11:54:52 [INFO]  Epoch 41 loss: 288.376745223999; train accuracy: 0.5310115678070392; test accuracy: 0.1043
+2025-11-04 11:54:53 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_41.pth
+2025-11-04 11:55:09 [INFO]  Epoch 42 loss: 291.6951370239258; train accuracy: 0.4924932316022643; test accuracy: 0.0987
+2025-11-04 11:55:09 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_42.pth
+2025-11-04 11:55:27 [INFO]  Epoch 43 loss: 285.8420066833496; train accuracy: 0.434408072852572; test accuracy: 0.0881
+2025-11-04 11:55:27 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_43.pth
+2025-11-04 11:55:45 [INFO]  Epoch 44 loss: 287.2489433288574; train accuracy: 0.5204282549840019; test accuracy: 0.105
+2025-11-04 11:55:45 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_44.pth
+2025-11-04 11:56:02 [INFO]  Epoch 45 loss: 286.84092903137207; train accuracy: 0.5355648535564853; test accuracy: 0.1059
+2025-11-04 11:56:02 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_45.pth
+2025-11-04 11:56:19 [INFO]  Epoch 46 loss: 280.71424674987793; train accuracy: 0.5290425793748462; test accuracy: 0.1028
+2025-11-04 11:56:20 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_46.pth
+2025-11-04 11:56:37 [INFO]  Epoch 47 loss: 279.8818664550781; train accuracy: 0.5701452128968743; test accuracy: 0.1116
+2025-11-04 11:56:37 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_47.pth
+2025-11-04 11:56:55 [INFO]  Epoch 48 loss: 289.1202621459961; train accuracy: 0.44326852079744034; test accuracy: 0.0868
+2025-11-04 11:56:55 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_48.pth
+2025-11-04 11:57:12 [INFO]  Epoch 49 loss: 282.20338439941406; train accuracy: 0.5609155796209697; test accuracy: 0.1086
+2025-11-04 11:57:12 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_49.pth
+2025-11-04 11:57:12 [INFO]  Client 0 Learned Sigmas -> L_local: 3.1227, L_align: 0.9732. Effective Lambda: 10.2956
+2025-11-04 11:57:12 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-04 11:57:12 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 11:57:31 [INFO]  Epoch 40 loss: 347.37133407592773; train accuracy: 0.3719279082468596; test accuracy: 0.072
+2025-11-04 11:57:31 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_40.pth
+2025-11-04 11:57:50 [INFO]  Epoch 41 loss: 343.2697162628174; train accuracy: 0.4188967777170945; test accuracy: 0.0842
+2025-11-04 11:57:51 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_41.pth
+2025-11-04 11:58:09 [INFO]  Epoch 42 loss: 350.26083755493164; train accuracy: 0.3799016930638995; test accuracy: 0.0773
+2025-11-04 11:58:09 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_42.pth
+2025-11-04 11:58:28 [INFO]  Epoch 43 loss: 344.51572036743164; train accuracy: 0.38973238667394866; test accuracy: 0.0744
+2025-11-04 11:58:29 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_43.pth
+2025-11-04 11:58:48 [INFO]  Epoch 44 loss: 347.0176887512207; train accuracy: 0.387001638448935; test accuracy: 0.0752
+2025-11-04 11:58:48 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_44.pth
+2025-11-04 11:59:07 [INFO]  Epoch 45 loss: 338.06561851501465; train accuracy: 0.3938831239759694; test accuracy: 0.079
+2025-11-04 11:59:07 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_45.pth
+2025-11-04 11:59:27 [INFO]  Epoch 46 loss: 339.8134765625; train accuracy: 0.3805570726379028; test accuracy: 0.0774
+2025-11-04 11:59:27 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_46.pth
+2025-11-04 11:59:45 [INFO]  Epoch 47 loss: 338.8900947570801; train accuracy: 0.46018569087930095; test accuracy: 0.0928
+2025-11-04 11:59:45 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_47.pth
+2025-11-04 12:00:04 [INFO]  Epoch 48 loss: 333.8065891265869; train accuracy: 0.37433096668487165; test accuracy: 0.0759
+2025-11-04 12:00:05 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_48.pth
+2025-11-04 12:00:22 [INFO]  Epoch 49 loss: 333.715877532959; train accuracy: 0.42785363189513925; test accuracy: 0.0891
+2025-11-04 12:00:23 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_49.pth
+2025-11-04 12:00:23 [INFO]  Client 1 Learned Sigmas -> L_local: 3.2112, L_align: 0.9627. Effective Lambda: 11.1261
+2025-11-04 12:00:23 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-04 12:00:23 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 12:00:44 [INFO]  Epoch 40 loss: 381.0966491699219; train accuracy: 0.5122756896705651; test accuracy: 0.1346
+2025-11-04 12:00:44 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_40.pth
+2025-11-04 12:01:06 [INFO]  Epoch 41 loss: 390.0303897857666; train accuracy: 0.4551379341130256; test accuracy: 0.1181
+2025-11-04 12:01:07 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_41.pth
+2025-11-04 12:01:28 [INFO]  Epoch 42 loss: 386.56321907043457; train accuracy: 0.43201499866083387; test accuracy: 0.1141
+2025-11-04 12:01:29 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_42.pth
+2025-11-04 12:01:51 [INFO]  Epoch 43 loss: 374.7943277359009; train accuracy: 0.45790554414784396; test accuracy: 0.1183
+2025-11-04 12:01:51 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_43.pth
+2025-11-04 12:02:13 [INFO]  Epoch 44 loss: 375.6551971435547; train accuracy: 0.4838853673779127; test accuracy: 0.1243
+2025-11-04 12:02:13 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_44.pth
+2025-11-04 12:02:34 [INFO]  Epoch 45 loss: 387.97375679016113; train accuracy: 0.47942148022497993; test accuracy: 0.1241
+2025-11-04 12:02:35 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_45.pth
+2025-11-04 12:02:57 [INFO]  Epoch 46 loss: 375.2294616699219; train accuracy: 0.5088831354343362; test accuracy: 0.1329
+2025-11-04 12:02:57 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_46.pth
+2025-11-04 12:03:19 [INFO]  Epoch 47 loss: 374.37560749053955; train accuracy: 0.44790643692527454; test accuracy: 0.1207
+2025-11-04 12:03:19 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_47.pth
+2025-11-04 12:03:40 [INFO]  Epoch 48 loss: 371.3156671524048; train accuracy: 0.4304972770288367; test accuracy: 0.1139
+2025-11-04 12:03:40 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_48.pth
+2025-11-04 12:04:03 [INFO]  Epoch 49 loss: 372.7706060409546; train accuracy: 0.45326310150879384; test accuracy: 0.1191
+2025-11-04 12:04:03 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_49.pth
+2025-11-04 12:04:03 [INFO]  Client 2 Learned Sigmas -> L_local: 3.0413, L_align: 0.9605. Effective Lambda: 10.0253
+2025-11-04 12:04:03 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-04 12:04:03 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 12:04:24 [INFO]  Epoch 40 loss: 362.09232902526855; train accuracy: 0.5978382407752516; test accuracy: 0.1428
+2025-11-04 12:04:24 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_40.pth
+2025-11-04 12:04:45 [INFO]  Epoch 41 loss: 356.34166049957275; train accuracy: 0.4722325754752143; test accuracy: 0.1186
+2025-11-04 12:04:45 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_41.pth
+2025-11-04 12:05:06 [INFO]  Epoch 42 loss: 363.02489852905273; train accuracy: 0.5198471859858368; test accuracy: 0.132
+2025-11-04 12:05:07 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_42.pth
+2025-11-04 12:05:28 [INFO]  Epoch 43 loss: 367.19778633117676; train accuracy: 0.3996459187476705; test accuracy: 0.0979
+2025-11-04 12:05:28 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_43.pth
+2025-11-04 12:05:48 [INFO]  Epoch 44 loss: 352.46510314941406; train accuracy: 0.4562989191203876; test accuracy: 0.114
+2025-11-04 12:05:48 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_44.pth
+2025-11-04 12:06:09 [INFO]  Epoch 45 loss: 355.53104972839355; train accuracy: 0.4837868058143869; test accuracy: 0.1188
+2025-11-04 12:06:09 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_45.pth
+2025-11-04 12:06:29 [INFO]  Epoch 46 loss: 356.0827827453613; train accuracy: 0.5023294819232202; test accuracy: 0.129
+2025-11-04 12:06:30 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_46.pth
+2025-11-04 12:06:50 [INFO]  Epoch 47 loss: 356.9691114425659; train accuracy: 0.5046589638464406; test accuracy: 0.1259
+2025-11-04 12:06:50 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_47.pth
+2025-11-04 12:07:11 [INFO]  Epoch 48 loss: 355.3653287887573; train accuracy: 0.5095042862467387; test accuracy: 0.1219
+2025-11-04 12:07:12 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_48.pth
+2025-11-04 12:07:33 [INFO]  Epoch 49 loss: 352.41549587249756; train accuracy: 0.45294446515095044; test accuracy: 0.1154
+2025-11-04 12:07:33 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_49.pth
+2025-11-04 12:07:33 [INFO]  Client 3 Learned Sigmas -> L_local: 3.0250, L_align: 0.9645. Effective Lambda: 9.8359
+2025-11-04 12:07:33 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-04 12:07:33 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 12:07:54 [INFO]  Epoch 40 loss: 410.6409215927124; train accuracy: 0.4559614314852587; test accuracy: 0.1328
+2025-11-04 12:07:54 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_40.pth
+2025-11-04 12:08:15 [INFO]  Epoch 41 loss: 410.39719581604004; train accuracy: 0.3829964769145188; test accuracy: 0.1128
+2025-11-04 12:08:15 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_41.pth
+2025-11-04 12:08:36 [INFO]  Epoch 42 loss: 415.2431888580322; train accuracy: 0.4539217504172075; test accuracy: 0.1277
+2025-11-04 12:08:36 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_42.pth
+2025-11-04 12:08:58 [INFO]  Epoch 43 loss: 410.7543296813965; train accuracy: 0.4762655293899499; test accuracy: 0.1317
+2025-11-04 12:08:58 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_43.pth
+2025-11-04 12:09:21 [INFO]  Epoch 44 loss: 409.0310688018799; train accuracy: 0.29121082885221583; test accuracy: 0.0897
+2025-11-04 12:09:21 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_44.pth
+2025-11-04 12:09:43 [INFO]  Epoch 45 loss: 403.5849380493164; train accuracy: 0.43741887632115706; test accuracy: 0.1229
+2025-11-04 12:09:43 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_45.pth
+2025-11-04 12:10:05 [INFO]  Epoch 46 loss: 405.7905216217041; train accuracy: 0.3777118486927499; test accuracy: 0.1074
+2025-11-04 12:10:05 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_46.pth
+2025-11-04 12:10:26 [INFO]  Epoch 47 loss: 400.9732971191406; train accuracy: 0.42935286482477286; test accuracy: 0.1248
+2025-11-04 12:10:26 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_47.pth
+2025-11-04 12:10:46 [INFO]  Epoch 48 loss: 398.3018732070923; train accuracy: 0.41405525681438904; test accuracy: 0.122
+2025-11-04 12:10:47 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_48.pth
+2025-11-04 12:11:08 [INFO]  Epoch 49 loss: 393.745569229126; train accuracy: 0.47988132764694974; test accuracy: 0.1378
+2025-11-04 12:11:09 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_49.pth
+2025-11-04 12:11:09 [INFO]  Client 4 Learned Sigmas -> L_local: 3.1636, L_align: 0.9554. Effective Lambda: 10.9635
+2025-11-04 12:11:09 [INFO]  Current annealing strategy: cosine. Next round's annealing factor set to: 0.5000
+2025-11-04 12:11:09 [INFO]  Round 4 Finish--------|
+2025-11-04 12:11:09 [INFO]  g_protos_std (global internal): 0.957125
+2025-11-04 12:11:09 [INFO]  inter_client_proto_std (cross-client): 0.015593
+2025-11-04 12:11:14 [INFO]  The test accuracy of OursV11+SimpleFeatureServer: 0.285
+2025-11-04 12:11:14 [INFO]  Save config to ./checkpoints/CIFAR100_alpha0.05/baselines_OursV11+SimpleFeatureServer_CIFAR10_results.yaml
+2025-11-04 12:11:14 [INFO]  Round 5 starts---| Annealing Factor for this round: 0.5000
+2025-11-04 12:11:14 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-04 12:11:14 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 12:11:31 [INFO]  Epoch 50 loss: 252.20050811767578; train accuracy: 0.6326605956190008; test accuracy: 0.1281
+2025-11-04 12:11:31 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_50.pth
+2025-11-04 12:11:46 [INFO]  Epoch 51 loss: 248.3063840866089; train accuracy: 0.506153088850603; test accuracy: 0.1032
+2025-11-04 12:11:47 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_51.pth
+2025-11-04 12:12:03 [INFO]  Epoch 52 loss: 249.79967880249023; train accuracy: 0.569776027565838; test accuracy: 0.1141
+2025-11-04 12:12:04 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_52.pth
+2025-11-04 12:12:20 [INFO]  Epoch 53 loss: 256.78952503204346; train accuracy: 0.5708835835589466; test accuracy: 0.1123
+2025-11-04 12:12:21 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_53.pth
+2025-11-04 12:12:38 [INFO]  Epoch 54 loss: 252.30637741088867; train accuracy: 0.616662564607433; test accuracy: 0.1223
+2025-11-04 12:12:39 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_54.pth
+2025-11-04 12:12:56 [INFO]  Epoch 55 loss: 246.75843811035156; train accuracy: 0.5386413979817869; test accuracy: 0.107
+2025-11-04 12:12:56 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_55.pth
+2025-11-04 12:13:13 [INFO]  Epoch 56 loss: 250.93804454803467; train accuracy: 0.5257199113955205; test accuracy: 0.107
+2025-11-04 12:13:13 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_56.pth
+2025-11-04 12:13:31 [INFO]  Epoch 57 loss: 251.06889057159424; train accuracy: 0.5767905488555255; test accuracy: 0.1217
+2025-11-04 12:13:31 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_57.pth
+2025-11-04 12:13:48 [INFO]  Epoch 58 loss: 251.23518657684326; train accuracy: 0.5391336450898351; test accuracy: 0.1084
+2025-11-04 12:13:49 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_58.pth
+2025-11-04 12:14:05 [INFO]  Epoch 59 loss: 249.63776683807373; train accuracy: 0.5951267536303224; test accuracy: 0.12
+2025-11-04 12:14:06 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_59.pth
+2025-11-04 12:14:06 [INFO]  Client 0 Learned Sigmas -> L_local: 3.0513, L_align: 0.9695. Effective Lambda: 9.9049
+2025-11-04 12:14:06 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-04 12:14:06 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 12:14:24 [INFO]  Epoch 50 loss: 308.4301767349243; train accuracy: 0.42566903331512834; test accuracy: 0.0847
+2025-11-04 12:14:24 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_50.pth
+2025-11-04 12:14:42 [INFO]  Epoch 51 loss: 303.0620975494385; train accuracy: 0.36133260513380666; test accuracy: 0.0736
+2025-11-04 12:14:43 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_51.pth
+2025-11-04 12:15:01 [INFO]  Epoch 52 loss: 304.5026168823242; train accuracy: 0.39202621518296016; test accuracy: 0.0809
+2025-11-04 12:15:02 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_52.pth
+2025-11-04 12:15:20 [INFO]  Epoch 53 loss: 307.60877418518066; train accuracy: 0.472200983069361; test accuracy: 0.0942
+2025-11-04 12:15:21 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_53.pth
+2025-11-04 12:15:39 [INFO]  Epoch 54 loss: 300.7446508407593; train accuracy: 0.42140906608410705; test accuracy: 0.0846
+2025-11-04 12:15:40 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_54.pth
+2025-11-04 12:15:58 [INFO]  Epoch 55 loss: 301.47364234924316; train accuracy: 0.4352812670671764; test accuracy: 0.0875
+2025-11-04 12:15:59 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_55.pth
+2025-11-04 12:16:18 [INFO]  Epoch 56 loss: 300.2366008758545; train accuracy: 0.3874385581649372; test accuracy: 0.0784
+2025-11-04 12:16:18 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_56.pth
+2025-11-04 12:16:38 [INFO]  Epoch 57 loss: 296.65686416625977; train accuracy: 0.4806116876024031; test accuracy: 0.1006
+2025-11-04 12:16:38 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_57.pth
+2025-11-04 12:16:57 [INFO]  Epoch 58 loss: 297.70464038848877; train accuracy: 0.4330966684871655; test accuracy: 0.0884
+2025-11-04 12:16:57 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_58.pth
+2025-11-04 12:17:15 [INFO]  Epoch 59 loss: 302.16706466674805; train accuracy: 0.4309120699071546; test accuracy: 0.0878
+2025-11-04 12:17:16 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_59.pth
+2025-11-04 12:17:16 [INFO]  Client 1 Learned Sigmas -> L_local: 3.1490, L_align: 0.9582. Effective Lambda: 10.7997
+2025-11-04 12:17:16 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-04 12:17:16 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 12:17:39 [INFO]  Epoch 50 loss: 347.361572265625; train accuracy: 0.5420944558521561; test accuracy: 0.1417
+2025-11-04 12:17:39 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_50.pth
+2025-11-04 12:18:00 [INFO]  Epoch 51 loss: 343.4256658554077; train accuracy: 0.46245870904383535; test accuracy: 0.1208
+2025-11-04 12:18:01 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_51.pth
+2025-11-04 12:18:23 [INFO]  Epoch 52 loss: 338.9349060058594; train accuracy: 0.44344254977234177; test accuracy: 0.1203
+2025-11-04 12:18:23 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_52.pth
+2025-11-04 12:18:46 [INFO]  Epoch 53 loss: 342.53386783599854; train accuracy: 0.5166502990804392; test accuracy: 0.1349
+2025-11-04 12:18:46 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_53.pth
+2025-11-04 12:19:08 [INFO]  Epoch 54 loss: 334.546236038208; train accuracy: 0.4736184269261673; test accuracy: 0.1249
+2025-11-04 12:19:09 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_54.pth
+2025-11-04 12:19:29 [INFO]  Epoch 55 loss: 348.72913455963135; train accuracy: 0.48915275421837334; test accuracy: 0.1272
+2025-11-04 12:19:30 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_55.pth
+2025-11-04 12:19:51 [INFO]  Epoch 56 loss: 330.8357744216919; train accuracy: 0.5886081599857156; test accuracy: 0.1479
+2025-11-04 12:19:51 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_56.pth
+2025-11-04 12:20:13 [INFO]  Epoch 57 loss: 334.4528560638428; train accuracy: 0.49647352914918313; test accuracy: 0.1273
+2025-11-04 12:20:13 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_57.pth
+2025-11-04 12:20:35 [INFO]  Epoch 58 loss: 342.2668209075928; train accuracy: 0.45933398803678244; test accuracy: 0.1218
+2025-11-04 12:20:36 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_58.pth
+2025-11-04 12:20:59 [INFO]  Epoch 59 loss: 329.4860553741455; train accuracy: 0.4924560307115436; test accuracy: 0.1323
+2025-11-04 12:20:59 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_59.pth
+2025-11-04 12:20:59 [INFO]  Client 2 Learned Sigmas -> L_local: 2.9920, L_align: 0.9560. Effective Lambda: 9.7945
+2025-11-04 12:20:59 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-04 12:20:59 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 12:21:20 [INFO]  Epoch 50 loss: 317.47056674957275; train accuracy: 0.541464778233321; test accuracy: 0.1376
+2025-11-04 12:21:20 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_50.pth
+2025-11-04 12:21:41 [INFO]  Epoch 51 loss: 325.27435970306396; train accuracy: 0.5303764442787924; test accuracy: 0.1336
+2025-11-04 12:21:42 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_51.pth
+2025-11-04 12:22:03 [INFO]  Epoch 52 loss: 318.4171895980835; train accuracy: 0.5301900857249348; test accuracy: 0.1362
+2025-11-04 12:22:04 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_52.pth
+2025-11-04 12:22:25 [INFO]  Epoch 53 loss: 307.9031677246094; train accuracy: 0.5948565039135296; test accuracy: 0.1486
+2025-11-04 12:22:26 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_53.pth
+2025-11-04 12:22:47 [INFO]  Epoch 54 loss: 312.77649784088135; train accuracy: 0.5360603801714499; test accuracy: 0.1388
+2025-11-04 12:22:47 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_54.pth
+2025-11-04 12:23:08 [INFO]  Epoch 55 loss: 314.02310371398926; train accuracy: 0.45154677599701826; test accuracy: 0.1176
+2025-11-04 12:23:08 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_55.pth
+2025-11-04 12:23:29 [INFO]  Epoch 56 loss: 301.8644218444824; train accuracy: 0.5614051434960865; test accuracy: 0.1418
+2025-11-04 12:23:29 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_56.pth
+2025-11-04 12:23:50 [INFO]  Epoch 57 loss: 320.40988540649414; train accuracy: 0.45136041744316063; test accuracy: 0.116
+2025-11-04 12:23:50 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_57.pth
+2025-11-04 12:24:10 [INFO]  Epoch 58 loss: 304.88481616973877; train accuracy: 0.5352217666790906; test accuracy: 0.1299
+2025-11-04 12:24:11 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_58.pth
+2025-11-04 12:24:31 [INFO]  Epoch 59 loss: 306.6970682144165; train accuracy: 0.5076407007081625; test accuracy: 0.1266
+2025-11-04 12:24:31 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_59.pth
+2025-11-04 12:24:31 [INFO]  Client 3 Learned Sigmas -> L_local: 2.9445, L_align: 0.9601. Effective Lambda: 9.4048
+2025-11-04 12:24:31 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-04 12:24:31 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 12:24:52 [INFO]  Epoch 50 loss: 356.00882625579834; train accuracy: 0.516224735768589; test accuracy: 0.1422
+2025-11-04 12:24:52 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_50.pth
+2025-11-04 12:25:13 [INFO]  Epoch 51 loss: 360.0196113586426; train accuracy: 0.40274429816428703; test accuracy: 0.1178
+2025-11-04 12:25:14 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_51.pth
+2025-11-04 12:25:35 [INFO]  Epoch 52 loss: 358.7736940383911; train accuracy: 0.46680882625625814; test accuracy: 0.1318
+2025-11-04 12:25:35 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_52.pth
+2025-11-04 12:25:57 [INFO]  Epoch 53 loss: 350.526873588562; train accuracy: 0.505284628221769; test accuracy: 0.1421
+2025-11-04 12:25:57 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_53.pth
+2025-11-04 12:26:17 [INFO]  Epoch 54 loss: 345.2557201385498; train accuracy: 0.4157240867791582; test accuracy: 0.1165
+2025-11-04 12:26:17 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_54.pth
+2025-11-04 12:26:38 [INFO]  Epoch 55 loss: 359.268515586853; train accuracy: 0.4169293528648248; test accuracy: 0.1212
+2025-11-04 12:26:38 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_55.pth
+2025-11-04 12:26:59 [INFO]  Epoch 56 loss: 349.74670124053955; train accuracy: 0.35119599480808456; test accuracy: 0.1111
+2025-11-04 12:26:59 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_56.pth
+2025-11-04 12:27:21 [INFO]  Epoch 57 loss: 346.86118602752686; train accuracy: 0.4031151492675691; test accuracy: 0.1187
+2025-11-04 12:27:21 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_57.pth
+2025-11-04 12:27:42 [INFO]  Epoch 58 loss: 355.7218494415283; train accuracy: 0.45151121824587426; test accuracy: 0.1286
+2025-11-04 12:27:43 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_58.pth
+2025-11-04 12:28:03 [INFO]  Epoch 59 loss: 345.8365774154663; train accuracy: 0.4387168551826442; test accuracy: 0.1273
+2025-11-04 12:28:04 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_59.pth
+2025-11-04 12:28:04 [INFO]  Client 4 Learned Sigmas -> L_local: 3.0846, L_align: 0.9507. Effective Lambda: 10.5279
+2025-11-04 12:28:04 [INFO]  Current annealing strategy: cosine. Next round's annealing factor set to: 0.3455
+2025-11-04 12:28:04 [INFO]  Round 5 Finish--------|
+2025-11-04 12:28:04 [INFO]  g_protos_std (global internal): 0.954036
+2025-11-04 12:28:04 [INFO]  inter_client_proto_std (cross-client): 0.016658
+2025-11-04 12:28:09 [INFO]  The test accuracy of OursV11+SimpleFeatureServer: 0.307
+2025-11-04 12:28:09 [INFO]  Save config to ./checkpoints/CIFAR100_alpha0.05/baselines_OursV11+SimpleFeatureServer_CIFAR10_results.yaml
+2025-11-04 12:28:09 [INFO]  Round 6 starts---| Annealing Factor for this round: 0.3455
+2025-11-04 12:28:09 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-04 12:28:09 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 12:28:25 [INFO]  Epoch 60 loss: 219.63496780395508; train accuracy: 0.5913118385429486; test accuracy: 0.1189
+2025-11-04 12:28:26 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_60.pth
+2025-11-04 12:28:43 [INFO]  Epoch 61 loss: 221.36183261871338; train accuracy: 0.5958651242923948; test accuracy: 0.1178
+2025-11-04 12:28:43 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_61.pth
+2025-11-04 12:28:59 [INFO]  Epoch 62 loss: 222.086443901062; train accuracy: 0.6199852325867585; test accuracy: 0.1258
+2025-11-04 12:28:59 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_62.pth
+2025-11-04 12:29:16 [INFO]  Epoch 63 loss: 226.4076633453369; train accuracy: 0.4975387644597588; test accuracy: 0.0973
+2025-11-04 12:29:17 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_63.pth
+2025-11-04 12:29:34 [INFO]  Epoch 64 loss: 220.22014045715332; train accuracy: 0.5714988924440069; test accuracy: 0.1134
+2025-11-04 12:29:34 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_64.pth
+2025-11-04 12:29:51 [INFO]  Epoch 65 loss: 220.04216957092285; train accuracy: 0.59020428254984; test accuracy: 0.1208
+2025-11-04 12:29:51 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_65.pth
+2025-11-04 12:30:07 [INFO]  Epoch 66 loss: 217.2996482849121; train accuracy: 0.563376815161211; test accuracy: 0.1142
+2025-11-04 12:30:07 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_66.pth
+2025-11-04 12:30:24 [INFO]  Epoch 67 loss: 215.13362216949463; train accuracy: 0.5461481663795226; test accuracy: 0.1109
+2025-11-04 12:30:24 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_67.pth
+2025-11-04 12:30:40 [INFO]  Epoch 68 loss: 209.4938449859619; train accuracy: 0.5285503322667979; test accuracy: 0.1101
+2025-11-04 12:30:41 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_68.pth
+2025-11-04 12:30:57 [INFO]  Epoch 69 loss: 217.19019508361816; train accuracy: 0.5908195914349004; test accuracy: 0.117
+2025-11-04 12:30:57 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_69.pth
+2025-11-04 12:30:57 [INFO]  Client 0 Learned Sigmas -> L_local: 2.9796, L_align: 0.9667. Effective Lambda: 9.4992
+2025-11-04 12:30:57 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-04 12:30:57 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 12:31:16 [INFO]  Epoch 60 loss: 269.73619079589844; train accuracy: 0.5023484434735117; test accuracy: 0.0986
+2025-11-04 12:31:17 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_60.pth
+2025-11-04 12:31:35 [INFO]  Epoch 61 loss: 272.26795291900635; train accuracy: 0.45352266521026763; test accuracy: 0.0927
+2025-11-04 12:31:35 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_61.pth
+2025-11-04 12:31:54 [INFO]  Epoch 62 loss: 270.6638345718384; train accuracy: 0.47263790278536316; test accuracy: 0.0992
+2025-11-04 12:31:54 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_62.pth
+2025-11-04 12:32:13 [INFO]  Epoch 63 loss: 266.1044683456421; train accuracy: 0.45974877116329876; test accuracy: 0.0902
+2025-11-04 12:32:13 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_63.pth
+2025-11-04 12:32:31 [INFO]  Epoch 64 loss: 266.0434226989746; train accuracy: 0.47067176406335337; test accuracy: 0.0966
+2025-11-04 12:32:31 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_64.pth
+2025-11-04 12:32:50 [INFO]  Epoch 65 loss: 268.1772756576538; train accuracy: 0.4916439104314582; test accuracy: 0.0999
+2025-11-04 12:32:50 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_65.pth
+2025-11-04 12:33:10 [INFO]  Epoch 66 loss: 265.7957124710083; train accuracy: 0.5487711632987439; test accuracy: 0.1131
+2025-11-04 12:33:10 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_66.pth
+2025-11-04 12:33:28 [INFO]  Epoch 67 loss: 260.2636528015137; train accuracy: 0.44598580010922995; test accuracy: 0.0895
+2025-11-04 12:33:28 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_67.pth
+2025-11-04 12:33:47 [INFO]  Epoch 68 loss: 261.088134765625; train accuracy: 0.41638448935008193; test accuracy: 0.083
+2025-11-04 12:33:48 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_68.pth
+2025-11-04 12:34:06 [INFO]  Epoch 69 loss: 262.7188472747803; train accuracy: 0.4691425450573457; test accuracy: 0.0962
+2025-11-04 12:34:06 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_69.pth
+2025-11-04 12:34:06 [INFO]  Client 1 Learned Sigmas -> L_local: 3.0906, L_align: 0.9549. Effective Lambda: 10.4754
+2025-11-04 12:34:06 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-04 12:34:06 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 12:34:28 [INFO]  Epoch 60 loss: 303.3299684524536; train accuracy: 0.5400410677618069; test accuracy: 0.1354
+2025-11-04 12:34:28 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_60.pth
+2025-11-04 12:34:52 [INFO]  Epoch 61 loss: 299.96275424957275; train accuracy: 0.49442014105883403; test accuracy: 0.1298
+2025-11-04 12:34:52 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_61.pth
+2025-11-04 12:35:13 [INFO]  Epoch 62 loss: 307.6302423477173; train accuracy: 0.4578162664047853; test accuracy: 0.1191
+2025-11-04 12:35:13 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_62.pth
+2025-11-04 12:35:35 [INFO]  Epoch 63 loss: 301.16126251220703; train accuracy: 0.463083653245246; test accuracy: 0.1247
+2025-11-04 12:35:35 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_63.pth
+2025-11-04 12:35:58 [INFO]  Epoch 64 loss: 300.558705329895; train accuracy: 0.5615570038389429; test accuracy: 0.1437
+2025-11-04 12:35:58 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_64.pth
+2025-11-04 12:36:20 [INFO]  Epoch 65 loss: 290.2792100906372; train accuracy: 0.6104812070350861; test accuracy: 0.1485
+2025-11-04 12:36:21 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_65.pth
+2025-11-04 12:36:42 [INFO]  Epoch 66 loss: 288.85267639160156; train accuracy: 0.5124542451566825; test accuracy: 0.1335
+2025-11-04 12:36:42 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_66.pth
+2025-11-04 12:37:03 [INFO]  Epoch 67 loss: 284.3002462387085; train accuracy: 0.5447727881439157; test accuracy: 0.1364
+2025-11-04 12:37:03 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_67.pth
+2025-11-04 12:37:25 [INFO]  Epoch 68 loss: 298.9731197357178; train accuracy: 0.5203999642889028; test accuracy: 0.1362
+2025-11-04 12:37:26 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_68.pth
+2025-11-04 12:37:46 [INFO]  Epoch 69 loss: 284.48281383514404; train accuracy: 0.5854834389786626; test accuracy: 0.15
+2025-11-04 12:37:47 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_69.pth
+2025-11-04 12:37:47 [INFO]  Client 2 Learned Sigmas -> L_local: 2.9247, L_align: 0.9527. Effective Lambda: 9.4237
+2025-11-04 12:37:47 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-04 12:37:47 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 12:38:07 [INFO]  Epoch 60 loss: 282.8740186691284; train accuracy: 0.5410920611256057; test accuracy: 0.1351
+2025-11-04 12:38:08 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_60.pth
+2025-11-04 12:38:27 [INFO]  Epoch 61 loss: 276.31562328338623; train accuracy: 0.5442601565411852; test accuracy: 0.1365
+2025-11-04 12:38:27 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_61.pth
+2025-11-04 12:38:48 [INFO]  Epoch 62 loss: 278.89185333251953; train accuracy: 0.6130264629146478; test accuracy: 0.1514
+2025-11-04 12:38:49 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_62.pth
+2025-11-04 12:39:10 [INFO]  Epoch 63 loss: 269.1650199890137; train accuracy: 0.49021617592247485; test accuracy: 0.1254
+2025-11-04 12:39:10 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_63.pth
+2025-11-04 12:39:31 [INFO]  Epoch 64 loss: 270.9314184188843; train accuracy: 0.5416511367871786; test accuracy: 0.1365
+2025-11-04 12:39:31 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_64.pth
+2025-11-04 12:39:52 [INFO]  Epoch 65 loss: 268.99804496765137; train accuracy: 0.5601006336190831; test accuracy: 0.1361
+2025-11-04 12:39:52 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_65.pth
+2025-11-04 12:40:13 [INFO]  Epoch 66 loss: 277.72191619873047; train accuracy: 0.5642937010808796; test accuracy: 0.1357
+2025-11-04 12:40:13 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_66.pth
+2025-11-04 12:40:35 [INFO]  Epoch 67 loss: 264.1482820510864; train accuracy: 0.623742079761461; test accuracy: 0.1528
+2025-11-04 12:40:35 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_67.pth
+2025-11-04 12:40:55 [INFO]  Epoch 68 loss: 269.987585067749; train accuracy: 0.5978382407752516; test accuracy: 0.1491
+2025-11-04 12:40:56 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_68.pth
+2025-11-04 12:41:16 [INFO]  Epoch 69 loss: 264.86279296875; train accuracy: 0.5382035035408125; test accuracy: 0.1344
+2025-11-04 12:41:17 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_69.pth
+2025-11-04 12:41:17 [INFO]  Client 3 Learned Sigmas -> L_local: 2.8706, L_align: 0.9570. Effective Lambda: 8.9979
+2025-11-04 12:41:17 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-04 12:41:17 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 12:41:38 [INFO]  Epoch 60 loss: 308.72075366973877; train accuracy: 0.4841461153346931; test accuracy: 0.1347
+2025-11-04 12:41:39 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_60.pth
+2025-11-04 12:42:00 [INFO]  Epoch 61 loss: 311.09541511535645; train accuracy: 0.4285184498423883; test accuracy: 0.1229
+2025-11-04 12:42:00 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_61.pth
+2025-11-04 12:42:21 [INFO]  Epoch 62 loss: 312.7901210784912; train accuracy: 0.540515483033562; test accuracy: 0.148
+2025-11-04 12:42:22 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_62.pth
+2025-11-04 12:42:43 [INFO]  Epoch 63 loss: 316.1584758758545; train accuracy: 0.3869831262748007; test accuracy: 0.1176
+2025-11-04 12:42:44 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_63.pth
+2025-11-04 12:43:04 [INFO]  Epoch 64 loss: 307.72459411621094; train accuracy: 0.4118301501946968; test accuracy: 0.1206
+2025-11-04 12:43:04 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_64.pth
+2025-11-04 12:43:25 [INFO]  Epoch 65 loss: 305.09470081329346; train accuracy: 0.4882254774707955; test accuracy: 0.1417
+2025-11-04 12:43:25 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_65.pth
+2025-11-04 12:43:45 [INFO]  Epoch 66 loss: 303.2989835739136; train accuracy: 0.45216020767661785; test accuracy: 0.1277
+2025-11-04 12:43:46 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_66.pth
+2025-11-04 12:44:06 [INFO]  Epoch 67 loss: 304.7440719604492; train accuracy: 0.44808084554051547; test accuracy: 0.132
+2025-11-04 12:44:07 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_67.pth
+2025-11-04 12:44:27 [INFO]  Epoch 68 loss: 303.7914113998413; train accuracy: 0.48090116818097534; test accuracy: 0.1367
+2025-11-04 12:44:27 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_68.pth
+2025-11-04 12:44:47 [INFO]  Epoch 69 loss: 309.4097671508789; train accuracy: 0.5004635638791025; test accuracy: 0.1363
+2025-11-04 12:44:47 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_69.pth
+2025-11-04 12:44:47 [INFO]  Client 4 Learned Sigmas -> L_local: 3.0124, L_align: 0.9473. Effective Lambda: 10.1127
+2025-11-04 12:44:47 [INFO]  Current annealing strategy: cosine. Next round's annealing factor set to: 0.2061
+2025-11-04 12:44:47 [INFO]  Round 6 Finish--------|
+2025-11-04 12:44:47 [INFO]  g_protos_std (global internal): 0.952094
+2025-11-04 12:44:47 [INFO]  inter_client_proto_std (cross-client): 0.017538
+2025-11-04 12:44:53 [INFO]  The test accuracy of OursV11+SimpleFeatureServer: 0.3459
+2025-11-04 12:44:53 [INFO]  Save config to ./checkpoints/CIFAR100_alpha0.05/baselines_OursV11+SimpleFeatureServer_CIFAR10_results.yaml
+2025-11-04 12:44:53 [INFO]  Round 7 starts---| Annealing Factor for this round: 0.2061
+2025-11-04 12:44:53 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-04 12:44:53 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 12:45:10 [INFO]  Epoch 70 loss: 188.83229064941406; train accuracy: 0.6094019197637214; test accuracy: 0.124
+2025-11-04 12:45:10 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_70.pth
+2025-11-04 12:45:27 [INFO]  Epoch 71 loss: 188.51368236541748; train accuracy: 0.655550086143244; test accuracy: 0.1316
+2025-11-04 12:45:28 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_71.pth
+2025-11-04 12:45:44 [INFO]  Epoch 72 loss: 187.7793664932251; train accuracy: 0.672286487816884; test accuracy: 0.1327
+2025-11-04 12:45:44 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_72.pth
+2025-11-04 12:45:59 [INFO]  Epoch 73 loss: 193.58591556549072; train accuracy: 0.6144474526212158; test accuracy: 0.1257
+2025-11-04 12:45:59 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_73.pth
+2025-11-04 12:46:16 [INFO]  Epoch 74 loss: 192.87731266021729; train accuracy: 0.6346295840511937; test accuracy: 0.1295
+2025-11-04 12:46:16 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_74.pth
+2025-11-04 12:46:33 [INFO]  Epoch 75 loss: 193.3846616744995; train accuracy: 0.5543933054393305; test accuracy: 0.1155
+2025-11-04 12:46:34 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_75.pth
+2025-11-04 12:46:50 [INFO]  Epoch 76 loss: 198.91357421875; train accuracy: 0.6438592173270982; test accuracy: 0.1285
+2025-11-04 12:46:50 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_76.pth
+2025-11-04 12:47:07 [INFO]  Epoch 77 loss: 186.94291400909424; train accuracy: 0.6165395028304209; test accuracy: 0.1224
+2025-11-04 12:47:08 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_77.pth
+2025-11-04 12:47:24 [INFO]  Epoch 78 loss: 192.57057189941406; train accuracy: 0.5551316761014029; test accuracy: 0.1107
+2025-11-04 12:47:24 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_78.pth
+2025-11-04 12:47:41 [INFO]  Epoch 79 loss: 193.3448143005371; train accuracy: 0.5591927147428009; test accuracy: 0.1162
+2025-11-04 12:47:41 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_79.pth
+2025-11-04 12:47:41 [INFO]  Client 0 Learned Sigmas -> L_local: 2.9180, L_align: 0.9648. Effective Lambda: 9.1466
+2025-11-04 12:47:41 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-04 12:47:41 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 12:47:59 [INFO]  Epoch 70 loss: 235.86397457122803; train accuracy: 0.514800655379574; test accuracy: 0.1007
+2025-11-04 12:48:00 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_70.pth
+2025-11-04 12:48:18 [INFO]  Epoch 71 loss: 238.5178451538086; train accuracy: 0.44391043145821957; test accuracy: 0.0928
+2025-11-04 12:48:19 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_71.pth
+2025-11-04 12:48:37 [INFO]  Epoch 72 loss: 230.13348865509033; train accuracy: 0.4872747132714364; test accuracy: 0.0997
+2025-11-04 12:48:38 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_72.pth
+2025-11-04 12:48:55 [INFO]  Epoch 73 loss: 234.87752437591553; train accuracy: 0.4608410704533042; test accuracy: 0.0956
+2025-11-04 12:48:55 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_73.pth
+2025-11-04 12:49:13 [INFO]  Epoch 74 loss: 235.65951919555664; train accuracy: 0.4663025669033315; test accuracy: 0.0951
+2025-11-04 12:49:14 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_74.pth
+2025-11-04 12:49:32 [INFO]  Epoch 75 loss: 236.11593055725098; train accuracy: 0.5034407427635172; test accuracy: 0.1022
+2025-11-04 12:49:32 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_75.pth
+2025-11-04 12:49:50 [INFO]  Epoch 76 loss: 232.36709308624268; train accuracy: 0.4762424904423812; test accuracy: 0.0973
+2025-11-04 12:49:50 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_76.pth
+2025-11-04 12:50:09 [INFO]  Epoch 77 loss: 229.2534475326538; train accuracy: 0.5446204259967231; test accuracy: 0.1145
+2025-11-04 12:50:09 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_77.pth
+2025-11-04 12:50:28 [INFO]  Epoch 78 loss: 231.76133823394775; train accuracy: 0.506608410704533; test accuracy: 0.1043
+2025-11-04 12:50:28 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_78.pth
+2025-11-04 12:50:47 [INFO]  Epoch 79 loss: 235.9543685913086; train accuracy: 0.5296559257236483; test accuracy: 0.1094
+2025-11-04 12:50:47 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_79.pth
+2025-11-04 12:50:47 [INFO]  Client 1 Learned Sigmas -> L_local: 3.0369, L_align: 0.9527. Effective Lambda: 10.1610
+2025-11-04 12:50:47 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-04 12:50:47 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 12:51:08 [INFO]  Epoch 70 loss: 257.76062870025635; train accuracy: 0.5311132934559414; test accuracy: 0.1355
+2025-11-04 12:51:09 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_70.pth
+2025-11-04 12:51:29 [INFO]  Epoch 71 loss: 257.7191562652588; train accuracy: 0.5577180608874208; test accuracy: 0.1419
+2025-11-04 12:51:29 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_71.pth
+2025-11-04 12:51:51 [INFO]  Epoch 72 loss: 266.69495582580566; train accuracy: 0.5328095705740559; test accuracy: 0.1416
+2025-11-04 12:51:51 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_72.pth
+2025-11-04 12:52:11 [INFO]  Epoch 73 loss: 265.5087728500366; train accuracy: 0.4307651102580127; test accuracy: 0.1161
+2025-11-04 12:52:12 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_73.pth
+2025-11-04 12:52:34 [INFO]  Epoch 74 loss: 260.97784423828125; train accuracy: 0.5774484421033836; test accuracy: 0.1476
+2025-11-04 12:52:34 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_74.pth
+2025-11-04 12:52:56 [INFO]  Epoch 75 loss: 261.887433052063; train accuracy: 0.5399517900187484; test accuracy: 0.1394
+2025-11-04 12:52:56 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_75.pth
+2025-11-04 12:53:17 [INFO]  Epoch 76 loss: 255.08860397338867; train accuracy: 0.48959914293366663; test accuracy: 0.1294
+2025-11-04 12:53:17 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_76.pth
+2025-11-04 12:53:37 [INFO]  Epoch 77 loss: 256.467698097229; train accuracy: 0.4637978751897152; test accuracy: 0.124
+2025-11-04 12:53:38 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_77.pth
+2025-11-04 12:53:59 [INFO]  Epoch 78 loss: 261.54541397094727; train accuracy: 0.5479867868940274; test accuracy: 0.1395
+2025-11-04 12:53:59 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_78.pth
+2025-11-04 12:54:21 [INFO]  Epoch 79 loss: 259.3674421310425; train accuracy: 0.47415409338451925; test accuracy: 0.1266
+2025-11-04 12:54:21 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_79.pth
+2025-11-04 12:54:21 [INFO]  Client 2 Learned Sigmas -> L_local: 2.8674, L_align: 0.9505. Effective Lambda: 9.1001
+2025-11-04 12:54:21 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-04 12:54:21 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 12:54:43 [INFO]  Epoch 70 loss: 237.9857816696167; train accuracy: 0.58777487886694; test accuracy: 0.1418
+2025-11-04 12:54:43 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_70.pth
+2025-11-04 12:55:04 [INFO]  Epoch 71 loss: 241.11025428771973; train accuracy: 0.5887066716362281; test accuracy: 0.1448
+2025-11-04 12:55:05 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_71.pth
+2025-11-04 12:55:26 [INFO]  Epoch 72 loss: 236.90670013427734; train accuracy: 0.5806932538203503; test accuracy: 0.1404
+2025-11-04 12:55:27 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_72.pth
+2025-11-04 12:55:48 [INFO]  Epoch 73 loss: 241.599289894104; train accuracy: 0.5725866567275438; test accuracy: 0.1457
+2025-11-04 12:55:48 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_73.pth
+2025-11-04 12:56:09 [INFO]  Epoch 74 loss: 241.71319007873535; train accuracy: 0.5874021617592248; test accuracy: 0.1469
+2025-11-04 12:56:09 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_74.pth
+2025-11-04 12:56:31 [INFO]  Epoch 75 loss: 237.36440086364746; train accuracy: 0.583302273574357; test accuracy: 0.1438
+2025-11-04 12:56:31 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_75.pth
+2025-11-04 12:56:53 [INFO]  Epoch 76 loss: 238.74639511108398; train accuracy: 0.5702571748043235; test accuracy: 0.1404
+2025-11-04 12:56:53 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_76.pth
+2025-11-04 12:57:15 [INFO]  Epoch 77 loss: 232.15618228912354; train accuracy: 0.5969996272828922; test accuracy: 0.1472
+2025-11-04 12:57:15 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_77.pth
+2025-11-04 12:57:36 [INFO]  Epoch 78 loss: 242.20934104919434; train accuracy: 0.5632687290346627; test accuracy: 0.1427
+2025-11-04 12:57:36 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_78.pth
+2025-11-04 12:57:57 [INFO]  Epoch 79 loss: 233.10064220428467; train accuracy: 0.5680208721580321; test accuracy: 0.1437
+2025-11-04 12:57:57 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_79.pth
+2025-11-04 12:57:57 [INFO]  Client 3 Learned Sigmas -> L_local: 2.8057, L_align: 0.9549. Effective Lambda: 8.6331
+2025-11-04 12:57:57 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-04 12:57:57 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 12:58:19 [INFO]  Epoch 70 loss: 272.29852390289307; train accuracy: 0.4862785091785648; test accuracy: 0.1398
+2025-11-04 12:58:19 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_70.pth
+2025-11-04 12:58:40 [INFO]  Epoch 71 loss: 281.8761405944824; train accuracy: 0.4689412201001298; test accuracy: 0.1324
+2025-11-04 12:58:40 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_71.pth
+2025-11-04 12:59:01 [INFO]  Epoch 72 loss: 282.9376049041748; train accuracy: 0.5068607454107176; test accuracy: 0.1406
+2025-11-04 12:59:01 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_72.pth
+2025-11-04 12:59:22 [INFO]  Epoch 73 loss: 275.97642707824707; train accuracy: 0.4949007973298721; test accuracy: 0.1404
+2025-11-04 12:59:23 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_73.pth
+2025-11-04 12:59:43 [INFO]  Epoch 74 loss: 268.9493885040283; train accuracy: 0.545800111255331; test accuracy: 0.1531
+2025-11-04 12:59:43 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_74.pth
+2025-11-04 13:00:05 [INFO]  Epoch 75 loss: 270.17229652404785; train accuracy: 0.5893751158909698; test accuracy: 0.1608
+2025-11-04 13:00:05 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_75.pth
+2025-11-04 13:00:27 [INFO]  Epoch 76 loss: 273.8098621368408; train accuracy: 0.46133877248284816; test accuracy: 0.133
+2025-11-04 13:00:28 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_76.pth
+2025-11-04 13:00:49 [INFO]  Epoch 77 loss: 264.4850368499756; train accuracy: 0.5671240496940478; test accuracy: 0.1585
+2025-11-04 13:00:49 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_77.pth
+2025-11-04 13:01:11 [INFO]  Epoch 78 loss: 285.1066484451294; train accuracy: 0.5200259595772297; test accuracy: 0.1442
+2025-11-04 13:01:11 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_78.pth
+2025-11-04 13:01:32 [INFO]  Epoch 79 loss: 275.3252782821655; train accuracy: 0.5071388837381792; test accuracy: 0.1351
+2025-11-04 13:01:33 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_79.pth
+2025-11-04 13:01:33 [INFO]  Client 4 Learned Sigmas -> L_local: 2.9661, L_align: 0.9450. Effective Lambda: 9.8520
+2025-11-04 13:01:33 [INFO]  Current annealing strategy: cosine. Next round's annealing factor set to: 0.0955
+2025-11-04 13:01:33 [INFO]  Round 7 Finish--------|
+2025-11-04 13:01:33 [INFO]  g_protos_std (global internal): 0.951070
+2025-11-04 13:01:33 [INFO]  inter_client_proto_std (cross-client): 0.018290
+2025-11-04 13:01:38 [INFO]  The test accuracy of OursV11+SimpleFeatureServer: 0.35
+2025-11-04 13:01:38 [INFO]  Save config to ./checkpoints/CIFAR100_alpha0.05/baselines_OursV11+SimpleFeatureServer_CIFAR10_results.yaml
+2025-11-04 13:01:38 [INFO]  Round 8 starts---| Annealing Factor for this round: 0.0955
+2025-11-04 13:01:38 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-04 13:01:38 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 13:01:55 [INFO]  Epoch 80 loss: 172.61646270751953; train accuracy: 0.6165395028304209; test accuracy: 0.1258
+2025-11-04 13:01:55 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_80.pth
+2025-11-04 13:02:11 [INFO]  Epoch 81 loss: 171.95429229736328; train accuracy: 0.6207236032488309; test accuracy: 0.1287
+2025-11-04 13:02:11 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_81.pth
+2025-11-04 13:02:27 [INFO]  Epoch 82 loss: 172.89780521392822; train accuracy: 0.6715481171548117; test accuracy: 0.1375
+2025-11-04 13:02:27 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_82.pth
+2025-11-04 13:02:44 [INFO]  Epoch 83 loss: 177.35120964050293; train accuracy: 0.616662564607433; test accuracy: 0.1216
+2025-11-04 13:02:44 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_83.pth
+2025-11-04 13:03:00 [INFO]  Epoch 84 loss: 175.07484436035156; train accuracy: 0.6223234063499877; test accuracy: 0.1298
+2025-11-04 13:03:01 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_84.pth
+2025-11-04 13:03:17 [INFO]  Epoch 85 loss: 172.09053421020508; train accuracy: 0.6581343834604971; test accuracy: 0.133
+2025-11-04 13:03:17 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_85.pth
+2025-11-04 13:03:34 [INFO]  Epoch 86 loss: 169.8509693145752; train accuracy: 0.6405365493477726; test accuracy: 0.1293
+2025-11-04 13:03:35 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_86.pth
+2025-11-04 13:03:52 [INFO]  Epoch 87 loss: 168.27983283996582; train accuracy: 0.6363524489293625; test accuracy: 0.1284
+2025-11-04 13:03:52 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_87.pth
+2025-11-04 13:04:08 [INFO]  Epoch 88 loss: 168.61587619781494; train accuracy: 0.6697021904996309; test accuracy: 0.1367
+2025-11-04 13:04:09 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_88.pth
+2025-11-04 13:04:26 [INFO]  Epoch 89 loss: 165.78432178497314; train accuracy: 0.655673147920256; test accuracy: 0.1358
+2025-11-04 13:04:26 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_89.pth
+2025-11-04 13:04:26 [INFO]  Client 0 Learned Sigmas -> L_local: 2.8633, L_align: 0.9636. Effective Lambda: 8.8298
+2025-11-04 13:04:26 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-04 13:04:26 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 13:04:44 [INFO]  Epoch 80 loss: 206.92626190185547; train accuracy: 0.5541234298197706; test accuracy: 0.1102
+2025-11-04 13:04:44 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_80.pth
+2025-11-04 13:05:02 [INFO]  Epoch 81 loss: 206.2005796432495; train accuracy: 0.5098853085745494; test accuracy: 0.1012
+2025-11-04 13:05:02 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_81.pth
+2025-11-04 13:05:20 [INFO]  Epoch 82 loss: 209.93470668792725; train accuracy: 0.5190606226105953; test accuracy: 0.1095
+2025-11-04 13:05:21 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_82.pth
+2025-11-04 13:05:39 [INFO]  Epoch 83 loss: 206.48540019989014; train accuracy: 0.537192790824686; test accuracy: 0.1113
+2025-11-04 13:05:40 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_83.pth
+2025-11-04 13:05:57 [INFO]  Epoch 84 loss: 215.18363285064697; train accuracy: 0.47558711086837796; test accuracy: 0.0985
+2025-11-04 13:05:57 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_84.pth
+2025-11-04 13:06:14 [INFO]  Epoch 85 loss: 204.71056842803955; train accuracy: 0.4954669579464773; test accuracy: 0.1
+2025-11-04 13:06:15 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_85.pth
+2025-11-04 13:06:32 [INFO]  Epoch 86 loss: 203.91241645812988; train accuracy: 0.45953031130529765; test accuracy: 0.0956
+2025-11-04 13:06:33 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_86.pth
+2025-11-04 13:06:51 [INFO]  Epoch 87 loss: 202.75425338745117; train accuracy: 0.5587110868377936; test accuracy: 0.1165
+2025-11-04 13:06:51 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_87.pth
+2025-11-04 13:07:09 [INFO]  Epoch 88 loss: 205.32442378997803; train accuracy: 0.5262697979246314; test accuracy: 0.1085
+2025-11-04 13:07:09 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_88.pth
+2025-11-04 13:07:27 [INFO]  Epoch 89 loss: 203.43030643463135; train accuracy: 0.5409066084107045; test accuracy: 0.1121
+2025-11-04 13:07:27 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_89.pth
+2025-11-04 13:07:27 [INFO]  Client 1 Learned Sigmas -> L_local: 2.9740, L_align: 0.9513. Effective Lambda: 9.7726
+2025-11-04 13:07:27 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-04 13:07:27 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 13:07:48 [INFO]  Epoch 80 loss: 236.10341262817383; train accuracy: 0.4985269172395322; test accuracy: 0.128
+2025-11-04 13:07:49 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_80.pth
+2025-11-04 13:08:10 [INFO]  Epoch 81 loss: 237.15731143951416; train accuracy: 0.5143290777609142; test accuracy: 0.1346
+2025-11-04 13:08:10 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_81.pth
+2025-11-04 13:08:32 [INFO]  Epoch 82 loss: 230.8289098739624; train accuracy: 0.5085260244621016; test accuracy: 0.135
+2025-11-04 13:08:32 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_82.pth
+2025-11-04 13:08:54 [INFO]  Epoch 83 loss: 225.37841892242432; train accuracy: 0.5797696634229087; test accuracy: 0.1464
+2025-11-04 13:08:54 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_83.pth
+2025-11-04 13:09:16 [INFO]  Epoch 84 loss: 236.195574760437; train accuracy: 0.5305776269975895; test accuracy: 0.1379
+2025-11-04 13:09:16 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_84.pth
+2025-11-04 13:09:38 [INFO]  Epoch 85 loss: 228.41844177246094; train accuracy: 0.49299169716989555; test accuracy: 0.1315
+2025-11-04 13:09:38 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_85.pth
+2025-11-04 13:09:59 [INFO]  Epoch 86 loss: 217.7232370376587; train accuracy: 0.5745915543255067; test accuracy: 0.1467
+2025-11-04 13:10:00 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_86.pth
+2025-11-04 13:10:20 [INFO]  Epoch 87 loss: 226.55512142181396; train accuracy: 0.52656012855995; test accuracy: 0.1369
+2025-11-04 13:10:20 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_87.pth
+2025-11-04 13:10:42 [INFO]  Epoch 88 loss: 228.36884593963623; train accuracy: 0.4861173109543791; test accuracy: 0.1279
+2025-11-04 13:10:43 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_88.pth
+2025-11-04 13:11:04 [INFO]  Epoch 89 loss: 234.40757656097412; train accuracy: 0.5400410677618069; test accuracy: 0.1348
+2025-11-04 13:11:04 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_89.pth
+2025-11-04 13:11:04 [INFO]  Client 2 Learned Sigmas -> L_local: 2.8001, L_align: 0.9492. Effective Lambda: 8.7019
+2025-11-04 13:11:04 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-04 13:11:04 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 13:11:25 [INFO]  Epoch 80 loss: 216.51899528503418; train accuracy: 0.6053857622064853; test accuracy: 0.1474
+2025-11-04 13:11:25 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_80.pth
+2025-11-04 13:11:47 [INFO]  Epoch 81 loss: 226.2214870452881; train accuracy: 0.5475214312336937; test accuracy: 0.1352
+2025-11-04 13:11:47 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_81.pth
+2025-11-04 13:12:10 [INFO]  Epoch 82 loss: 216.4943151473999; train accuracy: 0.6140514349608647; test accuracy: 0.153
+2025-11-04 13:12:10 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_82.pth
+2025-11-04 13:12:33 [INFO]  Epoch 83 loss: 210.65836238861084; train accuracy: 0.6067834513604174; test accuracy: 0.1499
+2025-11-04 13:12:33 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_83.pth
+2025-11-04 13:12:55 [INFO]  Epoch 84 loss: 216.42381763458252; train accuracy: 0.5519008572493478; test accuracy: 0.1396
+2025-11-04 13:12:55 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_84.pth
+2025-11-04 13:13:18 [INFO]  Epoch 85 loss: 222.4367799758911; train accuracy: 0.6013790532985464; test accuracy: 0.1473
+2025-11-04 13:13:19 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_85.pth
+2025-11-04 13:13:40 [INFO]  Epoch 86 loss: 212.59241008758545; train accuracy: 0.5707230711889676; test accuracy: 0.1439
+2025-11-04 13:13:41 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_86.pth
+2025-11-04 13:14:05 [INFO]  Epoch 87 loss: 217.3019323348999; train accuracy: 0.6203876257920239; test accuracy: 0.1498
+2025-11-04 13:14:05 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_87.pth
+2025-11-04 13:14:27 [INFO]  Epoch 88 loss: 208.8114185333252; train accuracy: 0.6379053298546403; test accuracy: 0.1555
+2025-11-04 13:14:28 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_88.pth
+2025-11-04 13:14:49 [INFO]  Epoch 89 loss: 215.94953060150146; train accuracy: 0.6379985091315692; test accuracy: 0.1551
+2025-11-04 13:14:49 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_89.pth
+2025-11-04 13:14:49 [INFO]  Client 3 Learned Sigmas -> L_local: 2.7626, L_align: 0.9537. Effective Lambda: 8.3919
+2025-11-04 13:14:49 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-04 13:14:49 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 13:15:09 [INFO]  Epoch 80 loss: 231.1078109741211; train accuracy: 0.5806601149638421; test accuracy: 0.1558
+2025-11-04 13:15:10 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_80.pth
+2025-11-04 13:15:30 [INFO]  Epoch 81 loss: 253.66519594192505; train accuracy: 0.5322640459855368; test accuracy: 0.1481
+2025-11-04 13:15:31 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_81.pth
+2025-11-04 13:15:52 [INFO]  Epoch 82 loss: 235.48908233642578; train accuracy: 0.5542369738549973; test accuracy: 0.1476
+2025-11-04 13:15:53 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_82.pth
+2025-11-04 13:16:14 [INFO]  Epoch 83 loss: 242.84373998641968; train accuracy: 0.4174856295197478; test accuracy: 0.1211
+2025-11-04 13:16:14 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_83.pth
+2025-11-04 13:16:35 [INFO]  Epoch 84 loss: 242.58169269561768; train accuracy: 0.4923048396068978; test accuracy: 0.1358
+2025-11-04 13:16:35 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_84.pth
+2025-11-04 13:16:55 [INFO]  Epoch 85 loss: 238.69185829162598; train accuracy: 0.4878546263675134; test accuracy: 0.1398
+2025-11-04 13:16:56 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_85.pth
+2025-11-04 13:17:17 [INFO]  Epoch 86 loss: 246.1812572479248; train accuracy: 0.5152048952345634; test accuracy: 0.1435
+2025-11-04 13:17:17 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_86.pth
+2025-11-04 13:17:39 [INFO]  Epoch 87 loss: 234.25011253356934; train accuracy: 0.5668459113665864; test accuracy: 0.1558
+2025-11-04 13:17:39 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_87.pth
+2025-11-04 13:18:00 [INFO]  Epoch 88 loss: 230.19641876220703; train accuracy: 0.6219173002039681; test accuracy: 0.1663
+2025-11-04 13:18:01 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_88.pth
+2025-11-04 13:18:20 [INFO]  Epoch 89 loss: 230.55544662475586; train accuracy: 0.4833117003523085; test accuracy: 0.1374
+2025-11-04 13:18:20 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_89.pth
+2025-11-04 13:18:20 [INFO]  Client 4 Learned Sigmas -> L_local: 2.8882, L_align: 0.9436. Effective Lambda: 9.3682
+2025-11-04 13:18:20 [INFO]  Current annealing strategy: cosine. Next round's annealing factor set to: 0.0245
+2025-11-04 13:18:20 [INFO]  Round 8 Finish--------|
+2025-11-04 13:18:20 [INFO]  g_protos_std (global internal): 0.950686
+2025-11-04 13:18:20 [INFO]  inter_client_proto_std (cross-client): 0.018924
+2025-11-04 13:18:26 [INFO]  The test accuracy of OursV11+SimpleFeatureServer: 0.3857
+2025-11-04 13:18:26 [INFO]  Save config to ./checkpoints/CIFAR100_alpha0.05/baselines_OursV11+SimpleFeatureServer_CIFAR10_results.yaml
+2025-11-04 13:18:26 [INFO]  Round 9 starts---| Annealing Factor for this round: 0.0245
+2025-11-04 13:18:26 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-04 13:18:26 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 13:18:43 [INFO]  Epoch 90 loss: 160.75585460662842; train accuracy: 0.7002215111986217; test accuracy: 0.1418
+2025-11-04 13:18:43 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_90.pth
+2025-11-04 13:18:59 [INFO]  Epoch 91 loss: 156.36382961273193; train accuracy: 0.6981294609894166; test accuracy: 0.139
+2025-11-04 13:18:59 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_91.pth
+2025-11-04 13:19:15 [INFO]  Epoch 92 loss: 160.90546035766602; train accuracy: 0.6282303716465666; test accuracy: 0.1256
+2025-11-04 13:19:16 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_92.pth
+2025-11-04 13:19:33 [INFO]  Epoch 93 loss: 164.47494983673096; train accuracy: 0.6811469357617524; test accuracy: 0.1348
+2025-11-04 13:19:33 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_93.pth
+2025-11-04 13:19:50 [INFO]  Epoch 94 loss: 158.79258060455322; train accuracy: 0.6450898350972188; test accuracy: 0.1298
+2025-11-04 13:19:50 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_94.pth
+2025-11-04 13:20:06 [INFO]  Epoch 95 loss: 151.24181365966797; train accuracy: 0.6674870785134137; test accuracy: 0.1382
+2025-11-04 13:20:07 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_95.pth
+2025-11-04 13:20:24 [INFO]  Epoch 96 loss: 158.14796352386475; train accuracy: 0.6036180162441546; test accuracy: 0.1262
+2025-11-04 13:20:24 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_96.pth
+2025-11-04 13:20:40 [INFO]  Epoch 97 loss: 149.3258228302002; train accuracy: 0.6460743293133153; test accuracy: 0.1301
+2025-11-04 13:20:41 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_97.pth
+2025-11-04 13:20:57 [INFO]  Epoch 98 loss: 153.58994960784912; train accuracy: 0.645459020428255; test accuracy: 0.13
+2025-11-04 13:20:58 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_98.pth
+2025-11-04 13:21:14 [INFO]  Epoch 99 loss: 157.57406997680664; train accuracy: 0.6409057346788087; test accuracy: 0.1274
+2025-11-04 13:21:14 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_0/epoch_99.pth
+2025-11-04 13:21:14 [INFO]  Client 0 Learned Sigmas -> L_local: 2.8088, L_align: 0.9629. Effective Lambda: 8.5095
+2025-11-04 13:21:14 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-04 13:21:14 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 13:21:33 [INFO]  Epoch 90 loss: 197.2047243118286; train accuracy: 0.6058984161660295; test accuracy: 0.1209
+2025-11-04 13:21:33 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_90.pth
+2025-11-04 13:21:52 [INFO]  Epoch 91 loss: 193.1665096282959; train accuracy: 0.5191698525395958; test accuracy: 0.1044
+2025-11-04 13:21:52 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_91.pth
+2025-11-04 13:22:09 [INFO]  Epoch 92 loss: 192.26268577575684; train accuracy: 0.5664664117968323; test accuracy: 0.1132
+2025-11-04 13:22:09 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_92.pth
+2025-11-04 13:22:28 [INFO]  Epoch 93 loss: 193.98275089263916; train accuracy: 0.5520480611687603; test accuracy: 0.1171
+2025-11-04 13:22:28 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_93.pth
+2025-11-04 13:22:46 [INFO]  Epoch 94 loss: 192.39513874053955; train accuracy: 0.5206990715456035; test accuracy: 0.1081
+2025-11-04 13:22:47 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_94.pth
+2025-11-04 13:23:06 [INFO]  Epoch 95 loss: 189.07485961914062; train accuracy: 0.5285636264336429; test accuracy: 0.1084
+2025-11-04 13:23:06 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_95.pth
+2025-11-04 13:23:25 [INFO]  Epoch 96 loss: 192.75423526763916; train accuracy: 0.5471327143637357; test accuracy: 0.114
+2025-11-04 13:23:25 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_96.pth
+2025-11-04 13:23:44 [INFO]  Epoch 97 loss: 183.91529655456543; train accuracy: 0.5272528672856363; test accuracy: 0.1063
+2025-11-04 13:23:44 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_97.pth
+2025-11-04 13:24:01 [INFO]  Epoch 98 loss: 192.23343467712402; train accuracy: 0.5781540141998908; test accuracy: 0.1167
+2025-11-04 13:24:01 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_98.pth
+2025-11-04 13:24:20 [INFO]  Epoch 99 loss: 181.75003242492676; train accuracy: 0.4961223375204806; test accuracy: 0.1018
+2025-11-04 13:24:21 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_1/epoch_99.pth
+2025-11-04 13:24:21 [INFO]  Client 1 Learned Sigmas -> L_local: 2.9256, L_align: 0.9506. Effective Lambda: 9.4714
+2025-11-04 13:24:21 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-04 13:24:21 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 13:24:43 [INFO]  Epoch 90 loss: 209.47235870361328; train accuracy: 0.5699491116864566; test accuracy: 0.1427
+2025-11-04 13:24:43 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_90.pth
+2025-11-04 13:25:04 [INFO]  Epoch 91 loss: 218.73856353759766; train accuracy: 0.5793232747076154; test accuracy: 0.1469
+2025-11-04 13:25:05 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_91.pth
+2025-11-04 13:25:26 [INFO]  Epoch 92 loss: 212.7937355041504; train accuracy: 0.5287920721364164; test accuracy: 0.1359
+2025-11-04 13:25:26 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_92.pth
+2025-11-04 13:25:48 [INFO]  Epoch 93 loss: 211.69839477539062; train accuracy: 0.6184269261673065; test accuracy: 0.155
+2025-11-04 13:25:48 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_93.pth
+2025-11-04 13:26:09 [INFO]  Epoch 94 loss: 214.6524534225464; train accuracy: 0.5477189536648513; test accuracy: 0.1411
+2025-11-04 13:26:09 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_94.pth
+2025-11-04 13:26:30 [INFO]  Epoch 95 loss: 227.27120780944824; train accuracy: 0.45844121060619586; test accuracy: 0.1194
+2025-11-04 13:26:31 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_95.pth
+2025-11-04 13:26:52 [INFO]  Epoch 96 loss: 207.95763063430786; train accuracy: 0.4459423265779841; test accuracy: 0.1208
+2025-11-04 13:26:52 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_96.pth
+2025-11-04 13:27:14 [INFO]  Epoch 97 loss: 213.66189575195312; train accuracy: 0.5572716721721275; test accuracy: 0.1441
+2025-11-04 13:27:14 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_97.pth
+2025-11-04 13:27:35 [INFO]  Epoch 98 loss: 213.97045135498047; train accuracy: 0.5916436032497099; test accuracy: 0.1519
+2025-11-04 13:27:36 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_98.pth
+2025-11-04 13:27:57 [INFO]  Epoch 99 loss: 206.8192014694214; train accuracy: 0.4513882689045621; test accuracy: 0.1193
+2025-11-04 13:27:57 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_2/epoch_99.pth
+2025-11-04 13:27:57 [INFO]  Client 2 Learned Sigmas -> L_local: 2.7599, L_align: 0.9486. Effective Lambda: 8.4651
+2025-11-04 13:27:57 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-04 13:27:57 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 13:28:19 [INFO]  Epoch 90 loss: 205.67957496643066; train accuracy: 0.5997018263138278; test accuracy: 0.1463
+2025-11-04 13:28:19 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_90.pth
+2025-11-04 13:28:41 [INFO]  Epoch 91 loss: 189.19414567947388; train accuracy: 0.6442415206857994; test accuracy: 0.1526
+2025-11-04 13:28:42 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_91.pth
+2025-11-04 13:29:04 [INFO]  Epoch 92 loss: 197.0463891029358; train accuracy: 0.6333395452851286; test accuracy: 0.1523
+2025-11-04 13:29:04 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_92.pth
+2025-11-04 13:29:26 [INFO]  Epoch 93 loss: 194.81659412384033; train accuracy: 0.6875698844576966; test accuracy: 0.1642
+2025-11-04 13:29:26 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_93.pth
+2025-11-04 13:29:47 [INFO]  Epoch 94 loss: 204.71221351623535; train accuracy: 0.5953224002981737; test accuracy: 0.1429
+2025-11-04 13:29:47 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_94.pth
+2025-11-04 13:30:07 [INFO]  Epoch 95 loss: 201.32109451293945; train accuracy: 0.5907566157286619; test accuracy: 0.1396
+2025-11-04 13:30:07 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_95.pth
+2025-11-04 13:30:29 [INFO]  Epoch 96 loss: 198.4166774749756; train accuracy: 0.579388743943347; test accuracy: 0.1379
+2025-11-04 13:30:30 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_96.pth
+2025-11-04 13:30:51 [INFO]  Epoch 97 loss: 193.51865434646606; train accuracy: 0.5525531121878494; test accuracy: 0.1361
+2025-11-04 13:30:51 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_97.pth
+2025-11-04 13:31:13 [INFO]  Epoch 98 loss: 206.2522201538086; train accuracy: 0.6738725307491614; test accuracy: 0.1622
+2025-11-04 13:31:13 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_98.pth
+2025-11-04 13:31:34 [INFO]  Epoch 99 loss: 197.1971492767334; train accuracy: 0.5594483786805814; test accuracy: 0.1394
+2025-11-04 13:31:35 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_3/epoch_99.pth
+2025-11-04 13:31:35 [INFO]  Client 3 Learned Sigmas -> L_local: 2.7203, L_align: 0.9530. Effective Lambda: 8.1476
+2025-11-04 13:31:35 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-04 13:31:35 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-04 13:31:56 [INFO]  Epoch 90 loss: 211.65605068206787; train accuracy: 0.5519191544594845; test accuracy: 0.1487
+2025-11-04 13:31:56 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_90.pth
+2025-11-04 13:32:18 [INFO]  Epoch 91 loss: 229.47342824935913; train accuracy: 0.4859076580752828; test accuracy: 0.1379
+2025-11-04 13:32:19 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_91.pth
+2025-11-04 13:32:39 [INFO]  Epoch 92 loss: 218.13107538223267; train accuracy: 0.5750973484146116; test accuracy: 0.1537
+2025-11-04 13:32:39 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_92.pth
+2025-11-04 13:33:00 [INFO]  Epoch 93 loss: 220.08526802062988; train accuracy: 0.5447802707213054; test accuracy: 0.1486
+2025-11-04 13:33:00 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_93.pth
+2025-11-04 13:33:20 [INFO]  Epoch 94 loss: 227.7125368118286; train accuracy: 0.5266085666604858; test accuracy: 0.1489
+2025-11-04 13:33:21 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_94.pth
+2025-11-04 13:33:41 [INFO]  Epoch 95 loss: 233.63828372955322; train accuracy: 0.5790839977748934; test accuracy: 0.1528
+2025-11-04 13:33:41 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_95.pth
+2025-11-04 13:34:01 [INFO]  Epoch 96 loss: 223.29378938674927; train accuracy: 0.5448729834971259; test accuracy: 0.1496
+2025-11-04 13:34:02 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_96.pth
+2025-11-04 13:34:22 [INFO]  Epoch 97 loss: 211.47753810882568; train accuracy: 0.4829408492490265; test accuracy: 0.1323
+2025-11-04 13:34:22 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_97.pth
+2025-11-04 13:34:42 [INFO]  Epoch 98 loss: 220.61639976501465; train accuracy: 0.5778787316892268; test accuracy: 0.1547
+2025-11-04 13:34:42 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_98.pth
+2025-11-04 13:35:02 [INFO]  Epoch 99 loss: 225.3530592918396; train accuracy: 0.5279065455219729; test accuracy: 0.1472
+2025-11-04 13:35:02 [INFO]  Save the model in ./checkpoints/CIFAR100_alpha0.05/local_models/client_4/epoch_99.pth
+2025-11-04 13:35:02 [INFO]  Client 4 Learned Sigmas -> L_local: 2.8421, L_align: 0.9429. Effective Lambda: 9.0844
+2025-11-04 13:35:02 [INFO]  Current annealing strategy: cosine. Next round's annealing factor set to: 0.0000
+2025-11-04 13:35:02 [INFO]  Round 9 Finish--------|
+2025-11-04 13:35:02 [INFO]  g_protos_std (global internal): 0.950668
+2025-11-04 13:35:02 [INFO]  inter_client_proto_std (cross-client): 0.019486
+2025-11-04 13:35:08 [INFO]  The test accuracy of OursV11+SimpleFeatureServer: 0.3876
+2025-11-04 13:35:08 [INFO]  Save config to ./checkpoints/CIFAR100_alpha0.05/baselines_OursV11+SimpleFeatureServer_CIFAR10_results.yaml
