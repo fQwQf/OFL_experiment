@@ -1,0 +1,1310 @@
+2025-11-06 19:31:49 [INFO]  Load config from ./configs/SVHN_alpha0.05.yaml
+2025-11-06 19:31:49 [INFO]  config: {'exp_name': 'SVHN_alpha0.05', 'dataset': {'data_name': 'SVHN', 'root_path': '~/datasets/', 'train_batch_size': 256, 'test_batch_size': 256, 'channels': 3, 'num_classes': 10, 'image_size': 32, 'aux_data_name': 'SVHN', 'aux_root_path': '~/datasets/', 'aux_split': 'test'}, 'distribution': {'type': 'dirichlet', 'label_num_per_client': 2, 'alpha': 0.05}, 'client': {'num_clients': 5}, 'server': {'num_rounds': 50, 'frac_clients': 1.0, 'lr': 0.05, 'local_epochs': 1, 'optimizer': 'sgd', 'momentum': 0.9, 'weight_decay': 0.0001, 'loss_name': 'ce', 'model_name': 'resnet18', 'aggregated_by_datasize': True, 'lr_decay_per_round': 0.998}, 'device': 'cuda:0', 'checkpoint': {'save_path': './checkpoints/', 'save_freq': 5, 'result_file': 'SVHN_results.yaml'}, 'pretrain': {'lr': 0.01, 'epoch': 70, 'model_path': './pretrain/', 'momentum': 0.9, 'weight_decay': 0.0001, 'model_name': 'resnet18', 'model_file_name': 'resnet18-f37072fd.pth'}, 'DBCD': {'alpha_l_pa': 1, 'alpha_l_pb': 1, 'alpha_l_pc': 0.0, 'Beta_alpha': 0.2, 'unsup_method': 'infonce', 'contrastive_temperature': 0.5, 'encoder_epoch': 40, 'projector_epoch': 10, 'use_pretrain': False, 'aug_batch_size': 512, 'encoder_lr': 0.03, 'cls_optimizer': 'sgd', 'cls_lr': 0.05, 'supcon_temp': 0.07, 'super_gr': 100, 'aux_with_public': True}, 'etf': {'loss_name': 'ce'}, 'visualization': {'interval': 5, 'save_path': 'visualization/resnet18', 'vis_size': 16}, 'resume': True, 'resume_best': False, 'seed': 114514, 'lambda_align_initial': 10.0, 'v9_config': {'use_adaptive_lambda': True, 'lambda_min': 0.1, 'lambda_max': 20.0, 'use_server_optimization': False, 'server_lr': 0.001, 'server_epochs': 20, 'gamma_etf_reg': 0.1}, 'v10_config': {'use_uncertainty_weighting': True, 'sigma_lr': 0.005}}
+2025-11-06 19:31:53 [INFO]  Dataset SVHN loaded
+2025-11-06 19:31:53 [INFO]  Dataset index dict loaded from preprocessed_data/SVHN.pt
+2025-11-06 19:31:53 [INFO]  Data distribution generated correctly using the corrected dirichlet function.
+2025-11-06 19:31:53 [INFO]  Total assigned samples: 73257
+2025-11-06 19:31:53 [INFO]  OneshotOursV9 with a lot of things combined
+2025-11-06 19:31:53 [INFO]  V9 Config: Adaptive Lambda (Plan A): True, Server Optimization (Plan B): False
+2025-11-06 19:31:54 [INFO]  Initialized ETF fixed anchors with shape: torch.Size([10, 512])
+2025-11-06 19:31:54 [INFO]  {'use_adaptive_lambda': True, 'lambda_min': 0.1, 'lambda_max': 20.0, 'use_server_optimization': False, 'server_lr': 0.001, 'server_epochs': 20, 'gamma_etf_reg': 0.1}
+2025-11-06 19:31:54 [INFO]  Round 0 starts--------|
+2025-11-06 19:31:54 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 19:31:55 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 19:32:08 [INFO]  Epoch 0 loss: 204.84611129760742; train accuracy: 0.18680297397769516; test accuracy: 0.07045175169022741
+2025-11-06 19:32:08 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_0.pth
+2025-11-06 19:32:08 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 19:32:15 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 19:32:45 [INFO]  Epoch 0 loss: 409.5208535194397; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-06 19:32:46 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_0.pth
+2025-11-06 19:32:46 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 19:32:53 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 19:33:25 [INFO]  Epoch 0 loss: 728.3466329574585; train accuracy: 0.6243722798794777; test accuracy: 0.09695759065765212
+2025-11-06 19:33:25 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_0.pth
+2025-11-06 19:33:25 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 19:33:42 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 19:34:45 [INFO]  Epoch 0 loss: 2537.2832412719727; train accuracy: 0.3503521126760563; test accuracy: 0.16790872771972956
+2025-11-06 19:34:45 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_0.pth
+2025-11-06 19:34:45 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 19:34:56 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 19:35:46 [INFO]  Epoch 0 loss: 1464.5058708190918; train accuracy: 0.4893317937647472; test accuracy: 0.19214812538414258
+2025-11-06 19:35:46 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_0.pth
+2025-11-06 19:35:46 [INFO]  Round 0 Finish--------|
+2025-11-06 19:35:46 [INFO]  Model variance: mean: 0.0007347245118580759, sum: 8209.7763671875
+2025-11-06 19:35:46 [INFO]  g_protos_std (global internal): 0.983185
+2025-11-06 19:35:46 [INFO]  inter_client_proto_std (cross-client): 0.021624
+2025-11-06 19:35:46 [INFO]  g_protos_std (global internal): 0.983185
+2025-11-06 19:35:46 [INFO]  inter_client_proto_std (cross-client): 0.021624
+2025-11-06 19:35:46 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 19:36:08 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.26993700061462816
+2025-11-06 19:36:08 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 19:36:08 [INFO]  Round 1 starts--------|
+2025-11-06 19:36:08 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 19:36:08 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 19:36:22 [INFO]  Epoch 1 loss: 181.80204391479492; train accuracy: 0.25882899628252787; test accuracy: 0.06645666871542717
+2025-11-06 19:36:22 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 19:36:25 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 19:36:54 [INFO]  Epoch 1 loss: 328.35192584991455; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-06 19:36:54 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 19:36:57 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 19:37:30 [INFO]  Epoch 1 loss: 691.6889715194702; train accuracy: 0.6176765985939069; test accuracy: 0.09184849416103258
+2025-11-06 19:37:30 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 19:37:38 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 19:38:40 [INFO]  Epoch 1 loss: 2216.26194190979; train accuracy: 0.5672887323943662; test accuracy: 0.23989704978488013
+2025-11-06 19:38:40 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 19:38:46 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 19:39:36 [INFO]  Epoch 1 loss: 1313.9972896575928; train accuracy: 0.5722174807972288; test accuracy: 0.18392747387830363
+2025-11-06 19:39:36 [INFO]  Round 1 Finish--------|
+2025-11-06 19:39:36 [INFO]  Model variance: mean: 0.0009334981441497803, sum: 10430.86328125
+2025-11-06 19:39:36 [INFO]  g_protos_std (global internal): 0.955887
+2025-11-06 19:39:36 [INFO]  inter_client_proto_std (cross-client): 0.044052
+2025-11-06 19:39:36 [INFO]  g_protos_std (global internal): 0.955887
+2025-11-06 19:39:36 [INFO]  inter_client_proto_std (cross-client): 0.044052
+2025-11-06 19:39:36 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 19:39:57 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.32728948985863554
+2025-11-06 19:39:57 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 19:39:57 [INFO]  Round 2 starts--------|
+2025-11-06 19:39:57 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 19:39:58 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 19:40:13 [INFO]  Epoch 2 loss: 171.73274993896484; train accuracy: 0.38243494423791824; test accuracy: 0.0634219422249539
+2025-11-06 19:40:13 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 19:40:16 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 19:40:47 [INFO]  Epoch 2 loss: 326.27793073654175; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-06 19:40:47 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 19:40:50 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 19:41:23 [INFO]  Epoch 2 loss: 661.347373008728; train accuracy: 0.7168563776364245; test accuracy: 0.11213122311001844
+2025-11-06 19:41:23 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 19:41:30 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 19:42:35 [INFO]  Epoch 2 loss: 1968.3832206726074; train accuracy: 0.6272183098591549; test accuracy: 0.2809234787953288
+2025-11-06 19:42:35 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 19:42:41 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 19:43:28 [INFO]  Epoch 2 loss: 1232.267915725708; train accuracy: 0.4702043275264823; test accuracy: 0.12142747387830363
+2025-11-06 19:43:28 [INFO]  Round 2 Finish--------|
+2025-11-06 19:43:28 [INFO]  Model variance: mean: 0.0011187116615474224, sum: 12500.4296875
+2025-11-06 19:43:28 [INFO]  g_protos_std (global internal): 0.927248
+2025-11-06 19:43:28 [INFO]  inter_client_proto_std (cross-client): 0.065931
+2025-11-06 19:43:28 [INFO]  g_protos_std (global internal): 0.927248
+2025-11-06 19:43:28 [INFO]  inter_client_proto_std (cross-client): 0.065931
+2025-11-06 19:43:28 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 19:43:49 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.3759987707437001
+2025-11-06 19:43:49 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 19:43:49 [INFO]  Round 3 starts--------|
+2025-11-06 19:43:49 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 19:43:50 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 19:44:03 [INFO]  Epoch 3 loss: 166.6349220275879; train accuracy: 0.33271375464684017; test accuracy: 0.06972188076213891
+2025-11-06 19:44:03 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 19:44:06 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 19:44:38 [INFO]  Epoch 3 loss: 324.4315595626831; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-06 19:44:38 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 19:44:41 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 19:45:14 [INFO]  Epoch 3 loss: 641.8439073562622; train accuracy: 0.7064780716437897; test accuracy: 0.1097879532882606
+2025-11-06 19:45:14 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 19:45:21 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 19:46:26 [INFO]  Epoch 3 loss: 1751.6303539276123; train accuracy: 0.7907394366197183; test accuracy: 0.38809926244622006
+2025-11-06 19:46:26 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 19:46:31 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 19:47:18 [INFO]  Epoch 3 loss: 1152.8845586776733; train accuracy: 0.6097193634218585; test accuracy: 0.18089274738783037
+2025-11-06 19:47:18 [INFO]  Round 3 Finish--------|
+2025-11-06 19:47:18 [INFO]  Model variance: mean: 0.0012909278739243746, sum: 14424.7666015625
+2025-11-06 19:47:18 [INFO]  g_protos_std (global internal): 0.899750
+2025-11-06 19:47:18 [INFO]  inter_client_proto_std (cross-client): 0.086040
+2025-11-06 19:47:18 [INFO]  g_protos_std (global internal): 0.899750
+2025-11-06 19:47:18 [INFO]  inter_client_proto_std (cross-client): 0.086040
+2025-11-06 19:47:18 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 19:47:39 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.41287645974185616
+2025-11-06 19:47:39 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 19:47:39 [INFO]  Round 4 starts--------|
+2025-11-06 19:47:39 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 19:47:39 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 19:47:53 [INFO]  Epoch 4 loss: 163.92784690856934; train accuracy: 0.36988847583643125; test accuracy: 0.06879993853718501
+2025-11-06 19:47:53 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 19:47:56 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 19:48:28 [INFO]  Epoch 4 loss: 322.973828792572; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-06 19:48:28 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 19:48:31 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 19:49:05 [INFO]  Epoch 4 loss: 614.7393398284912; train accuracy: 0.6401908269166388; test accuracy: 0.10617701290719114
+2025-11-06 19:49:05 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 19:49:12 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 19:50:18 [INFO]  Epoch 4 loss: 1587.4651718139648; train accuracy: 0.8685211267605634; test accuracy: 0.4236708666256915
+2025-11-06 19:50:18 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 19:50:24 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 19:51:11 [INFO]  Epoch 4 loss: 1077.1221923828125; train accuracy: 0.6944123700989006; test accuracy: 0.26271511985248924
+2025-11-06 19:51:11 [INFO]  Round 4 Finish--------|
+2025-11-06 19:51:11 [INFO]  Model variance: mean: 0.0014536724193021655, sum: 16243.265625
+2025-11-06 19:51:11 [INFO]  g_protos_std (global internal): 0.872773
+2025-11-06 19:51:11 [INFO]  inter_client_proto_std (cross-client): 0.106511
+2025-11-06 19:51:11 [INFO]  g_protos_std (global internal): 0.872773
+2025-11-06 19:51:11 [INFO]  inter_client_proto_std (cross-client): 0.106511
+2025-11-06 19:51:11 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 19:51:32 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4296634910878918
+2025-11-06 19:51:32 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 19:51:32 [INFO]  Round 5 starts--------|
+2025-11-06 19:51:32 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 19:51:33 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 19:51:47 [INFO]  Epoch 5 loss: 162.01384162902832; train accuracy: 0.3131970260223048; test accuracy: 0.0732559926244622
+2025-11-06 19:51:48 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_5.pth
+2025-11-06 19:51:48 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 19:51:50 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 19:52:20 [INFO]  Epoch 5 loss: 321.21606254577637; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-06 19:52:20 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_5.pth
+2025-11-06 19:52:20 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 19:52:23 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 19:52:54 [INFO]  Epoch 5 loss: 599.8668899536133; train accuracy: 0.8101774355540676; test accuracy: 0.13345113706207745
+2025-11-06 19:52:55 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_5.pth
+2025-11-06 19:52:55 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 19:53:02 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 19:54:06 [INFO]  Epoch 5 loss: 1452.5909147262573; train accuracy: 0.8648591549295774; test accuracy: 0.43319760295021514
+2025-11-06 19:54:06 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_5.pth
+2025-11-06 19:54:06 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 19:54:11 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 19:55:01 [INFO]  Epoch 5 loss: 1004.6286725997925; train accuracy: 0.7227772478538079; test accuracy: 0.23989704978488013
+2025-11-06 19:55:01 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_5.pth
+2025-11-06 19:55:01 [INFO]  Round 5 Finish--------|
+2025-11-06 19:55:01 [INFO]  Model variance: mean: 0.001597562455572188, sum: 17851.0859375
+2025-11-06 19:55:01 [INFO]  g_protos_std (global internal): 0.847958
+2025-11-06 19:55:01 [INFO]  inter_client_proto_std (cross-client): 0.125426
+2025-11-06 19:55:01 [INFO]  g_protos_std (global internal): 0.847958
+2025-11-06 19:55:01 [INFO]  inter_client_proto_std (cross-client): 0.125426
+2025-11-06 19:55:01 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 19:55:22 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.43588660110633065
+2025-11-06 19:55:22 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 19:55:22 [INFO]  Round 6 starts--------|
+2025-11-06 19:55:22 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 19:55:23 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 19:55:38 [INFO]  Epoch 6 loss: 159.39403915405273; train accuracy: 0.3489776951672863; test accuracy: 0.06311462814996927
+2025-11-06 19:55:38 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 19:55:41 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 19:56:11 [INFO]  Epoch 6 loss: 319.59258699417114; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-06 19:56:11 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 19:56:14 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 19:56:49 [INFO]  Epoch 6 loss: 574.0381708145142; train accuracy: 0.8634917977904252; test accuracy: 0.14881684081130916
+2025-11-06 19:56:49 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 19:56:57 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 19:58:01 [INFO]  Epoch 6 loss: 1324.0686416625977; train accuracy: 0.8873239436619719; test accuracy: 0.44560540872771975
+2025-11-06 19:58:01 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 19:58:06 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 19:58:54 [INFO]  Epoch 6 loss: 945.577733039856; train accuracy: 0.7483809428184146; test accuracy: 0.29820989551321453
+2025-11-06 19:58:54 [INFO]  Round 6 Finish--------|
+2025-11-06 19:58:54 [INFO]  Model variance: mean: 0.0017351015703752637, sum: 19387.94140625
+2025-11-06 19:58:54 [INFO]  g_protos_std (global internal): 0.823914
+2025-11-06 19:58:54 [INFO]  inter_client_proto_std (cross-client): 0.143411
+2025-11-06 19:58:54 [INFO]  g_protos_std (global internal): 0.823914
+2025-11-06 19:58:54 [INFO]  inter_client_proto_std (cross-client): 0.143411
+2025-11-06 19:58:54 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 19:59:14 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.44572065150583895
+2025-11-06 19:59:14 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 19:59:14 [INFO]  Round 7 starts--------|
+2025-11-06 19:59:14 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 19:59:15 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 19:59:29 [INFO]  Epoch 7 loss: 157.2038059234619; train accuracy: 0.3424721189591078; test accuracy: 0.06795482483097726
+2025-11-06 19:59:29 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 19:59:32 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 20:00:02 [INFO]  Epoch 7 loss: 318.009934425354; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-06 20:00:02 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 20:00:05 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 20:00:39 [INFO]  Epoch 7 loss: 555.2145280838013; train accuracy: 0.8531134917977904; test accuracy: 0.15573140749846343
+2025-11-06 20:00:39 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 20:00:47 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 20:01:52 [INFO]  Epoch 7 loss: 1223.102665901184; train accuracy: 0.8905281690140845; test accuracy: 0.4375768285187462
+2025-11-06 20:01:52 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 20:01:57 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 20:02:46 [INFO]  Epoch 7 loss: 895.7326211929321; train accuracy: 0.8545107686128822; test accuracy: 0.3188383527965581
+2025-11-06 20:02:46 [INFO]  Round 7 Finish--------|
+2025-11-06 20:02:46 [INFO]  Model variance: mean: 0.0018621180206537247, sum: 20807.216796875
+2025-11-06 20:02:46 [INFO]  g_protos_std (global internal): 0.801431
+2025-11-06 20:02:46 [INFO]  inter_client_proto_std (cross-client): 0.160340
+2025-11-06 20:02:46 [INFO]  g_protos_std (global internal): 0.801431
+2025-11-06 20:02:46 [INFO]  inter_client_proto_std (cross-client): 0.160340
+2025-11-06 20:02:46 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 20:03:08 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4373079287031346
+2025-11-06 20:03:08 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 20:03:08 [INFO]  Round 8 starts--------|
+2025-11-06 20:03:08 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 20:03:09 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 20:03:22 [INFO]  Epoch 8 loss: 155.4693546295166; train accuracy: 0.3945167286245353; test accuracy: 0.07279502151198525
+2025-11-06 20:03:22 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 20:03:26 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 20:03:57 [INFO]  Epoch 8 loss: 316.4531469345093; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-06 20:03:57 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 20:04:00 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 20:04:33 [INFO]  Epoch 8 loss: 538.3643655776978; train accuracy: 0.8903582189487781; test accuracy: 0.17543792255685312
+2025-11-06 20:04:33 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 20:04:40 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 20:05:46 [INFO]  Epoch 8 loss: 1150.622278213501; train accuracy: 0.8515140845070422; test accuracy: 0.4153349723417333
+2025-11-06 20:05:46 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 20:05:51 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 20:06:39 [INFO]  Epoch 8 loss: 853.9250907897949; train accuracy: 0.8549625985240223; test accuracy: 0.3194145666871543
+2025-11-06 20:06:39 [INFO]  Round 8 Finish--------|
+2025-11-06 20:06:39 [INFO]  Model variance: mean: 0.0019805545452982187, sum: 22130.62109375
+2025-11-06 20:06:39 [INFO]  g_protos_std (global internal): 0.780304
+2025-11-06 20:06:39 [INFO]  inter_client_proto_std (cross-client): 0.175822
+2025-11-06 20:06:39 [INFO]  g_protos_std (global internal): 0.780304
+2025-11-06 20:06:39 [INFO]  inter_client_proto_std (cross-client): 0.175822
+2025-11-06 20:06:39 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 20:07:00 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4509065765212047
+2025-11-06 20:07:00 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 20:07:00 [INFO]  Round 9 starts--------|
+2025-11-06 20:07:00 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 20:07:00 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 20:07:13 [INFO]  Epoch 9 loss: 152.45753288269043; train accuracy: 0.33224907063197023; test accuracy: 0.07648279041180087
+2025-11-06 20:07:13 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 20:07:17 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 20:07:48 [INFO]  Epoch 9 loss: 315.2518672943115; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-06 20:07:48 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 20:07:52 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 20:08:25 [INFO]  Epoch 9 loss: 524.966872215271; train accuracy: 0.8910277870773351; test accuracy: 0.157460049170252
+2025-11-06 20:08:25 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 20:08:34 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 20:09:42 [INFO]  Epoch 9 loss: 1074.476315498352; train accuracy: 0.886056338028169; test accuracy: 0.44111094038106946
+2025-11-06 20:09:42 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 20:09:47 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 20:10:37 [INFO]  Epoch 9 loss: 816.2572250366211; train accuracy: 0.8483357598273006; test accuracy: 0.3351644130301168
+2025-11-06 20:10:37 [INFO]  Round 9 Finish--------|
+2025-11-06 20:10:37 [INFO]  Model variance: mean: 0.0020935549400746822, sum: 23393.283203125
+2025-11-06 20:10:37 [INFO]  g_protos_std (global internal): 0.760084
+2025-11-06 20:10:37 [INFO]  inter_client_proto_std (cross-client): 0.189490
+2025-11-06 20:10:37 [INFO]  g_protos_std (global internal): 0.760084
+2025-11-06 20:10:37 [INFO]  inter_client_proto_std (cross-client): 0.189490
+2025-11-06 20:10:37 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 20:10:58 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4504840196681008
+2025-11-06 20:10:58 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 20:10:58 [INFO]  Round 10 starts--------|
+2025-11-06 20:10:58 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 20:10:59 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 20:11:14 [INFO]  Epoch 10 loss: 151.41858577728271; train accuracy: 0.37174721189591076; test accuracy: 0.06691763982790412
+2025-11-06 20:11:14 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_10.pth
+2025-11-06 20:11:14 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 20:11:17 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 20:11:49 [INFO]  Epoch 10 loss: 313.5619583129883; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-06 20:11:49 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_10.pth
+2025-11-06 20:11:49 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 20:11:53 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 20:12:28 [INFO]  Epoch 10 loss: 509.47888374328613; train accuracy: 0.8826581854703716; test accuracy: 0.19026582667486172
+2025-11-06 20:12:28 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_10.pth
+2025-11-06 20:12:28 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 20:12:36 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 20:13:42 [INFO]  Epoch 10 loss: 1015.9825530052185; train accuracy: 0.8939084507042253; test accuracy: 0.43796097111247695
+2025-11-06 20:13:42 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_10.pth
+2025-11-06 20:13:42 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 20:13:48 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 20:14:36 [INFO]  Epoch 10 loss: 784.0408229827881; train accuracy: 0.8597319142527236; test accuracy: 0.32471573448063923
+2025-11-06 20:14:36 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_10.pth
+2025-11-06 20:14:36 [INFO]  Round 10 Finish--------|
+2025-11-06 20:14:36 [INFO]  Model variance: mean: 0.0021991149988025427, sum: 24572.8046875
+2025-11-06 20:14:36 [INFO]  g_protos_std (global internal): 0.741177
+2025-11-06 20:14:36 [INFO]  inter_client_proto_std (cross-client): 0.202010
+2025-11-06 20:14:36 [INFO]  g_protos_std (global internal): 0.741177
+2025-11-06 20:14:36 [INFO]  inter_client_proto_std (cross-client): 0.202010
+2025-11-06 20:14:36 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 20:14:58 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.46392901044867857
+2025-11-06 20:14:58 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 20:14:58 [INFO]  Round 11 starts--------|
+2025-11-06 20:14:58 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 20:14:58 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 20:15:12 [INFO]  Epoch 11 loss: 148.96054458618164; train accuracy: 0.32853159851301117; test accuracy: 0.07582974800245851
+2025-11-06 20:15:12 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 20:15:16 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 20:15:45 [INFO]  Epoch 11 loss: 312.4507083892822; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-06 20:15:45 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 20:15:48 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 20:16:24 [INFO]  Epoch 11 loss: 496.6975040435791; train accuracy: 0.8806494810847003; test accuracy: 0.17032882606023356
+2025-11-06 20:16:24 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 20:16:32 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 20:17:37 [INFO]  Epoch 11 loss: 981.6669445037842; train accuracy: 0.8861971830985915; test accuracy: 0.4285878918254456
+2025-11-06 20:17:37 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 20:17:43 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 20:18:33 [INFO]  Epoch 11 loss: 753.9307775497437; train accuracy: 0.8378934685476178; test accuracy: 0.32202673632452367
+2025-11-06 20:18:33 [INFO]  Round 11 Finish--------|
+2025-11-06 20:18:33 [INFO]  Model variance: mean: 0.0023012019228190184, sum: 25713.51953125
+2025-11-06 20:18:33 [INFO]  g_protos_std (global internal): 0.724149
+2025-11-06 20:18:33 [INFO]  inter_client_proto_std (cross-client): 0.212862
+2025-11-06 20:18:33 [INFO]  g_protos_std (global internal): 0.724149
+2025-11-06 20:18:33 [INFO]  inter_client_proto_std (cross-client): 0.212862
+2025-11-06 20:18:33 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 20:18:54 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4498309772587584
+2025-11-06 20:18:54 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 20:18:54 [INFO]  Round 12 starts--------|
+2025-11-06 20:18:54 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 20:18:55 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 20:19:08 [INFO]  Epoch 12 loss: 146.08900833129883; train accuracy: 0.39637546468401486; test accuracy: 0.06580362630608481
+2025-11-06 20:19:08 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 20:19:11 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 20:19:44 [INFO]  Epoch 12 loss: 311.0967354774475; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-06 20:19:44 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 20:19:47 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 20:20:21 [INFO]  Epoch 12 loss: 484.34595489501953; train accuracy: 0.9012387010378305; test accuracy: 0.1806238475722188
+2025-11-06 20:20:21 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 20:20:29 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 20:21:31 [INFO]  Epoch 12 loss: 959.8183946609497; train accuracy: 0.8951760563380282; test accuracy: 0.4435694529809465
+2025-11-06 20:21:31 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 20:21:38 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 20:22:29 [INFO]  Epoch 12 loss: 731.3269987106323; train accuracy: 0.8758471810833878; test accuracy: 0.3367778119237861
+2025-11-06 20:22:29 [INFO]  Round 12 Finish--------|
+2025-11-06 20:22:29 [INFO]  Model variance: mean: 0.0023998343385756016, sum: 26815.6328125
+2025-11-06 20:22:29 [INFO]  g_protos_std (global internal): 0.708066
+2025-11-06 20:22:29 [INFO]  inter_client_proto_std (cross-client): 0.222281
+2025-11-06 20:22:29 [INFO]  g_protos_std (global internal): 0.708066
+2025-11-06 20:22:29 [INFO]  inter_client_proto_std (cross-client): 0.222281
+2025-11-06 20:22:29 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 20:22:50 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4555162876459742
+2025-11-06 20:22:50 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 20:22:50 [INFO]  Round 13 starts--------|
+2025-11-06 20:22:50 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 20:22:51 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 20:23:04 [INFO]  Epoch 13 loss: 144.18444442749023; train accuracy: 0.3382899628252788; test accuracy: 0.07168100799016595
+2025-11-06 20:23:04 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 20:23:07 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 20:23:41 [INFO]  Epoch 13 loss: 309.6630349159241; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-06 20:23:41 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 20:23:45 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 20:24:15 [INFO]  Epoch 13 loss: 472.74467277526855; train accuracy: 0.9219953130231001; test accuracy: 0.19149508297480025
+2025-11-06 20:24:15 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 20:24:23 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 20:25:27 [INFO]  Epoch 13 loss: 922.1296825408936; train accuracy: 0.9077816901408451; test accuracy: 0.4501767055931162
+2025-11-06 20:25:27 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 20:25:33 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 20:26:19 [INFO]  Epoch 13 loss: 702.9733600616455; train accuracy: 0.8761986043476078; test accuracy: 0.32148893669330053
+2025-11-06 20:26:19 [INFO]  Round 13 Finish--------|
+2025-11-06 20:26:19 [INFO]  Model variance: mean: 0.0024952676612883806, sum: 27882.0
+2025-11-06 20:26:19 [INFO]  g_protos_std (global internal): 0.693425
+2025-11-06 20:26:19 [INFO]  inter_client_proto_std (cross-client): 0.230987
+2025-11-06 20:26:19 [INFO]  g_protos_std (global internal): 0.693425
+2025-11-06 20:26:19 [INFO]  inter_client_proto_std (cross-client): 0.230987
+2025-11-06 20:26:19 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 20:26:40 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.460740626920713
+2025-11-06 20:26:40 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 20:26:40 [INFO]  Round 14 starts--------|
+2025-11-06 20:26:40 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 20:26:41 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 20:26:54 [INFO]  Epoch 14 loss: 142.30067443847656; train accuracy: 0.3099442379182156; test accuracy: 0.06534265519360787
+2025-11-06 20:26:54 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 20:26:57 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 20:27:31 [INFO]  Epoch 14 loss: 308.2571597099304; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-06 20:27:31 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 20:27:35 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 20:28:07 [INFO]  Epoch 14 loss: 459.0264835357666; train accuracy: 0.9049213257448946; test accuracy: 0.16652581438229871
+2025-11-06 20:28:07 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 20:28:16 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 20:29:21 [INFO]  Epoch 14 loss: 906.2115817070007; train accuracy: 0.8729225352112676; test accuracy: 0.42186539643515675
+2025-11-06 20:29:21 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 20:29:27 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 20:30:16 [INFO]  Epoch 14 loss: 690.6571440696716; train accuracy: 0.8877453687434108; test accuracy: 0.3358942839582053
+2025-11-06 20:30:16 [INFO]  Round 14 Finish--------|
+2025-11-06 20:30:16 [INFO]  Model variance: mean: 0.002585135865956545, sum: 28886.18359375
+2025-11-06 20:30:16 [INFO]  g_protos_std (global internal): 0.679720
+2025-11-06 20:30:16 [INFO]  inter_client_proto_std (cross-client): 0.238557
+2025-11-06 20:30:16 [INFO]  g_protos_std (global internal): 0.679720
+2025-11-06 20:30:16 [INFO]  inter_client_proto_std (cross-client): 0.238557
+2025-11-06 20:30:16 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 20:30:36 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4638521819299324
+2025-11-06 20:30:36 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 20:30:36 [INFO]  Round 15 starts--------|
+2025-11-06 20:30:36 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 20:30:37 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 20:30:51 [INFO]  Epoch 15 loss: 140.42450332641602; train accuracy: 0.38940520446096655; test accuracy: 0.0638060848186847
+2025-11-06 20:30:52 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_15.pth
+2025-11-06 20:30:52 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 20:30:55 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 20:31:26 [INFO]  Epoch 15 loss: 306.6805348396301; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-06 20:31:26 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_15.pth
+2025-11-06 20:31:26 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 20:31:29 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 20:32:03 [INFO]  Epoch 15 loss: 449.7163915634155; train accuracy: 0.8939571476397723; test accuracy: 0.1672940995697603
+2025-11-06 20:32:03 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_15.pth
+2025-11-06 20:32:03 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 20:32:11 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 20:33:17 [INFO]  Epoch 15 loss: 885.1865391731262; train accuracy: 0.9078521126760564; test accuracy: 0.4481023355869699
+2025-11-06 20:33:17 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_15.pth
+2025-11-06 20:33:17 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 20:33:23 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 20:34:15 [INFO]  Epoch 15 loss: 665.0924000740051; train accuracy: 0.9164114664390782; test accuracy: 0.3529502151198525
+2025-11-06 20:34:15 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_15.pth
+2025-11-06 20:34:15 [INFO]  Round 15 Finish--------|
+2025-11-06 20:34:15 [INFO]  Model variance: mean: 0.002675908152014017, sum: 29900.46875
+2025-11-06 20:34:15 [INFO]  g_protos_std (global internal): 0.667444
+2025-11-06 20:34:15 [INFO]  inter_client_proto_std (cross-client): 0.245004
+2025-11-06 20:34:15 [INFO]  g_protos_std (global internal): 0.667444
+2025-11-06 20:34:15 [INFO]  inter_client_proto_std (cross-client): 0.245004
+2025-11-06 20:34:15 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 20:34:39 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4716118623232944
+2025-11-06 20:34:39 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 20:34:39 [INFO]  Round 16 starts--------|
+2025-11-06 20:34:39 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 20:34:40 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 20:34:55 [INFO]  Epoch 16 loss: 138.00651931762695; train accuracy: 0.33643122676579923; test accuracy: 0.07310233558696988
+2025-11-06 20:34:55 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 20:34:58 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 20:35:31 [INFO]  Epoch 16 loss: 305.427369594574; train accuracy: 0.9763794057944271; test accuracy: 0.1593423478795329
+2025-11-06 20:35:31 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 20:35:35 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 20:36:06 [INFO]  Epoch 16 loss: 443.12027645111084; train accuracy: 0.9332942751925009; test accuracy: 0.2244161032575292
+2025-11-06 20:36:06 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 20:36:14 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 20:37:25 [INFO]  Epoch 16 loss: 872.2040066719055; train accuracy: 0.9068661971830986; test accuracy: 0.44395359557467734
+2025-11-06 20:37:25 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 20:37:32 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 20:38:24 [INFO]  Epoch 16 loss: 658.1360235214233; train accuracy: 0.9055675485717154; test accuracy: 0.3504917025199754
+2025-11-06 20:38:24 [INFO]  Round 16 Finish--------|
+2025-11-06 20:38:24 [INFO]  Model variance: mean: 0.002760155126452446, sum: 30841.83984375
+2025-11-06 20:38:24 [INFO]  g_protos_std (global internal): 0.656115
+2025-11-06 20:38:24 [INFO]  inter_client_proto_std (cross-client): 0.250609
+2025-11-06 20:38:24 [INFO]  g_protos_std (global internal): 0.656115
+2025-11-06 20:38:24 [INFO]  inter_client_proto_std (cross-client): 0.250609
+2025-11-06 20:38:24 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 20:38:46 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.47280270436385985
+2025-11-06 20:38:46 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 20:38:46 [INFO]  Round 17 starts--------|
+2025-11-06 20:38:46 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 20:38:47 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 20:39:01 [INFO]  Epoch 17 loss: 136.32586669921875; train accuracy: 0.383364312267658; test accuracy: 0.07629071911493547
+2025-11-06 20:39:01 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 20:39:05 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 20:39:39 [INFO]  Epoch 17 loss: 304.3347907066345; train accuracy: 0.9763794057944271; test accuracy: 0.15941917639827904
+2025-11-06 20:39:39 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 20:39:43 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 20:40:19 [INFO]  Epoch 17 loss: 431.10749912261963; train accuracy: 0.9285236022765316; test accuracy: 0.23302089735709897
+2025-11-06 20:40:19 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 20:40:27 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 20:41:33 [INFO]  Epoch 17 loss: 864.2754702568054; train accuracy: 0.8967605633802817; test accuracy: 0.4435694529809465
+2025-11-06 20:41:33 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 20:41:39 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 20:42:33 [INFO]  Epoch 17 loss: 636.511974811554; train accuracy: 0.9064210050705357; test accuracy: 0.3425783650891211
+2025-11-06 20:42:33 [INFO]  Round 17 Finish--------|
+2025-11-06 20:42:33 [INFO]  Model variance: mean: 0.0028427629731595516, sum: 31764.896484375
+2025-11-06 20:42:33 [INFO]  g_protos_std (global internal): 0.645701
+2025-11-06 20:42:33 [INFO]  inter_client_proto_std (cross-client): 0.255409
+2025-11-06 20:42:33 [INFO]  g_protos_std (global internal): 0.645701
+2025-11-06 20:42:33 [INFO]  inter_client_proto_std (cross-client): 0.255409
+2025-11-06 20:42:33 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 20:42:54 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.47622157344806393
+2025-11-06 20:42:54 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 20:42:54 [INFO]  Round 18 starts--------|
+2025-11-06 20:42:54 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 20:42:54 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 20:43:09 [INFO]  Epoch 18 loss: 133.78888988494873; train accuracy: 0.3643122676579926; test accuracy: 0.0678779963122311
+2025-11-06 20:43:09 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 20:43:12 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 20:43:45 [INFO]  Epoch 18 loss: 303.0087380409241; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-06 20:43:45 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 20:43:48 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 20:44:24 [INFO]  Epoch 18 loss: 424.29357624053955; train accuracy: 0.905507197857382; test accuracy: 0.1999078057775046
+2025-11-06 20:44:24 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 20:44:32 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 20:45:47 [INFO]  Epoch 18 loss: 853.0647640228271; train accuracy: 0.9233450704225352; test accuracy: 0.4602412415488629
+2025-11-06 20:45:47 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 20:45:54 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 20:46:46 [INFO]  Epoch 18 loss: 631.2868175506592; train accuracy: 0.9092825945077564; test accuracy: 0.346419791026429
+2025-11-06 20:46:46 [INFO]  Round 18 Finish--------|
+2025-11-06 20:46:46 [INFO]  Model variance: mean: 0.0029222446028143167, sum: 32653.021484375
+2025-11-06 20:46:46 [INFO]  g_protos_std (global internal): 0.636017
+2025-11-06 20:46:46 [INFO]  inter_client_proto_std (cross-client): 0.259696
+2025-11-06 20:46:46 [INFO]  g_protos_std (global internal): 0.636017
+2025-11-06 20:46:46 [INFO]  inter_client_proto_std (cross-client): 0.259696
+2025-11-06 20:46:46 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 20:47:07 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.47414720344191763
+2025-11-06 20:47:07 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 20:47:07 [INFO]  Round 19 starts--------|
+2025-11-06 20:47:07 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 20:47:08 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 20:47:23 [INFO]  Epoch 19 loss: 131.95583534240723; train accuracy: 0.3870817843866171; test accuracy: 0.07179625076828519
+2025-11-06 20:47:23 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 20:47:26 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 20:47:58 [INFO]  Epoch 19 loss: 302.0741801261902; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-06 20:47:58 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 20:48:02 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 20:48:39 [INFO]  Epoch 19 loss: 416.01795768737793; train accuracy: 0.9343823234014061; test accuracy: 0.19268592501536572
+2025-11-06 20:48:39 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 20:48:46 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 20:49:56 [INFO]  Epoch 19 loss: 839.2471289634705; train accuracy: 0.9027112676056338; test accuracy: 0.4436846957590658
+2025-11-06 20:49:56 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 20:50:01 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 20:50:52 [INFO]  Epoch 19 loss: 624.7274222373962; train accuracy: 0.9246448114865204; test accuracy: 0.3541026429010449
+2025-11-06 20:50:52 [INFO]  Round 19 Finish--------|
+2025-11-06 20:50:52 [INFO]  Model variance: mean: 0.0029981331899762154, sum: 33500.99609375
+2025-11-06 20:50:52 [INFO]  g_protos_std (global internal): 0.627194
+2025-11-06 20:50:52 [INFO]  inter_client_proto_std (cross-client): 0.263513
+2025-11-06 20:50:52 [INFO]  g_protos_std (global internal): 0.627194
+2025-11-06 20:50:52 [INFO]  inter_client_proto_std (cross-client): 0.263513
+2025-11-06 20:50:52 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 20:51:17 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4736862323294407
+2025-11-06 20:51:17 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 20:51:17 [INFO]  Round 20 starts--------|
+2025-11-06 20:51:17 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 20:51:17 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 20:51:31 [INFO]  Epoch 20 loss: 129.74246311187744; train accuracy: 0.3118029739776952; test accuracy: 0.07917178856791642
+2025-11-06 20:51:32 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_20.pth
+2025-11-06 20:51:32 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 20:51:35 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 20:52:08 [INFO]  Epoch 20 loss: 300.65354013442993; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-06 20:52:08 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_20.pth
+2025-11-06 20:52:08 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 20:52:11 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 20:52:47 [INFO]  Epoch 20 loss: 410.5194606781006; train accuracy: 0.9108637428858386; test accuracy: 0.19810233558696988
+2025-11-06 20:52:47 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_20.pth
+2025-11-06 20:52:47 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 20:52:56 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 20:54:05 [INFO]  Epoch 20 loss: 847.6003050804138; train accuracy: 0.9123591549295774; test accuracy: 0.44906269207129684
+2025-11-06 20:54:05 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_20.pth
+2025-11-06 20:54:05 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 20:54:11 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 20:55:10 [INFO]  Epoch 20 loss: 610.614321231842; train accuracy: 0.9224358652542798; test accuracy: 0.35748309772587583
+2025-11-06 20:55:10 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_20.pth
+2025-11-06 20:55:11 [INFO]  Round 20 Finish--------|
+2025-11-06 20:55:11 [INFO]  Model variance: mean: 0.003072479972615838, sum: 34331.7421875
+2025-11-06 20:55:11 [INFO]  g_protos_std (global internal): 0.618872
+2025-11-06 20:55:11 [INFO]  inter_client_proto_std (cross-client): 0.266866
+2025-11-06 20:55:11 [INFO]  g_protos_std (global internal): 0.618872
+2025-11-06 20:55:11 [INFO]  inter_client_proto_std (cross-client): 0.266866
+2025-11-06 20:55:11 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 20:55:33 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.47207283343577133
+2025-11-06 20:55:33 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 20:55:33 [INFO]  Round 21 starts--------|
+2025-11-06 20:55:33 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 20:55:33 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 20:55:49 [INFO]  Epoch 21 loss: 127.72444343566895; train accuracy: 0.39219330855018586; test accuracy: 0.0714121081745544
+2025-11-06 20:55:49 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 20:55:54 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 20:56:31 [INFO]  Epoch 21 loss: 299.54265451431274; train accuracy: 0.9764716737405426; test accuracy: 0.15957283343577136
+2025-11-06 20:56:31 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 20:56:34 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 20:57:12 [INFO]  Epoch 21 loss: 405.8291530609131; train accuracy: 0.9383997321727485; test accuracy: 0.22115089121081746
+2025-11-06 20:57:12 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 20:57:22 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 20:58:44 [INFO]  Epoch 21 loss: 839.1858282089233; train accuracy: 0.9166549295774647; test accuracy: 0.4521742470805163
+2025-11-06 20:58:44 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 20:58:51 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 20:59:47 [INFO]  Epoch 21 loss: 607.600179195404; train accuracy: 0.9202269190220392; test accuracy: 0.35279655808236016
+2025-11-06 20:59:47 [INFO]  Round 21 Finish--------|
+2025-11-06 20:59:47 [INFO]  Model variance: mean: 0.0031453578267246485, sum: 35146.078125
+2025-11-06 20:59:47 [INFO]  g_protos_std (global internal): 0.610928
+2025-11-06 20:59:47 [INFO]  inter_client_proto_std (cross-client): 0.270003
+2025-11-06 20:59:47 [INFO]  g_protos_std (global internal): 0.610928
+2025-11-06 20:59:47 [INFO]  inter_client_proto_std (cross-client): 0.270003
+2025-11-06 20:59:47 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 21:00:13 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4865165949600492
+2025-11-06 21:00:13 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 21:00:13 [INFO]  Round 22 starts--------|
+2025-11-06 21:00:13 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 21:00:14 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 21:00:29 [INFO]  Epoch 22 loss: 125.79878425598145; train accuracy: 0.39265799256505574; test accuracy: 0.07122003687768899
+2025-11-06 21:00:29 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 21:00:32 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 21:01:07 [INFO]  Epoch 22 loss: 298.6054964065552; train accuracy: 0.976748477578889; test accuracy: 0.15999539028887522
+2025-11-06 21:01:07 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 21:01:10 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 21:01:47 [INFO]  Epoch 22 loss: 398.90068197250366; train accuracy: 0.932122530967526; test accuracy: 0.18673171481253842
+2025-11-06 21:01:47 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 21:01:57 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 21:03:09 [INFO]  Epoch 22 loss: 845.8949508666992; train accuracy: 0.917887323943662; test accuracy: 0.4484480639213276
+2025-11-06 21:03:09 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 21:03:16 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 21:04:15 [INFO]  Epoch 22 loss: 593.6457934379578; train accuracy: 0.9341332396204629; test accuracy: 0.3634757221880762
+2025-11-06 21:04:15 [INFO]  Round 22 Finish--------|
+2025-11-06 21:04:15 [INFO]  Model variance: mean: 0.003216044045984745, sum: 35935.921875
+2025-11-06 21:04:15 [INFO]  g_protos_std (global internal): 0.603840
+2025-11-06 21:04:15 [INFO]  inter_client_proto_std (cross-client): 0.272684
+2025-11-06 21:04:15 [INFO]  g_protos_std (global internal): 0.603840
+2025-11-06 21:04:15 [INFO]  inter_client_proto_std (cross-client): 0.272684
+2025-11-06 21:04:15 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 21:04:36 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.48486478180700676
+2025-11-06 21:04:36 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 21:04:36 [INFO]  Round 23 starts--------|
+2025-11-06 21:04:36 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 21:04:37 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 21:04:52 [INFO]  Epoch 23 loss: 123.79856300354004; train accuracy: 0.366635687732342; test accuracy: 0.08163030116779349
+2025-11-06 21:04:52 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 21:04:55 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 21:05:30 [INFO]  Epoch 23 loss: 297.5482053756714; train accuracy: 0.9781324967706219; test accuracy: 0.16268438844499078
+2025-11-06 21:05:30 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 21:05:34 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 21:06:12 [INFO]  Epoch 23 loss: 392.50688123703003; train accuracy: 0.9528791429527954; test accuracy: 0.22042102028272895
+2025-11-06 21:06:12 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 21:06:21 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 21:07:33 [INFO]  Epoch 23 loss: 833.7424116134644; train accuracy: 0.9317957746478873; test accuracy: 0.45705285802089735
+2025-11-06 21:07:33 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 21:07:39 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 21:08:36 [INFO]  Epoch 23 loss: 587.0990705490112; train accuracy: 0.9264019278076209; test accuracy: 0.35487092808850645
+2025-11-06 21:08:36 [INFO]  Round 23 Finish--------|
+2025-11-06 21:08:36 [INFO]  Model variance: mean: 0.0032864450477063656, sum: 36722.578125
+2025-11-06 21:08:36 [INFO]  g_protos_std (global internal): 0.597282
+2025-11-06 21:08:36 [INFO]  inter_client_proto_std (cross-client): 0.275051
+2025-11-06 21:08:36 [INFO]  g_protos_std (global internal): 0.597282
+2025-11-06 21:08:36 [INFO]  inter_client_proto_std (cross-client): 0.275051
+2025-11-06 21:08:36 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 21:08:58 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.48751536570374926
+2025-11-06 21:08:58 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 21:08:58 [INFO]  Round 24 starts--------|
+2025-11-06 21:08:58 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 21:08:59 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 21:09:15 [INFO]  Epoch 24 loss: 121.7508316040039; train accuracy: 0.4191449814126394; test accuracy: 0.07237246465888138
+2025-11-06 21:09:15 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 21:09:19 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 21:09:53 [INFO]  Epoch 24 loss: 296.14335680007935; train accuracy: 0.9774866211478133; test accuracy: 0.16084050399508298
+2025-11-06 21:09:53 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 21:09:57 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 21:10:34 [INFO]  Epoch 24 loss: 384.4630527496338; train accuracy: 0.9212420488784734; test accuracy: 0.18143054701905348
+2025-11-06 21:10:34 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 21:10:45 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 21:11:56 [INFO]  Epoch 24 loss: 828.3543949127197; train accuracy: 0.9248239436619718; test accuracy: 0.4519821757836509
+2025-11-06 21:11:56 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 21:12:03 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 21:12:58 [INFO]  Epoch 24 loss: 583.1770520210266; train accuracy: 0.9225864752246599; test accuracy: 0.3535264290104487
+2025-11-06 21:12:58 [INFO]  Round 24 Finish--------|
+2025-11-06 21:12:58 [INFO]  Model variance: mean: 0.003354618325829506, sum: 37484.34375
+2025-11-06 21:12:58 [INFO]  g_protos_std (global internal): 0.591139
+2025-11-06 21:12:58 [INFO]  inter_client_proto_std (cross-client): 0.277174
+2025-11-06 21:12:58 [INFO]  g_protos_std (global internal): 0.591139
+2025-11-06 21:12:58 [INFO]  inter_client_proto_std (cross-client): 0.277174
+2025-11-06 21:12:58 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 21:13:20 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.49270129071911495
+2025-11-06 21:13:20 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 21:13:20 [INFO]  Round 25 starts--------|
+2025-11-06 21:13:20 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 21:13:21 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 21:13:34 [INFO]  Epoch 25 loss: 119.44466590881348; train accuracy: 0.4642193308550186; test accuracy: 0.08554855562384757
+2025-11-06 21:13:34 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_25.pth
+2025-11-06 21:13:34 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 21:13:37 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 21:14:06 [INFO]  Epoch 25 loss: 295.38493156433105; train accuracy: 0.9780402288245064; test accuracy: 0.16422095881991394
+2025-11-06 21:14:06 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_25.pth
+2025-11-06 21:14:06 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 21:14:09 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 21:14:48 [INFO]  Epoch 25 loss: 380.0196022987366; train accuracy: 0.9538834951456311; test accuracy: 0.2352105101413645
+2025-11-06 21:14:48 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_25.pth
+2025-11-06 21:14:48 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 21:14:59 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 21:16:07 [INFO]  Epoch 25 loss: 831.148745059967; train accuracy: 0.938943661971831; test accuracy: 0.46611862323294406
+2025-11-06 21:16:07 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_25.pth
+2025-11-06 21:16:07 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 21:16:13 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 21:17:09 [INFO]  Epoch 25 loss: 582.8494548797607; train accuracy: 0.9262011145137808; test accuracy: 0.35502458512599877
+2025-11-06 21:17:10 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_25.pth
+2025-11-06 21:17:10 [INFO]  Round 25 Finish--------|
+2025-11-06 21:17:10 [INFO]  Model variance: mean: 0.0034212926402688026, sum: 38229.359375
+2025-11-06 21:17:10 [INFO]  g_protos_std (global internal): 0.585548
+2025-11-06 21:17:10 [INFO]  inter_client_proto_std (cross-client): 0.279008
+2025-11-06 21:17:10 [INFO]  g_protos_std (global internal): 0.585548
+2025-11-06 21:17:10 [INFO]  inter_client_proto_std (cross-client): 0.279008
+2025-11-06 21:17:10 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 21:17:31 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.488859864781807
+2025-11-06 21:17:31 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 21:17:32 [INFO]  Round 26 starts--------|
+2025-11-06 21:17:32 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 21:17:32 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 21:17:47 [INFO]  Epoch 26 loss: 117.50305080413818; train accuracy: 0.4605018587360595; test accuracy: 0.08670098340503996
+2025-11-06 21:17:47 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 21:17:50 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 21:18:26 [INFO]  Epoch 26 loss: 294.3313207626343; train accuracy: 0.9791474441778926; test accuracy: 0.16571911493546404
+2025-11-06 21:18:26 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 21:18:29 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 21:19:05 [INFO]  Epoch 26 loss: 373.1836910247803; train accuracy: 0.9383997321727485; test accuracy: 0.2095881991395206
+2025-11-06 21:19:05 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 21:19:14 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 21:20:24 [INFO]  Epoch 26 loss: 813.6283097267151; train accuracy: 0.9440140845070423; test accuracy: 0.464159496004917
+2025-11-06 21:20:24 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 21:20:32 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 21:21:26 [INFO]  Epoch 26 loss: 575.1167044639587; train accuracy: 0.9196746824639791; test accuracy: 0.35371850030731405
+2025-11-06 21:21:27 [INFO]  Round 26 Finish--------|
+2025-11-06 21:21:27 [INFO]  Model variance: mean: 0.0034850516822189093, sum: 38941.80078125
+2025-11-06 21:21:27 [INFO]  g_protos_std (global internal): 0.580646
+2025-11-06 21:21:27 [INFO]  inter_client_proto_std (cross-client): 0.280449
+2025-11-06 21:21:27 [INFO]  g_protos_std (global internal): 0.580646
+2025-11-06 21:21:27 [INFO]  inter_client_proto_std (cross-client): 0.280449
+2025-11-06 21:21:27 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 21:21:50 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4924323909035034
+2025-11-06 21:21:50 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 21:21:50 [INFO]  Round 27 starts--------|
+2025-11-06 21:21:50 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 21:21:51 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 21:22:05 [INFO]  Epoch 27 loss: 115.99765491485596; train accuracy: 0.4474907063197026; test accuracy: 0.09119545175169022
+2025-11-06 21:22:05 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 21:22:08 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 21:22:40 [INFO]  Epoch 27 loss: 293.22930002212524; train accuracy: 0.9797010518545857; test accuracy: 0.16806238475722188
+2025-11-06 21:22:40 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 21:22:43 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 21:23:18 [INFO]  Epoch 27 loss: 370.2062954902649; train accuracy: 0.955055239370606; test accuracy: 0.24807928703134605
+2025-11-06 21:23:18 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 21:23:25 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 21:24:39 [INFO]  Epoch 27 loss: 811.6027660369873; train accuracy: 0.941830985915493; test accuracy: 0.46577289489858636
+2025-11-06 21:24:39 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 21:24:47 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 21:25:42 [INFO]  Epoch 27 loss: 568.2689871788025; train accuracy: 0.9407098749937246; test accuracy: 0.3529886293792256
+2025-11-06 21:25:42 [INFO]  Round 27 Finish--------|
+2025-11-06 21:25:42 [INFO]  Model variance: mean: 0.0035490423906594515, sum: 39656.828125
+2025-11-06 21:25:42 [INFO]  g_protos_std (global internal): 0.576195
+2025-11-06 21:25:42 [INFO]  inter_client_proto_std (cross-client): 0.281761
+2025-11-06 21:25:42 [INFO]  g_protos_std (global internal): 0.576195
+2025-11-06 21:25:42 [INFO]  inter_client_proto_std (cross-client): 0.281761
+2025-11-06 21:25:42 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 21:26:04 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4905116779348494
+2025-11-06 21:26:04 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 21:26:04 [INFO]  Round 28 starts--------|
+2025-11-06 21:26:04 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 21:26:05 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 21:26:21 [INFO]  Epoch 28 loss: 114.15080642700195; train accuracy: 0.4600371747211896; test accuracy: 0.08527965580823602
+2025-11-06 21:26:21 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 21:26:24 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 21:26:56 [INFO]  Epoch 28 loss: 292.1123881340027; train accuracy: 0.9769330134711202; test accuracy: 0.16091733251382914
+2025-11-06 21:26:56 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 21:27:00 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 21:27:38 [INFO]  Epoch 28 loss: 369.1674747467041; train accuracy: 0.9276866421158353; test accuracy: 0.22153503380454825
+2025-11-06 21:27:38 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 21:27:47 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 21:29:00 [INFO]  Epoch 28 loss: 816.4328780174255; train accuracy: 0.9206338028169014; test accuracy: 0.4577443146896128
+2025-11-06 21:29:00 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 21:29:05 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 21:29:59 [INFO]  Epoch 28 loss: 570.7043251991272; train accuracy: 0.9410612982579447; test accuracy: 0.36170866625691456
+2025-11-06 21:29:59 [INFO]  Round 28 Finish--------|
+2025-11-06 21:29:59 [INFO]  Model variance: mean: 0.0036112740635871887, sum: 40352.203125
+2025-11-06 21:29:59 [INFO]  g_protos_std (global internal): 0.572002
+2025-11-06 21:29:59 [INFO]  inter_client_proto_std (cross-client): 0.282863
+2025-11-06 21:29:59 [INFO]  g_protos_std (global internal): 0.572002
+2025-11-06 21:29:59 [INFO]  inter_client_proto_std (cross-client): 0.282863
+2025-11-06 21:29:59 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 21:30:21 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4856714812538414
+2025-11-06 21:30:21 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 21:30:21 [INFO]  Round 29 starts--------|
+2025-11-06 21:30:21 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 21:30:21 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 21:30:37 [INFO]  Epoch 29 loss: 112.30209541320801; train accuracy: 0.4474907063197026; test accuracy: 0.09054240934234788
+2025-11-06 21:30:37 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 21:30:40 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 21:31:15 [INFO]  Epoch 29 loss: 290.93454122543335; train accuracy: 0.9828381620225134; test accuracy: 0.1815842040565458
+2025-11-06 21:31:15 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 21:31:19 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 21:31:56 [INFO]  Epoch 29 loss: 365.2466287612915; train accuracy: 0.9466019417475728; test accuracy: 0.19525968039336203
+2025-11-06 21:31:56 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 21:32:05 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 21:33:18 [INFO]  Epoch 29 loss: 818.6866140365601; train accuracy: 0.9402816901408451; test accuracy: 0.4617778119237861
+2025-11-06 21:33:18 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 21:33:25 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 21:34:22 [INFO]  Epoch 29 loss: 564.8815927505493; train accuracy: 0.9365429991465435; test accuracy: 0.3599031960663798
+2025-11-06 21:34:22 [INFO]  Round 29 Finish--------|
+2025-11-06 21:34:22 [INFO]  Model variance: mean: 0.0036724095698446035, sum: 41035.328125
+2025-11-06 21:34:22 [INFO]  g_protos_std (global internal): 0.568229
+2025-11-06 21:34:22 [INFO]  inter_client_proto_std (cross-client): 0.283996
+2025-11-06 21:34:22 [INFO]  g_protos_std (global internal): 0.568229
+2025-11-06 21:34:22 [INFO]  inter_client_proto_std (cross-client): 0.283996
+2025-11-06 21:34:22 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 21:34:44 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5001536570374924
+2025-11-06 21:34:44 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 21:34:44 [INFO]  Round 30 starts--------|
+2025-11-06 21:34:44 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 21:34:45 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 21:35:02 [INFO]  Epoch 30 loss: 110.98382091522217; train accuracy: 0.4103159851301115; test accuracy: 0.06949139520590043
+2025-11-06 21:35:02 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_30.pth
+2025-11-06 21:35:02 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 21:35:05 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 21:35:40 [INFO]  Epoch 30 loss: 289.6195340156555; train accuracy: 0.9797010518545857; test accuracy: 0.16514290104486787
+2025-11-06 21:35:41 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_30.pth
+2025-11-06 21:35:41 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 21:35:44 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 21:36:23 [INFO]  Epoch 30 loss: 361.1069869995117; train accuracy: 0.9241714094409106; test accuracy: 0.2321757836508912
+2025-11-06 21:36:23 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_30.pth
+2025-11-06 21:36:23 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 21:36:32 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 21:37:44 [INFO]  Epoch 30 loss: 799.0624952316284; train accuracy: 0.9352816901408451; test accuracy: 0.4518285187461586
+2025-11-06 21:37:45 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_30.pth
+2025-11-06 21:37:45 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 21:37:51 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 21:38:47 [INFO]  Epoch 30 loss: 557.1016063690186; train accuracy: 0.9318740900647623; test accuracy: 0.3530654578979717
+2025-11-06 21:38:47 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_30.pth
+2025-11-06 21:38:47 [INFO]  Round 30 Finish--------|
+2025-11-06 21:38:47 [INFO]  Model variance: mean: 0.0037321788258850574, sum: 41703.1875
+2025-11-06 21:38:47 [INFO]  g_protos_std (global internal): 0.564717
+2025-11-06 21:38:47 [INFO]  inter_client_proto_std (cross-client): 0.284944
+2025-11-06 21:38:47 [INFO]  g_protos_std (global internal): 0.564717
+2025-11-06 21:38:47 [INFO]  inter_client_proto_std (cross-client): 0.284944
+2025-11-06 21:38:47 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 21:39:08 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.4992317148125384
+2025-11-06 21:39:08 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 21:39:08 [INFO]  Round 31 starts--------|
+2025-11-06 21:39:08 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 21:39:09 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 21:39:25 [INFO]  Epoch 31 loss: 108.72921562194824; train accuracy: 0.5185873605947955; test accuracy: 0.09565150583896742
+2025-11-06 21:39:25 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 21:39:28 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 21:40:02 [INFO]  Epoch 31 loss: 289.6267328262329; train accuracy: 0.9796087839084702; test accuracy: 0.17086662569145666
+2025-11-06 21:40:02 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 21:40:06 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 21:40:44 [INFO]  Epoch 31 loss: 357.66947412490845; train accuracy: 0.9447606293940408; test accuracy: 0.20263521819299324
+2025-11-06 21:40:44 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 21:40:55 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 21:42:05 [INFO]  Epoch 31 loss: 805.0063943862915; train accuracy: 0.9400352112676056; test accuracy: 0.4562461585740627
+2025-11-06 21:42:05 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 21:42:11 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 21:43:08 [INFO]  Epoch 31 loss: 555.9464211463928; train accuracy: 0.9146543501179778; test accuracy: 0.35767516902274127
+2025-11-06 21:43:08 [INFO]  Round 31 Finish--------|
+2025-11-06 21:43:08 [INFO]  Model variance: mean: 0.003789006732404232, sum: 42338.1796875
+2025-11-06 21:43:08 [INFO]  g_protos_std (global internal): 0.561367
+2025-11-06 21:43:08 [INFO]  inter_client_proto_std (cross-client): 0.285739
+2025-11-06 21:43:08 [INFO]  g_protos_std (global internal): 0.561367
+2025-11-06 21:43:08 [INFO]  inter_client_proto_std (cross-client): 0.285739
+2025-11-06 21:43:08 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 21:43:28 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5119468346650277
+2025-11-06 21:43:28 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 21:43:28 [INFO]  Round 32 starts--------|
+2025-11-06 21:43:28 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 21:43:29 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 21:43:45 [INFO]  Epoch 32 loss: 106.85692501068115; train accuracy: 0.4656133828996282; test accuracy: 0.08800706822372464
+2025-11-06 21:43:45 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 21:43:48 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 21:44:19 [INFO]  Epoch 32 loss: 288.58797550201416; train accuracy: 0.9814541428307806; test accuracy: 0.17551475107559927
+2025-11-06 21:44:19 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 21:44:23 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 21:45:00 [INFO]  Epoch 32 loss: 353.3037338256836; train accuracy: 0.9523769668563776; test accuracy: 0.2249154886293792
+2025-11-06 21:45:00 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 21:45:09 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 21:46:22 [INFO]  Epoch 32 loss: 797.9737524986267; train accuracy: 0.9397887323943662; test accuracy: 0.46319913952059005
+2025-11-06 21:46:22 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 21:46:30 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 21:47:22 [INFO]  Epoch 32 loss: 555.3152718544006; train accuracy: 0.9314724634770822; test accuracy: 0.3594038106945298
+2025-11-06 21:47:22 [INFO]  Round 32 Finish--------|
+2025-11-06 21:47:22 [INFO]  Model variance: mean: 0.0038460881914943457, sum: 42976.00390625
+2025-11-06 21:47:22 [INFO]  g_protos_std (global internal): 0.558359
+2025-11-06 21:47:22 [INFO]  inter_client_proto_std (cross-client): 0.286482
+2025-11-06 21:47:22 [INFO]  g_protos_std (global internal): 0.558359
+2025-11-06 21:47:22 [INFO]  inter_client_proto_std (cross-client): 0.286482
+2025-11-06 21:47:22 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 21:47:45 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5237784265519361
+2025-11-06 21:47:45 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 21:47:45 [INFO]  Round 33 starts--------|
+2025-11-06 21:47:45 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 21:47:46 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 21:48:01 [INFO]  Epoch 33 loss: 104.0424633026123; train accuracy: 0.49395910780669144; test accuracy: 0.09004302397049785
+2025-11-06 21:48:01 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 21:48:05 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 21:48:38 [INFO]  Epoch 33 loss: 287.6071720123291; train accuracy: 0.980992803100203; test accuracy: 0.176359864781807
+2025-11-06 21:48:38 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 21:48:41 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 21:49:18 [INFO]  Epoch 33 loss: 349.5746364593506; train accuracy: 0.9335453632407097; test accuracy: 0.2184618930547019
+2025-11-06 21:49:18 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 21:49:27 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 21:50:36 [INFO]  Epoch 33 loss: 798.7697024345398; train accuracy: 0.9436267605633802; test accuracy: 0.46577289489858636
+2025-11-06 21:50:36 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 21:50:42 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 21:51:36 [INFO]  Epoch 33 loss: 554.4368195533752; train accuracy: 0.9379486922034239; test accuracy: 0.35586969883220654
+2025-11-06 21:51:36 [INFO]  Round 33 Finish--------|
+2025-11-06 21:51:36 [INFO]  Model variance: mean: 0.003903305856510997, sum: 43615.3515625
+2025-11-06 21:51:36 [INFO]  g_protos_std (global internal): 0.555633
+2025-11-06 21:51:36 [INFO]  inter_client_proto_std (cross-client): 0.287172
+2025-11-06 21:51:36 [INFO]  g_protos_std (global internal): 0.555633
+2025-11-06 21:51:36 [INFO]  inter_client_proto_std (cross-client): 0.287172
+2025-11-06 21:51:36 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 21:51:58 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5181315304240934
+2025-11-06 21:51:58 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 21:51:58 [INFO]  Round 34 starts--------|
+2025-11-06 21:51:58 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 21:51:58 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 21:52:13 [INFO]  Epoch 34 loss: 102.81709098815918; train accuracy: 0.4558550185873606; test accuracy: 0.08558696988322065
+2025-11-06 21:52:13 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 21:52:16 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 21:52:48 [INFO]  Epoch 34 loss: 286.3490300178528; train accuracy: 0.9831149658608599; test accuracy: 0.19633527965580824
+2025-11-06 21:52:48 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 21:52:52 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 21:53:28 [INFO]  Epoch 34 loss: 343.39121866226196; train accuracy: 0.9533813190492133; test accuracy: 0.22906422864167178
+2025-11-06 21:53:28 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 21:53:36 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 21:54:47 [INFO]  Epoch 34 loss: 796.617796421051; train accuracy: 0.914612676056338; test accuracy: 0.45636140135218195
+2025-11-06 21:54:47 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 21:54:54 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 21:55:45 [INFO]  Epoch 34 loss: 549.9109921455383; train accuracy: 0.9377980822330438; test accuracy: 0.35563921327596804
+2025-11-06 21:55:45 [INFO]  Round 34 Finish--------|
+2025-11-06 21:55:45 [INFO]  Model variance: mean: 0.003959540743380785, sum: 44243.71875
+2025-11-06 21:55:45 [INFO]  g_protos_std (global internal): 0.553102
+2025-11-06 21:55:45 [INFO]  inter_client_proto_std (cross-client): 0.287839
+2025-11-06 21:55:45 [INFO]  g_protos_std (global internal): 0.553102
+2025-11-06 21:55:45 [INFO]  inter_client_proto_std (cross-client): 0.287839
+2025-11-06 21:55:45 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 21:56:06 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5165181315304241
+2025-11-06 21:56:06 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 21:56:06 [INFO]  Round 35 starts--------|
+2025-11-06 21:56:06 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 21:56:07 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 21:56:22 [INFO]  Epoch 35 loss: 101.58971214294434; train accuracy: 0.5106877323420075; test accuracy: 0.09680393362015981
+2025-11-06 21:56:22 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_35.pth
+2025-11-06 21:56:22 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 21:56:26 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 21:56:59 [INFO]  Epoch 35 loss: 285.532856464386; train accuracy: 0.9817309466691272; test accuracy: 0.17440073755377997
+2025-11-06 21:56:59 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_35.pth
+2025-11-06 21:56:59 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 21:57:03 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 21:57:39 [INFO]  Epoch 35 loss: 345.1638469696045; train accuracy: 0.9579009039169736; test accuracy: 0.2659035033804548
+2025-11-06 21:57:39 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_35.pth
+2025-11-06 21:57:40 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 21:57:48 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 21:58:56 [INFO]  Epoch 35 loss: 791.5527729988098; train accuracy: 0.9403169014084507; test accuracy: 0.4635832821143208
+2025-11-06 21:58:57 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_35.pth
+2025-11-06 21:58:57 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 21:59:03 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 21:59:52 [INFO]  Epoch 35 loss: 545.301739692688; train accuracy: 0.9466840704854661; test accuracy: 0.36205439459127225
+2025-11-06 21:59:53 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_35.pth
+2025-11-06 21:59:53 [INFO]  Round 35 Finish--------|
+2025-11-06 21:59:53 [INFO]  Model variance: mean: 0.004019084852188826, sum: 44909.0625
+2025-11-06 21:59:53 [INFO]  g_protos_std (global internal): 0.550861
+2025-11-06 21:59:53 [INFO]  inter_client_proto_std (cross-client): 0.288406
+2025-11-06 21:59:53 [INFO]  g_protos_std (global internal): 0.550861
+2025-11-06 21:59:53 [INFO]  inter_client_proto_std (cross-client): 0.288406
+2025-11-06 21:59:53 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 22:00:15 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5308082360172096
+2025-11-06 22:00:15 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 22:00:15 [INFO]  Round 36 starts--------|
+2025-11-06 22:00:15 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 22:00:16 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 22:00:30 [INFO]  Epoch 36 loss: 99.61573600769043; train accuracy: 0.41728624535315983; test accuracy: 0.07978641671788568
+2025-11-06 22:00:30 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 22:00:34 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 22:01:09 [INFO]  Epoch 36 loss: 285.52382612228394; train accuracy: 0.9820077505074737; test accuracy: 0.17624462200368776
+2025-11-06 22:01:09 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 22:01:12 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 22:01:48 [INFO]  Epoch 36 loss: 339.70962142944336; train accuracy: 0.8930364914630063; test accuracy: 0.16552704363859866
+2025-11-06 22:01:48 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 22:01:57 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 22:03:10 [INFO]  Epoch 36 loss: 793.0536503791809; train accuracy: 0.9433098591549296; test accuracy: 0.4632375537799631
+2025-11-06 22:03:10 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 22:03:16 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 22:04:08 [INFO]  Epoch 36 loss: 549.7058253288269; train accuracy: 0.9209799688739394; test accuracy: 0.34595881991395205
+2025-11-06 22:04:08 [INFO]  Round 36 Finish--------|
+2025-11-06 22:04:08 [INFO]  Model variance: mean: 0.0040753865614533424, sum: 45538.171875
+2025-11-06 22:04:08 [INFO]  g_protos_std (global internal): 0.548828
+2025-11-06 22:04:08 [INFO]  inter_client_proto_std (cross-client): 0.288871
+2025-11-06 22:04:08 [INFO]  g_protos_std (global internal): 0.548828
+2025-11-06 22:04:08 [INFO]  inter_client_proto_std (cross-client): 0.288871
+2025-11-06 22:04:08 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 22:04:30 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5036109403810695
+2025-11-06 22:04:30 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 22:04:30 [INFO]  Round 37 starts--------|
+2025-11-06 22:04:30 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 22:04:31 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 22:04:47 [INFO]  Epoch 37 loss: 97.83012294769287; train accuracy: 0.5604089219330854; test accuracy: 0.11097879532882605
+2025-11-06 22:04:47 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 22:04:50 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 22:05:22 [INFO]  Epoch 37 loss: 284.05476474761963; train accuracy: 0.9807159992618565; test accuracy: 0.19107252612169637
+2025-11-06 22:05:22 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 22:05:26 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 22:06:01 [INFO]  Epoch 37 loss: 337.02585077285767; train accuracy: 0.9348844994978239; test accuracy: 0.1963736939151813
+2025-11-06 22:06:01 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 22:06:11 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 22:07:21 [INFO]  Epoch 37 loss: 801.5879616737366; train accuracy: 0.9297887323943662; test accuracy: 0.4546711739397664
+2025-11-06 22:07:21 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 22:07:27 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 22:08:18 [INFO]  Epoch 37 loss: 540.165819644928; train accuracy: 0.9439730910186255; test accuracy: 0.3572526121696374
+2025-11-06 22:08:18 [INFO]  Round 37 Finish--------|
+2025-11-06 22:08:18 [INFO]  Model variance: mean: 0.004129502456635237, sum: 46142.859375
+2025-11-06 22:08:18 [INFO]  g_protos_std (global internal): 0.547018
+2025-11-06 22:08:18 [INFO]  inter_client_proto_std (cross-client): 0.289323
+2025-11-06 22:08:18 [INFO]  g_protos_std (global internal): 0.547018
+2025-11-06 22:08:18 [INFO]  inter_client_proto_std (cross-client): 0.289323
+2025-11-06 22:08:18 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 22:08:41 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5197065150583897
+2025-11-06 22:08:41 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 22:08:41 [INFO]  Round 38 starts--------|
+2025-11-06 22:08:41 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 22:08:42 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 22:08:57 [INFO]  Epoch 38 loss: 94.68847274780273; train accuracy: 0.5097583643122676; test accuracy: 0.09077289489858635
+2025-11-06 22:08:57 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 22:09:00 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 22:09:32 [INFO]  Epoch 38 loss: 283.45749378204346; train accuracy: 0.9840376453220151; test accuracy: 0.18338967424708053
+2025-11-06 22:09:32 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 22:09:37 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 22:10:14 [INFO]  Epoch 38 loss: 334.8792495727539; train accuracy: 0.9615835286240375; test accuracy: 0.19756453595574677
+2025-11-06 22:10:14 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 22:10:23 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 22:11:31 [INFO]  Epoch 38 loss: 767.2922458648682; train accuracy: 0.9426408450704226; test accuracy: 0.46212354025814384
+2025-11-06 22:11:31 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 22:11:37 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 22:12:32 [INFO]  Epoch 38 loss: 544.9920196533203; train accuracy: 0.9441739043124655; test accuracy: 0.3594422249539029
+2025-11-06 22:12:32 [INFO]  Round 38 Finish--------|
+2025-11-06 22:12:32 [INFO]  Model variance: mean: 0.0041825128719210625, sum: 46735.1953125
+2025-11-06 22:12:32 [INFO]  g_protos_std (global internal): 0.545483
+2025-11-06 22:12:32 [INFO]  inter_client_proto_std (cross-client): 0.289706
+2025-11-06 22:12:32 [INFO]  g_protos_std (global internal): 0.545483
+2025-11-06 22:12:32 [INFO]  inter_client_proto_std (cross-client): 0.289706
+2025-11-06 22:12:32 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 22:12:54 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5335740626920713
+2025-11-06 22:12:54 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 22:12:54 [INFO]  Round 39 starts--------|
+2025-11-06 22:12:54 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 22:12:55 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 22:13:11 [INFO]  Epoch 39 loss: 94.92731475830078; train accuracy: 0.48141263940520446; test accuracy: 0.08635525507068224
+2025-11-06 22:13:11 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 22:13:14 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 22:13:51 [INFO]  Epoch 39 loss: 282.68954706192017; train accuracy: 0.9813618748846651; test accuracy: 0.16817762753534113
+2025-11-06 22:13:51 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 22:13:55 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 22:14:33 [INFO]  Epoch 39 loss: 336.1382203102112; train accuracy: 0.9440910612654838; test accuracy: 0.2494622003687769
+2025-11-06 22:14:33 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 22:14:43 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 22:15:55 [INFO]  Epoch 39 loss: 798.8848538398743; train accuracy: 0.9412676056338029; test accuracy: 0.45893515673017826
+2025-11-06 22:15:55 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 22:16:01 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 22:16:56 [INFO]  Epoch 39 loss: 539.0204644203186; train accuracy: 0.945880817310106; test accuracy: 0.3650122925629994
+2025-11-06 22:16:56 [INFO]  Round 39 Finish--------|
+2025-11-06 22:16:56 [INFO]  Model variance: mean: 0.004234828520566225, sum: 47319.76953125
+2025-11-06 22:16:56 [INFO]  g_protos_std (global internal): 0.544004
+2025-11-06 22:16:56 [INFO]  inter_client_proto_std (cross-client): 0.290128
+2025-11-06 22:16:56 [INFO]  g_protos_std (global internal): 0.544004
+2025-11-06 22:16:56 [INFO]  inter_client_proto_std (cross-client): 0.290128
+2025-11-06 22:16:56 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 22:17:18 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5243162261831592
+2025-11-06 22:17:18 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 22:17:18 [INFO]  Round 40 starts--------|
+2025-11-06 22:17:18 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 22:17:19 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 22:17:36 [INFO]  Epoch 40 loss: 92.15995693206787; train accuracy: 0.5302044609665427; test accuracy: 0.109980024585126
+2025-11-06 22:17:36 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_40.pth
+2025-11-06 22:17:36 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 22:17:40 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 22:18:12 [INFO]  Epoch 40 loss: 281.3471097946167; train accuracy: 0.9858830042443255; test accuracy: 0.2014059618930547
+2025-11-06 22:18:12 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_40.pth
+2025-11-06 22:18:12 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 22:18:16 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 22:18:52 [INFO]  Epoch 40 loss: 327.3002896308899; train accuracy: 0.9444258453297623; test accuracy: 0.25749078057775043
+2025-11-06 22:18:52 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_40.pth
+2025-11-06 22:18:52 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 22:19:01 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 22:20:10 [INFO]  Epoch 40 loss: 779.3986477851868; train accuracy: 0.9366549295774648; test accuracy: 0.46154732636754764
+2025-11-06 22:20:10 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_40.pth
+2025-11-06 22:20:10 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 22:20:15 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 22:21:10 [INFO]  Epoch 40 loss: 537.0136070251465; train accuracy: 0.9417641447863848; test accuracy: 0.3546788567916411
+2025-11-06 22:21:10 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_40.pth
+2025-11-06 22:21:10 [INFO]  Round 40 Finish--------|
+2025-11-06 22:21:10 [INFO]  Model variance: mean: 0.004288393538445234, sum: 47918.3046875
+2025-11-06 22:21:10 [INFO]  g_protos_std (global internal): 0.542791
+2025-11-06 22:21:10 [INFO]  inter_client_proto_std (cross-client): 0.290477
+2025-11-06 22:21:10 [INFO]  g_protos_std (global internal): 0.542791
+2025-11-06 22:21:10 [INFO]  inter_client_proto_std (cross-client): 0.290477
+2025-11-06 22:21:10 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 22:21:33 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5165949600491703
+2025-11-06 22:21:33 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 22:21:33 [INFO]  Round 41 starts--------|
+2025-11-06 22:21:33 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 22:21:33 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 22:21:49 [INFO]  Epoch 41 loss: 90.12393856048584; train accuracy: 0.4507434944237918; test accuracy: 0.08101567301782421
+2025-11-06 22:21:49 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 22:21:52 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 22:22:24 [INFO]  Epoch 41 loss: 280.6212363243103; train accuracy: 0.9831149658608599; test accuracy: 0.18289028887523048
+2025-11-06 22:22:24 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 22:22:28 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 22:23:03 [INFO]  Epoch 41 loss: 324.6842613220215; train accuracy: 0.96099765651155; test accuracy: 0.26309926244622006
+2025-11-06 22:23:03 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 22:23:13 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 22:24:22 [INFO]  Epoch 41 loss: 788.736946105957; train accuracy: 0.9165845070422535; test accuracy: 0.44837123540258145
+2025-11-06 22:24:22 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 22:24:29 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 22:25:23 [INFO]  Epoch 41 loss: 529.6679353713989; train accuracy: 0.9280586374818013; test accuracy: 0.3568300553165335
+2025-11-06 22:25:23 [INFO]  Round 41 Finish--------|
+2025-11-06 22:25:23 [INFO]  Model variance: mean: 0.004339972045272589, sum: 48494.640625
+2025-11-06 22:25:23 [INFO]  g_protos_std (global internal): 0.541879
+2025-11-06 22:25:23 [INFO]  inter_client_proto_std (cross-client): 0.290747
+2025-11-06 22:25:23 [INFO]  g_protos_std (global internal): 0.541879
+2025-11-06 22:25:23 [INFO]  inter_client_proto_std (cross-client): 0.290747
+2025-11-06 22:25:23 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 22:25:46 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5133681622618316
+2025-11-06 22:25:46 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 22:25:46 [INFO]  Round 42 starts--------|
+2025-11-06 22:25:46 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 22:25:47 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 22:26:02 [INFO]  Epoch 42 loss: 88.09912776947021; train accuracy: 0.5306691449814126; test accuracy: 0.10786724031960664
+2025-11-06 22:26:02 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 22:26:06 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 22:26:43 [INFO]  Epoch 42 loss: 280.2411856651306; train accuracy: 0.9846835209448238; test accuracy: 0.18726951444376153
+2025-11-06 22:26:43 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 22:26:47 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 22:27:24 [INFO]  Epoch 42 loss: 326.01592206954956; train accuracy: 0.9314529628389688; test accuracy: 0.21077904118008606
+2025-11-06 22:27:24 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 22:27:34 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 22:28:45 [INFO]  Epoch 42 loss: 770.7981157302856; train accuracy: 0.9483802816901409; test accuracy: 0.4620851259987707
+2025-11-06 22:28:45 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 22:28:51 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 22:29:43 [INFO]  Epoch 42 loss: 536.1790103912354; train accuracy: 0.9456800040162658; test accuracy: 0.36205439459127225
+2025-11-06 22:29:43 [INFO]  Round 42 Finish--------|
+2025-11-06 22:29:43 [INFO]  Model variance: mean: 0.004390522371977568, sum: 49059.484375
+2025-11-06 22:29:43 [INFO]  g_protos_std (global internal): 0.541151
+2025-11-06 22:29:43 [INFO]  inter_client_proto_std (cross-client): 0.290988
+2025-11-06 22:29:43 [INFO]  g_protos_std (global internal): 0.541151
+2025-11-06 22:29:43 [INFO]  inter_client_proto_std (cross-client): 0.290988
+2025-11-06 22:29:43 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 22:30:09 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5267747387830363
+2025-11-06 22:30:09 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 22:30:09 [INFO]  Round 43 starts--------|
+2025-11-06 22:30:09 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 22:30:10 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 22:30:26 [INFO]  Epoch 43 loss: 87.44812488555908; train accuracy: 0.550185873605948; test accuracy: 0.1008758451137062
+2025-11-06 22:30:26 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 22:30:29 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 22:31:01 [INFO]  Epoch 43 loss: 278.856098651886; train accuracy: 0.9825613581841668; test accuracy: 0.18473417332513828
+2025-11-06 22:31:01 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 22:31:05 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 22:31:39 [INFO]  Epoch 43 loss: 321.50564908981323; train accuracy: 0.9476062939404084; test accuracy: 0.2242240319606638
+2025-11-06 22:31:39 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 22:31:48 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 22:32:59 [INFO]  Epoch 43 loss: 759.1079859733582; train accuracy: 0.944612676056338; test accuracy: 0.46281499692685923
+2025-11-06 22:32:59 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 22:33:06 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 22:33:58 [INFO]  Epoch 43 loss: 524.6527342796326; train accuracy: 0.9396556052010643; test accuracy: 0.3605562384757222
+2025-11-06 22:33:58 [INFO]  Round 43 Finish--------|
+2025-11-06 22:33:58 [INFO]  Model variance: mean: 0.004440832417458296, sum: 49621.6484375
+2025-11-06 22:33:58 [INFO]  g_protos_std (global internal): 0.540634
+2025-11-06 22:33:58 [INFO]  inter_client_proto_std (cross-client): 0.291144
+2025-11-06 22:33:58 [INFO]  g_protos_std (global internal): 0.540634
+2025-11-06 22:33:58 [INFO]  inter_client_proto_std (cross-client): 0.291144
+2025-11-06 22:33:58 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 22:34:16 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5139827904118008
+2025-11-06 22:34:16 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 22:34:16 [INFO]  Round 44 starts--------|
+2025-11-06 22:34:16 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 22:34:17 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 22:34:30 [INFO]  Epoch 44 loss: 84.08293724060059; train accuracy: 0.5664498141263941; test accuracy: 0.10963429625076829
+2025-11-06 22:34:30 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 22:34:33 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 22:35:02 [INFO]  Epoch 44 loss: 278.5215673446655; train accuracy: 0.9840376453220151; test accuracy: 0.1845036877688998
+2025-11-06 22:35:02 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 22:35:05 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 22:35:34 [INFO]  Epoch 44 loss: 321.3933811187744; train accuracy: 0.9592400401740877; test accuracy: 0.23839889366933006
+2025-11-06 22:35:34 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 22:35:42 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 22:36:40 [INFO]  Epoch 44 loss: 768.0117621421814; train accuracy: 0.9419718309859155; test accuracy: 0.46185464044253227
+2025-11-06 22:36:40 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 22:36:46 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 22:37:27 [INFO]  Epoch 44 loss: 534.4388756752014; train accuracy: 0.9485415934534867; test accuracy: 0.35786724031960665
+2025-11-06 22:37:27 [INFO]  Round 44 Finish--------|
+2025-11-06 22:37:27 [INFO]  Model variance: mean: 0.004490422084927559, sum: 50175.76171875
+2025-11-06 22:37:27 [INFO]  g_protos_std (global internal): 0.540305
+2025-11-06 22:37:27 [INFO]  inter_client_proto_std (cross-client): 0.291289
+2025-11-06 22:37:27 [INFO]  g_protos_std (global internal): 0.540305
+2025-11-06 22:37:27 [INFO]  inter_client_proto_std (cross-client): 0.291289
+2025-11-06 22:37:27 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 22:37:42 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5347264904732637
+2025-11-06 22:37:42 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 22:37:42 [INFO]  Round 45 starts--------|
+2025-11-06 22:37:42 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 22:37:42 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 22:37:54 [INFO]  Epoch 45 loss: 84.58188915252686; train accuracy: 0.4275092936802974; test accuracy: 0.07513829133374308
+2025-11-06 22:37:55 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_45.pth
+2025-11-06 22:37:55 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 22:37:58 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 22:38:26 [INFO]  Epoch 45 loss: 277.8828544616699; train accuracy: 0.9847757888909393; test accuracy: 0.18826828518746158
+2025-11-06 22:38:26 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_45.pth
+2025-11-06 22:38:26 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 22:38:29 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 22:38:58 [INFO]  Epoch 45 loss: 322.58298444747925; train accuracy: 0.9492802142618011; test accuracy: 0.186040258143823
+2025-11-06 22:38:58 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_45.pth
+2025-11-06 22:38:58 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 22:39:05 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 22:40:03 [INFO]  Epoch 45 loss: 764.7317080497742; train accuracy: 0.936056338028169; test accuracy: 0.46223878303626303
+2025-11-06 22:40:03 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_45.pth
+2025-11-06 22:40:03 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 22:40:09 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 22:40:52 [INFO]  Epoch 45 loss: 527.2255725860596; train accuracy: 0.9492444399819268; test accuracy: 0.3521819299323909
+2025-11-06 22:40:53 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_45.pth
+2025-11-06 22:40:53 [INFO]  Round 45 Finish--------|
+2025-11-06 22:40:53 [INFO]  Model variance: mean: 0.004542063921689987, sum: 50752.8046875
+2025-11-06 22:40:53 [INFO]  g_protos_std (global internal): 0.540182
+2025-11-06 22:40:53 [INFO]  inter_client_proto_std (cross-client): 0.291360
+2025-11-06 22:40:53 [INFO]  g_protos_std (global internal): 0.540182
+2025-11-06 22:40:53 [INFO]  inter_client_proto_std (cross-client): 0.291360
+2025-11-06 22:40:53 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 22:41:08 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5364167178856791
+2025-11-06 22:41:08 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 22:41:08 [INFO]  Round 46 starts--------|
+2025-11-06 22:41:08 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 22:41:08 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 22:41:20 [INFO]  Epoch 46 loss: 81.28291606903076; train accuracy: 0.5557620817843866; test accuracy: 0.11651044867854948
+2025-11-06 22:41:20 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 22:41:23 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 22:41:50 [INFO]  Epoch 46 loss: 277.0710620880127; train accuracy: 0.9860675401365565; test accuracy: 0.20148279041180087
+2025-11-06 22:41:50 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 22:41:53 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 22:42:23 [INFO]  Epoch 46 loss: 316.81028842926025; train accuracy: 0.9604954804151322; test accuracy: 0.2628303626306085
+2025-11-06 22:42:23 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 22:42:30 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 22:43:30 [INFO]  Epoch 46 loss: 763.33642578125; train accuracy: 0.9480281690140845; test accuracy: 0.46615703749231713
+2025-11-06 22:43:30 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 22:43:35 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 22:44:18 [INFO]  Epoch 46 loss: 529.6633305549622; train accuracy: 0.9297153471559817; test accuracy: 0.35022280270436384
+2025-11-06 22:44:18 [INFO]  Round 46 Finish--------|
+2025-11-06 22:44:18 [INFO]  Model variance: mean: 0.004592190962284803, sum: 51312.921875
+2025-11-06 22:44:18 [INFO]  g_protos_std (global internal): 0.540303
+2025-11-06 22:44:18 [INFO]  inter_client_proto_std (cross-client): 0.291425
+2025-11-06 22:44:18 [INFO]  g_protos_std (global internal): 0.540303
+2025-11-06 22:44:18 [INFO]  inter_client_proto_std (cross-client): 0.291425
+2025-11-06 22:44:18 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 22:44:34 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5194376152427781
+2025-11-06 22:44:34 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 22:44:34 [INFO]  Round 47 starts--------|
+2025-11-06 22:44:34 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 22:44:34 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 22:44:46 [INFO]  Epoch 47 loss: 80.10133266448975; train accuracy: 0.49070631970260226; test accuracy: 0.08896742470805163
+2025-11-06 22:44:46 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 22:44:49 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 22:45:17 [INFO]  Epoch 47 loss: 276.7250771522522; train accuracy: 0.9876360952205204; test accuracy: 0.2008681622618316
+2025-11-06 22:45:17 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 22:45:20 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 22:45:49 [INFO]  Epoch 47 loss: 316.7548418045044; train accuracy: 0.9631737529293606; test accuracy: 0.2353257529194837
+2025-11-06 22:45:49 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 22:45:57 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 22:46:52 [INFO]  Epoch 47 loss: 753.6528978347778; train accuracy: 0.9537323943661972; test accuracy: 0.47019053472649047
+2025-11-06 22:46:52 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 22:46:59 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 22:47:41 [INFO]  Epoch 47 loss: 529.8707675933838; train accuracy: 0.9443245142828455; test accuracy: 0.35936539643515675
+2025-11-06 22:47:41 [INFO]  Round 47 Finish--------|
+2025-11-06 22:47:41 [INFO]  Model variance: mean: 0.004641019739210606, sum: 51858.53125
+2025-11-06 22:47:41 [INFO]  g_protos_std (global internal): 0.540635
+2025-11-06 22:47:41 [INFO]  inter_client_proto_std (cross-client): 0.291377
+2025-11-06 22:47:41 [INFO]  g_protos_std (global internal): 0.540635
+2025-11-06 22:47:41 [INFO]  inter_client_proto_std (cross-client): 0.291377
+2025-11-06 22:47:41 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 22:47:56 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5191303011677935
+2025-11-06 22:47:56 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 22:47:56 [INFO]  Round 48 starts--------|
+2025-11-06 22:47:56 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 22:47:57 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 22:48:10 [INFO]  Epoch 48 loss: 77.63330459594727; train accuracy: 0.5687732342007435; test accuracy: 0.10302704363859864
+2025-11-06 22:48:10 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 22:48:14 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 22:48:41 [INFO]  Epoch 48 loss: 275.1834330558777; train accuracy: 0.9856984683520945; test accuracy: 0.1880762138905962
+2025-11-06 22:48:41 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 22:48:44 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 22:49:13 [INFO]  Epoch 48 loss: 313.3732924461365; train accuracy: 0.9542182792099096; test accuracy: 0.21415949600491702
+2025-11-06 22:49:13 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 22:49:21 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 22:50:21 [INFO]  Epoch 48 loss: 763.5433897972107; train accuracy: 0.9515140845070422; test accuracy: 0.4675783650891211
+2025-11-06 22:50:21 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 22:50:27 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 22:51:10 [INFO]  Epoch 48 loss: 525.8474888801575; train accuracy: 0.9449771574878257; test accuracy: 0.3584818684695759
+2025-11-06 22:51:10 [INFO]  Round 48 Finish--------|
+2025-11-06 22:51:10 [INFO]  Model variance: mean: 0.00469038262963295, sum: 52410.109375
+2025-11-06 22:51:10 [INFO]  g_protos_std (global internal): 0.541121
+2025-11-06 22:51:10 [INFO]  inter_client_proto_std (cross-client): 0.291374
+2025-11-06 22:51:10 [INFO]  g_protos_std (global internal): 0.541121
+2025-11-06 22:51:10 [INFO]  inter_client_proto_std (cross-client): 0.291374
+2025-11-06 22:51:10 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 22:51:26 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5293100799016595
+2025-11-06 22:51:26 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
+2025-11-06 22:51:26 [INFO]  Round 49 starts--------|
+2025-11-06 22:51:26 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-06 22:51:26 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-06 22:51:39 [INFO]  Epoch 49 loss: 76.66937971115112; train accuracy: 0.5882899628252788; test accuracy: 0.11178549477566073
+2025-11-06 22:51:39 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-06 22:51:41 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-06 22:52:08 [INFO]  Epoch 49 loss: 273.7691469192505; train accuracy: 0.9869902195977117; test accuracy: 0.20132913337430855
+2025-11-06 22:52:08 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-06 22:52:11 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-06 22:52:40 [INFO]  Epoch 49 loss: 311.111900806427; train accuracy: 0.961248744559759; test accuracy: 0.23352028272894898
+2025-11-06 22:52:40 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-06 22:52:48 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-06 22:53:44 [INFO]  Epoch 49 loss: 749.76966381073; train accuracy: 0.9623943661971831; test accuracy: 0.47038260602335585
+2025-11-06 22:53:44 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-06 22:53:50 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-06 22:54:35 [INFO]  Epoch 49 loss: 524.7581362724304; train accuracy: 0.9391033686430041; test accuracy: 0.3545636140135218
+2025-11-06 22:54:35 [INFO]  Round 49 Finish--------|
+2025-11-06 22:54:35 [INFO]  Model variance: mean: 0.004737622104585171, sum: 52937.9609375
+2025-11-06 22:54:35 [INFO]  g_protos_std (global internal): 0.541874
+2025-11-06 22:54:35 [INFO]  inter_client_proto_std (cross-client): 0.291251
+2025-11-06 22:54:35 [INFO]  g_protos_std (global internal): 0.541874
+2025-11-06 22:54:35 [INFO]  inter_client_proto_std (cross-client): 0.291251
+2025-11-06 22:54:35 [INFO]  V9 Training | Using Simple Feature-level Server.
+2025-11-06 22:54:50 [INFO]  The test accuracy of OursV9+SimpleFeatureServer: 0.5308082360172096
+2025-11-06 22:54:50 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV9+SimpleFeatureServer_SVHN_results.yaml
