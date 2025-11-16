@@ -1,0 +1,1570 @@
+2025-11-12 15:01:16 [INFO]  Load config from ./configs/SVHN_alpha0.05.yaml
+2025-11-12 15:01:16 [INFO]  config: {'exp_name': 'SVHN_alpha0.05', 'dataset': {'data_name': 'SVHN', 'root_path': '~/datasets/', 'train_batch_size': 256, 'test_batch_size': 256, 'channels': 3, 'num_classes': 10, 'image_size': 32, 'aux_data_name': 'SVHN', 'aux_root_path': '~/datasets/', 'aux_split': 'test'}, 'distribution': {'type': 'dirichlet', 'label_num_per_client': 2, 'alpha': 0.05}, 'client': {'num_clients': 5}, 'server': {'num_rounds': 50, 'frac_clients': 1.0, 'lr': 0.05, 'local_epochs': 1, 'optimizer': 'sgd', 'momentum': 0.9, 'weight_decay': 0.0001, 'loss_name': 'ce', 'model_name': 'resnet18', 'aggregated_by_datasize': True, 'lr_decay_per_round': 0.998}, 'device': 'cuda:0', 'checkpoint': {'save_path': './checkpoints/', 'save_freq': 5, 'result_file': 'SVHN_results.yaml'}, 'pretrain': {'lr': 0.01, 'epoch': 70, 'model_path': './pretrain/', 'momentum': 0.9, 'weight_decay': 0.0001, 'model_name': 'resnet18', 'model_file_name': 'resnet18-f37072fd.pth'}, 'DBCD': {'alpha_l_pa': 1, 'alpha_l_pb': 1, 'alpha_l_pc': 0.0, 'Beta_alpha': 0.2, 'unsup_method': 'infonce', 'contrastive_temperature': 0.5, 'encoder_epoch': 40, 'projector_epoch': 10, 'use_pretrain': False, 'aug_batch_size': 512, 'encoder_lr': 0.03, 'cls_optimizer': 'sgd', 'cls_lr': 0.05, 'supcon_temp': 0.07, 'super_gr': 100, 'aux_with_public': True}, 'etf': {'loss_name': 'ce'}, 'visualization': {'interval': 5, 'save_path': 'visualization/resnet18', 'vis_size': 16}, 'resume': True, 'resume_best': False, 'seed': 114514, 'lambda_align_initial': 10.0, 'v9_config': {'use_adaptive_lambda': True, 'lambda_min': 0.1, 'lambda_max': 20.0, 'use_server_optimization': False, 'server_lr': 0.001, 'server_epochs': 20, 'gamma_etf_reg': 0.1}, 'v10_config': {'use_uncertainty_weighting': True, 'sigma_lr': 0.005}}
+2025-11-12 15:01:19 [INFO]  Dataset SVHN loaded
+2025-11-12 15:01:19 [INFO]  Dataset index dict loaded from preprocessed_data/SVHN.pt
+2025-11-12 15:01:19 [INFO]  Data distribution generated correctly using the corrected dirichlet function.
+2025-11-12 15:01:19 [INFO]  Total assigned samples: 73257
+2025-11-12 15:01:19 [INFO]  OneshotOursV13: V12 with stability_anchor
+2025-11-12 15:01:20 [INFO]  --- Pre-heating V13 models with V9's adaptive lambda strategy ---
+2025-11-12 15:01:21 [INFO]  Data entropy: 1.7077, Normalized: 0.5141 -> Adaptive Lambda: 10.3302
+2025-11-12 15:01:21 [INFO]  Client 0: Calculated initial lambda = 10.3302
+2025-11-12 15:01:23 [INFO]  Data entropy: 0.1810, Normalized: 0.0545 -> Adaptive Lambda: 1.1844
+2025-11-12 15:01:23 [INFO]  Client 1: Calculated initial lambda = 1.1844
+2025-11-12 15:01:26 [INFO]  Data entropy: 1.1695, Normalized: 0.3521 -> Adaptive Lambda: 7.1060
+2025-11-12 15:01:26 [INFO]  Client 2: Calculated initial lambda = 7.1060
+2025-11-12 15:01:33 [INFO]  Data entropy: 2.2890, Normalized: 0.6891 -> Adaptive Lambda: 13.8123
+2025-11-12 15:01:33 [INFO]  Client 3: Calculated initial lambda = 13.8123
+2025-11-12 15:01:38 [INFO]  Data entropy: 1.5633, Normalized: 0.4706 -> Adaptive Lambda: 9.4648
+2025-11-12 15:01:38 [INFO]  Client 4: Calculated initial lambda = 9.4648
+2025-11-12 15:01:38 [INFO]  --- V13 model pre-heating complete. ---
+2025-11-12 15:01:38 [INFO]  Gamma for stability anchor regularization: 1e-07
+2025-11-12 15:01:38 [INFO]  Round 0 starts--------|
+2025-11-12 15:01:38 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 15:01:38 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:01:53 [INFO]  Epoch 0 loss: 225.1911277770996; train accuracy: 0.15427509293680297; test accuracy: 0.06495851259987707
+2025-11-12 15:01:54 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_0.pth
+2025-11-12 15:01:54 [INFO]  Client 0 Post-Training State -> Raw λ:   10.3438 | s(p): 0.980 | Truly Effective λ (for W):   10.1370
+2025-11-12 15:01:54 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 15:01:57 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:02:31 [INFO]  Epoch 0 loss: 580.4240322113037; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 15:02:32 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_0.pth
+2025-11-12 15:02:32 [INFO]  Client 1 Post-Training State -> Raw λ:    2.7707 | s(p): 0.980 | Truly Effective λ (for W):    2.7153
+2025-11-12 15:02:32 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 15:02:36 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:03:11 [INFO]  Epoch 0 loss: 830.7218551635742; train accuracy: 0.6252092400401741; test accuracy: 0.09695759065765212
+2025-11-12 15:03:11 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_0.pth
+2025-11-12 15:03:11 [INFO]  Client 2 Post-Training State -> Raw λ:    7.2762 | s(p): 0.980 | Truly Effective λ (for W):    7.1306
+2025-11-12 15:03:11 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 15:03:21 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:04:30 [INFO]  Epoch 0 loss: 2698.7307777404785; train accuracy: 0.4143661971830986; test accuracy: 0.21876920712968653
+2025-11-12 15:04:30 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_0.pth
+2025-11-12 15:04:30 [INFO]  Client 3 Post-Training State -> Raw λ:   12.0318 | s(p): 0.980 | Truly Effective λ (for W):   11.7912
+2025-11-12 15:04:30 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 15:04:37 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:05:30 [INFO]  Epoch 0 loss: 1631.6484603881836; train accuracy: 0.3853105075556002; test accuracy: 0.21369852489244007
+2025-11-12 15:05:30 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_0.pth
+2025-11-12 15:05:30 [INFO]  Client 4 Post-Training State -> Raw λ:    9.3386 | s(p): 0.980 | Truly Effective λ (for W):    9.1519
+2025-11-12 15:05:30 [INFO]  Round 0 Finish--------|
+2025-11-12 15:05:30 [INFO]  g_protos_std (global internal): 0.984313
+2025-11-12 15:05:30 [INFO]  inter_client_proto_std (cross-client): 0.020701
+2025-11-12 15:05:57 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.2585663798401967
+2025-11-12 15:05:57 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 15:05:57 [INFO]  Round 1 starts--------|
+2025-11-12 15:05:57 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 15:05:57 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:06:11 [INFO]  Epoch 1 loss: 199.2425422668457; train accuracy: 0.20446096654275092; test accuracy: 0.06734019668100799
+2025-11-12 15:06:11 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_1.pth
+2025-11-12 15:06:11 [INFO]  Client 0 Post-Training State -> Raw λ:   10.3379 | s(p): 0.960 | Truly Effective λ (for W):    9.9244
+2025-11-12 15:06:11 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 15:06:11 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:06:45 [INFO]  Epoch 1 loss: 531.8918285369873; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 15:06:45 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_1.pth
+2025-11-12 15:06:45 [INFO]  Client 1 Post-Training State -> Raw λ:    5.3460 | s(p): 0.960 | Truly Effective λ (for W):    5.1321
+2025-11-12 15:06:45 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 15:06:45 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:07:21 [INFO]  Epoch 1 loss: 801.4376449584961; train accuracy: 0.6364245061935052; test accuracy: 0.09711124769514444
+2025-11-12 15:07:22 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_1.pth
+2025-11-12 15:07:22 [INFO]  Client 2 Post-Training State -> Raw λ:    7.5642 | s(p): 0.960 | Truly Effective λ (for W):    7.2617
+2025-11-12 15:07:22 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 15:07:22 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:08:36 [INFO]  Epoch 1 loss: 2268.47509765625; train accuracy: 0.5785211267605633; test accuracy: 0.31814689612784264
+2025-11-12 15:08:36 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_1.pth
+2025-11-12 15:08:36 [INFO]  Client 3 Post-Training State -> Raw λ:   11.1943 | s(p): 0.960 | Truly Effective λ (for W):   10.7466
+2025-11-12 15:08:36 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 15:08:36 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:09:28 [INFO]  Epoch 1 loss: 1471.2606754302979; train accuracy: 0.5198554144284352; test accuracy: 0.2342117393976644
+2025-11-12 15:09:28 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_1.pth
+2025-11-12 15:09:28 [INFO]  Client 4 Post-Training State -> Raw λ:    9.1222 | s(p): 0.960 | Truly Effective λ (for W):    8.7573
+2025-11-12 15:09:28 [INFO]  Round 1 Finish--------|
+2025-11-12 15:09:28 [INFO]  g_protos_std (global internal): 0.953563
+2025-11-12 15:09:28 [INFO]  inter_client_proto_std (cross-client): 0.040095
+2025-11-12 15:09:55 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.32463890596189304
+2025-11-12 15:09:55 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 15:09:55 [INFO]  Round 2 starts--------|
+2025-11-12 15:09:55 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 15:09:55 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:10:11 [INFO]  Epoch 2 loss: 192.79066467285156; train accuracy: 0.3131970260223048; test accuracy: 0.0721419791026429
+2025-11-12 15:10:11 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_2.pth
+2025-11-12 15:10:11 [INFO]  Client 0 Post-Training State -> Raw λ:   10.3244 | s(p): 0.940 | Truly Effective λ (for W):    9.7049
+2025-11-12 15:10:11 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 15:10:11 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:10:44 [INFO]  Epoch 2 loss: 591.7282047271729; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 15:10:45 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_2.pth
+2025-11-12 15:10:45 [INFO]  Client 1 Post-Training State -> Raw λ:    6.4064 | s(p): 0.940 | Truly Effective λ (for W):    6.0221
+2025-11-12 15:10:45 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 15:10:45 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:11:20 [INFO]  Epoch 2 loss: 789.836856842041; train accuracy: 0.6350016739203214; test accuracy: 0.10279655808236017
+2025-11-12 15:11:21 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_2.pth
+2025-11-12 15:11:21 [INFO]  Client 2 Post-Training State -> Raw λ:    7.8410 | s(p): 0.940 | Truly Effective λ (for W):    7.3706
+2025-11-12 15:11:21 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 15:11:21 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:12:31 [INFO]  Epoch 2 loss: 2039.2336978912354; train accuracy: 0.6640140845070422; test accuracy: 0.3111555009219422
+2025-11-12 15:12:31 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_2.pth
+2025-11-12 15:12:31 [INFO]  Client 3 Post-Training State -> Raw λ:   11.4177 | s(p): 0.940 | Truly Effective λ (for W):   10.7327
+2025-11-12 15:12:31 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 15:12:31 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:13:26 [INFO]  Epoch 2 loss: 1391.2392253875732; train accuracy: 0.5340629549676189; test accuracy: 0.14785648432698217
+2025-11-12 15:13:26 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_2.pth
+2025-11-12 15:13:26 [INFO]  Client 4 Post-Training State -> Raw λ:    9.3396 | s(p): 0.940 | Truly Effective λ (for W):    8.7792
+2025-11-12 15:13:26 [INFO]  Round 2 Finish--------|
+2025-11-12 15:13:26 [INFO]  g_protos_std (global internal): 0.918935
+2025-11-12 15:13:26 [INFO]  inter_client_proto_std (cross-client): 0.057025
+2025-11-12 15:13:52 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.3915181315304241
+2025-11-12 15:13:52 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 15:13:52 [INFO]  Round 3 starts--------|
+2025-11-12 15:13:52 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 15:13:52 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:14:06 [INFO]  Epoch 3 loss: 191.39247703552246; train accuracy: 0.38801115241635686; test accuracy: 0.06392132759680394
+2025-11-12 15:14:06 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_3.pth
+2025-11-12 15:14:06 [INFO]  Client 0 Post-Training State -> Raw λ:   10.3062 | s(p): 0.920 | Truly Effective λ (for W):    9.4817
+2025-11-12 15:14:06 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 15:14:06 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:14:39 [INFO]  Epoch 3 loss: 604.8523330688477; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 15:14:39 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_3.pth
+2025-11-12 15:14:39 [INFO]  Client 1 Post-Training State -> Raw λ:    7.1660 | s(p): 0.920 | Truly Effective λ (for W):    6.5927
+2025-11-12 15:14:39 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 15:14:39 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:15:14 [INFO]  Epoch 3 loss: 777.9459066390991; train accuracy: 0.7024606628724472; test accuracy: 0.11816226183159188
+2025-11-12 15:15:14 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_3.pth
+2025-11-12 15:15:14 [INFO]  Client 2 Post-Training State -> Raw λ:    8.0918 | s(p): 0.920 | Truly Effective λ (for W):    7.4445
+2025-11-12 15:15:14 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 15:15:14 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:16:23 [INFO]  Epoch 3 loss: 1893.8799829483032; train accuracy: 0.8387323943661972; test accuracy: 0.4198678549477566
+2025-11-12 15:16:24 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_3.pth
+2025-11-12 15:16:24 [INFO]  Client 3 Post-Training State -> Raw λ:   12.0363 | s(p): 0.920 | Truly Effective λ (for W):   11.0734
+2025-11-12 15:16:24 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 15:16:24 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:17:17 [INFO]  Epoch 3 loss: 1326.4078197479248; train accuracy: 0.7218233847080677; test accuracy: 0.3177627535341119
+2025-11-12 15:17:17 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_3.pth
+2025-11-12 15:17:17 [INFO]  Client 4 Post-Training State -> Raw λ:    9.9635 | s(p): 0.920 | Truly Effective λ (for W):    9.1664
+2025-11-12 15:17:17 [INFO]  Round 3 Finish--------|
+2025-11-12 15:17:17 [INFO]  g_protos_std (global internal): 0.885032
+2025-11-12 15:17:17 [INFO]  inter_client_proto_std (cross-client): 0.073528
+2025-11-12 15:17:43 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.42255685310387214
+2025-11-12 15:17:43 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 15:17:43 [INFO]  Round 4 starts--------|
+2025-11-12 15:17:43 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 15:17:43 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:17:58 [INFO]  Epoch 4 loss: 190.04316329956055; train accuracy: 0.35687732342007433; test accuracy: 0.06707129686539644
+2025-11-12 15:17:58 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_4.pth
+2025-11-12 15:17:58 [INFO]  Client 0 Post-Training State -> Raw λ:   10.2838 | s(p): 0.900 | Truly Effective λ (for W):    9.2554
+2025-11-12 15:17:58 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 15:17:58 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:18:30 [INFO]  Epoch 4 loss: 605.9257726669312; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 15:18:30 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_4.pth
+2025-11-12 15:18:30 [INFO]  Client 1 Post-Training State -> Raw λ:    7.9349 | s(p): 0.900 | Truly Effective λ (for W):    7.1414
+2025-11-12 15:18:30 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 15:18:30 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:19:03 [INFO]  Epoch 4 loss: 766.3185911178589; train accuracy: 0.7885001673920321; test accuracy: 0.1329517516902274
+2025-11-12 15:19:03 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_4.pth
+2025-11-12 15:19:03 [INFO]  Client 2 Post-Training State -> Raw λ:    8.3819 | s(p): 0.900 | Truly Effective λ (for W):    7.5437
+2025-11-12 15:19:03 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 15:19:04 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:20:12 [INFO]  Epoch 4 loss: 1825.1652002334595; train accuracy: 0.796725352112676; test accuracy: 0.37411647203441917
+2025-11-12 15:20:12 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_4.pth
+2025-11-12 15:20:12 [INFO]  Client 3 Post-Training State -> Raw λ:   13.5350 | s(p): 0.900 | Truly Effective λ (for W):   12.1815
+2025-11-12 15:20:12 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 15:20:12 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:21:07 [INFO]  Epoch 4 loss: 1286.8792123794556; train accuracy: 0.7266429037602289; test accuracy: 0.2560694529809465
+2025-11-12 15:21:08 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_4.pth
+2025-11-12 15:21:08 [INFO]  Client 4 Post-Training State -> Raw λ:   10.8647 | s(p): 0.900 | Truly Effective λ (for W):    9.7782
+2025-11-12 15:21:08 [INFO]  Round 4 Finish--------|
+2025-11-12 15:21:08 [INFO]  g_protos_std (global internal): 0.848946
+2025-11-12 15:21:08 [INFO]  inter_client_proto_std (cross-client): 0.092209
+2025-11-12 15:21:34 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.4198294406883835
+2025-11-12 15:21:34 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 15:21:34 [INFO]  Round 5 starts--------|
+2025-11-12 15:21:34 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 15:21:34 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:21:48 [INFO]  Epoch 5 loss: 189.13299179077148; train accuracy: 0.34433085501858735; test accuracy: 0.06745543945912723
+2025-11-12 15:21:49 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_5.pth
+2025-11-12 15:21:49 [INFO]  Client 0 Post-Training State -> Raw λ:   10.2589 | s(p): 0.880 | Truly Effective λ (for W):    9.0278
+2025-11-12 15:21:49 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 15:21:49 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:22:22 [INFO]  Epoch 5 loss: 603.776312828064; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 15:22:23 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_5.pth
+2025-11-12 15:22:23 [INFO]  Client 1 Post-Training State -> Raw λ:    8.8372 | s(p): 0.880 | Truly Effective λ (for W):    7.7767
+2025-11-12 15:22:23 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 15:22:23 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:22:57 [INFO]  Epoch 5 loss: 755.2641773223877; train accuracy: 0.613073317710077; test accuracy: 0.1060617701290719
+2025-11-12 15:22:58 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_5.pth
+2025-11-12 15:22:58 [INFO]  Client 2 Post-Training State -> Raw λ:    8.7234 | s(p): 0.880 | Truly Effective λ (for W):    7.6766
+2025-11-12 15:22:58 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 15:22:58 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:24:08 [INFO]  Epoch 5 loss: 1747.119776725769; train accuracy: 0.8545774647887324; test accuracy: 0.4122618315918869
+2025-11-12 15:24:09 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_5.pth
+2025-11-12 15:24:09 [INFO]  Client 3 Post-Training State -> Raw λ:   15.7238 | s(p): 0.880 | Truly Effective λ (for W):   13.8370
+2025-11-12 15:24:09 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 15:24:09 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:25:03 [INFO]  Epoch 5 loss: 1252.271990776062; train accuracy: 0.8363371655203574; test accuracy: 0.3080055316533497
+2025-11-12 15:25:04 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_5.pth
+2025-11-12 15:25:04 [INFO]  Client 4 Post-Training State -> Raw λ:   12.0113 | s(p): 0.880 | Truly Effective λ (for W):   10.5700
+2025-11-12 15:25:04 [INFO]  Round 5 Finish--------|
+2025-11-12 15:25:04 [INFO]  g_protos_std (global internal): 0.810500
+2025-11-12 15:25:04 [INFO]  inter_client_proto_std (cross-client): 0.113185
+2025-11-12 15:25:30 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.43803779963122313
+2025-11-12 15:25:30 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 15:25:30 [INFO]  Round 6 starts--------|
+2025-11-12 15:25:30 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 15:25:30 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:25:45 [INFO]  Epoch 6 loss: 188.51177787780762; train accuracy: 0.3048327137546468; test accuracy: 0.06891518131530425
+2025-11-12 15:25:45 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_6.pth
+2025-11-12 15:25:45 [INFO]  Client 0 Post-Training State -> Raw λ:   10.2394 | s(p): 0.860 | Truly Effective λ (for W):    8.8059
+2025-11-12 15:25:45 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 15:25:45 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:26:19 [INFO]  Epoch 6 loss: 600.3335638046265; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 15:26:20 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_6.pth
+2025-11-12 15:26:20 [INFO]  Client 1 Post-Training State -> Raw λ:    9.9387 | s(p): 0.860 | Truly Effective λ (for W):    8.5473
+2025-11-12 15:26:20 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 15:26:20 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:26:57 [INFO]  Epoch 6 loss: 745.3655138015747; train accuracy: 0.8026447941078004; test accuracy: 0.13625537799631224
+2025-11-12 15:26:57 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_6.pth
+2025-11-12 15:26:57 [INFO]  Client 2 Post-Training State -> Raw λ:    9.1504 | s(p): 0.860 | Truly Effective λ (for W):    7.8694
+2025-11-12 15:26:57 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 15:26:57 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:28:08 [INFO]  Epoch 6 loss: 1662.5980291366577; train accuracy: 0.867112676056338; test accuracy: 0.42662876459741855
+2025-11-12 15:28:08 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_6.pth
+2025-11-12 15:28:08 [INFO]  Client 3 Post-Training State -> Raw λ:   19.1744 | s(p): 0.860 | Truly Effective λ (for W):   16.4899
+2025-11-12 15:28:08 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 15:28:08 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:29:02 [INFO]  Epoch 6 loss: 1225.0291595458984; train accuracy: 0.830965409910136; test accuracy: 0.3134987707437001
+2025-11-12 15:29:02 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_6.pth
+2025-11-12 15:29:02 [INFO]  Client 4 Post-Training State -> Raw λ:   13.6226 | s(p): 0.860 | Truly Effective λ (for W):   11.7155
+2025-11-12 15:29:02 [INFO]  Round 6 Finish--------|
+2025-11-12 15:29:02 [INFO]  g_protos_std (global internal): 0.768645
+2025-11-12 15:29:02 [INFO]  inter_client_proto_std (cross-client): 0.136693
+2025-11-12 15:29:27 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.43776889981561157
+2025-11-12 15:29:27 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 15:29:27 [INFO]  Round 7 starts--------|
+2025-11-12 15:29:27 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 15:29:27 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:29:41 [INFO]  Epoch 7 loss: 187.5807704925537; train accuracy: 0.366635687732342; test accuracy: 0.06634142593730794
+2025-11-12 15:29:42 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_7.pth
+2025-11-12 15:29:42 [INFO]  Client 0 Post-Training State -> Raw λ:   10.2218 | s(p): 0.840 | Truly Effective λ (for W):    8.5864
+2025-11-12 15:29:42 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 15:29:42 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:30:13 [INFO]  Epoch 7 loss: 595.285831451416; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 15:30:13 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_7.pth
+2025-11-12 15:30:13 [INFO]  Client 1 Post-Training State -> Raw λ:   11.3349 | s(p): 0.840 | Truly Effective λ (for W):    9.5213
+2025-11-12 15:30:13 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 15:30:13 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:30:48 [INFO]  Epoch 7 loss: 736.0637884140015; train accuracy: 0.7484097756946769; test accuracy: 0.12127381684081132
+2025-11-12 15:30:48 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_7.pth
+2025-11-12 15:30:48 [INFO]  Client 2 Post-Training State -> Raw λ:    9.6384 | s(p): 0.840 | Truly Effective λ (for W):    8.0963
+2025-11-12 15:30:48 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 15:30:48 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:31:57 [INFO]  Epoch 7 loss: 1614.356071472168; train accuracy: 0.8230281690140845; test accuracy: 0.3961662569145667
+2025-11-12 15:31:57 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_7.pth
+2025-11-12 15:31:57 [INFO]  Client 3 Post-Training State -> Raw λ:   25.7151 | s(p): 0.840 | Truly Effective λ (for W):   21.6007
+2025-11-12 15:31:57 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 15:31:57 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:32:50 [INFO]  Epoch 7 loss: 1197.5690870285034; train accuracy: 0.8330739494954565; test accuracy: 0.33447295636140134
+2025-11-12 15:32:51 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_7.pth
+2025-11-12 15:32:51 [INFO]  Client 4 Post-Training State -> Raw λ:   15.6548 | s(p): 0.840 | Truly Effective λ (for W):   13.1500
+2025-11-12 15:32:51 [INFO]  Round 7 Finish--------|
+2025-11-12 15:32:51 [INFO]  g_protos_std (global internal): 0.723669
+2025-11-12 15:32:51 [INFO]  inter_client_proto_std (cross-client): 0.163247
+2025-11-12 15:33:16 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.43846035648432696
+2025-11-12 15:33:16 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 15:33:16 [INFO]  Round 8 starts--------|
+2025-11-12 15:33:16 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 15:33:16 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:33:31 [INFO]  Epoch 8 loss: 188.50873947143555; train accuracy: 0.32853159851301117; test accuracy: 0.07421634910878919
+2025-11-12 15:33:31 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_8.pth
+2025-11-12 15:33:31 [INFO]  Client 0 Post-Training State -> Raw λ:   10.2110 | s(p): 0.820 | Truly Effective λ (for W):    8.3730
+2025-11-12 15:33:31 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 15:33:31 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:34:04 [INFO]  Epoch 8 loss: 589.8521184921265; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 15:34:05 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_8.pth
+2025-11-12 15:34:05 [INFO]  Client 1 Post-Training State -> Raw λ:   13.1372 | s(p): 0.820 | Truly Effective λ (for W):   10.7725
+2025-11-12 15:34:05 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 15:34:05 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:34:40 [INFO]  Epoch 8 loss: 727.7253570556641; train accuracy: 0.7925175761633746; test accuracy: 0.13137676705593115
+2025-11-12 15:34:40 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_8.pth
+2025-11-12 15:34:40 [INFO]  Client 2 Post-Training State -> Raw λ:   10.1962 | s(p): 0.820 | Truly Effective λ (for W):    8.3609
+2025-11-12 15:34:40 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 15:34:40 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:35:51 [INFO]  Epoch 8 loss: 1530.5246591567993; train accuracy: 0.8433098591549296; test accuracy: 0.4024277811923786
+2025-11-12 15:35:51 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_8.pth
+2025-11-12 15:35:51 [INFO]  Client 3 Post-Training State -> Raw λ:   37.4946 | s(p): 0.820 | Truly Effective λ (for W):   30.7456
+2025-11-12 15:35:51 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 15:35:51 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:36:43 [INFO]  Epoch 8 loss: 1166.7675018310547; train accuracy: 0.8956774938500929; test accuracy: 0.3418100799016595
+2025-11-12 15:36:44 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_8.pth
+2025-11-12 15:36:44 [INFO]  Client 4 Post-Training State -> Raw λ:   18.5367 | s(p): 0.820 | Truly Effective λ (for W):   15.2001
+2025-11-12 15:36:44 [INFO]  Round 8 Finish--------|
+2025-11-12 15:36:44 [INFO]  g_protos_std (global internal): 0.674068
+2025-11-12 15:36:44 [INFO]  inter_client_proto_std (cross-client): 0.194110
+2025-11-12 15:37:09 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.4519821757836509
+2025-11-12 15:37:09 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 15:37:09 [INFO]  Round 9 starts--------|
+2025-11-12 15:37:09 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 15:37:09 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:37:23 [INFO]  Epoch 9 loss: 186.3145580291748; train accuracy: 0.36152416356877326; test accuracy: 0.06541948371235402
+2025-11-12 15:37:24 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_9.pth
+2025-11-12 15:37:24 [INFO]  Client 0 Post-Training State -> Raw λ:   10.1968 | s(p): 0.800 | Truly Effective λ (for W):    8.1574
+2025-11-12 15:37:24 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 15:37:24 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:37:56 [INFO]  Epoch 9 loss: 582.3997497558594; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 15:37:56 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_9.pth
+2025-11-12 15:37:56 [INFO]  Client 1 Post-Training State -> Raw λ:   15.5753 | s(p): 0.800 | Truly Effective λ (for W):   12.4602
+2025-11-12 15:37:56 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 15:37:56 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:38:30 [INFO]  Epoch 9 loss: 719.75927734375; train accuracy: 0.8916136591898226; test accuracy: 0.1734019668100799
+2025-11-12 15:38:31 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_9.pth
+2025-11-12 15:38:31 [INFO]  Client 2 Post-Training State -> Raw λ:   10.9472 | s(p): 0.800 | Truly Effective λ (for W):    8.7578
+2025-11-12 15:38:31 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 15:38:31 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:39:38 [INFO]  Epoch 9 loss: 1390.7420101165771; train accuracy: 0.8863380281690141; test accuracy: 0.4332744314689613
+2025-11-12 15:39:38 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_9.pth
+2025-11-12 15:39:38 [INFO]  Client 3 Post-Training State -> Raw λ:   62.3502 | s(p): 0.800 | Truly Effective λ (for W):   49.8802
+2025-11-12 15:39:38 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 15:39:38 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:40:30 [INFO]  Epoch 9 loss: 1138.3655347824097; train accuracy: 0.904011245544455; test accuracy: 0.3401582667486171
+2025-11-12 15:40:31 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_9.pth
+2025-11-12 15:40:31 [INFO]  Client 4 Post-Training State -> Raw λ:   22.7199 | s(p): 0.800 | Truly Effective λ (for W):   18.1760
+2025-11-12 15:40:31 [INFO]  Round 9 Finish--------|
+2025-11-12 15:40:31 [INFO]  g_protos_std (global internal): 0.619432
+2025-11-12 15:40:31 [INFO]  inter_client_proto_std (cross-client): 0.228065
+2025-11-12 15:40:56 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.45056084818684694
+2025-11-12 15:40:56 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 15:40:56 [INFO]  Round 10 starts--------|
+2025-11-12 15:40:56 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 15:40:56 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:41:11 [INFO]  Epoch 10 loss: 185.97748374938965; train accuracy: 0.379182156133829; test accuracy: 0.06507375537799631
+2025-11-12 15:41:12 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_10.pth
+2025-11-12 15:41:12 [INFO]  Client 0 Post-Training State -> Raw λ:   10.1871 | s(p): 0.780 | Truly Effective λ (for W):    7.9459
+2025-11-12 15:41:12 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 15:41:12 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:41:45 [INFO]  Epoch 10 loss: 573.0548858642578; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 15:41:45 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_10.pth
+2025-11-12 15:41:45 [INFO]  Client 1 Post-Training State -> Raw λ:   18.9521 | s(p): 0.780 | Truly Effective λ (for W):   14.7827
+2025-11-12 15:41:45 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 15:41:45 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:42:21 [INFO]  Epoch 10 loss: 713.3522338867188; train accuracy: 0.860311349179779; test accuracy: 0.1432083589428396
+2025-11-12 15:42:22 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_10.pth
+2025-11-12 15:42:22 [INFO]  Client 2 Post-Training State -> Raw λ:   11.8428 | s(p): 0.780 | Truly Effective λ (for W):    9.2374
+2025-11-12 15:42:22 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 15:42:22 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:43:30 [INFO]  Epoch 10 loss: 1236.2134866714478; train accuracy: 0.8430985915492958; test accuracy: 0.4161416717885679
+2025-11-12 15:43:31 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_10.pth
+2025-11-12 15:43:31 [INFO]  Client 3 Post-Training State -> Raw λ:  141.6574 | s(p): 0.780 | Truly Effective λ (for W):  110.4928
+2025-11-12 15:43:31 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 15:43:31 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:44:24 [INFO]  Epoch 10 loss: 1086.8044328689575; train accuracy: 0.9084291380089362; test accuracy: 0.3434234787953288
+2025-11-12 15:44:24 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_10.pth
+2025-11-12 15:44:24 [INFO]  Client 4 Post-Training State -> Raw λ:   29.2660 | s(p): 0.780 | Truly Effective λ (for W):   22.8275
+2025-11-12 15:44:24 [INFO]  Round 10 Finish--------|
+2025-11-12 15:44:24 [INFO]  g_protos_std (global internal): 0.559182
+2025-11-12 15:44:24 [INFO]  inter_client_proto_std (cross-client): 0.266338
+2025-11-12 15:44:51 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.45636140135218195
+2025-11-12 15:44:51 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 15:44:51 [INFO]  Round 11 starts--------|
+2025-11-12 15:44:51 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 15:44:51 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:45:06 [INFO]  Epoch 11 loss: 185.1242389678955; train accuracy: 0.3159851301115242; test accuracy: 0.06772433927473878
+2025-11-12 15:45:06 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_11.pth
+2025-11-12 15:45:06 [INFO]  Client 0 Post-Training State -> Raw λ:   10.1817 | s(p): 0.760 | Truly Effective λ (for W):    7.7381
+2025-11-12 15:45:06 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 15:45:06 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:45:37 [INFO]  Epoch 11 loss: 559.6642541885376; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 15:45:37 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_11.pth
+2025-11-12 15:45:37 [INFO]  Client 1 Post-Training State -> Raw λ:   23.8813 | s(p): 0.760 | Truly Effective λ (for W):   18.1498
+2025-11-12 15:45:37 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 15:45:37 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:46:13 [INFO]  Epoch 11 loss: 707.838508605957; train accuracy: 0.889437562772012; test accuracy: 0.16779348494161034
+2025-11-12 15:46:14 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_11.pth
+2025-11-12 15:46:14 [INFO]  Client 2 Post-Training State -> Raw λ:   12.9715 | s(p): 0.760 | Truly Effective λ (for W):    9.8584
+2025-11-12 15:46:14 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 15:46:14 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:47:23 [INFO]  Epoch 11 loss: 1091.965244293213; train accuracy: 0.8992957746478873; test accuracy: 0.4489858635525507
+2025-11-12 15:47:23 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_11.pth
+2025-11-12 15:47:23 [INFO]  Client 3 Post-Training State -> Raw λ:  602.4616 | s(p): 0.760 | Truly Effective λ (for W):  457.8708
+2025-11-12 15:47:23 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 15:47:23 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:48:17 [INFO]  Epoch 11 loss: 1037.6814613342285; train accuracy: 0.8820221898689693; test accuracy: 0.3332437000614628
+2025-11-12 15:48:17 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_11.pth
+2025-11-12 15:48:17 [INFO]  Client 4 Post-Training State -> Raw λ:   40.3032 | s(p): 0.760 | Truly Effective λ (for W):   30.6304
+2025-11-12 15:48:17 [INFO]  Round 11 Finish--------|
+2025-11-12 15:48:17 [INFO]  g_protos_std (global internal): 0.502456
+2025-11-12 15:48:17 [INFO]  inter_client_proto_std (cross-client): 0.296432
+2025-11-12 15:48:42 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.4633143822987093
+2025-11-12 15:48:42 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 15:48:42 [INFO]  Round 12 starts--------|
+2025-11-12 15:48:42 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 15:48:42 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:48:57 [INFO]  Epoch 12 loss: 184.50847244262695; train accuracy: 0.35223048327137546; test accuracy: 0.07356330669944683
+2025-11-12 15:48:58 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_12.pth
+2025-11-12 15:48:58 [INFO]  Client 0 Post-Training State -> Raw λ:   10.1830 | s(p): 0.740 | Truly Effective λ (for W):    7.5354
+2025-11-12 15:48:58 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 15:48:58 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:49:32 [INFO]  Epoch 12 loss: 540.424280166626; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 15:49:32 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_12.pth
+2025-11-12 15:49:32 [INFO]  Client 1 Post-Training State -> Raw λ:   31.4537 | s(p): 0.740 | Truly Effective λ (for W):   23.2758
+2025-11-12 15:49:32 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 15:49:32 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:50:08 [INFO]  Epoch 12 loss: 700.7118349075317; train accuracy: 0.913290927351858; test accuracy: 0.15991856177012906
+2025-11-12 15:50:08 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_12.pth
+2025-11-12 15:50:08 [INFO]  Client 2 Post-Training State -> Raw λ:   14.4327 | s(p): 0.740 | Truly Effective λ (for W):   10.6802
+2025-11-12 15:50:08 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 15:50:08 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:51:17 [INFO]  Epoch 12 loss: 1061.812017440796; train accuracy: 0.896443661971831; test accuracy: 0.4416103257529195
+2025-11-12 15:51:18 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_12.pth
+2025-11-12 15:51:18 [INFO]  Client 3 Post-Training State -> Raw λ: 3812.9742 | s(p): 0.740 | Truly Effective λ (for W): 2821.6009
+2025-11-12 15:51:18 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 15:51:18 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:52:10 [INFO]  Epoch 12 loss: 965.3780317306519; train accuracy: 0.9053667352778754; test accuracy: 0.33727719729563616
+2025-11-12 15:52:10 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_12.pth
+2025-11-12 15:52:10 [INFO]  Client 4 Post-Training State -> Raw λ:   62.4035 | s(p): 0.740 | Truly Effective λ (for W):   46.1786
+2025-11-12 15:52:10 [INFO]  Round 12 Finish--------|
+2025-11-12 15:52:10 [INFO]  g_protos_std (global internal): 0.456907
+2025-11-12 15:52:10 [INFO]  inter_client_proto_std (cross-client): 0.306669
+2025-11-12 15:52:36 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.47322526121696373
+2025-11-12 15:52:36 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 15:52:36 [INFO]  Round 13 starts--------|
+2025-11-12 15:52:36 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 15:52:36 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:52:51 [INFO]  Epoch 13 loss: 184.4954319000244; train accuracy: 0.39637546468401486; test accuracy: 0.0667639827904118
+2025-11-12 15:52:51 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_13.pth
+2025-11-12 15:52:51 [INFO]  Client 0 Post-Training State -> Raw λ:   10.1907 | s(p): 0.720 | Truly Effective λ (for W):    7.3373
+2025-11-12 15:52:51 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 15:52:51 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:53:23 [INFO]  Epoch 13 loss: 513.7257146835327; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 15:53:24 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_13.pth
+2025-11-12 15:53:24 [INFO]  Client 1 Post-Training State -> Raw λ:   44.3101 | s(p): 0.720 | Truly Effective λ (for W):   31.9033
+2025-11-12 15:53:24 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 15:53:24 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:54:00 [INFO]  Epoch 13 loss: 698.2553462982178; train accuracy: 0.9226648811516572; test accuracy: 0.18819145666871542
+2025-11-12 15:54:00 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_13.pth
+2025-11-12 15:54:00 [INFO]  Client 2 Post-Training State -> Raw λ:   16.4198 | s(p): 0.720 | Truly Effective λ (for W):   11.8223
+2025-11-12 15:54:00 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 15:54:00 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:55:09 [INFO]  Epoch 13 loss: 1022.7560176849365; train accuracy: 0.9170422535211268; test accuracy: 0.4456438229870928
+2025-11-12 15:55:10 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_13.pth
+2025-11-12 15:55:10 [INFO]  Client 3 Post-Training State -> Raw λ: 27846.8169 | s(p): 0.720 | Truly Effective λ (for W): 20049.7082
+2025-11-12 15:55:10 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 15:55:10 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:56:01 [INFO]  Epoch 13 loss: 864.9411840438843; train accuracy: 0.9175159395551985; test accuracy: 0.34695759065765214
+2025-11-12 15:56:02 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_13.pth
+2025-11-12 15:56:02 [INFO]  Client 4 Post-Training State -> Raw λ:  112.9050 | s(p): 0.720 | Truly Effective λ (for W):   81.2916
+2025-11-12 15:56:02 [INFO]  Round 13 Finish--------|
+2025-11-12 15:56:02 [INFO]  g_protos_std (global internal): 0.410875
+2025-11-12 15:56:02 [INFO]  inter_client_proto_std (cross-client): 0.318420
+2025-11-12 15:56:27 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.5004225568531039
+2025-11-12 15:56:27 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 15:56:27 [INFO]  Round 14 starts--------|
+2025-11-12 15:56:27 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 15:56:27 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:56:42 [INFO]  Epoch 14 loss: 183.54087257385254; train accuracy: 0.3671003717472119; test accuracy: 0.06515058389674247
+2025-11-12 15:56:42 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_14.pth
+2025-11-12 15:56:42 [INFO]  Client 0 Post-Training State -> Raw λ:   10.2104 | s(p): 0.700 | Truly Effective λ (for W):    7.1472
+2025-11-12 15:56:42 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 15:56:42 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:57:14 [INFO]  Epoch 14 loss: 472.83698177337646; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 15:57:15 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_14.pth
+2025-11-12 15:57:15 [INFO]  Client 1 Post-Training State -> Raw λ:   68.4428 | s(p): 0.700 | Truly Effective λ (for W):   47.9100
+2025-11-12 15:57:15 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 15:57:15 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:57:50 [INFO]  Epoch 14 loss: 690.6066455841064; train accuracy: 0.9003180448610646; test accuracy: 0.16602642901044867
+2025-11-12 15:57:51 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_14.pth
+2025-11-12 15:57:51 [INFO]  Client 2 Post-Training State -> Raw λ:   18.7332 | s(p): 0.700 | Truly Effective λ (for W):   13.1132
+2025-11-12 15:57:51 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 15:57:51 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:59:00 [INFO]  Epoch 14 loss: 923.6588768959045; train accuracy: 0.8965845070422536; test accuracy: 0.4335817455439459
+2025-11-12 15:59:00 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_14.pth
+2025-11-12 15:59:00 [INFO]  Client 3 Post-Training State -> Raw λ: 180203.3065 | s(p): 0.700 | Truly Effective λ (for W): 126142.3145
+2025-11-12 15:59:00 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 15:59:01 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 15:59:55 [INFO]  Epoch 14 loss: 761.0777702331543; train accuracy: 0.9007982328430142; test accuracy: 0.3378918254456054
+2025-11-12 15:59:56 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_14.pth
+2025-11-12 15:59:56 [INFO]  Client 4 Post-Training State -> Raw λ:  277.2029 | s(p): 0.700 | Truly Effective λ (for W):  194.0420
+2025-11-12 15:59:56 [INFO]  Round 14 Finish--------|
+2025-11-12 15:59:56 [INFO]  g_protos_std (global internal): 0.366964
+2025-11-12 15:59:56 [INFO]  inter_client_proto_std (cross-client): 0.331782
+2025-11-12 16:00:22 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.49746465888137675
+2025-11-12 16:00:22 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 16:00:22 [INFO]  Round 15 starts--------|
+2025-11-12 16:00:22 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 16:00:22 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:00:37 [INFO]  Epoch 15 loss: 183.12822914123535; train accuracy: 0.36570631970260226; test accuracy: 0.0701060233558697
+2025-11-12 16:00:37 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_15.pth
+2025-11-12 16:00:37 [INFO]  Client 0 Post-Training State -> Raw λ:   10.2370 | s(p): 0.680 | Truly Effective λ (for W):    6.9611
+2025-11-12 16:00:37 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 16:00:37 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:01:11 [INFO]  Epoch 15 loss: 413.91181564331055; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 16:01:12 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_15.pth
+2025-11-12 16:01:12 [INFO]  Client 1 Post-Training State -> Raw λ:  120.2598 | s(p): 0.680 | Truly Effective λ (for W):   81.7767
+2025-11-12 16:01:12 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 16:01:12 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:01:47 [INFO]  Epoch 15 loss: 680.6802530288696; train accuracy: 0.9096083026447941; test accuracy: 0.15496312231100184
+2025-11-12 16:01:47 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_15.pth
+2025-11-12 16:01:47 [INFO]  Client 2 Post-Training State -> Raw λ:   21.7293 | s(p): 0.680 | Truly Effective λ (for W):   14.7759
+2025-11-12 16:01:47 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 16:01:47 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:02:58 [INFO]  Epoch 15 loss: 839.6923966407776; train accuracy: 0.9223239436619718; test accuracy: 0.45444068838352797
+2025-11-12 16:02:58 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_15.pth
+2025-11-12 16:02:58 [INFO]  Client 3 Post-Training State -> Raw λ: 463624.9148 | s(p): 0.680 | Truly Effective λ (for W): 315264.9421
+2025-11-12 16:02:58 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 16:02:58 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:03:52 [INFO]  Epoch 15 loss: 722.5023727416992; train accuracy: 0.8810683267232291; test accuracy: 0.3179932390903503
+2025-11-12 16:03:52 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_15.pth
+2025-11-12 16:03:52 [INFO]  Client 4 Post-Training State -> Raw λ:  906.6366 | s(p): 0.680 | Truly Effective λ (for W):  616.5129
+2025-11-12 16:03:52 [INFO]  Round 15 Finish--------|
+2025-11-12 16:03:52 [INFO]  g_protos_std (global internal): 0.328945
+2025-11-12 16:03:52 [INFO]  inter_client_proto_std (cross-client): 0.341872
+2025-11-12 16:04:17 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.3821834665027658
+2025-11-12 16:04:17 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 16:04:17 [INFO]  Round 16 starts--------|
+2025-11-12 16:04:17 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 16:04:17 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:04:32 [INFO]  Epoch 16 loss: 183.0359401702881; train accuracy: 0.38847583643122674; test accuracy: 0.07302550706822372
+2025-11-12 16:04:32 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_16.pth
+2025-11-12 16:04:32 [INFO]  Client 0 Post-Training State -> Raw λ:   10.2679 | s(p): 0.660 | Truly Effective λ (for W):    6.7768
+2025-11-12 16:04:32 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 16:04:32 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:05:06 [INFO]  Epoch 16 loss: 354.49947595596313; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 16:05:06 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_16.pth
+2025-11-12 16:05:06 [INFO]  Client 1 Post-Training State -> Raw λ:  244.2493 | s(p): 0.660 | Truly Effective λ (for W):  161.2045
+2025-11-12 16:05:06 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 16:05:06 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:05:43 [INFO]  Epoch 16 loss: 670.4042072296143; train accuracy: 0.916052895882156; test accuracy: 0.16886908420405655
+2025-11-12 16:05:43 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_16.pth
+2025-11-12 16:05:43 [INFO]  Client 2 Post-Training State -> Raw λ:   25.8245 | s(p): 0.660 | Truly Effective λ (for W):   17.0442
+2025-11-12 16:05:43 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 16:05:43 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:06:54 [INFO]  Epoch 16 loss: 802.2679996490479; train accuracy: 0.931056338028169; test accuracy: 0.46131684081130914
+2025-11-12 16:06:55 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_16.pth
+2025-11-12 16:06:55 [INFO]  Client 3 Post-Training State -> Raw λ: 722896.5415 | s(p): 0.660 | Truly Effective λ (for W): 477111.7174
+2025-11-12 16:06:55 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 16:06:55 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:07:50 [INFO]  Epoch 16 loss: 737.4991407394409; train accuracy: 0.8545107686128822; test accuracy: 0.30754456054087276
+2025-11-12 16:07:51 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_16.pth
+2025-11-12 16:07:51 [INFO]  Client 4 Post-Training State -> Raw λ: 3624.2948 | s(p): 0.660 | Truly Effective λ (for W): 2392.0346
+2025-11-12 16:07:51 [INFO]  Round 16 Finish--------|
+2025-11-12 16:07:51 [INFO]  g_protos_std (global internal): 0.304821
+2025-11-12 16:07:51 [INFO]  inter_client_proto_std (cross-client): 0.343735
+2025-11-12 16:08:16 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.2744314689612784
+2025-11-12 16:08:16 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 16:08:16 [INFO]  Round 17 starts--------|
+2025-11-12 16:08:16 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 16:08:16 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:08:31 [INFO]  Epoch 17 loss: 182.241849899292; train accuracy: 0.3712825278810409; test accuracy: 0.06557314074984634
+2025-11-12 16:08:32 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_17.pth
+2025-11-12 16:08:32 [INFO]  Client 0 Post-Training State -> Raw λ:   10.3163 | s(p): 0.640 | Truly Effective λ (for W):    6.6024
+2025-11-12 16:08:32 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 16:08:32 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:09:06 [INFO]  Epoch 17 loss: 339.38690853118896; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 16:09:07 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_17.pth
+2025-11-12 16:09:07 [INFO]  Client 1 Post-Training State -> Raw λ:  524.7200 | s(p): 0.640 | Truly Effective λ (for W):  335.8208
+2025-11-12 16:09:07 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 16:09:07 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:09:44 [INFO]  Epoch 17 loss: 651.6108160018921; train accuracy: 0.902996317375293; test accuracy: 0.15327289489858636
+2025-11-12 16:09:44 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_17.pth
+2025-11-12 16:09:44 [INFO]  Client 2 Post-Training State -> Raw λ:   31.4280 | s(p): 0.640 | Truly Effective λ (for W):   20.1139
+2025-11-12 16:09:44 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 16:09:44 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:10:54 [INFO]  Epoch 17 loss: 790.3737931251526; train accuracy: 0.9311619718309859; test accuracy: 0.458320528580209
+2025-11-12 16:10:54 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_17.pth
+2025-11-12 16:10:54 [INFO]  Client 3 Post-Training State -> Raw λ: 976904.3848 | s(p): 0.640 | Truly Effective λ (for W): 625218.8063
+2025-11-12 16:10:54 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 16:10:54 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:11:48 [INFO]  Epoch 17 loss: 725.0440111160278; train accuracy: 0.9315226668005422; test accuracy: 0.3505685310387216
+2025-11-12 16:11:50 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_17.pth
+2025-11-12 16:11:50 [INFO]  Client 4 Post-Training State -> Raw λ: 14548.7435 | s(p): 0.640 | Truly Effective λ (for W): 9311.1959
+2025-11-12 16:11:50 [INFO]  Round 17 Finish--------|
+2025-11-12 16:11:50 [INFO]  g_protos_std (global internal): 0.285424
+2025-11-12 16:11:50 [INFO]  inter_client_proto_std (cross-client): 0.343923
+2025-11-12 16:12:16 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.27412415488629377
+2025-11-12 16:12:16 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 16:12:16 [INFO]  Round 18 starts--------|
+2025-11-12 16:12:16 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 16:12:16 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:12:31 [INFO]  Epoch 18 loss: 182.94483375549316; train accuracy: 0.37964684014869887; test accuracy: 0.06833896742470805
+2025-11-12 16:12:32 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_18.pth
+2025-11-12 16:12:32 [INFO]  Client 0 Post-Training State -> Raw λ:   10.3580 | s(p): 0.620 | Truly Effective λ (for W):    6.4220
+2025-11-12 16:12:32 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 16:12:32 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:13:04 [INFO]  Epoch 18 loss: 343.20924043655396; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 16:13:05 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_18.pth
+2025-11-12 16:13:05 [INFO]  Client 1 Post-Training State -> Raw λ: 1160.9564 | s(p): 0.620 | Truly Effective λ (for W):  719.7930
+2025-11-12 16:13:05 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 16:13:05 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:13:41 [INFO]  Epoch 18 loss: 634.4229688644409; train accuracy: 0.9234181452962839; test accuracy: 0.19725722188076214
+2025-11-12 16:13:41 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_18.pth
+2025-11-12 16:13:41 [INFO]  Client 2 Post-Training State -> Raw λ:   39.9135 | s(p): 0.620 | Truly Effective λ (for W):   24.7464
+2025-11-12 16:13:41 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 16:13:41 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:14:50 [INFO]  Epoch 18 loss: 778.3110208511353; train accuracy: 0.9255985915492958; test accuracy: 0.4566687154271666
+2025-11-12 16:14:51 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_18.pth
+2025-11-12 16:14:51 [INFO]  Client 3 Post-Training State -> Raw λ: 1227948.4731 | s(p): 0.620 | Truly Effective λ (for W): 761328.0533
+2025-11-12 16:14:51 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 16:14:51 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:15:43 [INFO]  Epoch 18 loss: 686.0095386505127; train accuracy: 0.9130478437672573; test accuracy: 0.339159496004917
+2025-11-12 16:15:44 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_18.pth
+2025-11-12 16:15:44 [INFO]  Client 4 Post-Training State -> Raw λ: 58136.0365 | s(p): 0.620 | Truly Effective λ (for W): 36044.3426
+2025-11-12 16:15:44 [INFO]  Round 18 Finish--------|
+2025-11-12 16:15:44 [INFO]  g_protos_std (global internal): 0.270035
+2025-11-12 16:15:44 [INFO]  inter_client_proto_std (cross-client): 0.341062
+2025-11-12 16:16:10 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.26778580208973574
+2025-11-12 16:16:10 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 16:16:10 [INFO]  Round 19 starts--------|
+2025-11-12 16:16:10 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 16:16:10 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:16:25 [INFO]  Epoch 19 loss: 182.04413604736328; train accuracy: 0.34944237918215615; test accuracy: 0.06926090964966196
+2025-11-12 16:16:25 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_19.pth
+2025-11-12 16:16:25 [INFO]  Client 0 Post-Training State -> Raw λ:   10.4284 | s(p): 0.600 | Truly Effective λ (for W):    6.2570
+2025-11-12 16:16:25 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 16:16:25 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:16:58 [INFO]  Epoch 19 loss: 359.0129985809326; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 16:16:58 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_19.pth
+2025-11-12 16:16:58 [INFO]  Client 1 Post-Training State -> Raw λ: 2596.8052 | s(p): 0.600 | Truly Effective λ (for W): 1558.0831
+2025-11-12 16:16:58 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 16:16:58 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:17:33 [INFO]  Epoch 19 loss: 604.9901647567749; train accuracy: 0.8845831938399732; test accuracy: 0.1678703134603565
+2025-11-12 16:17:33 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_19.pth
+2025-11-12 16:17:33 [INFO]  Client 2 Post-Training State -> Raw λ:   51.2128 | s(p): 0.600 | Truly Effective λ (for W):   30.7277
+2025-11-12 16:17:33 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 16:17:33 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:18:42 [INFO]  Epoch 19 loss: 770.940890789032; train accuracy: 0.9334154929577465; test accuracy: 0.4623156115550092
+2025-11-12 16:18:42 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_19.pth
+2025-11-12 16:18:42 [INFO]  Client 3 Post-Training State -> Raw λ: 1479482.4836 | s(p): 0.600 | Truly Effective λ (for W): 887689.4902
+2025-11-12 16:18:42 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 16:18:42 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:19:35 [INFO]  Epoch 19 loss: 638.3495054244995; train accuracy: 0.9280084341583413; test accuracy: 0.35487092808850645
+2025-11-12 16:19:35 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_19.pth
+2025-11-12 16:19:35 [INFO]  Client 4 Post-Training State -> Raw λ: 211006.0583 | s(p): 0.600 | Truly Effective λ (for W): 126603.6350
+2025-11-12 16:19:35 [INFO]  Round 19 Finish--------|
+2025-11-12 16:19:35 [INFO]  g_protos_std (global internal): 0.257267
+2025-11-12 16:19:35 [INFO]  inter_client_proto_std (cross-client): 0.337878
+2025-11-12 16:20:01 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.2637138905961893
+2025-11-12 16:20:01 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 16:20:01 [INFO]  Round 20 starts--------|
+2025-11-12 16:20:01 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 16:20:01 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:20:15 [INFO]  Epoch 20 loss: 181.83436965942383; train accuracy: 0.40148698884758366; test accuracy: 0.07586816226183159
+2025-11-12 16:20:15 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_20.pth
+2025-11-12 16:20:15 [INFO]  Client 0 Post-Training State -> Raw λ:   10.5197 | s(p): 0.580 | Truly Effective λ (for W):    6.1015
+2025-11-12 16:20:15 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 16:20:15 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:20:48 [INFO]  Epoch 20 loss: 371.8166880607605; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 16:20:48 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_20.pth
+2025-11-12 16:20:48 [INFO]  Client 1 Post-Training State -> Raw λ: 6127.7079 | s(p): 0.580 | Truly Effective λ (for W): 3554.0706
+2025-11-12 16:20:48 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 16:20:48 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:21:25 [INFO]  Epoch 20 loss: 569.8132724761963; train accuracy: 0.9429193170405089; test accuracy: 0.18707744314689612
+2025-11-12 16:21:25 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_20.pth
+2025-11-12 16:21:25 [INFO]  Client 2 Post-Training State -> Raw λ:   72.2098 | s(p): 0.580 | Truly Effective λ (for W):   41.8817
+2025-11-12 16:21:25 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 16:21:25 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:22:36 [INFO]  Epoch 20 loss: 757.6593751907349; train accuracy: 0.9331338028169014; test accuracy: 0.46070221266133987
+2025-11-12 16:22:36 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_20.pth
+2025-11-12 16:22:36 [INFO]  Client 3 Post-Training State -> Raw λ: 1727460.6691 | s(p): 0.580 | Truly Effective λ (for W): 1001927.1881
+2025-11-12 16:22:36 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 16:22:36 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:23:29 [INFO]  Epoch 20 loss: 596.9734034538269; train accuracy: 0.9336814097093228; test accuracy: 0.356599569760295
+2025-11-12 16:23:30 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_20.pth
+2025-11-12 16:23:30 [INFO]  Client 4 Post-Training State -> Raw λ: 411312.9825 | s(p): 0.580 | Truly Effective λ (for W): 238561.5299
+2025-11-12 16:23:30 [INFO]  Round 20 Finish--------|
+2025-11-12 16:23:30 [INFO]  g_protos_std (global internal): 0.242166
+2025-11-12 16:23:30 [INFO]  inter_client_proto_std (cross-client): 0.336012
+2025-11-12 16:23:55 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.2646742470805163
+2025-11-12 16:23:55 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 16:23:55 [INFO]  Round 21 starts--------|
+2025-11-12 16:23:55 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 16:23:55 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:24:10 [INFO]  Epoch 21 loss: 181.87019538879395; train accuracy: 0.39684014869888473; test accuracy: 0.07348647818070067
+2025-11-12 16:24:10 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_21.pth
+2025-11-12 16:24:10 [INFO]  Client 0 Post-Training State -> Raw λ:   10.6095 | s(p): 0.560 | Truly Effective λ (for W):    5.9413
+2025-11-12 16:24:10 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 16:24:10 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:24:45 [INFO]  Epoch 21 loss: 376.98521995544434; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 16:24:46 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_21.pth
+2025-11-12 16:24:46 [INFO]  Client 1 Post-Training State -> Raw λ: 14953.9284 | s(p): 0.560 | Truly Effective λ (for W): 8374.1999
+2025-11-12 16:24:46 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 16:24:46 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:25:25 [INFO]  Epoch 21 loss: 519.1920356750488; train accuracy: 0.936223635754938; test accuracy: 0.17536109403810696
+2025-11-12 16:25:25 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_21.pth
+2025-11-12 16:25:25 [INFO]  Client 2 Post-Training State -> Raw λ:  108.6041 | s(p): 0.560 | Truly Effective λ (for W):   60.8183
+2025-11-12 16:25:25 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 16:25:25 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:26:39 [INFO]  Epoch 21 loss: 760.4681448936462; train accuracy: 0.9335915492957747; test accuracy: 0.4598955132145052
+2025-11-12 16:26:39 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_21.pth
+2025-11-12 16:26:39 [INFO]  Client 3 Post-Training State -> Raw λ: 1974817.8023 | s(p): 0.560 | Truly Effective λ (for W): 1105897.9693
+2025-11-12 16:26:39 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 16:26:39 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:27:34 [INFO]  Epoch 21 loss: 571.1765561103821; train accuracy: 0.926903961042221; test accuracy: 0.3486478180700676
+2025-11-12 16:27:34 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_21.pth
+2025-11-12 16:27:34 [INFO]  Client 4 Post-Training State -> Raw λ: 764949.9598 | s(p): 0.560 | Truly Effective λ (for W): 428371.9775
+2025-11-12 16:27:34 [INFO]  Round 21 Finish--------|
+2025-11-12 16:27:34 [INFO]  g_protos_std (global internal): 0.227015
+2025-11-12 16:27:34 [INFO]  inter_client_proto_std (cross-client): 0.336440
+2025-11-12 16:28:01 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.2561078672403196
+2025-11-12 16:28:01 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 16:28:01 [INFO]  Round 22 starts--------|
+2025-11-12 16:28:01 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 16:28:01 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:28:19 [INFO]  Epoch 22 loss: 182.16015434265137; train accuracy: 0.4010223048327137; test accuracy: 0.06826213890596189
+2025-11-12 16:28:19 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_22.pth
+2025-11-12 16:28:19 [INFO]  Client 0 Post-Training State -> Raw λ:   10.7221 | s(p): 0.540 | Truly Effective λ (for W):    5.7900
+2025-11-12 16:28:19 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 16:28:19 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:28:53 [INFO]  Epoch 22 loss: 371.5260543823242; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 16:28:53 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_22.pth
+2025-11-12 16:28:53 [INFO]  Client 1 Post-Training State -> Raw λ: 35642.7936 | s(p): 0.540 | Truly Effective λ (for W): 19247.1085
+2025-11-12 16:28:53 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 16:28:53 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:29:33 [INFO]  Epoch 22 loss: 451.1866636276245; train accuracy: 0.9261801138265818; test accuracy: 0.1541180086047941
+2025-11-12 16:29:33 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_22.pth
+2025-11-12 16:29:33 [INFO]  Client 2 Post-Training State -> Raw λ:  182.3268 | s(p): 0.540 | Truly Effective λ (for W):   98.4565
+2025-11-12 16:29:33 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 16:29:33 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:30:44 [INFO]  Epoch 22 loss: 749.8385314941406; train accuracy: 0.9344366197183098; test accuracy: 0.46054855562384756
+2025-11-12 16:30:44 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_22.pth
+2025-11-12 16:30:44 [INFO]  Client 3 Post-Training State -> Raw λ: 2222798.6238 | s(p): 0.540 | Truly Effective λ (for W): 1200311.2568
+2025-11-12 16:30:44 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 16:30:44 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:31:40 [INFO]  Epoch 22 loss: 560.6597247123718; train accuracy: 0.9267031477483809; test accuracy: 0.3473417332513829
+2025-11-12 16:31:41 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_22.pth
+2025-11-12 16:31:41 [INFO]  Client 4 Post-Training State -> Raw λ: 946611.4185 | s(p): 0.540 | Truly Effective λ (for W): 511170.1660
+2025-11-12 16:31:41 [INFO]  Round 22 Finish--------|
+2025-11-12 16:31:41 [INFO]  g_protos_std (global internal): 0.212246
+2025-11-12 16:31:41 [INFO]  inter_client_proto_std (cross-client): 0.338812
+2025-11-12 16:32:08 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.25122925629993853
+2025-11-12 16:32:08 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 16:32:08 [INFO]  Round 23 starts--------|
+2025-11-12 16:32:08 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 16:32:08 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:32:25 [INFO]  Epoch 23 loss: 182.2690258026123; train accuracy: 0.40055762081784385; test accuracy: 0.0723340503995083
+2025-11-12 16:32:25 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_23.pth
+2025-11-12 16:32:25 [INFO]  Client 0 Post-Training State -> Raw λ:   10.8659 | s(p): 0.520 | Truly Effective λ (for W):    5.6502
+2025-11-12 16:32:25 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 16:32:25 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:33:04 [INFO]  Epoch 23 loss: 359.1984124183655; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 16:33:05 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_23.pth
+2025-11-12 16:33:05 [INFO]  Client 1 Post-Training State -> Raw λ: 85029.0347 | s(p): 0.520 | Truly Effective λ (for W): 44215.0981
+2025-11-12 16:33:05 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 16:33:05 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:33:42 [INFO]  Epoch 23 loss: 419.75025177001953; train accuracy: 0.9270170739872782; test accuracy: 0.15434849416103258
+2025-11-12 16:33:42 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_23.pth
+2025-11-12 16:33:42 [INFO]  Client 2 Post-Training State -> Raw λ:  344.1474 | s(p): 0.520 | Truly Effective λ (for W):  178.9566
+2025-11-12 16:33:42 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 16:33:42 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:35:00 [INFO]  Epoch 23 loss: 753.3575644493103; train accuracy: 0.9298239436619719; test accuracy: 0.4577443146896128
+2025-11-12 16:35:00 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_23.pth
+2025-11-12 16:35:00 [INFO]  Client 3 Post-Training State -> Raw λ: 2472458.0868 | s(p): 0.520 | Truly Effective λ (for W): 1285678.2051
+2025-11-12 16:35:00 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 16:35:00 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:36:00 [INFO]  Epoch 23 loss: 553.6985998153687; train accuracy: 0.934484662884683; test accuracy: 0.352719729563614
+2025-11-12 16:36:00 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_23.pth
+2025-11-12 16:36:00 [INFO]  Client 4 Post-Training State -> Raw λ: 1120116.1226 | s(p): 0.520 | Truly Effective λ (for W): 582460.3837
+2025-11-12 16:36:00 [INFO]  Round 23 Finish--------|
+2025-11-12 16:36:00 [INFO]  g_protos_std (global internal): 0.203895
+2025-11-12 16:36:00 [INFO]  inter_client_proto_std (cross-client): 0.340714
+2025-11-12 16:36:26 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.254840196681008
+2025-11-12 16:36:26 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 16:36:26 [INFO]  Round 24 starts--------|
+2025-11-12 16:36:26 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 16:36:26 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:36:43 [INFO]  Epoch 24 loss: 182.23015594482422; train accuracy: 0.39312267657992567; test accuracy: 0.08163030116779349
+2025-11-12 16:36:43 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_24.pth
+2025-11-12 16:36:43 [INFO]  Client 0 Post-Training State -> Raw λ:   11.0192 | s(p): 0.500 | Truly Effective λ (for W):    5.5096
+2025-11-12 16:36:43 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 16:36:43 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:37:19 [INFO]  Epoch 24 loss: 343.2628288269043; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 16:37:20 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_24.pth
+2025-11-12 16:37:20 [INFO]  Client 1 Post-Training State -> Raw λ: 202342.5656 | s(p): 0.500 | Truly Effective λ (for W): 101171.2828
+2025-11-12 16:37:20 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 16:37:20 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:37:59 [INFO]  Epoch 24 loss: 412.5595397949219; train accuracy: 0.9061767659859391; test accuracy: 0.15104486785494775
+2025-11-12 16:37:59 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_24.pth
+2025-11-12 16:37:59 [INFO]  Client 2 Post-Training State -> Raw λ:  711.4186 | s(p): 0.500 | Truly Effective λ (for W):  355.7093
+2025-11-12 16:37:59 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 16:37:59 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:39:14 [INFO]  Epoch 24 loss: 748.9306254386902; train accuracy: 0.9323591549295774; test accuracy: 0.45985709895513216
+2025-11-12 16:39:14 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_24.pth
+2025-11-12 16:39:14 [INFO]  Client 3 Post-Training State -> Raw λ: 2717914.2603 | s(p): 0.500 | Truly Effective λ (for W): 1358957.1302
+2025-11-12 16:39:14 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 16:39:14 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:40:10 [INFO]  Epoch 24 loss: 544.5588126182556; train accuracy: 0.9413625181987048; test accuracy: 0.35598494161032573
+2025-11-12 16:40:10 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_24.pth
+2025-11-12 16:40:10 [INFO]  Client 4 Post-Training State -> Raw λ: 1289630.0368 | s(p): 0.500 | Truly Effective λ (for W): 644815.0184
+2025-11-12 16:40:10 [INFO]  Round 24 Finish--------|
+2025-11-12 16:40:10 [INFO]  g_protos_std (global internal): 0.196611
+2025-11-12 16:40:10 [INFO]  inter_client_proto_std (cross-client): 0.342062
+2025-11-12 16:40:36 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.26048709280885063
+2025-11-12 16:40:36 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 16:40:36 [INFO]  Round 25 starts--------|
+2025-11-12 16:40:36 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 16:40:36 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:40:51 [INFO]  Epoch 25 loss: 182.89904022216797; train accuracy: 0.3805762081784387; test accuracy: 0.0842040565457898
+2025-11-12 16:40:52 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_25.pth
+2025-11-12 16:40:52 [INFO]  Client 0 Post-Training State -> Raw λ:   11.1645 | s(p): 0.480 | Truly Effective λ (for W):    5.3590
+2025-11-12 16:40:52 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 16:40:52 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:41:29 [INFO]  Epoch 25 loss: 337.58705282211304; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 16:41:30 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_25.pth
+2025-11-12 16:41:30 [INFO]  Client 1 Post-Training State -> Raw λ: 284181.4662 | s(p): 0.480 | Truly Effective λ (for W): 136407.1038
+2025-11-12 16:41:30 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 16:41:30 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:42:10 [INFO]  Epoch 25 loss: 418.05188846588135; train accuracy: 0.9028289253431536; test accuracy: 0.15104486785494775
+2025-11-12 16:42:10 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_25.pth
+2025-11-12 16:42:10 [INFO]  Client 2 Post-Training State -> Raw λ: 1570.8298 | s(p): 0.480 | Truly Effective λ (for W):  753.9983
+2025-11-12 16:42:10 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 16:42:10 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:43:27 [INFO]  Epoch 25 loss: 747.1625332832336; train accuracy: 0.9348591549295775; test accuracy: 0.460740626920713
+2025-11-12 16:43:28 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_25.pth
+2025-11-12 16:43:28 [INFO]  Client 3 Post-Training State -> Raw λ: 2964345.5574 | s(p): 0.480 | Truly Effective λ (for W): 1422885.8675
+2025-11-12 16:43:28 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 16:43:28 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:44:25 [INFO]  Epoch 25 loss: 549.8270764350891; train accuracy: 0.9393041819368442; test accuracy: 0.357559926244622
+2025-11-12 16:44:25 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_25.pth
+2025-11-12 16:44:25 [INFO]  Client 4 Post-Training State -> Raw λ: 1461440.8849 | s(p): 0.480 | Truly Effective λ (for W): 701491.6247
+2025-11-12 16:44:25 [INFO]  Round 25 Finish--------|
+2025-11-12 16:44:25 [INFO]  g_protos_std (global internal): 0.194333
+2025-11-12 16:44:25 [INFO]  inter_client_proto_std (cross-client): 0.340966
+2025-11-12 16:44:50 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.2750460971112477
+2025-11-12 16:44:50 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 16:44:50 [INFO]  Round 26 starts--------|
+2025-11-12 16:44:50 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 16:44:50 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:45:07 [INFO]  Epoch 26 loss: 183.2596035003662; train accuracy: 0.4242565055762082; test accuracy: 0.07229563614013522
+2025-11-12 16:45:08 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_26.pth
+2025-11-12 16:45:08 [INFO]  Client 0 Post-Training State -> Raw λ:   11.3423 | s(p): 0.460 | Truly Effective λ (for W):    5.2175
+2025-11-12 16:45:08 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 16:45:08 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:45:43 [INFO]  Epoch 26 loss: 331.67523670196533; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 16:45:44 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_26.pth
+2025-11-12 16:45:44 [INFO]  Client 1 Post-Training State -> Raw λ: 404208.6829 | s(p): 0.460 | Truly Effective λ (for W): 185935.9941
+2025-11-12 16:45:44 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 16:45:44 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:46:22 [INFO]  Epoch 26 loss: 432.31821060180664; train accuracy: 0.9113659189822565; test accuracy: 0.1516979102642901
+2025-11-12 16:46:22 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_26.pth
+2025-11-12 16:46:22 [INFO]  Client 2 Post-Training State -> Raw λ: 3662.8969 | s(p): 0.460 | Truly Effective λ (for W): 1684.9326
+2025-11-12 16:46:22 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 16:46:22 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:47:35 [INFO]  Epoch 26 loss: 745.8260650634766; train accuracy: 0.9361267605633803; test accuracy: 0.461240012292563
+2025-11-12 16:47:36 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_26.pth
+2025-11-12 16:47:36 [INFO]  Client 3 Post-Training State -> Raw λ: 3214334.6159 | s(p): 0.460 | Truly Effective λ (for W): 1478593.9233
+2025-11-12 16:47:36 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 16:47:36 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:48:35 [INFO]  Epoch 26 loss: 542.747700214386; train accuracy: 0.9359907625884833; test accuracy: 0.3545636140135218
+2025-11-12 16:48:35 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_26.pth
+2025-11-12 16:48:35 [INFO]  Client 4 Post-Training State -> Raw λ: 1632006.4060 | s(p): 0.460 | Truly Effective λ (for W): 750722.9468
+2025-11-12 16:48:35 [INFO]  Round 26 Finish--------|
+2025-11-12 16:48:35 [INFO]  g_protos_std (global internal): 0.193004
+2025-11-12 16:48:35 [INFO]  inter_client_proto_std (cross-client): 0.339616
+2025-11-12 16:49:01 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.2645974185617701
+2025-11-12 16:49:01 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 16:49:01 [INFO]  Round 27 starts--------|
+2025-11-12 16:49:01 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 16:49:01 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:49:19 [INFO]  Epoch 27 loss: 184.05800819396973; train accuracy: 0.3694237918215613; test accuracy: 0.0699139520590043
+2025-11-12 16:49:19 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_27.pth
+2025-11-12 16:49:19 [INFO]  Client 0 Post-Training State -> Raw λ:   11.5183 | s(p): 0.440 | Truly Effective λ (for W):    5.0681
+2025-11-12 16:49:19 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 16:49:19 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:49:54 [INFO]  Epoch 27 loss: 319.88014221191406; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 16:49:55 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_27.pth
+2025-11-12 16:49:55 [INFO]  Client 1 Post-Training State -> Raw λ: 493813.2232 | s(p): 0.440 | Truly Effective λ (for W): 217277.8182
+2025-11-12 16:49:55 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 16:49:55 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:50:36 [INFO]  Epoch 27 loss: 432.85335636138916; train accuracy: 0.933712755272849; test accuracy: 0.1619161032575292
+2025-11-12 16:50:36 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_27.pth
+2025-11-12 16:50:36 [INFO]  Client 2 Post-Training State -> Raw λ: 9390.2467 | s(p): 0.440 | Truly Effective λ (for W): 4131.7085
+2025-11-12 16:50:36 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 16:50:36 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:51:53 [INFO]  Epoch 27 loss: 741.6059393882751; train accuracy: 0.9338380281690141; test accuracy: 0.46004917025199754
+2025-11-12 16:51:54 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_27.pth
+2025-11-12 16:51:54 [INFO]  Client 3 Post-Training State -> Raw λ: 3465389.3218 | s(p): 0.440 | Truly Effective λ (for W): 1524771.3016
+2025-11-12 16:51:54 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 16:51:54 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:52:54 [INFO]  Epoch 27 loss: 539.0927424430847; train accuracy: 0.938551132084944; test accuracy: 0.35521665642286415
+2025-11-12 16:52:54 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_27.pth
+2025-11-12 16:52:54 [INFO]  Client 4 Post-Training State -> Raw λ: 1802343.7775 | s(p): 0.440 | Truly Effective λ (for W): 793031.2621
+2025-11-12 16:52:54 [INFO]  Round 27 Finish--------|
+2025-11-12 16:52:54 [INFO]  g_protos_std (global internal): 0.192065
+2025-11-12 16:52:54 [INFO]  inter_client_proto_std (cross-client): 0.338504
+2025-11-12 16:53:21 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.22176551936078673
+2025-11-12 16:53:21 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 16:53:21 [INFO]  Round 28 starts--------|
+2025-11-12 16:53:21 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 16:53:21 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:53:38 [INFO]  Epoch 28 loss: 184.05825996398926; train accuracy: 0.47304832713754646; test accuracy: 0.08424247080516288
+2025-11-12 16:53:39 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_28.pth
+2025-11-12 16:53:39 [INFO]  Client 0 Post-Training State -> Raw λ:   11.7720 | s(p): 0.420 | Truly Effective λ (for W):    4.9442
+2025-11-12 16:53:39 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 16:53:39 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:54:15 [INFO]  Epoch 28 loss: 316.57440185546875; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 16:54:15 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_28.pth
+2025-11-12 16:54:15 [INFO]  Client 1 Post-Training State -> Raw λ: 586926.2921 | s(p): 0.420 | Truly Effective λ (for W): 246509.0427
+2025-11-12 16:54:15 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 16:54:15 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:54:58 [INFO]  Epoch 28 loss: 421.465500831604; train accuracy: 0.9275192500836961; test accuracy: 0.1576521204671174
+2025-11-12 16:54:58 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_28.pth
+2025-11-12 16:54:58 [INFO]  Client 2 Post-Training State -> Raw λ: 22739.9749 | s(p): 0.420 | Truly Effective λ (for W): 9550.7895
+2025-11-12 16:54:58 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 16:54:58 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:56:14 [INFO]  Epoch 28 loss: 750.0321950912476; train accuracy: 0.9337676056338028; test accuracy: 0.460740626920713
+2025-11-12 16:56:15 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_28.pth
+2025-11-12 16:56:15 [INFO]  Client 3 Post-Training State -> Raw λ: 3717685.3062 | s(p): 0.420 | Truly Effective λ (for W): 1561427.8286
+2025-11-12 16:56:15 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 16:56:15 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:57:16 [INFO]  Epoch 28 loss: 536.8375372886658; train accuracy: 0.9391033686430041; test accuracy: 0.3564843269821758
+2025-11-12 16:57:17 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_28.pth
+2025-11-12 16:57:17 [INFO]  Client 4 Post-Training State -> Raw λ: 1975384.2959 | s(p): 0.420 | Truly Effective λ (for W): 829661.4043
+2025-11-12 16:57:17 [INFO]  Round 28 Finish--------|
+2025-11-12 16:57:17 [INFO]  g_protos_std (global internal): 0.191183
+2025-11-12 16:57:17 [INFO]  inter_client_proto_std (cross-client): 0.337049
+2025-11-12 16:57:43 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.20543945912722802
+2025-11-12 16:57:43 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 16:57:43 [INFO]  Round 29 starts--------|
+2025-11-12 16:57:43 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 16:57:43 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:58:00 [INFO]  Epoch 29 loss: 184.8120346069336; train accuracy: 0.41960966542750927; test accuracy: 0.0784419176398279
+2025-11-12 16:58:01 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_29.pth
+2025-11-12 16:58:01 [INFO]  Client 0 Post-Training State -> Raw λ:   11.9660 | s(p): 0.400 | Truly Effective λ (for W):    4.7864
+2025-11-12 16:58:01 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 16:58:01 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:58:38 [INFO]  Epoch 29 loss: 313.69790601730347; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 16:58:38 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_29.pth
+2025-11-12 16:58:38 [INFO]  Client 1 Post-Training State -> Raw λ: 678479.2701 | s(p): 0.400 | Truly Effective λ (for W): 271391.7080
+2025-11-12 16:58:38 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 16:58:38 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 16:59:21 [INFO]  Epoch 29 loss: 402.4412612915039; train accuracy: 0.9400736524941413; test accuracy: 0.18607867240319606
+2025-11-12 16:59:22 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_29.pth
+2025-11-12 16:59:22 [INFO]  Client 2 Post-Training State -> Raw λ: 54219.9414 | s(p): 0.400 | Truly Effective λ (for W): 21687.9766
+2025-11-12 16:59:22 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 16:59:22 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:00:37 [INFO]  Epoch 29 loss: 745.9245076179504; train accuracy: 0.9330633802816901; test accuracy: 0.46004917025199754
+2025-11-12 17:00:38 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_29.pth
+2025-11-12 17:00:38 [INFO]  Client 3 Post-Training State -> Raw λ: 3968036.1301 | s(p): 0.400 | Truly Effective λ (for W): 1587214.4521
+2025-11-12 17:00:38 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 17:00:38 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:01:34 [INFO]  Epoch 29 loss: 539.2026929855347; train accuracy: 0.9389025553491641; test accuracy: 0.3531038721573448
+2025-11-12 17:01:35 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_29.pth
+2025-11-12 17:01:35 [INFO]  Client 4 Post-Training State -> Raw λ: 2145573.1232 | s(p): 0.400 | Truly Effective λ (for W): 858229.2493
+2025-11-12 17:01:35 [INFO]  Round 29 Finish--------|
+2025-11-12 17:01:35 [INFO]  g_protos_std (global internal): 0.190563
+2025-11-12 17:01:35 [INFO]  inter_client_proto_std (cross-client): 0.336012
+2025-11-12 17:02:02 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.191379840196681
+2025-11-12 17:02:02 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 17:02:02 [INFO]  Round 30 starts--------|
+2025-11-12 17:02:02 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 17:02:02 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:02:17 [INFO]  Epoch 30 loss: 186.02185249328613; train accuracy: 0.4247211895910781; test accuracy: 0.08093884449907805
+2025-11-12 17:02:17 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_30.pth
+2025-11-12 17:02:17 [INFO]  Client 0 Post-Training State -> Raw λ:   12.1757 | s(p): 0.380 | Truly Effective λ (for W):    4.6268
+2025-11-12 17:02:17 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 17:02:17 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:02:53 [INFO]  Epoch 30 loss: 311.48593950271606; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 17:02:54 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_30.pth
+2025-11-12 17:02:54 [INFO]  Client 1 Post-Training State -> Raw λ: 769787.4558 | s(p): 0.380 | Truly Effective λ (for W): 292519.2332
+2025-11-12 17:02:54 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 17:02:54 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:03:32 [INFO]  Epoch 30 loss: 385.0156397819519; train accuracy: 0.9507030465349849; test accuracy: 0.19126459741856178
+2025-11-12 17:03:32 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_30.pth
+2025-11-12 17:03:32 [INFO]  Client 2 Post-Training State -> Raw λ: 127752.5728 | s(p): 0.380 | Truly Effective λ (for W): 48545.9777
+2025-11-12 17:03:32 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 17:03:32 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:04:47 [INFO]  Epoch 30 loss: 740.774085521698; train accuracy: 0.9365492957746478; test accuracy: 0.46300706822372467
+2025-11-12 17:04:47 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_30.pth
+2025-11-12 17:04:47 [INFO]  Client 3 Post-Training State -> Raw λ: 4218169.8182 | s(p): 0.380 | Truly Effective λ (for W): 1602904.5309
+2025-11-12 17:04:47 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 17:04:47 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:05:43 [INFO]  Epoch 30 loss: 536.5759596824646; train accuracy: 0.938149505497264; test accuracy: 0.3562538414259373
+2025-11-12 17:05:44 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_30.pth
+2025-11-12 17:05:44 [INFO]  Client 4 Post-Training State -> Raw λ: 2338342.1538 | s(p): 0.380 | Truly Effective λ (for W): 888570.0185
+2025-11-12 17:05:44 [INFO]  Round 30 Finish--------|
+2025-11-12 17:05:44 [INFO]  g_protos_std (global internal): 0.189984
+2025-11-12 17:05:44 [INFO]  inter_client_proto_std (cross-client): 0.334956
+2025-11-12 17:06:10 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.18892132759680394
+2025-11-12 17:06:10 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 17:06:10 [INFO]  Round 31 starts--------|
+2025-11-12 17:06:10 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 17:06:10 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:06:25 [INFO]  Epoch 31 loss: 186.00799560546875; train accuracy: 0.49349442379182157; test accuracy: 0.08581745543945912
+2025-11-12 17:06:25 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_31.pth
+2025-11-12 17:06:25 [INFO]  Client 0 Post-Training State -> Raw λ:   12.4266 | s(p): 0.360 | Truly Effective λ (for W):    4.4736
+2025-11-12 17:06:25 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 17:06:25 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:07:01 [INFO]  Epoch 31 loss: 309.55332374572754; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 17:07:02 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_31.pth
+2025-11-12 17:07:02 [INFO]  Client 1 Post-Training State -> Raw λ: 864026.5101 | s(p): 0.360 | Truly Effective λ (for W): 311049.5436
+2025-11-12 17:07:02 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 17:07:02 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:07:42 [INFO]  Epoch 31 loss: 366.25731325149536; train accuracy: 0.942417140944091; test accuracy: 0.15849723417332515
+2025-11-12 17:07:43 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_31.pth
+2025-11-12 17:07:43 [INFO]  Client 2 Post-Training State -> Raw λ: 240915.3024 | s(p): 0.360 | Truly Effective λ (for W): 86729.5089
+2025-11-12 17:07:43 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 17:07:43 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:08:58 [INFO]  Epoch 31 loss: 749.109610080719; train accuracy: 0.9364084507042254; test accuracy: 0.46120159803318994
+2025-11-12 17:08:58 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_31.pth
+2025-11-12 17:08:58 [INFO]  Client 3 Post-Training State -> Raw λ: 4467761.0474 | s(p): 0.360 | Truly Effective λ (for W): 1608393.9771
+2025-11-12 17:08:58 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 17:08:58 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:09:55 [INFO]  Epoch 31 loss: 533.9490804672241; train accuracy: 0.9408604849641046; test accuracy: 0.3571757836508912
+2025-11-12 17:09:55 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_31.pth
+2025-11-12 17:09:55 [INFO]  Client 4 Post-Training State -> Raw λ: 2517225.1618 | s(p): 0.360 | Truly Effective λ (for W): 906201.0582
+2025-11-12 17:09:55 [INFO]  Round 31 Finish--------|
+2025-11-12 17:09:55 [INFO]  g_protos_std (global internal): 0.189321
+2025-11-12 17:09:55 [INFO]  inter_client_proto_std (cross-client): 0.333760
+2025-11-12 17:10:21 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.15780577750460972
+2025-11-12 17:10:21 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 17:10:21 [INFO]  Round 32 starts--------|
+2025-11-12 17:10:21 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 17:10:21 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:10:38 [INFO]  Epoch 32 loss: 186.657958984375; train accuracy: 0.44191449814126393; test accuracy: 0.08758451137062077
+2025-11-12 17:10:38 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_32.pth
+2025-11-12 17:10:38 [INFO]  Client 0 Post-Training State -> Raw λ:   12.6390 | s(p): 0.340 | Truly Effective λ (for W):    4.2973
+2025-11-12 17:10:38 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 17:10:38 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:11:15 [INFO]  Epoch 32 loss: 307.85529375076294; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 17:11:16 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_32.pth
+2025-11-12 17:11:16 [INFO]  Client 1 Post-Training State -> Raw λ: 960854.2601 | s(p): 0.340 | Truly Effective λ (for W): 326690.4484
+2025-11-12 17:11:16 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 17:11:16 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:11:53 [INFO]  Epoch 32 loss: 353.6084280014038; train accuracy: 0.9353029795781721; test accuracy: 0.1563460356484327
+2025-11-12 17:11:53 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_32.pth
+2025-11-12 17:11:53 [INFO]  Client 2 Post-Training State -> Raw λ: 366205.0166 | s(p): 0.340 | Truly Effective λ (for W): 124509.7057
+2025-11-12 17:11:53 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 17:11:53 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:13:09 [INFO]  Epoch 32 loss: 753.9433145523071; train accuracy: 0.9340140845070423; test accuracy: 0.4610095267363245
+2025-11-12 17:13:09 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_32.pth
+2025-11-12 17:13:09 [INFO]  Client 3 Post-Training State -> Raw λ: 4722144.1943 | s(p): 0.340 | Truly Effective λ (for W): 1605529.0261
+2025-11-12 17:13:09 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 17:13:09 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:14:05 [INFO]  Epoch 32 loss: 535.806577205658; train accuracy: 0.942466991314825; test accuracy: 0.35671481253841425
+2025-11-12 17:14:05 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_32.pth
+2025-11-12 17:14:05 [INFO]  Client 4 Post-Training State -> Raw λ: 2688654.2914 | s(p): 0.340 | Truly Effective λ (for W): 914142.4591
+2025-11-12 17:14:05 [INFO]  Round 32 Finish--------|
+2025-11-12 17:14:05 [INFO]  g_protos_std (global internal): 0.188799
+2025-11-12 17:14:05 [INFO]  inter_client_proto_std (cross-client): 0.332789
+2025-11-12 17:14:28 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.16383681622618315
+2025-11-12 17:14:28 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 17:14:28 [INFO]  Round 33 starts--------|
+2025-11-12 17:14:28 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 17:14:28 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:14:45 [INFO]  Epoch 33 loss: 187.67391967773438; train accuracy: 0.5032527881040892; test accuracy: 0.09519053472649047
+2025-11-12 17:14:45 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_33.pth
+2025-11-12 17:14:45 [INFO]  Client 0 Post-Training State -> Raw λ:   12.8675 | s(p): 0.320 | Truly Effective λ (for W):    4.1176
+2025-11-12 17:14:45 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 17:14:45 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:15:20 [INFO]  Epoch 33 loss: 306.4867615699768; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 17:15:21 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_33.pth
+2025-11-12 17:15:21 [INFO]  Client 1 Post-Training State -> Raw λ: 1059913.8981 | s(p): 0.320 | Truly Effective λ (for W): 339172.4474
+2025-11-12 17:15:21 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 17:15:21 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:16:01 [INFO]  Epoch 33 loss: 347.68649673461914; train accuracy: 0.9452628054904586; test accuracy: 0.18146896127842654
+2025-11-12 17:16:01 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_33.pth
+2025-11-12 17:16:01 [INFO]  Client 2 Post-Training State -> Raw λ: 481987.8985 | s(p): 0.320 | Truly Effective λ (for W): 154236.1275
+2025-11-12 17:16:01 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 17:16:01 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:17:19 [INFO]  Epoch 33 loss: 756.0986084938049; train accuracy: 0.9369366197183099; test accuracy: 0.46243085433312847
+2025-11-12 17:17:19 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_33.pth
+2025-11-12 17:17:19 [INFO]  Client 3 Post-Training State -> Raw λ: 4980388.0221 | s(p): 0.320 | Truly Effective λ (for W): 1593724.1671
+2025-11-12 17:17:19 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 17:17:19 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:18:19 [INFO]  Epoch 33 loss: 533.7029156684875; train accuracy: 0.9402078417591244; test accuracy: 0.3577519975414874
+2025-11-12 17:18:20 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_33.pth
+2025-11-12 17:18:20 [INFO]  Client 4 Post-Training State -> Raw λ: 2867311.1834 | s(p): 0.320 | Truly Effective λ (for W): 917539.5787
+2025-11-12 17:18:20 [INFO]  Round 33 Finish--------|
+2025-11-12 17:18:20 [INFO]  g_protos_std (global internal): 0.188250
+2025-11-12 17:18:20 [INFO]  inter_client_proto_std (cross-client): 0.331809
+2025-11-12 17:18:44 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.16026429010448678
+2025-11-12 17:18:44 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 17:18:44 [INFO]  Round 34 starts--------|
+2025-11-12 17:18:44 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 17:18:44 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:18:59 [INFO]  Epoch 34 loss: 188.09993934631348; train accuracy: 0.5738847583643123; test accuracy: 0.10437154271665643
+2025-11-12 17:18:59 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_34.pth
+2025-11-12 17:18:59 [INFO]  Client 0 Post-Training State -> Raw λ:   13.0886 | s(p): 0.300 | Truly Effective λ (for W):    3.9266
+2025-11-12 17:18:59 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 17:18:59 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:19:33 [INFO]  Epoch 34 loss: 305.2046208381653; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 17:19:34 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_34.pth
+2025-11-12 17:19:34 [INFO]  Client 1 Post-Training State -> Raw λ: 1162284.2392 | s(p): 0.300 | Truly Effective λ (for W): 348685.2718
+2025-11-12 17:19:34 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 17:19:34 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:20:11 [INFO]  Epoch 34 loss: 342.35759353637695; train accuracy: 0.9491965182457315; test accuracy: 0.17301782421634912
+2025-11-12 17:20:11 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_34.pth
+2025-11-12 17:20:11 [INFO]  Client 2 Post-Training State -> Raw λ: 589783.8240 | s(p): 0.300 | Truly Effective λ (for W): 176935.1472
+2025-11-12 17:20:11 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 17:20:11 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:21:25 [INFO]  Epoch 34 loss: 747.7707824707031; train accuracy: 0.9339788732394366; test accuracy: 0.46189305470190534
+2025-11-12 17:21:26 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_34.pth
+2025-11-12 17:21:26 [INFO]  Client 3 Post-Training State -> Raw λ: 5238374.7941 | s(p): 0.300 | Truly Effective λ (for W): 1571512.4382
+2025-11-12 17:21:26 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 17:21:26 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:22:19 [INFO]  Epoch 34 loss: 530.9581694602966; train accuracy: 0.9412621115517847; test accuracy: 0.3596727105101414
+2025-11-12 17:22:20 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_34.pth
+2025-11-12 17:22:20 [INFO]  Client 4 Post-Training State -> Raw λ: 3042192.8386 | s(p): 0.300 | Truly Effective λ (for W): 912657.8516
+2025-11-12 17:22:20 [INFO]  Round 34 Finish--------|
+2025-11-12 17:22:20 [INFO]  g_protos_std (global internal): 0.187766
+2025-11-12 17:22:20 [INFO]  inter_client_proto_std (cross-client): 0.330889
+2025-11-12 17:22:46 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.1650660725261217
+2025-11-12 17:22:46 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 17:22:46 [INFO]  Round 35 starts--------|
+2025-11-12 17:22:46 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 17:22:46 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:23:02 [INFO]  Epoch 35 loss: 190.25965309143066; train accuracy: 0.5381040892193308; test accuracy: 0.10840503995082974
+2025-11-12 17:23:02 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_35.pth
+2025-11-12 17:23:02 [INFO]  Client 0 Post-Training State -> Raw λ:   13.3221 | s(p): 0.280 | Truly Effective λ (for W):    3.7302
+2025-11-12 17:23:02 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 17:23:02 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:23:39 [INFO]  Epoch 35 loss: 304.1285228729248; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 17:23:39 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_35.pth
+2025-11-12 17:23:39 [INFO]  Client 1 Post-Training State -> Raw λ: 1269913.1814 | s(p): 0.280 | Truly Effective λ (for W): 355575.6908
+2025-11-12 17:23:39 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 17:23:39 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:24:18 [INFO]  Epoch 35 loss: 334.4746079444885; train accuracy: 0.9568965517241379; test accuracy: 0.1900737553779963
+2025-11-12 17:24:18 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_35.pth
+2025-11-12 17:24:18 [INFO]  Client 2 Post-Training State -> Raw λ: 685303.4854 | s(p): 0.280 | Truly Effective λ (for W): 191884.9759
+2025-11-12 17:24:18 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 17:24:18 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:25:37 [INFO]  Epoch 35 loss: 760.8397483825684; train accuracy: 0.9340140845070423; test accuracy: 0.4615857406269207
+2025-11-12 17:25:37 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_35.pth
+2025-11-12 17:25:37 [INFO]  Client 3 Post-Training State -> Raw λ: 5498498.8457 | s(p): 0.280 | Truly Effective λ (for W): 1539579.6768
+2025-11-12 17:25:37 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 17:25:37 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:26:28 [INFO]  Epoch 35 loss: 533.2282319068909; train accuracy: 0.9435714644309453; test accuracy: 0.3590964966195452
+2025-11-12 17:26:28 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_35.pth
+2025-11-12 17:26:28 [INFO]  Client 4 Post-Training State -> Raw λ: 3222326.1430 | s(p): 0.280 | Truly Effective λ (for W): 902251.3200
+2025-11-12 17:26:28 [INFO]  Round 35 Finish--------|
+2025-11-12 17:26:28 [INFO]  g_protos_std (global internal): 0.187266
+2025-11-12 17:26:28 [INFO]  inter_client_proto_std (cross-client): 0.329993
+2025-11-12 17:26:53 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.1639136447449293
+2025-11-12 17:26:53 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 17:26:53 [INFO]  Round 36 starts--------|
+2025-11-12 17:26:53 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 17:26:53 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:27:08 [INFO]  Epoch 36 loss: 190.6919231414795; train accuracy: 0.5511152416356877; test accuracy: 0.10471727105101414
+2025-11-12 17:27:08 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_36.pth
+2025-11-12 17:27:08 [INFO]  Client 0 Post-Training State -> Raw λ:   13.6388 | s(p): 0.260 | Truly Effective λ (for W):    3.5461
+2025-11-12 17:27:08 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 17:27:08 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:27:44 [INFO]  Epoch 36 loss: 303.18602752685547; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 17:27:44 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_36.pth
+2025-11-12 17:27:44 [INFO]  Client 1 Post-Training State -> Raw λ: 1380226.2826 | s(p): 0.260 | Truly Effective λ (for W): 358858.8335
+2025-11-12 17:27:44 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 17:27:44 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:28:22 [INFO]  Epoch 36 loss: 333.77279138565063; train accuracy: 0.9499497823903582; test accuracy: 0.17624462200368776
+2025-11-12 17:28:22 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_36.pth
+2025-11-12 17:28:23 [INFO]  Client 2 Post-Training State -> Raw λ: 783373.8789 | s(p): 0.260 | Truly Effective λ (for W): 203677.2085
+2025-11-12 17:28:23 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 17:28:23 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:29:38 [INFO]  Epoch 36 loss: 760.558413028717; train accuracy: 0.9367605633802817; test accuracy: 0.4620082974800246
+2025-11-12 17:29:39 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_36.pth
+2025-11-12 17:29:39 [INFO]  Client 3 Post-Training State -> Raw λ: 5762432.2695 | s(p): 0.260 | Truly Effective λ (for W): 1498232.3901
+2025-11-12 17:29:39 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 17:29:39 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:30:34 [INFO]  Epoch 36 loss: 529.8771891593933; train accuracy: 0.9439228876951654; test accuracy: 0.3599416103257529
+2025-11-12 17:30:34 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_36.pth
+2025-11-12 17:30:34 [INFO]  Client 4 Post-Training State -> Raw λ: 3399314.7818 | s(p): 0.260 | Truly Effective λ (for W): 883821.8433
+2025-11-12 17:30:34 [INFO]  Round 36 Finish--------|
+2025-11-12 17:30:34 [INFO]  g_protos_std (global internal): 0.186643
+2025-11-12 17:30:34 [INFO]  inter_client_proto_std (cross-client): 0.328823
+2025-11-12 17:31:00 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.15715273509526737
+2025-11-12 17:31:00 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 17:31:00 [INFO]  Round 37 starts--------|
+2025-11-12 17:31:00 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 17:31:00 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:31:17 [INFO]  Epoch 37 loss: 191.8670196533203; train accuracy: 0.5343866171003717; test accuracy: 0.09784111862323294
+2025-11-12 17:31:18 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_37.pth
+2025-11-12 17:31:18 [INFO]  Client 0 Post-Training State -> Raw λ:   13.9609 | s(p): 0.240 | Truly Effective λ (for W):    3.3506
+2025-11-12 17:31:18 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 17:31:18 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:31:55 [INFO]  Epoch 37 loss: 303.0745139122009; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 17:31:55 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_37.pth
+2025-11-12 17:31:55 [INFO]  Client 1 Post-Training State -> Raw λ: 1522022.2003 | s(p): 0.240 | Truly Effective λ (for W): 365285.3281
+2025-11-12 17:31:55 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 17:31:55 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:32:36 [INFO]  Epoch 37 loss: 332.47792053222656; train accuracy: 0.9518747907599598; test accuracy: 0.17735863552550707
+2025-11-12 17:32:37 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_37.pth
+2025-11-12 17:32:37 [INFO]  Client 2 Post-Training State -> Raw λ: 878386.7590 | s(p): 0.240 | Truly Effective λ (for W): 210812.8222
+2025-11-12 17:32:37 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 17:32:37 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:34:19 [INFO]  Epoch 37 loss: 762.0907602310181; train accuracy: 0.9354225352112676; test accuracy: 0.4608942839582053
+2025-11-12 17:34:19 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_37.pth
+2025-11-12 17:34:19 [INFO]  Client 3 Post-Training State -> Raw λ: 6025696.6390 | s(p): 0.240 | Truly Effective λ (for W): 1446167.1934
+2025-11-12 17:34:19 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 17:34:19 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:35:13 [INFO]  Epoch 37 loss: 532.6680202484131; train accuracy: 0.9435714644309453; test accuracy: 0.3574062692071297
+2025-11-12 17:35:13 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_37.pth
+2025-11-12 17:35:13 [INFO]  Client 4 Post-Training State -> Raw λ: 3578013.9483 | s(p): 0.240 | Truly Effective λ (for W): 858723.3476
+2025-11-12 17:35:13 [INFO]  Round 37 Finish--------|
+2025-11-12 17:35:13 [INFO]  g_protos_std (global internal): 0.186013
+2025-11-12 17:35:13 [INFO]  inter_client_proto_std (cross-client): 0.327677
+2025-11-12 17:35:38 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.16452827289489858
+2025-11-12 17:35:38 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 17:35:38 [INFO]  Round 38 starts--------|
+2025-11-12 17:35:38 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 17:35:38 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:35:55 [INFO]  Epoch 38 loss: 194.1987533569336; train accuracy: 0.5525092936802974; test accuracy: 0.10444837123540258
+2025-11-12 17:35:56 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_38.pth
+2025-11-12 17:35:56 [INFO]  Client 0 Post-Training State -> Raw λ:   14.2731 | s(p): 0.220 | Truly Effective λ (for W):    3.1401
+2025-11-12 17:35:56 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 17:35:56 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:36:33 [INFO]  Epoch 38 loss: 301.44757556915283; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 17:36:34 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_38.pth
+2025-11-12 17:36:34 [INFO]  Client 1 Post-Training State -> Raw λ: 1630130.4635 | s(p): 0.220 | Truly Effective λ (for W): 358628.7020
+2025-11-12 17:36:34 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 17:36:34 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:37:12 [INFO]  Epoch 38 loss: 331.44660806655884; train accuracy: 0.955055239370606; test accuracy: 0.17839582052858022
+2025-11-12 17:37:13 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_38.pth
+2025-11-12 17:37:13 [INFO]  Client 2 Post-Training State -> Raw λ: 975733.7715 | s(p): 0.220 | Truly Effective λ (for W): 214661.4297
+2025-11-12 17:37:13 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 17:37:13 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:38:31 [INFO]  Epoch 38 loss: 768.7746033668518; train accuracy: 0.9328873239436619; test accuracy: 0.45905039950829746
+2025-11-12 17:38:31 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_38.pth
+2025-11-12 17:38:31 [INFO]  Client 3 Post-Training State -> Raw λ: 6294012.8959 | s(p): 0.220 | Truly Effective λ (for W): 1384682.8371
+2025-11-12 17:38:31 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 17:38:31 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:39:29 [INFO]  Epoch 38 loss: 533.206160068512; train accuracy: 0.9436718710778653; test accuracy: 0.3586739397664413
+2025-11-12 17:39:29 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_38.pth
+2025-11-12 17:39:29 [INFO]  Client 4 Post-Training State -> Raw λ: 3758503.2864 | s(p): 0.220 | Truly Effective λ (for W): 826870.7230
+2025-11-12 17:39:29 [INFO]  Round 38 Finish--------|
+2025-11-12 17:39:29 [INFO]  g_protos_std (global internal): 0.185449
+2025-11-12 17:39:29 [INFO]  inter_client_proto_std (cross-client): 0.326620
+2025-11-12 17:39:58 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.16498924400737552
+2025-11-12 17:39:58 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 17:39:58 [INFO]  Round 39 starts--------|
+2025-11-12 17:39:58 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 17:39:58 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:40:14 [INFO]  Epoch 39 loss: 195.45079803466797; train accuracy: 0.5557620817843866; test accuracy: 0.10229717271051014
+2025-11-12 17:40:14 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_39.pth
+2025-11-12 17:40:14 [INFO]  Client 0 Post-Training State -> Raw λ:   14.7041 | s(p): 0.200 | Truly Effective λ (for W):    2.9408
+2025-11-12 17:40:14 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 17:40:14 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:40:52 [INFO]  Epoch 39 loss: 300.9616279602051; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 17:40:53 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_39.pth
+2025-11-12 17:40:53 [INFO]  Client 1 Post-Training State -> Raw λ: 1753918.0484 | s(p): 0.200 | Truly Effective λ (for W): 350783.6097
+2025-11-12 17:40:53 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 17:40:53 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:41:32 [INFO]  Epoch 39 loss: 329.209219455719; train accuracy: 0.9536324070974221; test accuracy: 0.1832360172095882
+2025-11-12 17:41:32 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_39.pth
+2025-11-12 17:41:32 [INFO]  Client 2 Post-Training State -> Raw λ: 1071554.7009 | s(p): 0.200 | Truly Effective λ (for W): 214310.9402
+2025-11-12 17:41:32 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 17:41:32 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:42:49 [INFO]  Epoch 39 loss: 764.4871745109558; train accuracy: 0.9343661971830985; test accuracy: 0.4600107559926245
+2025-11-12 17:42:49 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_39.pth
+2025-11-12 17:42:49 [INFO]  Client 3 Post-Training State -> Raw λ: 6557931.7373 | s(p): 0.200 | Truly Effective λ (for W): 1311586.3475
+2025-11-12 17:42:49 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 17:42:49 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:43:52 [INFO]  Epoch 39 loss: 529.2430906295776; train accuracy: 0.9406094683468046; test accuracy: 0.35840503995082973
+2025-11-12 17:43:53 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_39.pth
+2025-11-12 17:43:53 [INFO]  Client 4 Post-Training State -> Raw λ: 3935708.4937 | s(p): 0.200 | Truly Effective λ (for W): 787141.6987
+2025-11-12 17:43:53 [INFO]  Round 39 Finish--------|
+2025-11-12 17:43:53 [INFO]  g_protos_std (global internal): 0.184677
+2025-11-12 17:43:53 [INFO]  inter_client_proto_std (cross-client): 0.325216
+2025-11-12 17:44:19 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.17094345421020282
+2025-11-12 17:44:19 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 17:44:19 [INFO]  Round 40 starts--------|
+2025-11-12 17:44:19 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 17:44:19 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:44:37 [INFO]  Epoch 40 loss: 197.7245979309082; train accuracy: 0.5850371747211895; test accuracy: 0.11420559311616472
+2025-11-12 17:44:38 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_40.pth
+2025-11-12 17:44:38 [INFO]  Client 0 Post-Training State -> Raw λ:   15.0382 | s(p): 0.180 | Truly Effective λ (for W):    2.7069
+2025-11-12 17:44:38 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 17:44:38 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:45:13 [INFO]  Epoch 40 loss: 300.30433893203735; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 17:45:13 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_40.pth
+2025-11-12 17:45:13 [INFO]  Client 1 Post-Training State -> Raw λ: 1874903.8855 | s(p): 0.180 | Truly Effective λ (for W): 337482.6994
+2025-11-12 17:45:13 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 17:45:13 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:45:52 [INFO]  Epoch 40 loss: 328.9933571815491; train accuracy: 0.9527954469367258; test accuracy: 0.17424708051628765
+2025-11-12 17:45:52 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_40.pth
+2025-11-12 17:45:52 [INFO]  Client 2 Post-Training State -> Raw λ: 1169356.4595 | s(p): 0.180 | Truly Effective λ (for W): 210484.1627
+2025-11-12 17:45:52 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 17:45:52 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:47:06 [INFO]  Epoch 40 loss: 770.6767649650574; train accuracy: 0.9347535211267606; test accuracy: 0.46070221266133987
+2025-11-12 17:47:07 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_40.pth
+2025-11-12 17:47:07 [INFO]  Client 3 Post-Training State -> Raw λ: 6823271.5821 | s(p): 0.180 | Truly Effective λ (for W): 1228188.8848
+2025-11-12 17:47:07 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 17:47:07 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:48:02 [INFO]  Epoch 40 loss: 534.4059066772461; train accuracy: 0.9452281741051257; test accuracy: 0.3579056545789797
+2025-11-12 17:48:02 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_40.pth
+2025-11-12 17:48:02 [INFO]  Client 4 Post-Training State -> Raw λ: 4118457.3342 | s(p): 0.180 | Truly Effective λ (for W): 741322.3202
+2025-11-12 17:48:02 [INFO]  Round 40 Finish--------|
+2025-11-12 17:48:02 [INFO]  g_protos_std (global internal): 0.184110
+2025-11-12 17:48:02 [INFO]  inter_client_proto_std (cross-client): 0.324153
+2025-11-12 17:48:29 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.16556545789797172
+2025-11-12 17:48:29 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 17:48:29 [INFO]  Round 41 starts--------|
+2025-11-12 17:48:29 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 17:48:29 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:48:46 [INFO]  Epoch 41 loss: 198.89066886901855; train accuracy: 0.4809479553903346; test accuracy: 0.09430700676090965
+2025-11-12 17:48:46 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_41.pth
+2025-11-12 17:48:46 [INFO]  Client 0 Post-Training State -> Raw λ:   15.3977 | s(p): 0.160 | Truly Effective λ (for W):    2.4636
+2025-11-12 17:48:46 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 17:48:46 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:49:21 [INFO]  Epoch 41 loss: 300.26639127731323; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 17:49:22 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_41.pth
+2025-11-12 17:49:22 [INFO]  Client 1 Post-Training State -> Raw λ: 2001942.5343 | s(p): 0.160 | Truly Effective λ (for W): 320310.8055
+2025-11-12 17:49:22 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 17:49:22 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:49:59 [INFO]  Epoch 41 loss: 327.3453917503357; train accuracy: 0.9521258788081687; test accuracy: 0.178779963122311
+2025-11-12 17:49:59 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_41.pth
+2025-11-12 17:49:59 [INFO]  Client 2 Post-Training State -> Raw λ: 1268892.6482 | s(p): 0.160 | Truly Effective λ (for W): 203022.8237
+2025-11-12 17:49:59 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 17:49:59 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:51:13 [INFO]  Epoch 41 loss: 772.9374470710754; train accuracy: 0.9326760563380282; test accuracy: 0.46043331284572836
+2025-11-12 17:51:14 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_41.pth
+2025-11-12 17:51:14 [INFO]  Client 3 Post-Training State -> Raw λ: 7094024.3424 | s(p): 0.160 | Truly Effective λ (for W): 1135043.8948
+2025-11-12 17:51:14 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 17:51:14 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:52:09 [INFO]  Epoch 41 loss: 536.0204172134399; train accuracy: 0.9425171946382851; test accuracy: 0.3579824830977259
+2025-11-12 17:52:10 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_41.pth
+2025-11-12 17:52:10 [INFO]  Client 4 Post-Training State -> Raw λ: 4308774.3792 | s(p): 0.160 | Truly Effective λ (for W): 689403.9007
+2025-11-12 17:52:10 [INFO]  Round 41 Finish--------|
+2025-11-12 17:52:10 [INFO]  g_protos_std (global internal): 0.183504
+2025-11-12 17:52:10 [INFO]  inter_client_proto_std (cross-client): 0.323056
+2025-11-12 17:52:36 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.1652581438229871
+2025-11-12 17:52:36 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 17:52:36 [INFO]  Round 42 starts--------|
+2025-11-12 17:52:36 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 17:52:36 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:52:52 [INFO]  Epoch 42 loss: 199.58427047729492; train accuracy: 0.6203531598513011; test accuracy: 0.11793177627535341
+2025-11-12 17:52:52 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_42.pth
+2025-11-12 17:52:52 [INFO]  Client 0 Post-Training State -> Raw λ:   15.7888 | s(p): 0.140 | Truly Effective λ (for W):    2.2104
+2025-11-12 17:52:52 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 17:52:52 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:53:29 [INFO]  Epoch 42 loss: 299.660680770874; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 17:53:30 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_42.pth
+2025-11-12 17:53:30 [INFO]  Client 1 Post-Training State -> Raw λ: 2138451.9904 | s(p): 0.140 | Truly Effective λ (for W): 299383.2787
+2025-11-12 17:53:30 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 17:53:30 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:54:06 [INFO]  Epoch 42 loss: 323.23075103759766; train accuracy: 0.9484432541011047; test accuracy: 0.1734019668100799
+2025-11-12 17:54:06 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_42.pth
+2025-11-12 17:54:06 [INFO]  Client 2 Post-Training State -> Raw λ: 1365159.3259 | s(p): 0.140 | Truly Effective λ (for W): 191122.3056
+2025-11-12 17:54:06 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 17:54:06 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:55:19 [INFO]  Epoch 42 loss: 766.122989654541; train accuracy: 0.9344718309859155; test accuracy: 0.46127842655193607
+2025-11-12 17:55:20 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_42.pth
+2025-11-12 17:55:20 [INFO]  Client 3 Post-Training State -> Raw λ: 7363895.9759 | s(p): 0.140 | Truly Effective λ (for W): 1030945.4366
+2025-11-12 17:55:20 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 17:55:20 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:56:15 [INFO]  Epoch 42 loss: 531.5329594612122; train accuracy: 0.9427180079321251; test accuracy: 0.35913491087891825
+2025-11-12 17:56:15 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_42.pth
+2025-11-12 17:56:15 [INFO]  Client 4 Post-Training State -> Raw λ: 4483595.5030 | s(p): 0.140 | Truly Effective λ (for W): 627703.3704
+2025-11-12 17:56:15 [INFO]  Round 42 Finish--------|
+2025-11-12 17:56:15 [INFO]  g_protos_std (global internal): 0.182879
+2025-11-12 17:56:15 [INFO]  inter_client_proto_std (cross-client): 0.321881
+2025-11-12 17:56:42 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.17067455439459128
+2025-11-12 17:56:42 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 17:56:42 [INFO]  Round 43 starts--------|
+2025-11-12 17:56:42 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 17:56:42 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:56:58 [INFO]  Epoch 43 loss: 201.5272388458252; train accuracy: 0.5478624535315985; test accuracy: 0.10506299938537185
+2025-11-12 17:56:59 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_43.pth
+2025-11-12 17:56:59 [INFO]  Client 0 Post-Training State -> Raw λ:   16.1206 | s(p): 0.120 | Truly Effective λ (for W):    1.9345
+2025-11-12 17:56:59 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 17:56:59 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:57:33 [INFO]  Epoch 43 loss: 299.848126411438; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 17:57:33 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_43.pth
+2025-11-12 17:57:33 [INFO]  Client 1 Post-Training State -> Raw λ: 2274852.7876 | s(p): 0.120 | Truly Effective λ (for W): 272982.3345
+2025-11-12 17:57:33 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 17:57:33 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:58:09 [INFO]  Epoch 43 loss: 324.0487494468689; train accuracy: 0.9466856377636425; test accuracy: 0.16737092808850645
+2025-11-12 17:58:09 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_43.pth
+2025-11-12 17:58:09 [INFO]  Client 2 Post-Training State -> Raw λ: 1469448.8674 | s(p): 0.120 | Truly Effective λ (for W): 176333.8641
+2025-11-12 17:58:09 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 17:58:09 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 17:59:26 [INFO]  Epoch 43 loss: 777.546911239624; train accuracy: 0.9391549295774648; test accuracy: 0.4632375537799631
+2025-11-12 17:59:26 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_43.pth
+2025-11-12 17:59:26 [INFO]  Client 3 Post-Training State -> Raw λ: 7631640.3561 | s(p): 0.120 | Truly Effective λ (for W): 915796.8427
+2025-11-12 17:59:26 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 17:59:27 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:00:24 [INFO]  Epoch 43 loss: 533.6938509941101; train accuracy: 0.9431698378432652; test accuracy: 0.35840503995082973
+2025-11-12 18:00:24 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_43.pth
+2025-11-12 18:00:24 [INFO]  Client 4 Post-Training State -> Raw λ: 4660666.8377 | s(p): 0.120 | Truly Effective λ (for W): 559280.0205
+2025-11-12 18:00:24 [INFO]  Round 43 Finish--------|
+2025-11-12 18:00:24 [INFO]  g_protos_std (global internal): 0.182338
+2025-11-12 18:00:24 [INFO]  inter_client_proto_std (cross-client): 0.320906
+2025-11-12 18:00:50 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.16817762753534113
+2025-11-12 18:00:50 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 18:00:50 [INFO]  Round 44 starts--------|
+2025-11-12 18:00:50 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 18:00:50 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:01:04 [INFO]  Epoch 44 loss: 204.10142707824707; train accuracy: 0.4986059479553903; test accuracy: 0.09741856177012907
+2025-11-12 18:01:05 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_44.pth
+2025-11-12 18:01:05 [INFO]  Client 0 Post-Training State -> Raw λ:   16.4887 | s(p): 0.100 | Truly Effective λ (for W):    1.6489
+2025-11-12 18:01:05 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 18:01:05 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:01:40 [INFO]  Epoch 44 loss: 300.91856145858765; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 18:01:40 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_44.pth
+2025-11-12 18:01:40 [INFO]  Client 1 Post-Training State -> Raw λ: 2422904.5364 | s(p): 0.100 | Truly Effective λ (for W): 242290.4536
+2025-11-12 18:01:40 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 18:01:40 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:02:17 [INFO]  Epoch 44 loss: 322.05777883529663; train accuracy: 0.9480247740207566; test accuracy: 0.17493853718500307
+2025-11-12 18:02:18 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_44.pth
+2025-11-12 18:02:18 [INFO]  Client 2 Post-Training State -> Raw λ: 1567932.3359 | s(p): 0.100 | Truly Effective λ (for W): 156793.2336
+2025-11-12 18:02:18 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 18:02:18 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:03:30 [INFO]  Epoch 44 loss: 778.1657609939575; train accuracy: 0.934612676056338; test accuracy: 0.46239244007375535
+2025-11-12 18:03:30 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_44.pth
+2025-11-12 18:03:30 [INFO]  Client 3 Post-Training State -> Raw λ: 7913054.1809 | s(p): 0.100 | Truly Effective λ (for W): 791305.4181
+2025-11-12 18:03:30 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 18:03:30 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:04:26 [INFO]  Epoch 44 loss: 539.351508140564; train accuracy: 0.9427682112555851; test accuracy: 0.35779041180086046
+2025-11-12 18:04:26 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_44.pth
+2025-11-12 18:04:26 [INFO]  Client 4 Post-Training State -> Raw λ: 4842662.9824 | s(p): 0.100 | Truly Effective λ (for W): 484266.2982
+2025-11-12 18:04:26 [INFO]  Round 44 Finish--------|
+2025-11-12 18:04:26 [INFO]  g_protos_std (global internal): 0.181784
+2025-11-12 18:04:26 [INFO]  inter_client_proto_std (cross-client): 0.319874
+2025-11-12 18:04:53 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.1692916410571604
+2025-11-12 18:04:53 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 18:04:53 [INFO]  Round 45 starts--------|
+2025-11-12 18:04:53 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 18:04:53 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:05:08 [INFO]  Epoch 45 loss: 204.51279258728027; train accuracy: 0.48420074349442377; test accuracy: 0.09407652120467118
+2025-11-12 18:05:09 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_45.pth
+2025-11-12 18:05:09 [INFO]  Client 0 Post-Training State -> Raw λ:   16.9298 | s(p): 0.080 | Truly Effective λ (for W):    1.3544
+2025-11-12 18:05:09 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 18:05:09 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:05:43 [INFO]  Epoch 45 loss: 296.9133448600769; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 18:05:43 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_45.pth
+2025-11-12 18:05:43 [INFO]  Client 1 Post-Training State -> Raw λ: 2513408.6826 | s(p): 0.080 | Truly Effective λ (for W): 201072.6946
+2025-11-12 18:05:43 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 18:05:43 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:06:19 [INFO]  Epoch 45 loss: 319.8164224624634; train accuracy: 0.955724807499163; test accuracy: 0.19210971112476952
+2025-11-12 18:06:19 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_45.pth
+2025-11-12 18:06:19 [INFO]  Client 2 Post-Training State -> Raw λ: 1669740.6661 | s(p): 0.080 | Truly Effective λ (for W): 133579.2533
+2025-11-12 18:06:19 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 18:06:20 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:07:30 [INFO]  Epoch 45 loss: 780.4670205116272; train accuracy: 0.9376760563380282; test accuracy: 0.4626613398893669
+2025-11-12 18:07:31 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_45.pth
+2025-11-12 18:07:31 [INFO]  Client 3 Post-Training State -> Raw λ: 8188931.2511 | s(p): 0.080 | Truly Effective λ (for W): 655114.5001
+2025-11-12 18:07:31 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 18:07:31 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:08:27 [INFO]  Epoch 45 loss: 539.4215278625488; train accuracy: 0.942466991314825; test accuracy: 0.3590580823601721
+2025-11-12 18:08:28 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_45.pth
+2025-11-12 18:08:28 [INFO]  Client 4 Post-Training State -> Raw λ: 5028069.9494 | s(p): 0.080 | Truly Effective λ (for W): 402245.5959
+2025-11-12 18:08:28 [INFO]  Round 45 Finish--------|
+2025-11-12 18:08:28 [INFO]  g_protos_std (global internal): 0.181110
+2025-11-12 18:08:28 [INFO]  inter_client_proto_std (cross-client): 0.318642
+2025-11-12 18:08:53 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.1737476951444376
+2025-11-12 18:08:53 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 18:08:53 [INFO]  Round 46 starts--------|
+2025-11-12 18:08:53 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 18:08:53 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:09:09 [INFO]  Epoch 46 loss: 207.1444492340088; train accuracy: 0.5947955390334573; test accuracy: 0.12304087277197295
+2025-11-12 18:09:09 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_46.pth
+2025-11-12 18:09:09 [INFO]  Client 0 Post-Training State -> Raw λ:   17.3233 | s(p): 0.060 | Truly Effective λ (for W):    1.0394
+2025-11-12 18:09:09 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 18:09:09 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:09:43 [INFO]  Epoch 46 loss: 297.5524573326111; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 18:09:44 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_46.pth
+2025-11-12 18:09:44 [INFO]  Client 1 Post-Training State -> Raw λ: 2647145.3871 | s(p): 0.060 | Truly Effective λ (for W): 158828.7232
+2025-11-12 18:09:44 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 18:09:44 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:10:21 [INFO]  Epoch 46 loss: 319.33980083465576; train accuracy: 0.9545530632741881; test accuracy: 0.1845036877688998
+2025-11-12 18:10:22 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_46.pth
+2025-11-12 18:10:22 [INFO]  Client 2 Post-Training State -> Raw λ: 1769946.8323 | s(p): 0.060 | Truly Effective λ (for W): 106196.8099
+2025-11-12 18:10:22 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 18:10:22 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:11:36 [INFO]  Epoch 46 loss: 782.0817251205444; train accuracy: 0.938169014084507; test accuracy: 0.4638521819299324
+2025-11-12 18:11:37 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_46.pth
+2025-11-12 18:11:37 [INFO]  Client 3 Post-Training State -> Raw λ: 8467551.5141 | s(p): 0.060 | Truly Effective λ (for W): 508053.0908
+2025-11-12 18:11:37 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 18:11:37 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:12:34 [INFO]  Epoch 46 loss: 536.0525031089783; train accuracy: 0.9441739043124655; test accuracy: 0.3584818684695759
+2025-11-12 18:12:34 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_46.pth
+2025-11-12 18:12:34 [INFO]  Client 4 Post-Training State -> Raw λ: 5208586.7535 | s(p): 0.060 | Truly Effective λ (for W): 312515.2052
+2025-11-12 18:12:34 [INFO]  Round 46 Finish--------|
+2025-11-12 18:12:34 [INFO]  g_protos_std (global internal): 0.180533
+2025-11-12 18:12:34 [INFO]  inter_client_proto_std (cross-client): 0.317568
+2025-11-12 18:13:01 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.17486170866625692
+2025-11-12 18:13:01 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 18:13:01 [INFO]  Round 47 starts--------|
+2025-11-12 18:13:01 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 18:13:01 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:13:16 [INFO]  Epoch 47 loss: 209.65732955932617; train accuracy: 0.5018587360594795; test accuracy: 0.09519053472649047
+2025-11-12 18:13:17 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_47.pth
+2025-11-12 18:13:17 [INFO]  Client 0 Post-Training State -> Raw λ:   17.8153 | s(p): 0.040 | Truly Effective λ (for W):    0.7126
+2025-11-12 18:13:17 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 18:13:17 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:13:51 [INFO]  Epoch 47 loss: 300.3482747077942; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 18:13:51 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_47.pth
+2025-11-12 18:13:51 [INFO]  Client 1 Post-Training State -> Raw λ: 2788932.8671 | s(p): 0.040 | Truly Effective λ (for W): 111557.3147
+2025-11-12 18:13:51 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 18:13:51 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:14:31 [INFO]  Epoch 47 loss: 322.3044533729553; train accuracy: 0.9525443588885169; test accuracy: 0.1789720344191764
+2025-11-12 18:14:31 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_47.pth
+2025-11-12 18:14:31 [INFO]  Client 2 Post-Training State -> Raw λ: 1871790.3535 | s(p): 0.040 | Truly Effective λ (for W): 74871.6141
+2025-11-12 18:14:31 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 18:14:31 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:15:46 [INFO]  Epoch 47 loss: 787.6481580734253; train accuracy: 0.9340845070422535; test accuracy: 0.4601259987707437
+2025-11-12 18:15:47 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_47.pth
+2025-11-12 18:15:47 [INFO]  Client 3 Post-Training State -> Raw λ: 8739498.7084 | s(p): 0.040 | Truly Effective λ (for W): 349579.9483
+2025-11-12 18:15:47 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 18:15:47 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:16:45 [INFO]  Epoch 47 loss: 541.7367115020752; train accuracy: 0.9435714644309453; test accuracy: 0.35752151198524895
+2025-11-12 18:16:45 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_47.pth
+2025-11-12 18:16:45 [INFO]  Client 4 Post-Training State -> Raw λ: 5396734.6083 | s(p): 0.040 | Truly Effective λ (for W): 215869.3843
+2025-11-12 18:16:45 [INFO]  Round 47 Finish--------|
+2025-11-12 18:16:45 [INFO]  g_protos_std (global internal): 0.179813
+2025-11-12 18:16:45 [INFO]  inter_client_proto_std (cross-client): 0.316256
+2025-11-12 18:17:12 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.17762753534111864
+2025-11-12 18:17:12 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 18:17:12 [INFO]  Round 48 starts--------|
+2025-11-12 18:17:12 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 18:17:12 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:17:28 [INFO]  Epoch 48 loss: 210.8202362060547; train accuracy: 0.5487918215613383; test accuracy: 0.11835433312845728
+2025-11-12 18:17:29 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_48.pth
+2025-11-12 18:17:29 [INFO]  Client 0 Post-Training State -> Raw λ:   18.2915 | s(p): 0.020 | Truly Effective λ (for W):    0.3658
+2025-11-12 18:17:29 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 18:17:29 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:18:07 [INFO]  Epoch 48 loss: 301.45715379714966; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 18:18:07 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_48.pth
+2025-11-12 18:18:07 [INFO]  Client 1 Post-Training State -> Raw λ: 3067477.3793 | s(p): 0.020 | Truly Effective λ (for W): 61349.5476
+2025-11-12 18:18:07 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 18:18:07 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:18:45 [INFO]  Epoch 48 loss: 319.41838693618774; train accuracy: 0.9478573819886174; test accuracy: 0.17586047940995697
+2025-11-12 18:18:46 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_48.pth
+2025-11-12 18:18:46 [INFO]  Client 2 Post-Training State -> Raw λ: 1972929.7224 | s(p): 0.020 | Truly Effective λ (for W): 39458.5944
+2025-11-12 18:18:46 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 18:18:46 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:20:03 [INFO]  Epoch 48 loss: 790.9553184509277; train accuracy: 0.9335915492957747; test accuracy: 0.4605101413644745
+2025-11-12 18:20:03 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_48.pth
+2025-11-12 18:20:03 [INFO]  Client 3 Post-Training State -> Raw λ: 9019704.5997 | s(p): 0.020 | Truly Effective λ (for W): 180394.0920
+2025-11-12 18:20:03 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 18:20:03 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:21:00 [INFO]  Epoch 48 loss: 544.6144480705261; train accuracy: 0.9418143481098449; test accuracy: 0.35586969883220654
+2025-11-12 18:21:00 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_48.pth
+2025-11-12 18:21:00 [INFO]  Client 4 Post-Training State -> Raw λ: 5586551.2109 | s(p): 0.020 | Truly Effective λ (for W): 111731.0242
+2025-11-12 18:21:00 [INFO]  Round 48 Finish--------|
+2025-11-12 18:21:00 [INFO]  g_protos_std (global internal): 0.179135
+2025-11-12 18:21:00 [INFO]  inter_client_proto_std (cross-client): 0.314982
+2025-11-12 18:21:27 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.1767440073755378
+2025-11-12 18:21:27 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
+2025-11-12 18:21:27 [INFO]  Round 49 starts--------|
+2025-11-12 18:21:27 [INFO]  Client 0 Starts Local Trainning--------|
+2025-11-12 18:21:27 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:21:43 [INFO]  Epoch 49 loss: 213.03050422668457; train accuracy: 0.5497211895910781; test accuracy: 0.10202827289489859
+2025-11-12 18:21:44 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_0/epoch_49.pth
+2025-11-12 18:21:44 [INFO]  Client 0 Post-Training State -> Raw λ:   18.7441 | s(p): 0.000 | Truly Effective λ (for W):    0.0000
+2025-11-12 18:21:44 [INFO]  Client 1 Starts Local Trainning--------|
+2025-11-12 18:21:44 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:22:22 [INFO]  Epoch 49 loss: 295.87452268600464; train accuracy: 0.9763794057944271; test accuracy: 0.15938076213890595
+2025-11-12 18:22:23 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_1/epoch_49.pth
+2025-11-12 18:22:23 [INFO]  Client 1 Post-Training State -> Raw λ: 3167551.2827 | s(p): 0.000 | Truly Effective λ (for W):    0.0000
+2025-11-12 18:22:23 [INFO]  Client 2 Starts Local Trainning--------|
+2025-11-12 18:22:23 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:23:02 [INFO]  Epoch 49 loss: 319.75353717803955; train accuracy: 0.9543856712420489; test accuracy: 0.1782421634910879
+2025-11-12 18:23:02 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_2/epoch_49.pth
+2025-11-12 18:23:02 [INFO]  Client 2 Post-Training State -> Raw λ: 2075809.9222 | s(p): 0.000 | Truly Effective λ (for W):    0.0000
+2025-11-12 18:23:02 [INFO]  Client 3 Starts Local Trainning--------|
+2025-11-12 18:23:02 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:24:19 [INFO]  Epoch 49 loss: 804.2300810813904; train accuracy: 0.9383450704225352; test accuracy: 0.46227719729563616
+2025-11-12 18:24:19 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_3/epoch_49.pth
+2025-11-12 18:24:19 [INFO]  Client 3 Post-Training State -> Raw λ: 9295543.1702 | s(p): 0.000 | Truly Effective λ (for W):    0.0000
+2025-11-12 18:24:19 [INFO]  Client 4 Starts Local Trainning--------|
+2025-11-12 18:24:19 [INFO]  V10 mode: Optimizer created with base_lr=0.05 and sigma_lr=0.005
+2025-11-12 18:25:10 [INFO]  Epoch 49 loss: 543.1537699699402; train accuracy: 0.9443245142828455; test accuracy: 0.3591733251382913
+2025-11-12 18:25:11 [INFO]  Save the model in ./checkpoints/SVHN_alpha0.05/local_models/client_4/epoch_49.pth
+2025-11-12 18:25:11 [INFO]  Client 4 Post-Training State -> Raw λ: 5771753.2709 | s(p): 0.000 | Truly Effective λ (for W):    0.0000
+2025-11-12 18:25:11 [INFO]  Round 49 Finish--------|
+2025-11-12 18:25:11 [INFO]  g_protos_std (global internal): 0.178486
+2025-11-12 18:25:11 [INFO]  inter_client_proto_std (cross-client): 0.313797
+2025-11-12 18:25:33 [INFO]  The test accuracy of OursV13+SimpleFeatureServer: 0.17628303626306085
+2025-11-12 18:25:33 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OursV13+SimpleFeatureServer_SVHN_results.yaml
