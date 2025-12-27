@@ -6,7 +6,7 @@
 #import "@preview/lucky-icml:0.7.0": icml2025
 
 #show: icml2025.with(
-  title: [AURORA: AUtonomous Regularization for One-shot federated leaRning with Alignment],
+  title: [AURORA: Autonomous Regularization for One-shot Representation Alignment],
   authors: (
     (
       name: "Anonymous",
