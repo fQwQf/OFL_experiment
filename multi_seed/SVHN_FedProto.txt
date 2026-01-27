@@ -1,0 +1,1407 @@
+2026-01-22 11:45:44 [INFO]  Load config from configs/SVHN_alpha0.05_seed42.yaml
+2026-01-22 11:45:44 [INFO]  config: {'exp_name': 'SVHN_alpha0.05', 'dataset': {'data_name': 'SVHN', 'root_path': '~/datasets/', 'train_batch_size': 256, 'test_batch_size': 256, 'channels': 3, 'num_classes': 10, 'image_size': 32, 'aux_data_name': 'SVHN', 'aux_root_path': '~/datasets/', 'aux_split': 'test'}, 'distribution': {'type': 'dirichlet', 'label_num_per_client': 2, 'alpha': 0.05}, 'client': {'num_clients': 5}, 'server': {'num_rounds': 50, 'frac_clients': 1.0, 'lr': 0.05, 'local_epochs': 1, 'optimizer': 'sgd', 'momentum': 0.9, 'weight_decay': 0.0001, 'loss_name': 'ce', 'model_name': 'resnet18', 'aggregated_by_datasize': True, 'lr_decay_per_round': 0.998}, 'device': 'cuda:0', 'checkpoint': {'save_path': './checkpoints/', 'save_freq': 5, 'result_file': 'SVHN_results.yaml'}, 'pretrain': {'lr': 0.01, 'epoch': 70, 'model_path': './pretrain/', 'momentum': 0.9, 'weight_decay': 0.0001, 'model_name': 'resnet18', 'model_file_name': 'resnet18-f37072fd.pth'}, 'DBCD': {'alpha_l_pa': 1, 'alpha_l_pb': 1, 'alpha_l_pc': 0.0, 'Beta_alpha': 0.2, 'unsup_method': 'infonce', 'contrastive_temperature': 0.5, 'encoder_epoch': 40, 'projector_epoch': 10, 'use_pretrain': False, 'aug_batch_size': 512, 'encoder_lr': 0.03, 'cls_optimizer': 'sgd', 'cls_lr': 0.05, 'supcon_temp': 0.07, 'super_gr': 100, 'aux_with_public': True}, 'etf': {'loss_name': 'ce'}, 'visualization': {'interval': 5, 'save_path': 'visualization/resnet18', 'vis_size': 16}, 'resume': True, 'resume_best': False, 'seed': 42, 'lambda_align_initial': 10.0, 'v9_config': {'use_adaptive_lambda': True, 'lambda_min': 0.1, 'lambda_max': 20.0, 'use_server_optimization': False, 'server_lr': 0.001, 'server_epochs': 20, 'gamma_etf_reg': 0.1}, 'v10_config': {'use_uncertainty_weighting': True, 'sigma_lr': 0.005}}
+2026-01-22 11:45:47 [INFO]  Dataset SVHN loaded
+2026-01-22 11:45:47 [INFO]  Dataset index dict loaded from preprocessed_data/SVHN.pt
+2026-01-22 11:45:47 [INFO]  Data distribution generated correctly using the corrected dirichlet function.
+2026-01-22 11:45:47 [INFO]  Total assigned samples: 73257
+2026-01-22 11:45:47 [INFO]  OneshotFedProto
+2026-01-22 11:45:48 [INFO]  Round 0 starts--------|
+2026-01-22 11:45:48 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 11:46:10 [INFO]  Epoch 0 loss: 46.32560107111931; train accuracy: 0.8352871783528718; test accuracy: 0.15085279655808237
+2026-01-22 11:46:10 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 11:46:15 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 11:46:15 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 11:46:54 [INFO]  Epoch 0 loss: 114.34739637374878; train accuracy: 0.8431778482241056; test accuracy: 0.38671634910878916
+2026-01-22 11:46:54 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 11:47:07 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 11:47:07 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 11:47:17 [INFO]  Epoch 0 loss: 3.414393186569214; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 11:47:17 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 11:47:17 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 11:47:17 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 11:47:36 [INFO]  Epoch 0 loss: 18.122254505753517; train accuracy: 0.9463471340427434; test accuracy: 0.1594960049170252
+2026-01-22 11:47:36 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 11:47:41 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 11:47:41 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 11:48:05 [INFO]  Epoch 0 loss: 72.9084193110466; train accuracy: 0.6123559351781431; test accuracy: 0.14124923171481255
+2026-01-22 11:48:05 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 11:48:13 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 11:48:13 [INFO]  Round 0 Finish--------|
+2026-01-22 11:48:13 [INFO]  Model variance: mean: 0.0005289796972647309, sum: 5910.798828125
+2026-01-22 11:48:21 [INFO]  The test accuracy of OneShotFedProto: 0.14259373079287033
+2026-01-22 11:48:22 [INFO]  class-wise minimum distance [3.579343795776367, 3.9915072917938232, 3.055840492248535, 3.371741771697998, 3.9020416736602783, 3.371741771697998, 4.158604145050049, 2.177354335784912, 3.055840492248535, 2.177354335784912], min_gap 2.177354335784912, max_gap 4.158604145050049
+2026-01-22 11:48:48 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.08600952673632452
+2026-01-22 11:49:21 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.24254763368162263
+2026-01-22 11:49:21 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 11:49:21 [INFO]  Round 1 starts--------|
+2026-01-22 11:49:21 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 11:49:42 [INFO]  Epoch 0 loss: 15.900539368391037; train accuracy: 0.9165376391653763; test accuracy: 0.17248002458512599
+2026-01-22 11:49:42 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 11:49:48 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 11:49:48 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 11:50:26 [INFO]  Epoch 0 loss: 33.60579966008663; train accuracy: 0.9335252636345992; test accuracy: 0.453480331899201
+2026-01-22 11:50:26 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 11:50:40 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 11:50:40 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 11:50:49 [INFO]  Epoch 0 loss: 0.8880021572113037; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 11:50:49 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 11:50:49 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 11:50:49 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 11:51:08 [INFO]  Epoch 0 loss: 8.069329246878624; train accuracy: 0.9442904408477153; test accuracy: 0.2635218192993239
+2026-01-22 11:51:08 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 11:51:13 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 11:51:13 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 11:51:38 [INFO]  Epoch 0 loss: 41.84122410416603; train accuracy: 0.6966594512373486; test accuracy: 0.17570682237246465
+2026-01-22 11:51:39 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 11:51:46 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 11:51:46 [INFO]  Round 1 Finish--------|
+2026-01-22 11:51:46 [INFO]  Model variance: mean: 0.0008322599460370839, sum: 9299.640625
+2026-01-22 11:51:55 [INFO]  The test accuracy of OneShotFedProto: 0.10944222495390289
+2026-01-22 11:51:55 [INFO]  class-wise minimum distance [4.586620807647705, 5.481491565704346, 3.181041955947876, 4.952911853790283, 3.6905667781829834, 3.5277764797210693, 5.119719982147217, 3.334433078765869, 3.181041955947876, 3.2672574520111084], min_gap 3.181041955947876, max_gap 5.481491565704346
+2026-01-22 11:52:22 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.14328518746158575
+2026-01-22 11:52:55 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.3408881376767056
+2026-01-22 11:52:55 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 11:52:55 [INFO]  Round 2 starts--------|
+2026-01-22 11:52:55 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 11:53:16 [INFO]  Epoch 0 loss: 10.723554342985153; train accuracy: 0.9361498193614982; test accuracy: 0.1939920098340504
+2026-01-22 11:53:16 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 11:53:22 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 11:53:22 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 11:54:00 [INFO]  Epoch 0 loss: 20.216796405613422; train accuracy: 0.926149964417416; test accuracy: 0.421020282728949
+2026-01-22 11:54:00 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 11:54:14 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 11:54:14 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 11:54:23 [INFO]  Epoch 0 loss: 0.20465068146586418; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 11:54:23 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 11:54:23 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 11:54:23 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 11:54:43 [INFO]  Epoch 0 loss: 4.910024803131819; train accuracy: 0.9760350532057588; test accuracy: 0.2470036877688998
+2026-01-22 11:54:43 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 11:54:47 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 11:54:47 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 11:55:13 [INFO]  Epoch 0 loss: 25.580880850553513; train accuracy: 0.894927748201018; test accuracy: 0.21047172710510142
+2026-01-22 11:55:13 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 11:55:20 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 11:55:20 [INFO]  Round 2 Finish--------|
+2026-01-22 11:55:20 [INFO]  Model variance: mean: 0.0010547940619289875, sum: 11786.228515625
+2026-01-22 11:55:29 [INFO]  The test accuracy of OneShotFedProto: 0.09323140749846343
+2026-01-22 11:55:29 [INFO]  class-wise minimum distance [4.705482006072998, 5.3760085105896, 3.402254343032837, 3.9139702320098877, 3.9051995277404785, 3.824413537979126, 4.8480095863342285, 3.69539213180542, 2.97412109375, 2.97412109375], min_gap 2.97412109375, max_gap 5.3760085105896
+2026-01-22 11:55:55 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11247695144437615
+2026-01-22 11:56:28 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.39881684081130914
+2026-01-22 11:56:28 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 11:56:28 [INFO]  Round 3 starts--------|
+2026-01-22 11:56:28 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 11:56:49 [INFO]  Epoch 0 loss: 6.819340534508228; train accuracy: 0.9711715697117157; test accuracy: 0.2125845113706208
+2026-01-22 11:56:49 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 11:56:55 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 11:56:55 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 11:57:34 [INFO]  Epoch 0 loss: 12.858463905751705; train accuracy: 0.978909232063143; test accuracy: 0.4601644130301168
+2026-01-22 11:57:35 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 11:57:49 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 11:57:49 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 11:57:58 [INFO]  Epoch 0 loss: 0.14426034688949585; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 11:57:58 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 11:57:58 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 11:57:58 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 11:58:17 [INFO]  Epoch 0 loss: 3.072634521871805; train accuracy: 0.9837252973262989; test accuracy: 0.28203749231714814
+2026-01-22 11:58:17 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 11:58:22 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 11:58:22 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 11:58:48 [INFO]  Epoch 0 loss: 15.02173699438572; train accuracy: 0.9366407301234424; test accuracy: 0.22138137676705594
+2026-01-22 11:58:48 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 11:58:55 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 11:58:55 [INFO]  Round 3 Finish--------|
+2026-01-22 11:58:55 [INFO]  Model variance: mean: 0.0012464163592085242, sum: 13927.408203125
+2026-01-22 11:59:04 [INFO]  The test accuracy of OneShotFedProto: 0.11800860479409957
+2026-01-22 11:59:04 [INFO]  class-wise minimum distance [5.387092590332031, 4.918008327484131, 3.643577814102173, 4.069606304168701, 4.0194549560546875, 3.6437976360321045, 6.1634202003479, 4.153212547302246, 3.643577814102173, 3.80462646484375], min_gap 3.643577814102173, max_gap 6.1634202003479
+2026-01-22 11:59:36 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.08543331284572833
+2026-01-22 12:00:08 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.47410878918254457
+2026-01-22 12:00:08 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 12:00:08 [INFO]  Round 4 starts--------|
+2026-01-22 12:00:08 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 12:00:30 [INFO]  Epoch 0 loss: 4.878160946071148; train accuracy: 0.9625451596254516; test accuracy: 0.23063921327596804
+2026-01-22 12:00:30 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 12:00:36 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 12:00:36 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 12:01:14 [INFO]  Epoch 0 loss: 7.707052869722247; train accuracy: 0.9693019343986543; test accuracy: 0.45355716041794714
+2026-01-22 12:01:14 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 12:01:27 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 12:01:27 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 12:01:36 [INFO]  Epoch 0 loss: 0.13479194045066833; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 12:01:36 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 12:01:36 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 12:01:36 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 12:01:55 [INFO]  Epoch 0 loss: 1.6692674467340112; train accuracy: 0.9923097558794599; test accuracy: 0.316840811309158
+2026-01-22 12:01:55 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 12:02:01 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 12:02:01 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 12:02:25 [INFO]  Epoch 0 loss: 9.605080649256706; train accuracy: 0.9208447902650208; test accuracy: 0.21354486785494775
+2026-01-22 12:02:25 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 12:02:32 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 12:02:32 [INFO]  Round 4 Finish--------|
+2026-01-22 12:02:32 [INFO]  Model variance: mean: 0.0014041401445865631, sum: 15689.80859375
+2026-01-22 12:02:42 [INFO]  The test accuracy of OneShotFedProto: 0.10417947141979103
+2026-01-22 12:02:42 [INFO]  class-wise minimum distance [4.932420253753662, 5.381871700286865, 3.9627132415771484, 3.9627132415771484, 3.9452733993530273, 4.588862419128418, 6.471015930175781, 4.117215633392334, 3.9452733993530273, 4.074530124664307], min_gap 3.9452733993530273, max_gap 6.471015930175781
+2026-01-22 12:03:08 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.07682851874615858
+2026-01-22 12:03:40 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.5379148740012293
+2026-01-22 12:03:40 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 12:03:40 [INFO]  Round 5 starts--------|
+2026-01-22 12:03:40 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 12:04:01 [INFO]  Epoch 0 loss: 2.878538830205798; train accuracy: 0.9884981198849812; test accuracy: 0.24081899200983406
+2026-01-22 12:04:01 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 12:04:07 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 12:04:07 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 12:04:44 [INFO]  Epoch 0 loss: 5.1365076415240765; train accuracy: 0.9807530568674387; test accuracy: 0.45301936078672406
+2026-01-22 12:04:44 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 12:04:58 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 12:04:58 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 12:05:06 [INFO]  Epoch 0 loss: 0.12298430129885674; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 12:05:06 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 12:05:07 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 12:05:07 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 12:05:26 [INFO]  Epoch 0 loss: 1.0746810310520232; train accuracy: 0.9922203344361978; test accuracy: 0.306200061462815
+2026-01-22 12:05:26 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 12:05:31 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 12:05:31 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 12:05:56 [INFO]  Epoch 0 loss: 6.587145730853081; train accuracy: 0.9336570525946294; test accuracy: 0.21803933620159804
+2026-01-22 12:05:56 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 12:06:04 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 12:06:04 [INFO]  Round 5 Finish--------|
+2026-01-22 12:06:04 [INFO]  Model variance: mean: 0.0015397925162687898, sum: 17205.58203125
+2026-01-22 12:06:13 [INFO]  The test accuracy of OneShotFedProto: 0.12430854333128458
+2026-01-22 12:06:13 [INFO]  class-wise minimum distance [5.851665019989014, 5.482349872589111, 3.628835916519165, 4.700239658355713, 4.304635524749756, 4.338118076324463, 6.77229118347168, 4.616898536682129, 3.628835916519165, 4.894623279571533], min_gap 3.628835916519165, max_gap 6.77229118347168
+2026-01-22 12:06:39 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.06146281499692686
+2026-01-22 12:07:12 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.5936155500921942
+2026-01-22 12:07:12 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 12:07:12 [INFO]  Round 6 starts--------|
+2026-01-22 12:07:12 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 12:07:33 [INFO]  Epoch 0 loss: 1.8942161221057177; train accuracy: 0.9907837499078375; test accuracy: 0.22284111862323294
+2026-01-22 12:07:33 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 12:07:39 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 12:07:39 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 12:08:16 [INFO]  Epoch 0 loss: 3.510314835701138; train accuracy: 0.988872355567057; test accuracy: 0.46431315304240933
+2026-01-22 12:08:16 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 12:08:30 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 12:08:30 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 12:08:39 [INFO]  Epoch 0 loss: 0.12127600237727165; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 12:08:39 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 12:08:39 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 12:08:39 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 12:08:58 [INFO]  Epoch 0 loss: 0.7055146192433313; train accuracy: 0.998122149691496; test accuracy: 0.34227105101413646
+2026-01-22 12:08:58 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 12:09:03 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 12:09:03 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 12:09:27 [INFO]  Epoch 0 loss: 5.0295854564756155; train accuracy: 0.9323114725326157; test accuracy: 0.22610633066994468
+2026-01-22 12:09:27 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 12:09:35 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 12:09:35 [INFO]  Round 6 Finish--------|
+2026-01-22 12:09:35 [INFO]  Model variance: mean: 0.001652596634812653, sum: 18466.05078125
+2026-01-22 12:09:44 [INFO]  The test accuracy of OneShotFedProto: 0.0942301782421635
+2026-01-22 12:09:44 [INFO]  class-wise minimum distance [5.499348163604736, 5.482866287231445, 4.270873069763184, 5.353209018707275, 4.677759647369385, 5.082125663757324, 7.958259105682373, 5.004093170166016, 4.677759647369385, 4.270873069763184], min_gap 4.270873069763184, max_gap 7.958259105682373
+2026-01-22 12:10:10 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.06411339889366933
+2026-01-22 12:10:42 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.5679164105716041
+2026-01-22 12:10:42 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 12:10:42 [INFO]  Round 7 starts--------|
+2026-01-22 12:10:42 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 12:11:03 [INFO]  Epoch 0 loss: 1.2292829938232899; train accuracy: 0.9960923099609231; test accuracy: 0.23882145052243392
+2026-01-22 12:11:03 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 12:11:09 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 12:11:09 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 12:11:47 [INFO]  Epoch 0 loss: 1.9298812531633303; train accuracy: 0.996926958659507; test accuracy: 0.4716118623232944
+2026-01-22 12:11:47 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 12:12:01 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 12:12:01 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 12:12:10 [INFO]  Epoch 0 loss: 0.11094565130770206; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 12:12:10 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 12:12:10 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 12:12:10 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 12:12:29 [INFO]  Epoch 0 loss: 0.3134014377137646; train accuracy: 0.999016364124117; test accuracy: 0.3514136447449293
+2026-01-22 12:12:29 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 12:12:34 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 12:12:34 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 12:13:00 [INFO]  Epoch 0 loss: 3.5246912073343992; train accuracy: 0.8765576551804832; test accuracy: 0.21170098340503996
+2026-01-22 12:13:00 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 12:13:07 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 12:13:07 [INFO]  Round 7 Finish--------|
+2026-01-22 12:13:07 [INFO]  Model variance: mean: 0.0017342276405543089, sum: 19378.193359375
+2026-01-22 12:13:15 [INFO]  The test accuracy of OneShotFedProto: 0.10471727105101414
+2026-01-22 12:13:15 [INFO]  class-wise minimum distance [6.3400349617004395, 5.717757701873779, 4.607897758483887, 4.607897758483887, 4.90662145614624, 5.326706409454346, 8.817463874816895, 5.075845718383789, 5.201920032501221, 5.617305755615234], min_gap 4.607897758483887, max_gap 8.817463874816895
+2026-01-22 12:13:41 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.09745697602950215
+2026-01-22 12:14:13 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.633681622618316
+2026-01-22 12:14:13 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 12:14:13 [INFO]  Round 8 starts--------|
+2026-01-22 12:14:13 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 12:14:35 [INFO]  Epoch 0 loss: 0.7165322985965759; train accuracy: 0.9972719899727199; test accuracy: 0.247579901659496
+2026-01-22 12:14:35 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 12:14:41 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 12:14:41 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 12:15:19 [INFO]  Epoch 0 loss: 1.4543705786345527; train accuracy: 0.9944685255871126; test accuracy: 0.4829056545789797
+2026-01-22 12:15:19 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 12:15:32 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 12:15:32 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 12:15:42 [INFO]  Epoch 0 loss: 0.10563187021762133; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 12:15:42 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 12:15:42 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 12:15:42 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 12:16:02 [INFO]  Epoch 0 loss: 0.14454526503686793; train accuracy: 0.9996423142269516; test accuracy: 0.3249462200368777
+2026-01-22 12:16:02 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 12:16:06 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 12:16:07 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 12:16:31 [INFO]  Epoch 0 loss: 2.577518730890006; train accuracy: 0.9692271690165565; test accuracy: 0.2511524277811924
+2026-01-22 12:16:31 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 12:16:38 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 12:16:38 [INFO]  Round 8 Finish--------|
+2026-01-22 12:16:38 [INFO]  Model variance: mean: 0.001798143144696951, sum: 20092.3828125
+2026-01-22 12:16:47 [INFO]  The test accuracy of OneShotFedProto: 0.11009526736324524
+2026-01-22 12:16:47 [INFO]  class-wise minimum distance [6.559117317199707, 5.6347880363464355, 5.303301811218262, 5.8364057540893555, 5.794462203979492, 5.5386223793029785, 8.738540649414062, 5.700920581817627, 5.5386223793029785, 5.303301811218262], min_gap 5.303301811218262, max_gap 8.738540649414062
+2026-01-22 12:17:13 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.07525353411186232
+2026-01-22 12:17:45 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6112476951444377
+2026-01-22 12:17:45 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 12:17:45 [INFO]  Round 9 starts--------|
+2026-01-22 12:17:45 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 12:18:06 [INFO]  Epoch 0 loss: 0.2959959785803221; train accuracy: 0.9991152399911524; test accuracy: 0.2499615857406269
+2026-01-22 12:18:06 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 12:18:12 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 12:18:12 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 12:18:50 [INFO]  Epoch 0 loss: 1.1233983266865835; train accuracy: 0.9948243514265381; test accuracy: 0.47414720344191763
+2026-01-22 12:18:50 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 12:19:04 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 12:19:04 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 12:19:13 [INFO]  Epoch 0 loss: 0.10351938009262085; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 12:19:13 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 12:19:13 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 12:19:13 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 12:19:32 [INFO]  Epoch 0 loss: 0.07435781699314248; train accuracy: 0.9993740498971654; test accuracy: 0.3393899815611555
+2026-01-22 12:19:32 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 12:19:37 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 12:19:37 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 12:20:02 [INFO]  Epoch 0 loss: 2.3545119436457753; train accuracy: 0.9911074708945182; test accuracy: 0.25749078057775043
+2026-01-22 12:20:02 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 12:20:10 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 12:20:10 [INFO]  Round 9 Finish--------|
+2026-01-22 12:20:10 [INFO]  Model variance: mean: 0.0018439451232552528, sum: 20604.171875
+2026-01-22 12:20:19 [INFO]  The test accuracy of OneShotFedProto: 0.09204056545789797
+2026-01-22 12:20:19 [INFO]  class-wise minimum distance [7.133885383605957, 6.537708759307861, 5.520791530609131, 6.2194929122924805, 6.157683849334717, 6.111204624176025, 9.36043643951416, 5.520791530609131, 5.598515510559082, 6.2194929122924805], min_gap 5.520791530609131, max_gap 9.36043643951416
+2026-01-22 12:20:46 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.12396281499692687
+2026-01-22 12:21:17 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6572679778733866
+2026-01-22 12:21:18 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 12:21:18 [INFO]  Round 10 starts--------|
+2026-01-22 12:21:18 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 12:21:39 [INFO]  Epoch 0 loss: 0.13875045572058298; train accuracy: 0.9997050799970508; test accuracy: 0.2652504609711125
+2026-01-22 12:21:39 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 12:21:45 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 12:21:45 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 12:22:23 [INFO]  Epoch 0 loss: 0.9381757222290616; train accuracy: 0.997638610338358; test accuracy: 0.49377688998156116
+2026-01-22 12:22:23 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 12:22:36 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 12:22:36 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 12:22:45 [INFO]  Epoch 0 loss: 0.09583106264472008; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 12:22:45 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 12:22:45 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 12:22:45 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 12:23:04 [INFO]  Epoch 0 loss: 0.07150556177657563; train accuracy: 0.9997317356702137; test accuracy: 0.3419253226797787
+2026-01-22 12:23:04 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 12:23:09 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 12:23:09 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 12:23:36 [INFO]  Epoch 0 loss: 1.983379373094067; train accuracy: 0.9452407418241385; test accuracy: 0.22218807621389058
+2026-01-22 12:23:36 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 12:23:43 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 12:23:43 [INFO]  Round 10 Finish--------|
+2026-01-22 12:23:43 [INFO]  Model variance: mean: 0.0018864660523831844, sum: 21079.298828125
+2026-01-22 12:23:52 [INFO]  The test accuracy of OneShotFedProto: 0.10026121696373694
+2026-01-22 12:23:52 [INFO]  class-wise minimum distance [8.253996849060059, 6.982967853546143, 5.725802898406982, 6.009732723236084, 6.739727020263672, 5.863957405090332, 9.981524467468262, 6.009732723236084, 5.863957405090332, 5.725802898406982], min_gap 5.725802898406982, max_gap 9.981524467468262
+2026-01-22 12:24:18 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.12300245851259987
+2026-01-22 12:24:52 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6141287645974186
+2026-01-22 12:24:52 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 12:24:52 [INFO]  Round 11 starts--------|
+2026-01-22 12:24:52 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 12:25:12 [INFO]  Epoch 0 loss: 0.10611475935729686; train accuracy: 0.9997050799970508; test accuracy: 0.26920712968653965
+2026-01-22 12:25:12 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 12:25:18 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 12:25:18 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 12:25:57 [INFO]  Epoch 0 loss: 0.489650593342958; train accuracy: 0.9994177395354855; test accuracy: 0.4872464658881377
+2026-01-22 12:25:57 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 12:26:11 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 12:26:11 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 12:26:20 [INFO]  Epoch 0 loss: 0.09291326999664307; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 12:26:20 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 12:26:20 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 12:26:20 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 12:26:39 [INFO]  Epoch 0 loss: 0.03623195624095388; train accuracy: 1.0; test accuracy: 0.34169483712354026
+2026-01-22 12:26:39 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 12:26:44 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 12:26:44 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 12:27:08 [INFO]  Epoch 0 loss: 2.0571347870863974; train accuracy: 0.9815714034985081; test accuracy: 0.2579901659496005
+2026-01-22 12:27:08 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 12:27:16 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 12:27:16 [INFO]  Round 11 Finish--------|
+2026-01-22 12:27:16 [INFO]  Model variance: mean: 0.001919795642606914, sum: 21451.72265625
+2026-01-22 12:27:26 [INFO]  The test accuracy of OneShotFedProto: 0.0962661339889367
+2026-01-22 12:27:26 [INFO]  class-wise minimum distance [7.126999378204346, 7.095480442047119, 5.631924152374268, 7.272738456726074, 5.907188415527344, 6.107598781585693, 8.417081832885742, 6.763949871063232, 5.631924152374268, 7.095764636993408], min_gap 5.631924152374268, max_gap 8.417081832885742
+2026-01-22 12:27:54 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.12242624462200369
+2026-01-22 12:28:26 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6318761524277812
+2026-01-22 12:28:26 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 12:28:26 [INFO]  Round 12 starts--------|
+2026-01-22 12:28:26 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 12:28:48 [INFO]  Epoch 0 loss: 0.06844325020938413; train accuracy: 0.9998525399985254; test accuracy: 0.26137062077443146
+2026-01-22 12:28:48 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 12:28:54 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 12:28:54 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 12:29:32 [INFO]  Epoch 0 loss: 0.34933072303101653; train accuracy: 0.9996765219641587; test accuracy: 0.4855178242163491
+2026-01-22 12:29:32 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 12:29:46 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 12:29:46 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 12:29:55 [INFO]  Epoch 0 loss: 0.08205767720937729; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 12:29:55 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 12:29:55 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 12:29:55 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 12:30:15 [INFO]  Epoch 0 loss: 0.014599302230635658; train accuracy: 1.0; test accuracy: 0.333320528580209
+2026-01-22 12:30:15 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 12:30:20 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 12:30:20 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 12:30:45 [INFO]  Epoch 0 loss: 1.4062102530151606; train accuracy: 0.9775931667934242; test accuracy: 0.246120159803319
+2026-01-22 12:30:45 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 12:30:53 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 12:30:53 [INFO]  Round 12 Finish--------|
+2026-01-22 12:30:53 [INFO]  Model variance: mean: 0.0019444820936769247, sum: 21727.568359375
+2026-01-22 12:31:02 [INFO]  The test accuracy of OneShotFedProto: 0.09480639213275968
+2026-01-22 12:31:02 [INFO]  class-wise minimum distance [7.532540321350098, 7.553603172302246, 6.08634614944458, 6.08634614944458, 6.504935264587402, 7.409332752227783, 9.70822811126709, 6.604700565338135, 6.260914325714111, 7.092437267303467], min_gap 6.08634614944458, max_gap 9.70822811126709
+2026-01-22 12:31:29 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.1210817455439459
+2026-01-22 12:32:01 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6382145052243393
+2026-01-22 12:32:01 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 12:32:01 [INFO]  Round 13 starts--------|
+2026-01-22 12:32:01 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 12:32:22 [INFO]  Epoch 0 loss: 0.0439656948656193; train accuracy: 0.9999262699992627; test accuracy: 0.261140135218193
+2026-01-22 12:32:22 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 12:32:28 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 12:32:28 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 12:33:06 [INFO]  Epoch 0 loss: 0.2287025437108241; train accuracy: 0.9987384356602187; test accuracy: 0.48843730792870316
+2026-01-22 12:33:06 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 12:33:20 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 12:33:20 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 12:33:29 [INFO]  Epoch 0 loss: 0.07980189472436905; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 12:33:29 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 12:33:29 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 12:33:29 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 12:33:49 [INFO]  Epoch 0 loss: 0.00868416007142514; train accuracy: 1.0; test accuracy: 0.3405039950829748
+2026-01-22 12:33:49 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 12:33:54 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 12:33:54 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 12:34:19 [INFO]  Epoch 0 loss: 1.074542055488564; train accuracy: 0.9911074708945182; test accuracy: 0.2635986478180701
+2026-01-22 12:34:19 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 12:34:26 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 12:34:26 [INFO]  Round 13 Finish--------|
+2026-01-22 12:34:26 [INFO]  Model variance: mean: 0.001964102266356349, sum: 21946.8046875
+2026-01-22 12:34:35 [INFO]  The test accuracy of OneShotFedProto: 0.10813614013521819
+2026-01-22 12:34:35 [INFO]  class-wise minimum distance [8.244526863098145, 7.341940402984619, 6.244293689727783, 7.37733268737793, 6.6950178146362305, 7.17274284362793, 10.026750564575195, 6.603786945343018, 6.244293689727783, 7.639274597167969], min_gap 6.244293689727783, max_gap 10.026750564575195
+2026-01-22 12:35:02 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11182390903503381
+2026-01-22 12:35:34 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6223494161032576
+2026-01-22 12:35:34 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 12:35:34 [INFO]  Round 14 starts--------|
+2026-01-22 12:35:34 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 12:35:57 [INFO]  Epoch 0 loss: 0.03304629449849017; train accuracy: 1.0; test accuracy: 0.2665181315304241
+2026-01-22 12:35:57 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 12:36:03 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 12:36:03 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 12:36:41 [INFO]  Epoch 0 loss: 0.14867097097885562; train accuracy: 0.9998382609820793; test accuracy: 0.4881299938537185
+2026-01-22 12:36:41 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 12:36:54 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 12:36:54 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 12:37:03 [INFO]  Epoch 0 loss: 0.0846562422811985; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 12:37:04 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 12:37:04 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 12:37:04 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 12:37:24 [INFO]  Epoch 0 loss: 0.006394582089342293; train accuracy: 1.0; test accuracy: 0.33981253841425935
+2026-01-22 12:37:24 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 12:37:29 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 12:37:29 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 12:37:54 [INFO]  Epoch 0 loss: 0.9576127474429086; train accuracy: 0.9936231205756743; test accuracy: 0.24857867240319606
+2026-01-22 12:37:54 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 12:38:01 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 12:38:01 [INFO]  Round 14 Finish--------|
+2026-01-22 12:38:01 [INFO]  Model variance: mean: 0.0019818246364593506, sum: 22144.83203125
+2026-01-22 12:38:10 [INFO]  The test accuracy of OneShotFedProto: 0.09399969268592502
+2026-01-22 12:38:10 [INFO]  class-wise minimum distance [8.503154754638672, 8.184391021728516, 6.818642616271973, 7.16527795791626, 6.821163654327393, 7.66152811050415, 10.585711479187012, 7.066483020782471, 6.821163654327393, 6.818642616271973], min_gap 6.818642616271973, max_gap 10.585711479187012
+2026-01-22 12:38:36 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.12046711739397664
+2026-01-22 12:39:09 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.639059618930547
+2026-01-22 12:39:09 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 12:39:09 [INFO]  Round 15 starts--------|
+2026-01-22 12:39:09 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 12:39:31 [INFO]  Epoch 0 loss: 0.022873998736031353; train accuracy: 1.0; test accuracy: 0.2644437615242778
+2026-01-22 12:39:31 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 12:39:37 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 12:39:37 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 12:40:15 [INFO]  Epoch 0 loss: 0.12415689605040825; train accuracy: 0.9998706087856635; test accuracy: 0.4888214505224339
+2026-01-22 12:40:15 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 12:40:29 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 12:40:29 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 12:40:39 [INFO]  Epoch 0 loss: 0.07105076685547829; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 12:40:39 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 12:40:39 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 12:40:39 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 12:41:00 [INFO]  Epoch 0 loss: 0.006439449858589796; train accuracy: 1.0; test accuracy: 0.3379302397049785
+2026-01-22 12:41:00 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 12:41:05 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 12:41:05 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 12:41:30 [INFO]  Epoch 0 loss: 0.6071106943418272; train accuracy: 0.994500672790031; test accuracy: 0.2521896127842655
+2026-01-22 12:41:30 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 12:41:38 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 12:41:38 [INFO]  Round 15 Finish--------|
+2026-01-22 12:41:38 [INFO]  Model variance: mean: 0.0019943933002650738, sum: 22285.2734375
+2026-01-22 12:41:47 [INFO]  The test accuracy of OneShotFedProto: 0.09361555009219422
+2026-01-22 12:41:47 [INFO]  class-wise minimum distance [8.198585510253906, 8.080138206481934, 6.807640075683594, 7.488875865936279, 7.187067985534668, 7.873996734619141, 8.858818054199219, 6.807640075683594, 7.137807369232178, 8.18508243560791], min_gap 6.807640075683594, max_gap 8.858818054199219
+2026-01-22 12:42:14 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.10133681622618317
+2026-01-22 12:42:47 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6269207129686539
+2026-01-22 12:42:47 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 12:42:47 [INFO]  Round 16 starts--------|
+2026-01-22 12:42:47 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 12:43:08 [INFO]  Epoch 0 loss: 0.019609047092671972; train accuracy: 1.0; test accuracy: 0.26309926244622006
+2026-01-22 12:43:08 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 12:43:14 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 12:43:14 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 12:43:52 [INFO]  Epoch 0 loss: 0.0926277803737321; train accuracy: 0.9998382609820793; test accuracy: 0.4947756607252612
+2026-01-22 12:43:52 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 12:44:06 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 12:44:06 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 12:44:15 [INFO]  Epoch 0 loss: 0.06401205994188786; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 12:44:15 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 12:44:15 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 12:44:15 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 12:44:35 [INFO]  Epoch 0 loss: 0.004456776725419331; train accuracy: 1.0; test accuracy: 0.33873693915181313
+2026-01-22 12:44:35 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 12:44:40 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 12:44:40 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 12:45:04 [INFO]  Epoch 0 loss: 1.0585502862813883; train accuracy: 0.9936816240566314; test accuracy: 0.2546481253841426
+2026-01-22 12:45:05 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 12:45:12 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 12:45:12 [INFO]  Round 16 Finish--------|
+2026-01-22 12:45:12 [INFO]  Model variance: mean: 0.002011994132772088, sum: 22481.9453125
+2026-01-22 12:45:21 [INFO]  The test accuracy of OneShotFedProto: 0.10871235402581438
+2026-01-22 12:45:21 [INFO]  class-wise minimum distance [9.169756889343262, 8.317008972167969, 6.430446147918701, 6.599300384521484, 7.1539788246154785, 8.106307029724121, 11.327932357788086, 6.430446147918701, 6.954098224639893, 8.132092475891113], min_gap 6.430446147918701, max_gap 11.327932357788086
+2026-01-22 12:45:48 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.12012138905961893
+2026-01-22 12:46:20 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6668715427166564
+2026-01-22 12:46:20 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 12:46:20 [INFO]  Round 17 starts--------|
+2026-01-22 12:46:20 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 12:46:42 [INFO]  Epoch 0 loss: 0.018083713304804405; train accuracy: 1.0; test accuracy: 0.26160110633066996
+2026-01-22 12:46:42 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 12:46:47 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 12:46:47 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 12:47:23 [INFO]  Epoch 0 loss: 0.09555954426832614; train accuracy: 0.9999029565892475; test accuracy: 0.49254763368162263
+2026-01-22 12:47:23 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 12:47:36 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 12:47:36 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 12:47:45 [INFO]  Epoch 0 loss: 0.0607606116682291; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 12:47:45 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 12:47:45 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 12:47:45 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 12:48:04 [INFO]  Epoch 0 loss: 0.003761388745260774; train accuracy: 1.0; test accuracy: 0.33869852489244007
+2026-01-22 12:48:04 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 12:48:09 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 12:48:09 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 12:48:33 [INFO]  Epoch 0 loss: 0.44316646351944655; train accuracy: 0.9973673433569298; test accuracy: 0.25772126613398894
+2026-01-22 12:48:33 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 12:48:41 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 12:48:41 [INFO]  Round 17 Finish--------|
+2026-01-22 12:48:41 [INFO]  Model variance: mean: 0.0020215269178152084, sum: 22588.46484375
+2026-01-22 12:48:49 [INFO]  The test accuracy of OneShotFedProto: 0.10291180086047941
+2026-01-22 12:48:49 [INFO]  class-wise minimum distance [8.556194305419922, 8.7886381149292, 6.7206244468688965, 6.7206244468688965, 7.367378234863281, 8.291370391845703, 11.001409530639648, 6.801684856414795, 7.155113220214844, 8.036616325378418], min_gap 6.7206244468688965, max_gap 11.001409530639648
+2026-01-22 12:49:16 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.09983866011063307
+2026-01-22 12:49:48 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6610709895513215
+2026-01-22 12:49:48 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 12:49:48 [INFO]  Round 18 starts--------|
+2026-01-22 12:49:48 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 12:50:10 [INFO]  Epoch 0 loss: 0.015338225854065968; train accuracy: 1.0; test accuracy: 0.26194683466502766
+2026-01-22 12:50:10 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 12:50:16 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 12:50:16 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 12:50:54 [INFO]  Epoch 0 loss: 0.0791090884595178; train accuracy: 0.9999353043928317; test accuracy: 0.4897433927473878
+2026-01-22 12:50:54 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 12:51:08 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 12:51:08 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 12:51:18 [INFO]  Epoch 0 loss: 0.05855870246887207; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 12:51:18 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 12:51:18 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 12:51:18 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 12:51:36 [INFO]  Epoch 0 loss: 0.003541487720212899; train accuracy: 1.0; test accuracy: 0.34046558082360173
+2026-01-22 12:51:36 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 12:51:41 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 12:51:41 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 12:52:05 [INFO]  Epoch 0 loss: 0.28852335158444475; train accuracy: 0.9980693851284151; test accuracy: 0.2581822372464659
+2026-01-22 12:52:05 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 12:52:13 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 12:52:13 [INFO]  Round 18 Finish--------|
+2026-01-22 12:52:13 [INFO]  Model variance: mean: 0.002028132788836956, sum: 22662.27734375
+2026-01-22 12:52:21 [INFO]  The test accuracy of OneShotFedProto: 0.10790565457897972
+2026-01-22 12:52:21 [INFO]  class-wise minimum distance [9.024068832397461, 8.938395500183105, 7.003941059112549, 7.058938026428223, 7.464535236358643, 8.527408599853516, 10.618524551391602, 7.003941059112549, 7.479274749755859, 7.9687628746032715], min_gap 7.003941059112549, max_gap 10.618524551391602
+2026-01-22 12:52:48 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.10506299938537185
+2026-01-22 12:53:21 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6583435771358328
+2026-01-22 12:53:21 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 12:53:21 [INFO]  Round 19 starts--------|
+2026-01-22 12:53:21 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 12:53:41 [INFO]  Epoch 0 loss: 0.012922582165629137; train accuracy: 1.0; test accuracy: 0.2646358328211432
+2026-01-22 12:53:41 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 12:53:47 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 12:53:47 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 12:54:25 [INFO]  Epoch 0 loss: 0.042225932847941294; train accuracy: 0.9999029565892475; test accuracy: 0.4915872771972956
+2026-01-22 12:54:25 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 12:54:38 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 12:54:38 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 12:54:48 [INFO]  Epoch 0 loss: 0.05602734349668026; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 12:54:48 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 12:54:48 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 12:54:48 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 12:55:08 [INFO]  Epoch 0 loss: 0.003274142402005964; train accuracy: 1.0; test accuracy: 0.33685464044253227
+2026-01-22 12:55:08 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 12:55:13 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 12:55:13 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 12:55:38 [INFO]  Epoch 0 loss: 0.17178869506460615; train accuracy: 0.9985959164570292; test accuracy: 0.26793945912722805
+2026-01-22 12:55:38 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 12:55:46 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 12:55:46 [INFO]  Round 19 Finish--------|
+2026-01-22 12:55:46 [INFO]  Model variance: mean: 0.0020326257217675447, sum: 22712.482421875
+2026-01-22 12:55:54 [INFO]  The test accuracy of OneShotFedProto: 0.10287338660110633
+2026-01-22 12:55:54 [INFO]  class-wise minimum distance [9.621991157531738, 8.841896057128906, 7.12877082824707, 7.3838958740234375, 7.329009056091309, 8.718474388122559, 11.323395729064941, 7.12877082824707, 7.620327472686768, 8.008803367614746], min_gap 7.12877082824707, max_gap 11.323395729064941
+2026-01-22 12:56:21 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.1046020282728949
+2026-01-22 12:56:55 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6571143208358943
+2026-01-22 12:56:55 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 12:56:55 [INFO]  Round 20 starts--------|
+2026-01-22 12:56:55 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 12:57:16 [INFO]  Epoch 0 loss: 0.012204797236336162; train accuracy: 1.0; test accuracy: 0.2637138905961893
+2026-01-22 12:57:16 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 12:57:22 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 12:57:22 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 12:57:59 [INFO]  Epoch 0 loss: 0.032511759094632; train accuracy: 0.9999353043928317; test accuracy: 0.4876690227412416
+2026-01-22 12:57:59 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 12:58:13 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 12:58:13 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 12:58:23 [INFO]  Epoch 0 loss: 0.05289575085043907; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 12:58:23 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 12:58:23 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 12:58:23 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 12:58:42 [INFO]  Epoch 0 loss: 0.0030168481498549227; train accuracy: 1.0; test accuracy: 0.33904425322679776
+2026-01-22 12:58:42 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 12:58:47 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 12:58:47 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 12:59:11 [INFO]  Epoch 0 loss: 0.18358422968594823; train accuracy: 0.9998829930380858; test accuracy: 0.2650968039336202
+2026-01-22 12:59:11 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 12:59:19 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 12:59:19 [INFO]  Round 20 Finish--------|
+2026-01-22 12:59:19 [INFO]  Model variance: mean: 0.002037976635619998, sum: 22772.2734375
+2026-01-22 12:59:27 [INFO]  The test accuracy of OneShotFedProto: 0.11297633681622618
+2026-01-22 12:59:27 [INFO]  class-wise minimum distance [9.433229446411133, 9.1552095413208, 7.327784061431885, 7.665118217468262, 7.391904830932617, 8.859512329101562, 11.362553596496582, 7.327784061431885, 7.785704612731934, 8.00960636138916], min_gap 7.327784061431885, max_gap 11.362553596496582
+2026-01-22 12:59:55 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.10928856791641058
+2026-01-22 13:00:27 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6575368776889982
+2026-01-22 13:00:27 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 13:00:27 [INFO]  Round 21 starts--------|
+2026-01-22 13:00:27 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 13:00:49 [INFO]  Epoch 0 loss: 0.0102627138257958; train accuracy: 1.0; test accuracy: 0.264520590043024
+2026-01-22 13:00:49 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 13:00:55 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 13:00:55 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 13:01:32 [INFO]  Epoch 0 loss: 0.03742521112872055; train accuracy: 1.0; test accuracy: 0.4879763368162262
+2026-01-22 13:01:32 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 13:01:46 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 13:01:46 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 13:01:55 [INFO]  Epoch 0 loss: 0.0482955127954483; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 13:01:55 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 13:01:55 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 13:01:55 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 13:02:14 [INFO]  Epoch 0 loss: 0.002703535159525927; train accuracy: 1.0; test accuracy: 0.3403503380454825
+2026-01-22 13:02:14 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 13:02:18 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 13:02:18 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 13:02:42 [INFO]  Epoch 0 loss: 0.17772353345935699; train accuracy: 0.9986544199379863; test accuracy: 0.2607559926244622
+2026-01-22 13:02:42 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 13:02:49 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 13:02:49 [INFO]  Round 21 Finish--------|
+2026-01-22 13:02:49 [INFO]  Model variance: mean: 0.0020428744610399008, sum: 22827.001953125
+2026-01-22 13:02:57 [INFO]  The test accuracy of OneShotFedProto: 0.12284880147510756
+2026-01-22 13:02:57 [INFO]  class-wise minimum distance [9.604658126831055, 9.339836120605469, 7.411372661590576, 7.748939514160156, 7.530826091766357, 8.87255859375, 11.28651237487793, 7.411372661590576, 7.963165283203125, 8.114274978637695], min_gap 7.411372661590576, max_gap 11.28651237487793
+2026-01-22 13:03:23 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11677934849416104
+2026-01-22 13:03:55 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6579978488014752
+2026-01-22 13:03:55 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 13:03:55 [INFO]  Round 22 starts--------|
+2026-01-22 13:03:55 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 13:04:15 [INFO]  Epoch 0 loss: 0.008944979064835934; train accuracy: 1.0; test accuracy: 0.2647510755992624
+2026-01-22 13:04:15 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 13:04:21 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 13:04:21 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 13:04:57 [INFO]  Epoch 0 loss: 0.02927372816884599; train accuracy: 0.9999676521964158; test accuracy: 0.488859864781807
+2026-01-22 13:04:57 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 13:05:10 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 13:05:10 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 13:05:19 [INFO]  Epoch 0 loss: 0.043133542872965336; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 13:05:19 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 13:05:20 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 13:05:20 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 13:05:38 [INFO]  Epoch 0 loss: 0.002711572384214378; train accuracy: 1.0; test accuracy: 0.3406576521204671
+2026-01-22 13:05:38 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 13:05:42 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 13:05:42 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 13:06:06 [INFO]  Epoch 0 loss: 0.1924604716768954; train accuracy: 0.9991224477856433; test accuracy: 0.26306084818684694
+2026-01-22 13:06:06 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 13:06:14 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 13:06:14 [INFO]  Round 22 Finish--------|
+2026-01-22 13:06:14 [INFO]  Model variance: mean: 0.0020471627358347178, sum: 22874.91796875
+2026-01-22 13:06:22 [INFO]  The test accuracy of OneShotFedProto: 0.11266902274124155
+2026-01-22 13:06:22 [INFO]  class-wise minimum distance [9.852676391601562, 9.472867012023926, 7.532931804656982, 7.582629203796387, 7.573555946350098, 8.87090015411377, 11.312006950378418, 7.532931804656982, 8.111919403076172, 8.175163269042969], min_gap 7.532931804656982, max_gap 11.312006950378418
+2026-01-22 13:06:48 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11143976644130302
+2026-01-22 13:07:20 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6570374923171481
+2026-01-22 13:07:20 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 13:07:20 [INFO]  Round 23 starts--------|
+2026-01-22 13:07:20 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 13:07:40 [INFO]  Epoch 0 loss: 0.008233708987972932; train accuracy: 1.0; test accuracy: 0.264520590043024
+2026-01-22 13:07:40 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 13:07:46 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 13:07:46 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 13:08:21 [INFO]  Epoch 0 loss: 0.029100782909154077; train accuracy: 0.9999676521964158; test accuracy: 0.49020436385986477
+2026-01-22 13:08:21 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 13:08:34 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 13:08:34 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 13:08:43 [INFO]  Epoch 0 loss: 0.04170124977827072; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 13:08:43 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 13:08:43 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 13:08:43 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 13:09:01 [INFO]  Epoch 0 loss: 0.002340049781196285; train accuracy: 1.0; test accuracy: 0.33954363859864783
+2026-01-22 13:09:01 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 13:09:06 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 13:09:06 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 13:09:29 [INFO]  Epoch 0 loss: 0.4227699960611062; train accuracy: 0.9982448955712865; test accuracy: 0.265019975414874
+2026-01-22 13:09:29 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 13:09:36 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 13:09:36 [INFO]  Round 23 Finish--------|
+2026-01-22 13:09:36 [INFO]  Model variance: mean: 0.0020553835202008486, sum: 22966.77734375
+2026-01-22 13:09:44 [INFO]  The test accuracy of OneShotFedProto: 0.13529502151198525
+2026-01-22 13:09:44 [INFO]  class-wise minimum distance [9.69664478302002, 9.454936027526855, 7.615213394165039, 7.978103160858154, 7.648463249206543, 9.008567810058594, 11.260427474975586, 7.615213394165039, 8.027432441711426, 8.217541694641113], min_gap 7.615213394165039, max_gap 11.260427474975586
+2026-01-22 13:10:11 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11677934849416104
+2026-01-22 13:10:42 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6505838967424709
+2026-01-22 13:10:42 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 13:10:42 [INFO]  Round 24 starts--------|
+2026-01-22 13:10:42 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 13:11:03 [INFO]  Epoch 0 loss: 0.008305992963869357; train accuracy: 1.0; test accuracy: 0.26344499078057776
+2026-01-22 13:11:03 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 13:11:09 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 13:11:09 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 13:11:44 [INFO]  Epoch 0 loss: 0.03394433324683632; train accuracy: 0.9999676521964158; test accuracy: 0.49139520590043023
+2026-01-22 13:11:44 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 13:11:57 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 13:11:57 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 13:12:07 [INFO]  Epoch 0 loss: 0.04040593095123768; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 13:12:07 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 13:12:07 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 13:12:07 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 13:12:26 [INFO]  Epoch 0 loss: 0.0022976138043304672; train accuracy: 1.0; test accuracy: 0.33812231100184387
+2026-01-22 13:12:26 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 13:12:30 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 13:12:30 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 13:12:53 [INFO]  Epoch 0 loss: 0.06652225284778979; train accuracy: 1.0; test accuracy: 0.26636447449293177
+2026-01-22 13:12:53 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 13:13:01 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 13:13:01 [INFO]  Round 24 Finish--------|
+2026-01-22 13:13:01 [INFO]  Model variance: mean: 0.0020569604821503162, sum: 22984.396484375
+2026-01-22 13:13:09 [INFO]  The test accuracy of OneShotFedProto: 0.13360479409956977
+2026-01-22 13:13:09 [INFO]  class-wise minimum distance [9.942867279052734, 9.562248229980469, 7.6556572914123535, 8.002958297729492, 7.730555534362793, 9.061742782592773, 11.533207893371582, 7.6556572914123535, 8.172564506530762, 8.33403205871582], min_gap 7.6556572914123535, max_gap 11.533207893371582
+2026-01-22 13:13:35 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11716349108789183
+2026-01-22 13:14:07 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6533881376767056
+2026-01-22 13:14:07 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 13:14:07 [INFO]  Round 25 starts--------|
+2026-01-22 13:14:07 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 13:14:28 [INFO]  Epoch 0 loss: 0.007226181391160935; train accuracy: 1.0; test accuracy: 0.2628303626306085
+2026-01-22 13:14:28 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 13:14:33 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 13:14:33 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 13:15:10 [INFO]  Epoch 0 loss: 0.03267823330315878; train accuracy: 0.9999676521964158; test accuracy: 0.4899354640442532
+2026-01-22 13:15:10 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 13:15:23 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 13:15:23 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 13:15:31 [INFO]  Epoch 0 loss: 0.03272909577935934; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 13:15:31 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 13:15:32 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 13:15:32 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 13:15:50 [INFO]  Epoch 0 loss: 0.0023787120953784324; train accuracy: 1.0; test accuracy: 0.33727719729563616
+2026-01-22 13:15:50 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 13:15:55 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 13:15:55 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 13:16:19 [INFO]  Epoch 0 loss: 0.01585508066455077; train accuracy: 1.0; test accuracy: 0.26747848801475105
+2026-01-22 13:16:19 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 13:16:27 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 13:16:27 [INFO]  Round 25 Finish--------|
+2026-01-22 13:16:27 [INFO]  Model variance: mean: 0.002057557925581932, sum: 22991.07421875
+2026-01-22 13:16:35 [INFO]  The test accuracy of OneShotFedProto: 0.1379840196681008
+2026-01-22 13:16:35 [INFO]  class-wise minimum distance [10.127556800842285, 9.637187004089355, 7.78643798828125, 7.963172435760498, 7.78643798828125, 9.250115394592285, 11.779943466186523, 7.846076488494873, 8.382823944091797, 8.300577163696289], min_gap 7.78643798828125, max_gap 11.779943466186523
+2026-01-22 13:17:03 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11689459127228027
+2026-01-22 13:17:37 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6553472649047326
+2026-01-22 13:17:37 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 13:17:37 [INFO]  Round 26 starts--------|
+2026-01-22 13:17:37 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 13:18:01 [INFO]  Epoch 0 loss: 0.006801583363994723; train accuracy: 1.0; test accuracy: 0.26478948985863554
+2026-01-22 13:18:01 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 13:18:07 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 13:18:07 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 13:18:46 [INFO]  Epoch 0 loss: 0.017199883219291223; train accuracy: 0.9999676521964158; test accuracy: 0.4918561770129072
+2026-01-22 13:18:46 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 13:19:00 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 13:19:00 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 13:19:10 [INFO]  Epoch 0 loss: 0.029565244913101196; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 13:19:10 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 13:19:10 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 13:19:10 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 13:19:30 [INFO]  Epoch 0 loss: 0.002265959516080329; train accuracy: 1.0; test accuracy: 0.3385832821143208
+2026-01-22 13:19:30 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 13:19:35 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 13:19:35 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 13:20:00 [INFO]  Epoch 0 loss: 0.007161878076658468; train accuracy: 1.0; test accuracy: 0.26655654578979715
+2026-01-22 13:20:00 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 13:20:07 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 13:20:07 [INFO]  Round 26 Finish--------|
+2026-01-22 13:20:07 [INFO]  Model variance: mean: 0.002058007987216115, sum: 22996.1015625
+2026-01-22 13:20:16 [INFO]  The test accuracy of OneShotFedProto: 0.11773970497848801
+2026-01-22 13:20:16 [INFO]  class-wise minimum distance [10.242497444152832, 9.640620231628418, 7.899216175079346, 8.143455505371094, 7.899216175079346, 9.326523780822754, 11.75732707977295, 7.961717128753662, 8.444519996643066, 8.36330795288086], min_gap 7.899216175079346, max_gap 11.75732707977295
+2026-01-22 13:20:44 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11570374923171481
+2026-01-22 13:21:17 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6535417947141979
+2026-01-22 13:21:17 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 13:21:17 [INFO]  Round 27 starts--------|
+2026-01-22 13:21:17 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 13:21:38 [INFO]  Epoch 0 loss: 0.005947687583102379; train accuracy: 1.0; test accuracy: 0.26421327596803934
+2026-01-22 13:21:38 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 13:21:44 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 13:21:44 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 13:22:21 [INFO]  Epoch 0 loss: 0.02934835470659891; train accuracy: 0.9999676521964158; test accuracy: 0.4905116779348494
+2026-01-22 13:22:21 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 13:22:35 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 13:22:35 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 13:22:44 [INFO]  Epoch 0 loss: 0.02739836648106575; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 13:22:44 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 13:22:44 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 13:22:44 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 13:23:03 [INFO]  Epoch 0 loss: 0.0019269621288913186; train accuracy: 1.0; test accuracy: 0.3408497234173325
+2026-01-22 13:23:03 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 13:23:08 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 13:23:08 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 13:23:32 [INFO]  Epoch 0 loss: 0.004657480841160577; train accuracy: 1.0; test accuracy: 0.26697910264290103
+2026-01-22 13:23:32 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 13:23:40 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 13:23:40 [INFO]  Round 27 Finish--------|
+2026-01-22 13:23:40 [INFO]  Model variance: mean: 0.0020584517624229193, sum: 23001.060546875
+2026-01-22 13:23:48 [INFO]  The test accuracy of OneShotFedProto: 0.13199139520590042
+2026-01-22 13:23:48 [INFO]  class-wise minimum distance [10.280427932739258, 9.836359977722168, 7.956807613372803, 8.183486938476562, 7.956807613372803, 9.465622901916504, 11.703805923461914, 8.099761009216309, 8.605019569396973, 8.36767578125], min_gap 7.956807613372803, max_gap 11.703805923461914
+2026-01-22 13:24:16 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11547326367547633
+2026-01-22 13:24:50 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6524277811923787
+2026-01-22 13:24:50 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 13:24:50 [INFO]  Round 28 starts--------|
+2026-01-22 13:24:50 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 13:25:11 [INFO]  Epoch 0 loss: 0.005797048263048055; train accuracy: 1.0; test accuracy: 0.26494314689612786
+2026-01-22 13:25:11 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 13:25:17 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 13:25:17 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 13:25:55 [INFO]  Epoch 0 loss: 0.02741281261205586; train accuracy: 1.0; test accuracy: 0.48705439459127225
+2026-01-22 13:25:55 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 13:26:08 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 13:26:08 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 13:26:17 [INFO]  Epoch 0 loss: 0.028985174372792244; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 13:26:17 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 13:26:18 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 13:26:18 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 13:26:37 [INFO]  Epoch 0 loss: 0.0018644929750735173; train accuracy: 1.0; test accuracy: 0.3395820528580209
+2026-01-22 13:26:37 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 13:26:42 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 13:26:42 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 13:27:07 [INFO]  Epoch 0 loss: 0.00437199036241509; train accuracy: 1.0; test accuracy: 0.26713275968039335
+2026-01-22 13:27:07 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 13:27:15 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 13:27:15 [INFO]  Round 28 Finish--------|
+2026-01-22 13:27:15 [INFO]  Model variance: mean: 0.0020588678307831287, sum: 23005.7109375
+2026-01-22 13:27:24 [INFO]  The test accuracy of OneShotFedProto: 0.12903349723417332
+2026-01-22 13:27:24 [INFO]  class-wise minimum distance [10.35228157043457, 9.957740783691406, 8.125703811645508, 8.249364852905273, 8.125703811645508, 9.418383598327637, 11.753792762756348, 8.199182510375977, 8.61717700958252, 8.443506240844727], min_gap 8.125703811645508, max_gap 11.753792762756348
+2026-01-22 13:27:52 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11601106330669944
+2026-01-22 13:28:25 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6564228641671789
+2026-01-22 13:28:25 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 13:28:25 [INFO]  Round 29 starts--------|
+2026-01-22 13:28:25 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 13:28:46 [INFO]  Epoch 0 loss: 0.005384393054555403; train accuracy: 1.0; test accuracy: 0.2642516902274124
+2026-01-22 13:28:46 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 13:28:52 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 13:28:52 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 13:29:30 [INFO]  Epoch 0 loss: 0.011285175109151169; train accuracy: 1.0; test accuracy: 0.48932083589428393
+2026-01-22 13:29:30 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 13:29:44 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 13:29:44 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 13:29:53 [INFO]  Epoch 0 loss: 0.024552660062909126; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 13:29:53 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 13:29:54 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 13:29:54 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 13:30:13 [INFO]  Epoch 0 loss: 0.00182019197018235; train accuracy: 1.0; test accuracy: 0.3397357098955132
+2026-01-22 13:30:13 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 13:30:18 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 13:30:18 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 13:30:43 [INFO]  Epoch 0 loss: 0.0038197373596631223; train accuracy: 1.0; test accuracy: 0.2671711739397664
+2026-01-22 13:30:43 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 13:30:51 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 13:30:51 [INFO]  Round 29 Finish--------|
+2026-01-22 13:30:51 [INFO]  Model variance: mean: 0.00205923430621624, sum: 23009.8046875
+2026-01-22 13:30:59 [INFO]  The test accuracy of OneShotFedProto: 0.13379686539643515
+2026-01-22 13:30:59 [INFO]  class-wise minimum distance [10.516951560974121, 10.130419731140137, 8.189990043640137, 8.36501407623291, 8.189990043640137, 9.595477104187012, 11.823522567749023, 8.33492374420166, 8.96412467956543, 8.46373462677002], min_gap 8.189990043640137, max_gap 11.823522567749023
+2026-01-22 13:31:28 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.1158958205285802
+2026-01-22 13:32:03 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6568454210202828
+2026-01-22 13:32:03 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 13:32:03 [INFO]  Round 30 starts--------|
+2026-01-22 13:32:03 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 13:32:25 [INFO]  Epoch 0 loss: 0.004941528666677186; train accuracy: 1.0; test accuracy: 0.2642516902274124
+2026-01-22 13:32:25 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 13:32:32 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 13:32:32 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 13:33:10 [INFO]  Epoch 0 loss: 0.013664030577274389; train accuracy: 0.9999676521964158; test accuracy: 0.4895897357098955
+2026-01-22 13:33:10 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 13:33:24 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 13:33:24 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 13:33:33 [INFO]  Epoch 0 loss: 0.026461835950613022; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 13:33:33 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 13:33:33 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 13:33:33 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 13:33:53 [INFO]  Epoch 0 loss: 0.0016765234804552165; train accuracy: 1.0; test accuracy: 0.33962046711739396
+2026-01-22 13:33:53 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 13:33:59 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 13:33:59 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 13:34:24 [INFO]  Epoch 0 loss: 0.0034538424533820944; train accuracy: 1.0; test accuracy: 0.26720958819913954
+2026-01-22 13:34:24 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 13:34:31 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 13:34:31 [INFO]  Round 30 Finish--------|
+2026-01-22 13:34:31 [INFO]  Model variance: mean: 0.002059576567262411, sum: 23013.630859375
+2026-01-22 13:34:40 [INFO]  The test accuracy of OneShotFedProto: 0.13018592501536572
+2026-01-22 13:34:40 [INFO]  class-wise minimum distance [10.51604175567627, 10.064081192016602, 8.262582778930664, 8.434592247009277, 8.262582778930664, 9.489209175109863, 11.786721229553223, 8.353805541992188, 8.83015251159668, 8.540964126586914], min_gap 8.262582778930664, max_gap 11.786721229553223
+2026-01-22 13:35:07 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11478180700676091
+2026-01-22 13:35:39 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6562692071296865
+2026-01-22 13:35:39 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 13:35:39 [INFO]  Round 31 starts--------|
+2026-01-22 13:35:39 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 13:36:02 [INFO]  Epoch 0 loss: 0.005013156116547179; train accuracy: 1.0; test accuracy: 0.26402120467117396
+2026-01-22 13:36:02 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 13:36:08 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 13:36:08 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 13:36:45 [INFO]  Epoch 0 loss: 0.029395090924481337; train accuracy: 0.9999676521964158; test accuracy: 0.4890519360786724
+2026-01-22 13:36:45 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 13:36:59 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 13:36:59 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 13:37:08 [INFO]  Epoch 0 loss: 0.027145915664732456; train accuracy: 0.9920634920634921; test accuracy: 0.06127074370006146
+2026-01-22 13:37:08 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 13:37:09 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 13:37:09 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 13:37:29 [INFO]  Epoch 0 loss: 0.0016440621275251033; train accuracy: 1.0; test accuracy: 0.33996619545175166
+2026-01-22 13:37:29 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 13:37:34 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 13:37:34 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 13:37:59 [INFO]  Epoch 0 loss: 0.0029006388986090315; train accuracy: 1.0; test accuracy: 0.2670943454210203
+2026-01-22 13:37:59 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 13:38:07 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 13:38:07 [INFO]  Round 31 Finish--------|
+2026-01-22 13:38:07 [INFO]  Model variance: mean: 0.0020599286071956158, sum: 23017.5625
+2026-01-22 13:38:16 [INFO]  The test accuracy of OneShotFedProto: 0.12031346035648433
+2026-01-22 13:38:16 [INFO]  class-wise minimum distance [10.624490737915039, 10.2266845703125, 8.302905082702637, 8.45330810546875, 8.302905082702637, 9.790907859802246, 11.836540222167969, 8.515750885009766, 9.147184371948242, 8.555107116699219], min_gap 8.302905082702637, max_gap 11.836540222167969
+2026-01-22 13:38:43 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11412876459741857
+2026-01-22 13:39:16 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6631837738168408
+2026-01-22 13:39:16 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 13:39:16 [INFO]  Round 32 starts--------|
+2026-01-22 13:39:16 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 13:39:38 [INFO]  Epoch 0 loss: 0.004864904238274903; train accuracy: 1.0; test accuracy: 0.2654041180086048
+2026-01-22 13:39:38 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 13:39:44 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 13:39:44 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 13:40:22 [INFO]  Epoch 0 loss: 0.02208944778340083; train accuracy: 0.9999676521964158; test accuracy: 0.49070374923171484
+2026-01-22 13:40:22 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 13:40:35 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 13:40:35 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 13:40:45 [INFO]  Epoch 0 loss: 0.023849087301641703; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 13:40:45 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 13:40:45 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 13:40:45 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 13:41:04 [INFO]  Epoch 0 loss: 0.0015636363614248694; train accuracy: 1.0; test accuracy: 0.33954363859864783
+2026-01-22 13:41:04 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 13:41:09 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 13:41:09 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 13:41:34 [INFO]  Epoch 0 loss: 0.003120636767562246; train accuracy: 1.0; test accuracy: 0.26805470190534725
+2026-01-22 13:41:34 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 13:41:42 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 13:41:42 [INFO]  Round 32 Finish--------|
+2026-01-22 13:41:42 [INFO]  Model variance: mean: 0.0020603169687092304, sum: 23021.90234375
+2026-01-22 13:41:51 [INFO]  The test accuracy of OneShotFedProto: 0.15569299323909036
+2026-01-22 13:41:51 [INFO]  class-wise minimum distance [10.714734077453613, 10.303958892822266, 8.397453308105469, 8.480352401733398, 8.397453308105469, 9.643778800964355, 11.892685890197754, 8.617724418640137, 9.11082935333252, 8.564787864685059], min_gap 8.397453308105469, max_gap 11.892685890197754
+2026-01-22 13:42:20 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11555009219422249
+2026-01-22 13:42:54 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.659880147510756
+2026-01-22 13:42:54 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 13:42:54 [INFO]  Round 33 starts--------|
+2026-01-22 13:42:54 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 13:43:15 [INFO]  Epoch 0 loss: 0.0040878307900129585; train accuracy: 1.0; test accuracy: 0.2639443761524278
+2026-01-22 13:43:15 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 13:43:21 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 13:43:21 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 13:43:59 [INFO]  Epoch 0 loss: 0.022289701557383523; train accuracy: 0.9999676521964158; test accuracy: 0.4897433927473878
+2026-01-22 13:43:59 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 13:44:13 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 13:44:13 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 13:44:23 [INFO]  Epoch 0 loss: 0.022731150034815073; train accuracy: 0.9900793650793651; test accuracy: 0.06127074370006146
+2026-01-22 13:44:23 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 13:44:23 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 13:44:23 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 13:44:44 [INFO]  Epoch 0 loss: 0.001501618336988031; train accuracy: 1.0; test accuracy: 0.33800706822372467
+2026-01-22 13:44:44 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 13:44:49 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 13:44:49 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 13:45:14 [INFO]  Epoch 0 loss: 0.0024818358970151166; train accuracy: 1.0; test accuracy: 0.26713275968039335
+2026-01-22 13:45:14 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 13:45:22 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 13:45:22 [INFO]  Round 33 Finish--------|
+2026-01-22 13:45:22 [INFO]  Model variance: mean: 0.002060600556433201, sum: 23025.072265625
+2026-01-22 13:45:30 [INFO]  The test accuracy of OneShotFedProto: 0.14455285802089735
+2026-01-22 13:45:30 [INFO]  class-wise minimum distance [10.609607696533203, 10.329989433288574, 8.465559005737305, 8.580063819885254, 8.465559005737305, 9.784296035766602, 11.771474838256836, 8.565587043762207, 9.218574523925781, 8.631490707397461], min_gap 8.465559005737305, max_gap 11.771474838256836
+2026-01-22 13:46:00 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11524277811923786
+2026-01-22 13:46:33 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6585740626920713
+2026-01-22 13:46:33 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 13:46:33 [INFO]  Round 34 starts--------|
+2026-01-22 13:46:33 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 13:46:55 [INFO]  Epoch 0 loss: 0.0040141110421245685; train accuracy: 1.0; test accuracy: 0.26471266133988935
+2026-01-22 13:46:55 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 13:47:01 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 13:47:01 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 13:47:39 [INFO]  Epoch 0 loss: 0.023711350300800405; train accuracy: 0.9999676521964158; test accuracy: 0.48770743700061464
+2026-01-22 13:47:39 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 13:47:53 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 13:47:53 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 13:48:02 [INFO]  Epoch 0 loss: 0.023396791890263557; train accuracy: 0.9920634920634921; test accuracy: 0.06127074370006146
+2026-01-22 13:48:02 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 13:48:03 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 13:48:03 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 13:48:22 [INFO]  Epoch 0 loss: 0.0014680619206046686; train accuracy: 1.0; test accuracy: 0.33727719729563616
+2026-01-22 13:48:22 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 13:48:27 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 13:48:27 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 13:48:52 [INFO]  Epoch 0 loss: 0.0023529481923105777; train accuracy: 1.0; test accuracy: 0.26805470190534725
+2026-01-22 13:48:52 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 13:49:00 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 13:49:00 [INFO]  Round 34 Finish--------|
+2026-01-22 13:49:00 [INFO]  Model variance: mean: 0.0020608690101653337, sum: 23028.0703125
+2026-01-22 13:49:09 [INFO]  The test accuracy of OneShotFedProto: 0.13010909649661956
+2026-01-22 13:49:09 [INFO]  class-wise minimum distance [10.773776054382324, 10.443509101867676, 8.490114212036133, 8.586652755737305, 8.490114212036133, 9.862353324890137, 11.84022045135498, 8.633133888244629, 9.357885360717773, 8.60562801361084], min_gap 8.490114212036133, max_gap 11.84022045135498
+2026-01-22 13:50:14 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11412876459741857
+2026-01-22 13:50:52 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6559234787953289
+2026-01-22 13:50:52 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 13:50:52 [INFO]  Round 35 starts--------|
+2026-01-22 13:50:52 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 13:51:14 [INFO]  Epoch 0 loss: 0.003946977412851993; train accuracy: 1.0; test accuracy: 0.26478948985863554
+2026-01-22 13:51:15 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 13:51:21 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 13:51:21 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 13:52:01 [INFO]  Epoch 0 loss: 0.017501169911156467; train accuracy: 0.9999676521964158; test accuracy: 0.48820682237246465
+2026-01-22 13:52:01 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 13:52:15 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 13:52:15 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 13:52:26 [INFO]  Epoch 0 loss: 0.020590192638337612; train accuracy: 0.996031746031746; test accuracy: 0.06127074370006146
+2026-01-22 13:52:26 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 13:52:26 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 13:52:26 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 13:52:47 [INFO]  Epoch 0 loss: 0.0014388362233148655; train accuracy: 1.0; test accuracy: 0.3379302397049785
+2026-01-22 13:52:47 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 13:52:52 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 13:52:52 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 13:53:20 [INFO]  Epoch 0 loss: 0.0024158584610631806; train accuracy: 1.0; test accuracy: 0.26778580208973574
+2026-01-22 13:53:20 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 13:53:28 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 13:53:28 [INFO]  Round 35 Finish--------|
+2026-01-22 13:53:28 [INFO]  Model variance: mean: 0.002061181701719761, sum: 23031.56640625
+2026-01-22 13:53:37 [INFO]  The test accuracy of OneShotFedProto: 0.14397664413030117
+2026-01-22 13:53:37 [INFO]  class-wise minimum distance [10.961493492126465, 10.69958209991455, 8.550328254699707, 8.656625747680664, 8.550328254699707, 9.93978214263916, 12.008845329284668, 9.105371475219727, 9.648969650268555, 8.620274543762207], min_gap 8.550328254699707, max_gap 12.008845329284668
+2026-01-22 13:56:47 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11289950829748002
+2026-01-22 14:00:08 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6762446220036877
+2026-01-22 14:00:08 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 14:00:08 [INFO]  Round 36 starts--------|
+2026-01-22 14:00:08 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 14:00:32 [INFO]  Epoch 0 loss: 0.0037411825851449976; train accuracy: 1.0; test accuracy: 0.2644821757836509
+2026-01-22 14:00:32 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 14:00:39 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 14:00:39 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 14:01:21 [INFO]  Epoch 0 loss: 0.016631515517474327; train accuracy: 1.0; test accuracy: 0.4931622618315919
+2026-01-22 14:01:21 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 14:01:37 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 14:01:37 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 14:01:47 [INFO]  Epoch 0 loss: 0.015194951556622982; train accuracy: 0.998015873015873; test accuracy: 0.06127074370006146
+2026-01-22 14:01:47 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 14:01:47 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 14:01:47 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 14:02:08 [INFO]  Epoch 0 loss: 0.0013796385064779315; train accuracy: 1.0; test accuracy: 0.3403503380454825
+2026-01-22 14:02:08 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 14:02:14 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 14:02:14 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 14:02:43 [INFO]  Epoch 0 loss: 0.0022728783269485575; train accuracy: 1.0; test accuracy: 0.26793945912722805
+2026-01-22 14:02:43 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 14:02:52 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 14:02:52 [INFO]  Round 36 Finish--------|
+2026-01-22 14:02:52 [INFO]  Model variance: mean: 0.0020614531822502613, sum: 23034.59765625
+2026-01-22 14:03:02 [INFO]  The test accuracy of OneShotFedProto: 0.14105716041794714
+2026-01-22 14:03:02 [INFO]  class-wise minimum distance [10.966416358947754, 10.680829048156738, 8.551701545715332, 8.71141529083252, 8.551701545715332, 10.117288589477539, 11.991859436035156, 9.253494262695312, 9.74098014831543, 8.642005920410156], min_gap 8.551701545715332, max_gap 11.991859436035156
+2026-01-22 14:06:02 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11501229256299939
+2026-01-22 14:09:05 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6763982790411801
+2026-01-22 14:09:05 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 14:09:05 [INFO]  Round 37 starts--------|
+2026-01-22 14:09:05 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 14:09:29 [INFO]  Epoch 0 loss: 0.0037739368508482585; train accuracy: 1.0; test accuracy: 0.26455900430239704
+2026-01-22 14:09:29 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 14:09:36 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 14:09:36 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 14:10:20 [INFO]  Epoch 0 loss: 0.025910343587383977; train accuracy: 1.0; test accuracy: 0.49377688998156116
+2026-01-22 14:10:20 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 14:10:36 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 14:10:36 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 14:10:45 [INFO]  Epoch 0 loss: 0.01327089685946703; train accuracy: 0.998015873015873; test accuracy: 0.06127074370006146
+2026-01-22 14:10:45 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 14:10:46 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 14:10:46 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 14:11:07 [INFO]  Epoch 0 loss: 0.0012259668592378148; train accuracy: 1.0; test accuracy: 0.33965888137676703
+2026-01-22 14:11:07 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 14:11:13 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 14:11:13 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 14:11:41 [INFO]  Epoch 0 loss: 0.002208024156971078; train accuracy: 1.0; test accuracy: 0.2679778733866011
+2026-01-22 14:11:41 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 14:11:50 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 14:11:50 [INFO]  Round 37 Finish--------|
+2026-01-22 14:11:50 [INFO]  Model variance: mean: 0.0020617188420146704, sum: 23037.56640625
+2026-01-22 14:11:59 [INFO]  The test accuracy of OneShotFedProto: 0.14309311616472034
+2026-01-22 14:11:59 [INFO]  class-wise minimum distance [11.041796684265137, 10.738871574401855, 8.651439666748047, 8.761419296264648, 8.651439666748047, 10.183266639709473, 12.102640151977539, 9.413851737976074, 9.805257797241211, 8.739340782165527], min_gap 8.651439666748047, max_gap 12.102640151977539
+2026-01-22 14:14:57 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11581899200983405
+2026-01-22 14:17:54 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.676359864781807
+2026-01-22 14:17:54 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 14:17:54 [INFO]  Round 38 starts--------|
+2026-01-22 14:17:54 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 14:18:19 [INFO]  Epoch 0 loss: 0.0035777667553702486; train accuracy: 1.0; test accuracy: 0.2645974185617701
+2026-01-22 14:18:19 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 14:18:26 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 14:18:26 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 14:19:10 [INFO]  Epoch 0 loss: 0.01755518973186554; train accuracy: 0.9999676521964158; test accuracy: 0.4890135218192993
+2026-01-22 14:19:10 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 14:19:27 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 14:19:27 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 14:19:37 [INFO]  Epoch 0 loss: 0.012677857652306557; train accuracy: 0.998015873015873; test accuracy: 0.06127074370006146
+2026-01-22 14:19:37 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 14:19:37 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 14:19:37 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 14:19:59 [INFO]  Epoch 0 loss: 0.0012687041044046055; train accuracy: 1.0; test accuracy: 0.33877535341118625
+2026-01-22 14:19:59 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 14:20:05 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 14:20:05 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 14:20:33 [INFO]  Epoch 0 loss: 0.002106203234689019; train accuracy: 1.0; test accuracy: 0.26805470190534725
+2026-01-22 14:20:33 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 14:20:42 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 14:20:42 [INFO]  Round 38 Finish--------|
+2026-01-22 14:20:42 [INFO]  Model variance: mean: 0.0020619810093194246, sum: 23040.49609375
+2026-01-22 14:20:51 [INFO]  The test accuracy of OneShotFedProto: 0.1398279041180086
+2026-01-22 14:20:51 [INFO]  class-wise minimum distance [11.056267738342285, 10.908036231994629, 8.709095001220703, 8.797614097595215, 8.727659225463867, 10.188486099243164, 12.035758018493652, 9.457551956176758, 9.8859224319458, 8.709095001220703], min_gap 8.709095001220703, max_gap 12.035758018493652
+2026-01-22 14:23:41 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11216963736939152
+2026-01-22 14:26:41 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6775891210817455
+2026-01-22 14:26:41 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 14:26:41 [INFO]  Round 39 starts--------|
+2026-01-22 14:26:41 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 14:27:05 [INFO]  Epoch 0 loss: 0.0033588957849133294; train accuracy: 1.0; test accuracy: 0.26386754763368164
+2026-01-22 14:27:05 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 14:27:12 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 14:27:12 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 14:27:57 [INFO]  Epoch 0 loss: 0.01691720706912747; train accuracy: 0.9999676521964158; test accuracy: 0.48935925015365705
+2026-01-22 14:27:57 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 14:28:12 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 14:28:12 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 14:28:22 [INFO]  Epoch 0 loss: 0.012939201202243567; train accuracy: 1.0; test accuracy: 0.06127074370006146
+2026-01-22 14:28:22 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 14:28:22 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 14:28:22 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 14:28:44 [INFO]  Epoch 0 loss: 0.0012317633854763699; train accuracy: 1.0; test accuracy: 0.3382375537799631
+2026-01-22 14:28:44 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 14:28:50 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 14:28:50 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 14:29:17 [INFO]  Epoch 0 loss: 0.0019294101139166742; train accuracy: 1.0; test accuracy: 0.2679778733866011
+2026-01-22 14:29:17 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 14:29:26 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 14:29:26 [INFO]  Round 39 Finish--------|
+2026-01-22 14:29:26 [INFO]  Model variance: mean: 0.0020622434094548225, sum: 23043.4296875
+2026-01-22 14:29:35 [INFO]  The test accuracy of OneShotFedProto: 0.14470651505838966
+2026-01-22 14:29:35 [INFO]  class-wise minimum distance [11.13044548034668, 10.934165000915527, 8.75435733795166, 8.805508613586426, 8.75435733795166, 10.246362686157227, 12.086276054382324, 9.574048042297363, 9.982931137084961, 8.766519546508789], min_gap 8.75435733795166, max_gap 12.086276054382324
+2026-01-22 14:32:38 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11182390903503381
+2026-01-22 14:35:55 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6778580208973571
+2026-01-22 14:35:55 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 14:35:55 [INFO]  Round 40 starts--------|
+2026-01-22 14:35:55 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 14:36:19 [INFO]  Epoch 0 loss: 0.0033559997064003255; train accuracy: 1.0; test accuracy: 0.2643285187461586
+2026-01-22 14:36:19 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 14:36:26 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 14:36:26 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 14:37:09 [INFO]  Epoch 0 loss: 0.02468930742907105; train accuracy: 0.9999676521964158; test accuracy: 0.48893669330055317
+2026-01-22 14:37:09 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 14:37:24 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 14:37:24 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 14:37:35 [INFO]  Epoch 0 loss: 0.01211307942867279; train accuracy: 1.0; test accuracy: 0.06127074370006146
+2026-01-22 14:37:35 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 14:37:35 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 14:37:35 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 14:37:57 [INFO]  Epoch 0 loss: 0.0011925033959414577; train accuracy: 1.0; test accuracy: 0.33854486785494775
+2026-01-22 14:37:57 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 14:38:02 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 14:38:02 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 14:38:30 [INFO]  Epoch 0 loss: 0.0018389664169262687; train accuracy: 1.0; test accuracy: 0.26786263060848187
+2026-01-22 14:38:30 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 14:38:38 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 14:38:38 [INFO]  Round 40 Finish--------|
+2026-01-22 14:38:38 [INFO]  Model variance: mean: 0.0020624916069209576, sum: 23046.203125
+2026-01-22 14:38:47 [INFO]  The test accuracy of OneShotFedProto: 0.13137676705593115
+2026-01-22 14:38:47 [INFO]  class-wise minimum distance [11.147917747497559, 11.025009155273438, 8.779329299926758, 8.883766174316406, 8.788049697875977, 10.306290626525879, 12.082375526428223, 9.617595672607422, 10.068148612976074, 8.779329299926758], min_gap 8.779329299926758, max_gap 12.082375526428223
+2026-01-22 14:42:00 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11067148125384142
+2026-01-22 14:45:19 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6764751075599262
+2026-01-22 14:45:19 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 14:45:19 [INFO]  Round 41 starts--------|
+2026-01-22 14:45:19 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 14:45:42 [INFO]  Epoch 0 loss: 0.0032149463941095746; train accuracy: 1.0; test accuracy: 0.2637523048555624
+2026-01-22 14:45:42 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 14:45:50 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 14:45:50 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 14:46:32 [INFO]  Epoch 0 loss: 0.018060020793200238; train accuracy: 0.9999676521964158; test accuracy: 0.49154886293792255
+2026-01-22 14:46:32 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 14:46:48 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 14:46:48 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 14:46:59 [INFO]  Epoch 0 loss: 0.010979140643030405; train accuracy: 1.0; test accuracy: 0.06127074370006146
+2026-01-22 14:46:59 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 14:47:00 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 14:47:00 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 14:47:21 [INFO]  Epoch 0 loss: 0.0011177629012308898; train accuracy: 1.0; test accuracy: 0.33762292562999385
+2026-01-22 14:47:21 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 14:47:27 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 14:47:27 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 14:47:55 [INFO]  Epoch 0 loss: 0.0019458789115560648; train accuracy: 1.0; test accuracy: 0.26778580208973574
+2026-01-22 14:47:55 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 14:48:03 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 14:48:03 [INFO]  Round 41 Finish--------|
+2026-01-22 14:48:03 [INFO]  Model variance: mean: 0.002062796149402857, sum: 23049.60546875
+2026-01-22 14:48:12 [INFO]  The test accuracy of OneShotFedProto: 0.1732098955132145
+2026-01-22 14:48:12 [INFO]  class-wise minimum distance [11.203333854675293, 11.062252044677734, 8.818674087524414, 8.891162872314453, 8.859251022338867, 10.299511909484863, 12.077044486999512, 9.69298267364502, 10.0659818649292, 8.818674087524414], min_gap 8.818674087524414, max_gap 12.077044486999512
+2026-01-22 14:51:25 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11604947756607252
+2026-01-22 14:54:47 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6814689612784266
+2026-01-22 14:54:47 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 14:54:47 [INFO]  Round 42 starts--------|
+2026-01-22 14:54:47 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 14:55:11 [INFO]  Epoch 0 loss: 0.002895554212955176; train accuracy: 1.0; test accuracy: 0.2637138905961893
+2026-01-22 14:55:11 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 14:55:18 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 14:55:18 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 14:56:01 [INFO]  Epoch 0 loss: 0.026603574117871176; train accuracy: 0.9999676521964158; test accuracy: 0.4879763368162262
+2026-01-22 14:56:01 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 14:56:16 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 14:56:16 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 14:56:26 [INFO]  Epoch 0 loss: 0.010043558664619923; train accuracy: 1.0; test accuracy: 0.06127074370006146
+2026-01-22 14:56:26 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 14:56:26 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 14:56:26 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 14:56:49 [INFO]  Epoch 0 loss: 0.0011504672465889598; train accuracy: 1.0; test accuracy: 0.3379302397049785
+2026-01-22 14:56:49 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 14:56:55 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 14:56:55 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 14:57:22 [INFO]  Epoch 0 loss: 0.0016952425976342056; train accuracy: 1.0; test accuracy: 0.26778580208973574
+2026-01-22 14:57:22 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 14:57:31 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 14:57:31 [INFO]  Round 42 Finish--------|
+2026-01-22 14:57:31 [INFO]  Model variance: mean: 0.0020630178041756153, sum: 23052.08203125
+2026-01-22 14:57:40 [INFO]  The test accuracy of OneShotFedProto: 0.15941917639827904
+2026-01-22 14:57:40 [INFO]  class-wise minimum distance [11.23530387878418, 11.157593727111816, 8.796250343322754, 8.926222801208496, 8.900100708007812, 10.341447830200195, 12.033977508544922, 9.67197036743164, 10.144169807434082, 8.796250343322754], min_gap 8.796250343322754, max_gap 12.033977508544922
+2026-01-22 15:00:49 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11059465273509526
+2026-01-22 15:04:05 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6789336201598033
+2026-01-22 15:04:05 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 15:04:05 [INFO]  Round 43 starts--------|
+2026-01-22 15:04:05 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 15:04:29 [INFO]  Epoch 0 loss: 0.00288231206832279; train accuracy: 1.0; test accuracy: 0.26379071911493546
+2026-01-22 15:04:29 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 15:04:36 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 15:04:36 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 15:05:19 [INFO]  Epoch 0 loss: 0.009709701635074452; train accuracy: 0.9999676521964158; test accuracy: 0.49197141979102643
+2026-01-22 15:05:19 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 15:05:35 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 15:05:35 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 15:05:45 [INFO]  Epoch 0 loss: 0.011328609194606543; train accuracy: 1.0; test accuracy: 0.06127074370006146
+2026-01-22 15:05:45 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 15:05:45 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 15:05:45 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 15:06:07 [INFO]  Epoch 0 loss: 0.0010486055998626398; train accuracy: 1.0; test accuracy: 0.33892901044867857
+2026-01-22 15:06:07 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 15:06:12 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 15:06:12 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 15:06:40 [INFO]  Epoch 0 loss: 0.0015664625630051887; train accuracy: 1.0; test accuracy: 0.2677473878303626
+2026-01-22 15:06:40 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 15:06:49 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 15:06:49 [INFO]  Round 43 Finish--------|
+2026-01-22 15:06:49 [INFO]  Model variance: mean: 0.0020632236264646053, sum: 23054.380859375
+2026-01-22 15:06:58 [INFO]  The test accuracy of OneShotFedProto: 0.13848340503995082
+2026-01-22 15:06:58 [INFO]  class-wise minimum distance [11.265867233276367, 11.136738777160645, 8.84640121459961, 8.919528007507324, 9.00648307800293, 10.489083290100098, 12.157853126525879, 9.797616004943848, 10.249764442443848, 8.84640121459961], min_gap 8.84640121459961, max_gap 12.157853126525879
+2026-01-22 15:10:08 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11132452366318378
+2026-01-22 15:13:29 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6790488629379225
+2026-01-22 15:13:29 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 15:13:29 [INFO]  Round 44 starts--------|
+2026-01-22 15:13:29 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 15:13:53 [INFO]  Epoch 0 loss: 0.002608308528579073; train accuracy: 1.0; test accuracy: 0.26402120467117396
+2026-01-22 15:13:53 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 15:14:00 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 15:14:00 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 15:14:42 [INFO]  Epoch 0 loss: 0.012570452053296322; train accuracy: 0.9999676521964158; test accuracy: 0.490319606637984
+2026-01-22 15:14:42 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 15:14:57 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 15:14:57 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 15:15:07 [INFO]  Epoch 0 loss: 0.01418401813134551; train accuracy: 1.0; test accuracy: 0.06127074370006146
+2026-01-22 15:15:07 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 15:15:07 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 15:15:07 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 15:15:28 [INFO]  Epoch 0 loss: 0.0011058481677537202; train accuracy: 1.0; test accuracy: 0.33712354025814384
+2026-01-22 15:15:28 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 15:15:33 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 15:15:33 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 15:16:00 [INFO]  Epoch 0 loss: 0.0014307759624898608; train accuracy: 1.0; test accuracy: 0.26786263060848187
+2026-01-22 15:16:00 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 15:16:09 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 15:16:09 [INFO]  Round 44 Finish--------|
+2026-01-22 15:16:09 [INFO]  Model variance: mean: 0.002063494175672531, sum: 23057.404296875
+2026-01-22 15:16:18 [INFO]  The test accuracy of OneShotFedProto: 0.17751229256299939
+2026-01-22 15:16:18 [INFO]  class-wise minimum distance [11.338279724121094, 11.187339782714844, 8.880448341369629, 9.01494026184082, 9.031449317932129, 10.384425163269043, 12.016233444213867, 9.83545207977295, 10.249300956726074, 8.880448341369629], min_gap 8.880448341369629, max_gap 12.016233444213867
+2026-01-22 15:19:35 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.1160878918254456
+2026-01-22 15:23:01 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6784342347879533
+2026-01-22 15:23:01 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 15:23:01 [INFO]  Round 45 starts--------|
+2026-01-22 15:23:01 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 15:23:24 [INFO]  Epoch 0 loss: 0.002720556387430406; train accuracy: 1.0; test accuracy: 0.2640980331899201
+2026-01-22 15:23:24 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 15:23:31 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 15:23:31 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 15:24:12 [INFO]  Epoch 0 loss: 0.016044887150201248; train accuracy: 0.9999676521964158; test accuracy: 0.49070374923171484
+2026-01-22 15:24:12 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 15:24:27 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 15:24:27 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 15:24:38 [INFO]  Epoch 0 loss: 0.009271371643990278; train accuracy: 1.0; test accuracy: 0.06127074370006146
+2026-01-22 15:24:38 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 15:24:39 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 15:24:39 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 15:24:59 [INFO]  Epoch 0 loss: 0.0009179450221381558; train accuracy: 1.0; test accuracy: 0.3390826674861709
+2026-01-22 15:24:59 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 15:25:05 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 15:25:05 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 15:25:31 [INFO]  Epoch 0 loss: 0.001502048852671578; train accuracy: 1.0; test accuracy: 0.26793945912722805
+2026-01-22 15:25:31 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 15:25:40 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 15:25:40 [INFO]  Round 45 Finish--------|
+2026-01-22 15:25:40 [INFO]  Model variance: mean: 0.002063659019768238, sum: 23059.24609375
+2026-01-22 15:25:49 [INFO]  The test accuracy of OneShotFedProto: 0.13556392132759681
+2026-01-22 15:25:49 [INFO]  class-wise minimum distance [11.375517845153809, 11.255021095275879, 8.900078773498535, 9.02893352508545, 9.081379890441895, 10.516371726989746, 12.09740161895752, 9.914362907409668, 10.340250015258789, 8.900078773498535], min_gap 8.900078773498535, max_gap 12.09740161895752
+2026-01-22 15:29:07 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11159342347879533
+2026-01-22 15:32:32 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6792025199754149
+2026-01-22 15:32:32 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 15:32:32 [INFO]  Round 46 starts--------|
+2026-01-22 15:32:32 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 15:32:56 [INFO]  Epoch 0 loss: 0.0025695432850625366; train accuracy: 1.0; test accuracy: 0.2644821757836509
+2026-01-22 15:32:56 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 15:33:02 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 15:33:02 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 15:33:44 [INFO]  Epoch 0 loss: 0.012940866655299033; train accuracy: 0.9999676521964158; test accuracy: 0.49043484941610327
+2026-01-22 15:33:44 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 15:33:59 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 15:33:59 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 15:34:09 [INFO]  Epoch 0 loss: 0.007976529188454151; train accuracy: 1.0; test accuracy: 0.06127074370006146
+2026-01-22 15:34:09 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 15:34:09 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 15:34:09 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 15:34:30 [INFO]  Epoch 0 loss: 0.0009202579749398865; train accuracy: 1.0; test accuracy: 0.33819913952059005
+2026-01-22 15:34:30 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 15:34:35 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 15:34:35 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 15:35:02 [INFO]  Epoch 0 loss: 0.0015147991398407612; train accuracy: 1.0; test accuracy: 0.26747848801475105
+2026-01-22 15:35:02 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 15:35:10 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 15:35:10 [INFO]  Round 46 Finish--------|
+2026-01-22 15:35:10 [INFO]  Model variance: mean: 0.0020639330614358187, sum: 23062.30859375
+2026-01-22 15:35:19 [INFO]  The test accuracy of OneShotFedProto: 0.17201905347264904
+2026-01-22 15:35:19 [INFO]  class-wise minimum distance [11.385443687438965, 11.361146926879883, 8.889725685119629, 9.127009391784668, 9.115737915039062, 10.531489372253418, 12.122583389282227, 10.018939971923828, 10.437910079956055, 8.889725685119629], min_gap 8.889725685119629, max_gap 12.122583389282227
+2026-01-22 15:38:39 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11289950829748002
+2026-01-22 15:42:10 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6749769514443762
+2026-01-22 15:42:10 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 15:42:10 [INFO]  Round 47 starts--------|
+2026-01-22 15:42:10 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 15:42:34 [INFO]  Epoch 0 loss: 0.0025004957115015713; train accuracy: 1.0; test accuracy: 0.2635986478180701
+2026-01-22 15:42:34 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 15:42:41 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 15:42:41 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 15:43:23 [INFO]  Epoch 0 loss: 0.011785115993461659; train accuracy: 1.0; test accuracy: 0.4933543331284573
+2026-01-22 15:43:23 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 15:43:38 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 15:43:38 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 15:43:47 [INFO]  Epoch 0 loss: 0.007830302696675062; train accuracy: 1.0; test accuracy: 0.06127074370006146
+2026-01-22 15:43:47 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 15:43:48 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 15:43:48 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 15:44:09 [INFO]  Epoch 0 loss: 0.0009188664307657746; train accuracy: 1.0; test accuracy: 0.3373540258143823
+2026-01-22 15:44:09 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 15:44:14 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 15:44:14 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 15:44:41 [INFO]  Epoch 0 loss: 0.0014347530036502576; train accuracy: 1.0; test accuracy: 0.267440073755378
+2026-01-22 15:44:41 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 15:44:50 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 15:44:50 [INFO]  Round 47 Finish--------|
+2026-01-22 15:44:50 [INFO]  Model variance: mean: 0.002064099535346031, sum: 23064.169921875
+2026-01-22 15:44:58 [INFO]  The test accuracy of OneShotFedProto: 0.15104486785494775
+2026-01-22 15:44:58 [INFO]  class-wise minimum distance [11.449769973754883, 11.321084976196289, 8.898218154907227, 9.15962028503418, 9.163251876831055, 10.618013381958008, 12.226545333862305, 10.013708114624023, 10.448087692260742, 8.898218154907227], min_gap 8.898218154907227, max_gap 12.226545333862305
+2026-01-22 15:48:26 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.11182390903503381
+2026-01-22 15:52:02 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6763982790411801
+2026-01-22 15:52:02 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 15:52:02 [INFO]  Round 48 starts--------|
+2026-01-22 15:52:02 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 15:52:25 [INFO]  Epoch 0 loss: 0.0026469180656931712; train accuracy: 1.0; test accuracy: 0.26421327596803934
+2026-01-22 15:52:25 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 15:52:31 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 15:52:31 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 15:53:13 [INFO]  Epoch 0 loss: 0.0156967655234439; train accuracy: 0.9999676521964158; test accuracy: 0.4890903503380455
+2026-01-22 15:53:13 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 15:53:28 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 15:53:28 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 15:53:37 [INFO]  Epoch 0 loss: 0.007595851318910718; train accuracy: 1.0; test accuracy: 0.06127074370006146
+2026-01-22 15:53:37 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 15:53:37 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 15:53:37 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 15:53:57 [INFO]  Epoch 0 loss: 0.0009034566628542962; train accuracy: 1.0; test accuracy: 0.33988936693300553
+2026-01-22 15:53:57 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 15:54:03 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 15:54:03 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 15:54:29 [INFO]  Epoch 0 loss: 0.001422848782112851; train accuracy: 1.0; test accuracy: 0.26809311616472037
+2026-01-22 15:54:29 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 15:54:38 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 15:54:38 [INFO]  Round 48 Finish--------|
+2026-01-22 15:54:38 [INFO]  Model variance: mean: 0.002064312109723687, sum: 23066.544921875
+2026-01-22 15:54:47 [INFO]  The test accuracy of OneShotFedProto: 0.16256914566687156
+2026-01-22 15:54:47 [INFO]  class-wise minimum distance [11.456754684448242, 11.4927396774292, 8.882308959960938, 9.183416366577148, 9.166221618652344, 10.653196334838867, 12.090696334838867, 10.065486907958984, 10.553306579589844, 8.882308959960938], min_gap 8.882308959960938, max_gap 12.090696334838867
+2026-01-22 15:58:14 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.10951905347264905
+2026-01-22 16:01:45 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6705977258758451
+2026-01-22 16:01:45 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml
+2026-01-22 16:01:45 [INFO]  Round 49 starts--------|
+2026-01-22 16:01:45 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-22 16:02:08 [INFO]  Epoch 0 loss: 0.0027064090872954694; train accuracy: 1.0; test accuracy: 0.26398279041180084
+2026-01-22 16:02:08 [INFO]  Client 0 Finish Local Training--------|
+2026-01-22 16:02:15 [INFO]  Client 0 Collecting Local Prototypes--------|
+2026-01-22 16:02:15 [INFO]  Client 1 Starts Local Trainning--------|
+2026-01-22 16:02:57 [INFO]  Epoch 0 loss: 0.015748383053960424; train accuracy: 0.9999676521964158; test accuracy: 0.4880915795943454
+2026-01-22 16:02:57 [INFO]  Client 1 Finish Local Training--------|
+2026-01-22 16:03:12 [INFO]  Client 1 Collecting Local Prototypes--------|
+2026-01-22 16:03:12 [INFO]  Client 2 Starts Local Trainning--------|
+2026-01-22 16:03:22 [INFO]  Epoch 0 loss: 0.007617479655891657; train accuracy: 1.0; test accuracy: 0.06127074370006146
+2026-01-22 16:03:22 [INFO]  Client 2 Finish Local Training--------|
+2026-01-22 16:03:22 [INFO]  Client 2 Collecting Local Prototypes--------|
+2026-01-22 16:03:22 [INFO]  Client 3 Starts Local Trainning--------|
+2026-01-22 16:03:43 [INFO]  Epoch 0 loss: 0.0009112118973462202; train accuracy: 1.0; test accuracy: 0.339159496004917
+2026-01-22 16:03:43 [INFO]  Client 3 Finish Local Training--------|
+2026-01-22 16:03:48 [INFO]  Client 3 Collecting Local Prototypes--------|
+2026-01-22 16:03:48 [INFO]  Client 4 Starts Local Trainning--------|
+2026-01-22 16:04:16 [INFO]  Epoch 0 loss: 0.0013882268508496054; train accuracy: 1.0; test accuracy: 0.26747848801475105
+2026-01-22 16:04:16 [INFO]  Client 4 Finish Local Training--------|
+2026-01-22 16:04:24 [INFO]  Client 4 Collecting Local Prototypes--------|
+2026-01-22 16:04:24 [INFO]  Round 49 Finish--------|
+2026-01-22 16:04:24 [INFO]  Model variance: mean: 0.0020645014010369778, sum: 23068.66015625
+2026-01-22 16:04:33 [INFO]  The test accuracy of OneShotFedProto: 0.1515058389674247
+2026-01-22 16:04:33 [INFO]  class-wise minimum distance [11.462547302246094, 11.515164375305176, 8.849593162536621, 9.23910903930664, 9.324443817138672, 10.662040710449219, 12.035602569580078, 10.193482398986816, 10.587284088134766, 8.849593162536621], min_gap 8.849593162536621, max_gap 12.035602569580078
+2026-01-22 16:07:59 [INFO]  The test accuracy (with prototype) of OneShotFedProto: 0.10767516902274124
+2026-01-22 16:11:36 [INFO]  The test accuracy (with prototype) of OneShotFedProto+Ensemble: 0.6722111247695144
+2026-01-22 16:11:36 [INFO]  Save config to ./checkpoints/SVHN_alpha0.05/baselines_OneShotFedProto_SVHN_results.yaml

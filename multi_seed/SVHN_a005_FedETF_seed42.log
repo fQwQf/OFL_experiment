@@ -1,0 +1,29 @@
+2026-01-20 23:21:26 [INFO]  Load config from configs/temp/SVHN_alpha0.05_seed42.yaml
+2026-01-20 23:21:26 [INFO]  config: {'DBCD': {'Beta_alpha': 0.2, 'alpha_l_pa': 1, 'alpha_l_pb': 1, 'alpha_l_pc': 0.0, 'aug_batch_size': 512, 'aux_with_public': True, 'cls_lr': 0.05, 'cls_optimizer': 'sgd', 'contrastive_temperature': 0.5, 'encoder_epoch': 40, 'encoder_lr': 0.03, 'projector_epoch': 10, 'supcon_temp': 0.07, 'super_gr': 100, 'unsup_method': 'infonce', 'use_pretrain': False}, 'checkpoint': {'result_file': 'SVHN_results.yaml', 'save_freq': 5, 'save_path': './checkpoints/'}, 'client': {'num_clients': 5}, 'dataset': {'aux_data_name': 'SVHN', 'aux_root_path': '~/datasets/', 'aux_split': 'test', 'channels': 3, 'data_name': 'SVHN', 'image_size': 32, 'num_classes': 10, 'root_path': '~/datasets/', 'test_batch_size': 256, 'train_batch_size': 256}, 'device': 'cuda:0', 'distribution': {'alpha': 0.05, 'label_num_per_client': 2, 'type': 'dirichlet'}, 'etf': {'loss_name': 'ce'}, 'exp_name': 'SVHN_alpha0.05', 'lambda_align_initial': 10.0, 'pretrain': {'epoch': 70, 'lr': 0.01, 'model_file_name': 'resnet18-f37072fd.pth', 'model_name': 'resnet18', 'model_path': './pretrain/', 'momentum': 0.9, 'weight_decay': 0.0001}, 'resume': True, 'resume_best': False, 'seed': 42, 'server': {'aggregated_by_datasize': True, 'frac_clients': 1.0, 'local_epochs': 1, 'loss_name': 'ce', 'lr': 0.05, 'lr_decay_per_round': 0.998, 'model_name': 'resnet18', 'momentum': 0.9, 'num_rounds': 50, 'optimizer': 'sgd', 'weight_decay': 0.0001}, 'v10_config': {'sigma_lr': 0.005, 'use_uncertainty_weighting': True}, 'v9_config': {'gamma_etf_reg': 0.1, 'lambda_max': 20.0, 'lambda_min': 0.1, 'server_epochs': 20, 'server_lr': 0.001, 'use_adaptive_lambda': True, 'use_server_optimization': False}, 'visualization': {'interval': 5, 'save_path': 'visualization/resnet18', 'vis_size': 16}}
+Using downloaded and verified file: /data1/tongjizhou/datasets/SVHN/train_32x32.mat
+Using downloaded and verified file: /data1/tongjizhou/datasets/SVHN/test_32x32.mat
+2026-01-20 23:21:54 [INFO]  Dataset SVHN loaded
+2026-01-20 23:21:54 [INFO]  Dataset index dict loaded from preprocessed_data/SVHN.pt
+2026-01-20 23:21:54 [INFO]  Data distribution generated correctly using the corrected dirichlet function.
+2026-01-20 23:21:54 [INFO]  Total assigned samples: 73257
+2026-01-20 23:21:55 [INFO]  OneshotFedETF
+/data1/tongjizhou/FAFI_ICML25/dataset_helper.py:116: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  idx_dict = torch.load(preprocess_path)
+  0%|          | 0/50 [00:00<?, ?it/s]2026-01-20 23:22:09 [INFO]  Round 0 starts--------|
+2026-01-20 23:22:09 [INFO]  Client 0 Starts Local Trainning--------|
+2026-01-20 23:23:19 [INFO]  generating sample per sample
+  0%|          | 0/50 [01:15<?, ?it/s]
+Traceback (most recent call last):
+  File "test.py", line 53, in <module>
+    OneshotFedETF(trainset, test_loader, client_idx_map, config, device)
+  File "/data1/tongjizhou/FAFI_ICML25/oneshot_algorithms/fedetf/fedetf_main.py", line 114, in OneshotFedETF
+    local_model_c = fedetf_local_training(
+  File "/data1/tongjizhou/FAFI_ICML25/oneshot_algorithms/fedetf/fedetf_local_training.py", line 38, in fedetf_local_training
+    output_total, feature = model(data)
+  File "/data1/tongjizhou/miniconda3/envs/fafi/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/data1/tongjizhou/miniconda3/envs/fafi/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/data1/tongjizhou/FAFI_ICML25/models_lib/resnet_big.py", line 272, in forward
+    logits = torch.matmul(feature, self.proto_classifier.proto)
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu! (when checking argument for argument mat2 in method wrapper_CUDA_mm)

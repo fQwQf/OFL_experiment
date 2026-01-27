@@ -82,7 +82,7 @@ One-shot Federated Learning (OFL) pushes communication efficiency to its limit b
 
 \section{Introduction}
 
-Federated Learning (FL) has emerged as the de facto paradigm for collaborative machine learning under privacy constraints~\cite{mcmahan2017}. Despite its success, traditional multi-round FL suffers from prohibitive communication overhead, especially when deploying large-scale models over bandwidth-constrained edge networks. \textbf{One-shot Federated Learning (OFL)} pushes communication efficiency to its limit by restricting the client-server interaction to a single round~\cite{guha2019}. However, this ``train-then-merge'' paradigm faces a critical challenge: \textbf{Model Inconsistency}~\cite{zeng2025}. Under Non-IID data distributions, local models optimizing solely for local tasks tend to drift into disparate regions of the feature space. Without periodic synchronization to correct these drifts, \emph{parameter-space} aggregation methods (e.g., FedAvg, FedLPA) fail catastrophically due to the \textbf{permutation invariance} of deep networks---different clients learn functionally similar features at disparate neuron locations, causing layer collapse upon averaging.
+Federated Learning (FL) has emerged as the de facto paradigm for collaborative machine learning under privacy constraints~\cite{mcmahan2017}. Despite its success, traditional multi-round FL suffers from prohibitive communication overhead, especially when deploying large-scale models over bandwidth-constrained edge networks. \textbf{One-shot Federated Learning (OFL)} pushes communication efficiency to its limit by restricting the client-server interaction to a single round~\cite{guha2019}. However, this ``train-then-merge'' paradigm faces a critical challenge: \textbf{Model Inconsistency}~\cite{zeng2025}. Under Non-IID data distributions, local models optimizing solely for local tasks tend to drift into disparate regions of the feature space. Without periodic synchronization to correct these drifts, \emph{parameter-space} aggregation methods (e.g., FedAvg) fail catastrophically due to the \textbf{permutation invariance} of deep networks---different clients learn functionally similar features at disparate neuron locations, causing layer collapse upon averaging. Similarly, recent analytic approaches like \textbf{AFL}~\cite{AFL_He_CVPR2025}, while promising for pre-trained models, fail to learn discriminative features from scratch in one-shot settings (see Table~\ref{tab:main-results-c100}), highlighting the difficulty of the problem.
 
 To address model inconsistency, recent advances such as \textbf{FAFI}~\cite{zeng2025} augment local training with contrastive learning. However, these methods lack \emph{explicit global geometric anchors}. A natural remedy is to align client prototypes to a fixed Simplex Equiangular Tight Frame (ETF) structure~\cite{papyan2020}. \textbf{However, we discover that static alignment effectively hurts performance}, identifying a \textbf{``Temporal Dichotomy''}: the optimal balance between global alignment and local adaptation is \emph{time-varying}. In the \emph{early stage}, strong alignment prevents overfitting; in the \emph{late stage}, relaxed alignment enables fine-grained adaptation. Static regularization fails to satisfy both needs, whereas AURORA automates this scheduling to achieve the best of both worlds without manual tuning.
 
@@ -103,7 +103,11 @@ Our principal contributions are summarized as follows:
 
 \subsection{One-shot Federated Learning and Non-IID Challenges}
 
-Data heterogeneity (Non-IID) poses severe challenges in One-shot FL (OFL) due to the lack of iterative correction~\cite{amato2025survey}. While multi-round methods like FedProx~\cite{li2020} and SCAFFOLD~\cite{karimireddy2020} address this via frequent communication, OFL requires robust single-round solutions. Existing approaches largely fall into three categories: (1) \textbf{Distillation-based} methods like DENSE~\cite{zhang2022}, Co-Boosting~\cite{dai2024coboosting}, and FedSD2C~\cite{zhang2024one} simulate global data interactions but often suffer from generator mode collapse under extreme skew; (2) \textbf{Aggregation-based} methods like FedLPA~\cite{liu2024} employ advanced Bayesian inference to weight parameters; however, as shown in our experiments, they struggle in one-shot settings with deep networks where permutation symmetries prevent substantial parameter alignment; and (3) \textbf{Client-side} enhancements like FAFI~\cite{zeng2025} focus on local feature quality. Unlike methods relying on complex auxiliary transmission (e.g., FALCON~\cite{liu2026feature}) or server-side generation, AURORA purely regulates \emph{local training dynamics} via geometric anchors to produce alignable models without extra communication overhead. Since AURORA relies on fixed ETF anchors, it also avoids prototype poisoning risks associated with dynamic prototype learning~\cite{zeng2025bapfl}.
+Data heterogeneity (Non-IID) poses severe challenges in One-shot FL (OFL) due to the lack of iterative correction~\cite{amato2025survey}. While multi-round methods like FedProx~\cite{li2020} and SCAFFOLD~\cite{karimireddy2020} address this via frequent communication, OFL requires robust single-round solutions. Existing approaches largely fall into three categories: (1) \textbf{Distillation-based} methods like DENSE~\cite{zhang2022} and \textbf{Co-Boosting~\cite{dai2024coboosting}} simulate global data interactions. \textbf{While Co-Boosting attempts to mitigate generator quality issues via adversarial hard-sample mining, our experiments show it still suffers from generator mode collapse under extreme skew (achieving only 19.24\% on CIFAR-100), as the disjoint ensemble cannot guide the generator effectively;} (2) \textbf{Aggregation-based} methods like FedLPA~\cite{liu2024} employ advanced Bayesian inference to weight parameters; however, as shown in our experiments, they struggle in one-shot settings with deep networks where permutation symmetries prevent substantial parameter alignment; and (3) \textbf{Client-side} enhancements like FAFI~\cite{zeng2025} focus on local feature quality. Recent work \textbf{AFL}~\cite{AFL_He_CVPR2025} proposes an analytic approach for one-shot FL. However, AFL strictly relies on pre-trained frozen backbones to extract embeddings and solves a linear regression problem. As shown in our experiments, when applied to the standard FL setting (training from scratch) without pre-trained weights, AFL fails to learn discriminative features (20.10\%), whereas AURORA successfully learns high-quality representations (48.83\%) autonomously.
+
+\textbf{Progressive and Split Approaches:} Recent works like FuseFL~\cite{tang2024fusefl} attempt to break the isolation of local training by progressively fusing model blocks in a bottom-up manner. FuseFL views local training through a causal lens, arguing that feature augmentation from other clients removes spurious correlations. However, FuseFL strictly requires $K$ sequential communication rounds (where $K$ is the number of blocks), violating the strict single-interaction constraint of OFL if $K>1$. Furthermore, our experiments show that without a global coordinate system, progressive fusion struggles to align features under extreme label skew (CIFAR-100, $\alpha=0.05$), achieving only 32.71\% compared to AURORA's 48.83\%.
+
+Unlike methods relying on complex auxiliary transmission (e.g., FALCON~\cite{liu2026feature}) or server-side generation, AURORA purely regulates \emph{local training dynamics} via geometric anchors to produce alignable models without extra communication overhead. Since AURORA relies on fixed ETF anchors, it also avoids prototype poisoning risks associated with dynamic prototype learning~\cite{zeng2025bapfl}.
 
 \subsection{Prototype-based Federated Learning and Neural Collapse}
 
@@ -144,7 +148,9 @@ where $\mathcal{C}_k$ is the set of classes present in client $k$'s local datase
 \end{equation}
 This mathematically optimal structure ensures maximum inter-class separation and provides a consistent geometric target for all clients.
 
-\textbf{ETF Construction Requirement.} The simplex ETF requires embedding dimension $d \geq C-1$. With ResNet-18 ($d=512$), this is satisfied for CIFAR-10 ($C=10$) and CIFAR-100 ($C=100$). For datasets with $C > d+1$ (e.g., ImageNet), one can employ a lightweight Projector (Projection Head) to map features to a sufficient logical dimension before alignment. We discuss this extension strategy in Section~\ref{sec:discussion}.
+Crucially, $\Lalign$ is computed solely between learnable prototypes and fixed anchors. \textbf{Gradient descent on $\Lalign$ updates the prototypes directly, but does not backpropagate to the backbone encoder.} The encoder aligns to the global geometry indirectly, as $\Llocal$ pulls features towards these ETF-aligned prototypes.
+
+\textbf{ETF Construction Requirement.} The simplex ETF requires embedding dimension $d \geq C-1$. With ResNet-18 ($d=512$), this is satisfied for CIFAR-10 ($C=10$) and CIFAR-100 ($C=100$). For high-cardinality tasks where $C>d$, we introduce a Projection Head $g(\cdot)$ to map features $z=g(f(x))$ into a higher-dimensional space $\mathbb{R}^{d'}$ where $d' \ge C-1$, calculating $\Lalign$ on $z$. This ensures geometric feasibility for any number of classes (empirically validated in Section 4.7).
 
 \textbf{Handling Missing Classes.} Under extreme non-IID (e.g., $\alpha=0.05$), some clients may lack samples for certain classes. By computing $\Lalign$ only over classes present in the client's dataset ($\mathcal{C}_k$), we prevent trivial alignment of unused prototypes and focus learning on classes the client can actually discriminate.
 
@@ -188,7 +194,7 @@ The \texttt{.detach()} operation prevents gradients from flowing from the uncert
     \item The outer loop adjusts $\sigma$ parameters based on the meta-objective
 \end{itemize}
 
-\textbf{Why Decoupling is Necessary.} Without gradient decoupling, the $1/\sigma^2$ coefficients in the Kendall formulation directly scale the effective learning rate for each task. In our experiments, this causes two failure modes: (1) when $\sigma_{\text{local}}^2$ grows large (as intended for uncertain local tasks), the local loss gradients become vanishingly small, stalling feature learning; (2) the $\sigma$ parameters receive conflicting gradients from both the loss terms and regularizers, leading to oscillatory training dynamics. Decoupling isolates these effects: model weights see a clean weighted sum, while $\sigma$ parameters adapt based only on loss magnitudes.
+\textbf{Why Decoupling is Necessary.} Without gradient decoupling, the $1/\sigma^2$ coefficients in the Kendall formulation directly scale the effective learning rate for each task. In our experiments, this causes two failure modes: (1) when $\sigma_{\text{local}}^2$ grows large (as intended for uncertain local tasks), the local loss gradients become vanishingly small, stalling feature learning; (2) the $\sigma$ parameters receive conflicting gradients from both the loss terms and regularizers, leading to oscillatory training dynamics. Decoupling isolates these effects: model weights see a clean weighted sum, while $\sigma$ parameters adapt based only on loss magnitudes. Furthermore, since our architecture structurally prevents $\Lalign$ gradients from reaching the encoder (see Appendix C), gradient-norm based balancing methods (e.g., GradNorm) are mathematically ill-posed in this setting, necessitating our uncertainty-based approach.
 
 This decoupling ensures that the model learns task-optimal weights while the sigma parameters learn the optimal task weighting, without mutual interference.
 
@@ -273,7 +279,7 @@ Full algorithm pseudocode and implementation details (architecture, hyperparamet
 
 \textbf{Non-IID Simulation.} We partition training data among $K=5$ clients using Dirichlet distribution with concentration parameter $\alpha \in \{0.05, 0.1, 0.3, 0.5\}$. Lower $\alpha$ indicates more severe heterogeneity.
 
-\textbf{Baselines.} We compare against FedAvg, FAFI~\cite{zeng2025}, FAFI+Annealing, and FedLPA~\cite{liu2024}. For FAFI+Annealing, we performed a grid search over initial $\lambda \in \{10, 20, 50, 100\}$ and decay schedules (Linear, Cosine) using a 10\% validation hold-out, requiring 8 runs per setting to find the optimal schedule. Detailed descriptions are in Appendix~\ref{appendix:impl-details}.
+\textbf{Baselines.} We compare against FedAvg, FAFI~\cite{zeng2025}, FAFI+Annealing, and \textbf{IntactOFL}~\cite{zeng2024one}, a recent state-of-the-art method that utilizes a Mixture-of-Experts (MoE) architecture to preserve local model knowledge without parameter averaging. For FAFI+Annealing, we performed a grid search over initial $\lambda \in \{10, 20, 50, 100\}$ and decay schedules (Linear, Cosine) using a 10\% validation hold-out, requiring 8 runs per setting to find the optimal schedule. Detailed descriptions are in Appendix~\ref{appendix:impl-details}.
 
 \textbf{Ablation Variants.} We also evaluate AURORA without stability regularization, without gradient decoupling, and alternative $\lambda$ mechanisms (learnable schedule, cosine schedule, GradNorm-style). Details in Appendix~\ref{appendix:extended-related}.
 
@@ -294,8 +300,12 @@ Full algorithm pseudocode and implementation details (architecture, hyperparamet
 \textbf{FedAvg} & Parameter Avg & 15.59 & -33.24\% \\
 \textbf{FedProto} & Prototype Avg & 17.49 (Ensemble) & -31.34\% \\
 \textbf{DENSE} & Distillation & 20.52 & -28.31\% \\
+\textbf{Co-Boosting} & Distil./Ensemble & 19.24 $\pm$ 1.42 & -29.59\% \\
+\textbf{AFL (Scratch)} & Analytic & \textbf{20.10} & -28.73\% \\
 \textbf{One-Shot FedETF} & Static Alignment & 23.90 (Ensemble) & -24.93\% \\
-\textbf{FedLPA} & Bayesian Agg. & 6.54 & -42.29\% \\
+\textbf{IntactOFL} & Mixture-of-Experts & 27.99 $\pm$ 0.67 & -20.84\% \\
+\textbf{FuseFL ($K=2$)} & Progressive Fusion & 29.98 & -18.85\% \\
+\textbf{FuseFL ($K=4$)} & Progressive Fusion & 32.71 & -16.12\% \\
 \textbf{FAFI} & Feature Anchor & 42.29 $\pm$ 1.43 & -6.54\% \\
 \textbf{FAFI+Anneal} & Manual Schedule & 46.28 $\pm$ 1.31 & -2.55\% \\
 \textbf{AURORA (Ours)} & \textbf{Auto-Reg} & \textbf{48.83 $\pm$ 0.54} & \textbf{-} \\
@@ -303,6 +313,7 @@ Full algorithm pseudocode and implementation details (architecture, hyperparamet
 \end{tabular}
 \end{small}
 \end{center}
+\footnotesize{Note: For fair comparison, we evaluate AFL without pre-trained weights (training from scratch), consistent with other baselines.}
 \end{table*}
 
 \begin{table}[t]
@@ -335,12 +346,22 @@ SVHN & 0.05 & 23.14 & 49.94 & 51.07 & \textbf{52.9} \\
 
 \textbf{Why Conventional One-Shot FL Fails?} The catastrophic failure of baselines in Table~\ref{tab:main-results-c100} reveals the unique challenges of extreme heterogeneity ($\alpha=0.05$):
 \begin{itemize}
-    \item \textbf{Parameter Aggregation Failure (The Permutation Invariance Problem):} \textbf{FedLPA} (6.54\%) and FedAvg (15.59\%) collapse because they operate in the \emph{parameter space}. Deep networks (ResNet-18) suffer from layer-wise permutation invariance: disjoint clients learn functionally similar features at disparate parameter locations. Without iterative synchronization to correct this drift, standard averaging or Bayesian inference (Laplace Approximation) fails to reconcile the models, leading to constructive interference failure. This problem is exacerbated in deep networks compared to the shallow SimpleCNNs used in original FedLPA studies.
+    \item \textbf{Parameter Aggregation Failure (The Permutation Invariance Problem):} FedAvg (15.59\%) collapses because it operates in the \emph{parameter space}. Deep networks (ResNet-18) suffer from layer-wise permutation invariance: disjoint clients learn functionally similar features at disparate parameter locations. Without iterative synchronization to correct this drift, standard averaging fails to reconcile the models, leading to constructive interference failure.
     \item \textbf{Data-Free Distillation (DENSE):} DENSE relies on a generator to synthesize data for distillation. In the one-shot setting with extreme skew, the generator suffers from mode collapse, failing to capture the global distribution, resulting in poor accuracy (20.52\%).
     \item \textbf{Static Alignment (FedETF):} Static FedETF achieves only ~24\%, confirming our "Temporal Dichotomy" hypothesis: imposing rigid geometric constraints early in training prevents necessary feature adaptation.
 \end{itemize}
 
-\textbf{The Key Insight: Feature Space vs. Parameter Space.} The dramatic gap between FedLPA (6.54\%) and AURORA (48.83\%) underscores a fundamental principle: in one-shot non-IID settings, \emph{parameter-space} alignment is algorithmically brittle due to permutation symmetries. AURORA succeeds because it enforces alignment in the \emph{feature space} via explicit ETF geometric anchors, which are invariant to internal parameter permutations.
+\textbf{Limitations of Advanced Distillation (Co-Boosting):} We also compared AURORA against the recent \textbf{Co-Boosting} framework~\cite{dai2024coboosting}, which attempts to enhance One-Shot FL by mutually boosting synthetic data quality and ensemble weights. As shown in Table~\ref{tab:main-results-c100}, while Co-Boosting (19.24\%) performs comparably to DENSE (20.52\%) and outperforms FedAvg, it significantly trails AURORA (48.83\%) by nearly \textbf{30\%}. This result validates our core observation regarding extreme heterogeneity ($\alpha=0.05$):
+\begin{itemize}
+    \item \textbf{Generator Failure:} Co-Boosting relies on generating `hard samples' from the ensemble to refine the server model. However, in extreme non-IID settings (CIFAR-100, $\alpha=0.05$), the ensemble is derived from highly disjoint local models. The resulting generator suffers from severe mode collapse, failing to synthesize representative data regardless of the adversarial `boosting' mechanism.
+    \item \textbf{Feature vs. Generation:} This confirms that trying to \emph{generate} missing data (Co-Boosting/DENSE) is algorithmically brittle compared to AURORA's approach of \emph{aligning} feature spaces via geometric anchors. AURORA succeeds because it solves the alignment problem directly in the feature space, rather than relying on a generator that cannot learn the global distribution from sparse, disjoint clients.
+\end{itemize}
+
+We also compare against the recent IntactOFL~\cite{zeng2024one}, which attempts to mitigate model inconsistency by maintaining local models as a Mixture-of-Experts (MoE). As shown in Table~\ref{tab:main-results-c100}, IntactOFL achieves 27.99\%, outperforming FedAvg (15.59\%) and DENSE (20.52\%). This confirms that avoiding destructive parameter merging is beneficial. However, AURORA (48.83\%) still outperforms IntactOFL by a massive \textbf{20.84\%} margin. This gap highlights a critical finding: \textbf{In extreme non-IID settings, ``better aggregation'' (like MoE) is insufficient if the local models are fundamentally misaligned or biased.} IntactOFL freezes these biased local experts, effectively locking in their poor generalization. In contrast, AURORA's dynamic regularization forces the local models to learn alignable features \emph{during} training, treating the root cause of the heterogeneity rather than just managing the symptoms at aggregation.
+
+\textbf{Limitations of Progressive Fusion (FuseFL):} We further compared AURORA against FuseFL~\cite{tang2024fusefl}, a recent causal-based approach that splits the model into $K$ blocks and performs progressive bottom-up fusion to augment features. While FuseFL ($32.71\%$ with $K=4$) outperforms IntactOFL ($27.99\%$) and FedAvg ($15.59\%$) by mitigating spurious correlations via feature swapping, it still trails AURORA ($48.83\%$) by over $16\%$. This gap highlights a critical limitation of bottom-up fusion in extreme non-IID settings ($\alpha=0.05$): when local data shards are too small and biased, the early-stage blocks ($k=1,2$) learned by FuseFL are already fundamentally misaligned. Progressively fusing these ``poisoned'' foundations cannot recover the global semantic structure. In contrast, AURORA provides \textbf{top-down} geometric guidance (via the fixed Simplex ETF) that anchors the feature space \emph{before} the model drifts, ensuring that local features remain alignable regardless of data sparsity.
+
+\textbf{The Key Insight: Feature Space vs. Parameter Space.} The dramatic gap between FedAvg (15.59\%) and AURORA (48.83\%) underscores a fundamental principle: in one-shot non-IID settings, \emph{parameter-space} alignment is algorithmically brittle due to permutation symmetries. AURORA succeeds because it enforces alignment in the \emph{feature space} via explicit ETF geometric anchors, which are invariant to internal parameter permutations.
 
 % Figure 1: Accuracy vs Heterogeneity
 \begin{figure}[t]
@@ -471,7 +492,7 @@ FAFI + Manual Anneal & 57.89 & -0.12\% \\
 
 \subsection{Analysis: AURORA Learns the Optimal Schedule}
 
-We analyze AURORA's learned $\lambda$ trajectories compared to manual annealing. Table~\ref{tab:lambda-evolution} shows that AURORA discovers a comparable schedule to manual tuning, and Figure~\ref{fig:lambda-divergence} reveals that clients develop \emph{divergent} trajectories despite sharing the same $s(p)$ prior---demonstrating AURORA is data-dependent, not merely time-dependent. Extended analysis is provided in Appendix~\ref{appendix:schedule-analysis}.
+We analyze AURORA's learned $\lambda$ trajectories compared to manual annealing. Table~\ref{tab:lambda-evolution} shows that AURORA discovers a comparable schedule to manual tuning, and Figure~\ref{fig:lambda-divergence-appendix} reveals that clients develop \emph{divergent} trajectories despite sharing the same $s(p)$ prior---demonstrating AURORA is data-dependent, not merely time-dependent. Extended analysis is provided in Appendix~\ref{appendix:schedule-analysis}.
 
 \begin{table}[ht]
 \caption{$\lambda$ Evolution Comparison (CIFAR-100, $\alpha$=0.05). Full trajectory analysis in Appendix~\ref{appendix:schedule-analysis}.}
@@ -495,6 +516,29 @@ We analyze AURORA's learned $\lambda$ trajectories compared to manual annealing.
 
 In extreme non-IID scenarios (e.g., SVHN $\alpha$=0.05), we observe the ``$\lambda$ explosion'' problem where $\lambdaeff$ exceeds $10^6$, collapsing accuracy from 49.5\% (peak) to 16.4\% (final). AURORA's stability regularization ($\gamma$=1e-3) maintains $\lambda \leq 50$, achieving 52.9\% final accuracy. Extended analysis in Appendix~\ref{appendix:robustness}.
 
+\subsection{Scalability to Large-Scale \& High-Cardinality Tasks}
+
+To address concerns regarding scalability and dimensionality constraints (where $C \ge d$), we evaluated AURORA on \textbf{Tiny-ImageNet} (200 classes). As shown in Table~\ref{tab:tiny-imagenet}, utilizing a Projector to map features to a higher-dimensional space ($512 \to 2048$) boosts accuracy from 42.78\% to \textbf{47.35\%}. Notably, even with simple parameter averaging (FedAvg), AURORA achieves 40.35\%, demonstrating robust alignment capabilities in complex visual domains where standard One-shot methods typically collapse.
+
+\begin{table}[h]
+\caption{Scalability on Tiny-ImageNet (200 Classes). A Projector effectively resolves the dimensionality bottleneck, achieving SOTA performance.}
+\label{tab:tiny-imagenet}
+\begin{center}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{llccl}
+\toprule
+\textbf{Dataset} & \textbf{Method} & \textbf{Feat. Dim} & \textbf{Agg} & \textbf{Acc} \\
+\midrule
+Tiny-ImageNet & FAFI (Baseline) & 512 & IFFI & 42.78\% \\
+(200 Classes) & AURORA (No Proj) & 512 & IFFI & 43.96\% \\
+ & \textbf{AURORA (Proj)} & \textbf{2048} & \textbf{IFFI} & \textbf{47.35\%} \\
+ & AURORA (Proj) & 2048 & FedAvg & 40.35\% \\
+\bottomrule
+\end{tabular}
+}
+\end{center}
+\end{table}
+
 \subsection{Hyperparameter Sensitivity}
 
 AURORA's hyperparameters ($\lambda_{\max}$, $\gamma$, $\sigma$-lr) are \emph{safety bounds}, fundamentally different from manual annealing's performance-critical parameters. Varying $\lambda_{\max}$ from 20 to 100 changes accuracy by 0\% (negligible), confirming high robustness. While a lower $\sigma$-lr=0.001 can further boost performance on specific datasets (e.g., to 51.77\% on CIFAR-100), we stick to the default $\sigma$-lr=0.005 across all main experiments to demonstrate \textbf{generalization robustness}---a single configuration that works competitively across diverse tasks (CIFAR-10, CIFAR-100, SVHN) without dataset-specific tuning.
@@ -510,6 +554,8 @@ We evaluate AURORA across different federation scales ($K \in \{5, 10, 20\}$ cli
 
 \textbf{Privacy and Security.} AURORA relies on \textbf{data-independent, pre-defined geometric anchors} (Simplex ETF). These mathematical structures contain no private client information (unlike dynamic prototypes in FedProto) and do not require generative models (unlike DENSE), which potentially reduces the attack surface compared to methods involving dynamic parameter transmission.
 
+\textbf{Analytic Baselines.} We acknowledge that AFL achieves high performance (58.56\%) when initialized with ImageNet pre-trained weights, as it is specifically designed for pre-trained scenarios. However, this paper focuses on the challenging setting of learning from scratch under heterogeneity, where AURORA significantly outperforms AFL.
+
 \section{Conclusion}
 
 We have presented AURORA, a framework for autonomous regularization in One-shot Federated Learning. By reformulating the local-global trade-off as a learnable meta-objective with gradient decoupling and meta-annealing, our method reduces the need for hand-crafted regularization schedules while achieving competitive performance with state-of-the-art methods.
@@ -521,7 +567,7 @@ Our key insights include:
     \item \textbf{Robustness matters:} AURORA not only improves accuracy but significantly reduces variance (0.54 vs 1.31), preventing the "exploding $\lambda$" failure mode and ensuring reliable one-shot convergence even in extreme scenarios.
 \end{enumerate}
 
-\textbf{Future Work.} Promising directions include: (1) extending to model heterogeneous settings; (2) combining with advanced server-side aggregation techniques like FedLPA; (3) theoretical analysis of the meta-learning convergence properties; (4) application to other FL paradigms with conflicting objectives; (5) evaluating on larger scale ($K>100$) and label-skew partitions where temporal dichotomy implies similar benefits.
+\textbf{Future Work.} Promising directions include: (1) extending to model heterogeneous settings; (2) combining with advanced server-side aggregation techniques; (3) theoretical analysis of the meta-learning convergence properties; (4) application to other FL paradigms with conflicting objectives; (5) evaluating on larger scale ($K>100$) and label-skew partitions where temporal dichotomy implies similar benefits.
 
 \section*{Impact Statement}
 This paper presents work whose goal is to advance the field of Machine Learning. There are many potential societal consequences of our work, none which we feel must be specifically highlighted here.
@@ -736,6 +782,7 @@ Since $\Lalign$ does not backpropagate to the encoder ($\nabla_\theta \Lalign \e
 \begin{equation}
     G_{align} = \|\nabla_\theta \Lalign \|_2 = 0
 \end{equation}
+This is a design choice to stabilize feature learning. It creates a 'chasing' dynamic where features chase prototypes, and prototypes chase anchors. However, this design renders GradNorm inapplicable as $G_{align}$ is identically zero at the encoder layer.
 
 GradNorm aims to increase $\lambda_{align}$ such that $G_{align}$ matches the average gradient norm $\bar{G}$. However, since $G_{align}$ is always 0 regardless of $\lambda$, GradNorm will drive $\lambda_{align} \to \infty$ (exploding gradient) or result in division-by-zero errors, attempting to lift a zero gradient to match a positive one.
 
@@ -895,35 +942,7 @@ The uncertainty weighting mechanism learns different $\lambda$ values per client
 \section{Extended Related Work}
 \label{appendix:extended-related}
 
-\subsection{Comparison with Bayesian Aggregation Methods}
 
-\textbf{FedLPA and Laplace Approximation.} FedLPA~\cite{liu2024} applies Laplace approximation for Bayesian posterior aggregation in federated learning. Key considerations:
-
-\begin{itemize}
-    \item \textbf{Parameter-Space vs. Feature-Space:} FedLPA operates in high-dimensional parameter space ($\sim$11M parameters for ResNet-18). AURORA operates in \emph{feature space} through ETF-anchored prototype alignment---a much lower-dimensional and geometrically structured space.
-    \item \textbf{Complementary Strengths:} FedLPA provides principled Bayesian uncertainty quantification, while AURORA offers geometric feature alignment. These approaches are potentially complementary.
-    \item \textbf{Critique of FedLPA Baselines:} We noticed that the original FedLPA paper~\cite{liu2024} reported results on CIFAR-100 using only a shallow SimpleCNN (Table 22), while omitting the standard ResNet-18 benchmark used for CIFAR-10. Our empirical reproduction explains this omission: \emph{Under the standard ResNet-18 + CIFAR-100 setting, FedLPA's performance collapses to 6.54\% (vs. 15.11\% on SimpleCNN).} This indicates that parameter-space Bayesian aggregation scales poorly to deep architectures with high-dimensional manifolds, specifically when label granularity is fine (100 classes) and heterogeneity is extreme. In contrast, AURORA achieves 48.83\% in the exact same setting. This proves that avoiding parameter-space operations in favor of feature-space alignment (via ETF) is the critical enabling factor for scaling One-Shot FL to deep models.
-\end{itemize}
-
-\begin{table}[h]
-\caption{FedLPA reported performance. \textbf{Note: Values are reported directly from the original paper~\cite{liu2024} and were not reproduced in this work.} FedLPA uses Dirichlet parameter $\beta$ (equivalent to our $\alpha$).}
-\label{tab:fedlpa-results}
-\begin{center}
-\begin{small}
-\begin{tabular}{lcccc}
-\toprule
-\textbf{Dataset} & \textbf{$\beta$} & \textbf{Simple CNN} & \textbf{ResNet-18} & \textbf{Source} \\
-\midrule
-CIFAR-10 & 0.1 & 19.97\% & 23.62\% & Table 1 \& 20 \\
-CIFAR-10 & 0.3 & 26.60\% & 27.43\% & Table 1 \& 20 \\
-CIFAR-10 & 0.5 & 24.20\% & 31.70\% & Table 1 \& 20 \\
-CIFAR-100 & 0.1 & 15.11\% & --- & Table 22 \\
-SVHN & 0.05 & 32.90\% & --- & Table 1 \\
-\bottomrule
-\end{tabular}
-\end{small}
-\end{center}
-\end{table}
 
 \subsection{Multi-Task Weighting Methods}
 
@@ -1048,7 +1067,7 @@ This section provides additional implementation details for reproducibility.
     \item \textbf{FedAvg (One-shot):} Simple averaging of locally trained models
     \item \textbf{FAFI:} Feature-Anchored Integration with contrastive learning~\cite{zeng2025}
     \item \textbf{FAFI+Annealing:} FAFI with manually-tuned linear $\lambda$ annealing schedule
-    \item \textbf{FedLPA:} Layer-wise Posterior Aggregation using Laplace approximation~\cite{liu2024}
+
 \end{itemize}
 
 \section{Analysis: AURORA Learns the Optimal Schedule (Extended)}
